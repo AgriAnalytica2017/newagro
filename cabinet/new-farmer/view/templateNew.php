@@ -60,7 +60,7 @@ $top_menu=array(
                 <div class="navibar-custom-menun">
                     <ul class="navi navibar-navn">
                         <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
+                        <li class="dropdownn messages-menu">
                             <!-- Menu toggle button -->
                             <a href="/language/ua" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
                                 <span>Українська</span></span>
@@ -164,7 +164,7 @@ $top_menu=array(
                                                         if(is_string($menu_href_1)){?>
                                                             <li><a href="<?=$menu_href_1 ?>"><?=$menu_text_1 ?></a></li>
                                                         <?}else{?>
-                                                            <li class="dropdown dropdown2">
+                                                            <li class="dropdownn dropdown2">
                                                                 <a href="#" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false"><?=$menu_text_1 ?>
                                                                     <i class="fa fa-angle-right pull-right" style="color: #fff; margin-top: 5px"></i>
                                                                 </a>

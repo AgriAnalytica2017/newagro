@@ -889,6 +889,11 @@ fieldset[disabled] a.btnn {
         margin-left: 0px;
         float: left;
     }
+
+    .table>tbody>tr>td:first-child {
+        padding-left: 10;
+    }
+    
 .dropdown-menun>li>a {
     display: block;
     padding: 3px 20px;
