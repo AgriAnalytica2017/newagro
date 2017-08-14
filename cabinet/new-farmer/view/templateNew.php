@@ -64,11 +64,8 @@ $top_menu=array(
                 <div class="navibar-custom-menun">
                     <ul class="navi navibar-navn">
                         <!-- Messages: style can be found in dropdown.less-->
-<<<<<<< HEAD
                         <li class="dropdownn messages-menu">
-=======
                         <li class="messages-menu">
->>>>>>> 8657c9c113553c652f9279f0b56116a605310ad6
                             <!-- Menu toggle button -->
                             <a href="/language/ua" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
                                 <span>Українська</span></span>
