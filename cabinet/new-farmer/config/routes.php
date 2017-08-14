@@ -10,8 +10,9 @@ return array(
     'new-farmer/incoming_storage'=>'storage/incomingStorage',
 
     'new-farmer/costs_technology_card/([0-9]+)'=>'technologyCard/costsTechnologyCard/$1',
-    'new-farmer/edit_technology_card/([0-9]+)'=>'technologyCard/editTechnologyCard/$1',
-    'new-farmer/save_edit_technology_card/([0-9]+)'=>'technologyCard/saveEditTechnologyCard/$1',
+    'new-farmer/update_action'=>'technologyCard/updateActionPlan',
+    'new-farmer/edit_technology_card'=>'technologyCard/editTechnologyCard',
+    'new-farmer/save_edit_technology_card'=>'technologyCard/saveEditTechnologyCard',
     'new-farmer/create_technology_card'=>'technologyCard/createTechnologyCard',
     'new-farmer/list_technology_card'=>'technologyCard/listTechnologyCard',
     'new-farmer/technology_card/([0-9]+)'=>'technologyCard/technologyCard/$1',

@@ -8,19 +8,19 @@
 </head>
 <div class="box">
     <div class="box-bodyn col-lg-12" >
-<!--			<span class="box-title col-sm-2" style="padding: 0">Технологічні карти</span>-->
-            <div class="non-semantic-protector">
-                <h1 class="ribbon">
-                    <strong class="ribbon-content">Технологічні карти</strong>
-                </h1>
-            </div>
-        </div>
-
+<!--   <span class="box-title col-sm-2" style="padding: 0">Технологічні карти</span>-->
+       <div class="non-semantic-protector">
+           <h1 class="ribbon">
+               <strong class="ribbon-content">Технологічні карти</strong>
+           </h1>
+       </div>
+    </div>
     <div class="box-bodyn col-lg-12" style="max-height: 55px">
         <div class="col-sm-4"></div>
-        <div class="col-sm-2" style="margin-top: -18px;">
+        <div class="col-sm-2" style="margin-top: -10px;">
             <label for="id_action_type"></label>
-            <select onchange="window.location.href=this.options[this.selectedIndex].value" class="form-control sub-header inphead" id="select_field" required style="height: ">
+            <select onchange="window.location.href=this.options[this.selectedIndex].value" class="form-control sub-header" id="select_field"
+                    required style="height: ">
                 <option value="0">Виберіть поле</option>
                 <?php foreach ($date['field'] as $crop){?>
                     <option <?php if($crop['id_field']== $date['id']) echo "selected"?> value="<?php SRC::getSrc();?>/new-farmer/technology_card/<?php echo $crop['id_field']?>"><?php echo $crop['field_name']?></option>

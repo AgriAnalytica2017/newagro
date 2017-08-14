@@ -92,7 +92,7 @@
                     <label>name</label>
                     <input type="text" id="ed_equipment_name" name="ed_equipment_name" class="form-control inphead" required>
                     <label>type</label>
-                    <select id="ed_equipment_type" name="ed_equipment_type" class="form-control inphead">
+                    <select id="ed_equipment_type" name="ed_equipment_type" class="form-control inphead dropdown">
                         <?php  foreach ($date['equipment_type']['ua'] as $id_type=>$name_type){?>
                             <option value="<?=$id_type?>"><?=$name_type?></option>
                         <? }?>
