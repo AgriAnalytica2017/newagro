@@ -11,7 +11,7 @@
     <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
-            <strong class="ribbon-content">Storage</strong>
+            <strong class="ribbon-content">Storages</strong>
         </h1>
     </div>
 </div>

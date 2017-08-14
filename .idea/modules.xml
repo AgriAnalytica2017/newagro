@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../forex/.idea/forex.iml" filepath="$PROJECT_DIR$/../forex/.idea/forex.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../lenta/.idea/lenta.iml" filepath="$PROJECT_DIR$/../lenta/.idea/lenta.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/newagro.ru.iml" filepath="$PROJECT_DIR$/.idea/newagro.ru.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../template/.idea/template.iml" filepath="$PROJECT_DIR$/../template/.idea/template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/newagro.iml" filepath="$PROJECT_DIR$/.idea/newagro.iml" />
     </modules>
   </component>
 </project>
