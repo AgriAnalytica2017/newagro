@@ -33,6 +33,10 @@ $top_menu=array(
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/jquery.easydropdown.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -60,7 +64,7 @@ $top_menu=array(
                 <div class="navibar-custom-menun">
                     <ul class="navi navibar-navn">
                         <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
+                        <li class="messages-menu">
                             <!-- Menu toggle button -->
                             <a href="/language/ua" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
                                 <span>Українська</span></span>
@@ -72,7 +76,7 @@ $top_menu=array(
                                 <li class="footern"><a href="#">Ru</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown messages-menu">
+                        <li class="messages-menu">
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
                                 <span>UAH</span>

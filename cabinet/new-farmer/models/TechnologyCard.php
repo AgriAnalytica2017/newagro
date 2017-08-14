@@ -6,6 +6,25 @@
  * Time: 11:19
  */
 class TechnologyCard{
+    public static function editAction($action_id,$id_user,$id_action,$id_action_type,$start_date,$end_date,$unit){
+        $db = Db::getConnection();
+
+        $db->query("UPDATE new_action SET action_action_id='$id_action',action_action_type_id='$id_action_type',
+  action_date_start='$start_date',action_date_end='$end_date',action_unit='$unit'
+ WHERE id_user ='$id_user' AND action_id='$action_id'");
+
+        return true;
+    }
+    public static function removeActionAdd($action_id,$id_user){
+        $db = Db::getConnection();
+        $db->query("DELETE FROM new_action_employee WHERE action_employee_id_action='$action_id' AND action_employee_id_user='$id_user'");
+        $db->query("DELETE FROM new_action_equipment WHERE action_equipment_action_id='$action_id' AND id_user='$id_user'");
+        $db->query("DELETE FROM new_action_material WHERE id_action='$action_id' AND id_user='$id_user'");
+
+
+
+        return true;
+    }
     public static function getNewAction($id_user,$id_culture){
         $db = Db::getConnection();
 
