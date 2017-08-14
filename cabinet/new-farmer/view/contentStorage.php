@@ -63,7 +63,7 @@
           <div class="row">
             <div class="col-lg-3">
           <label>Type of Material</label>
-          <select class="form-control inphead" name="storage_type_material" required>
+          <select class="form-control dropdown" name="storage_type_material" required>
             <? foreach($date['material_types'] as $material_type)if($material_type['type'] == '4'){?>
             <option value="<?=$material_type['id_action']?>"><?=$material_type['name_ua']?></option>
             <?}?>

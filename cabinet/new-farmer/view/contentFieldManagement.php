@@ -60,7 +60,7 @@
                             <input class="form-control edit_field inphead area_plus" data-table="1" data-id_field="<?=$field['id_field']?>" type="text" name="field_size" value="<?=$field['field_size']?>">
                             </td>
                         <td>
-                            <select class="form-control edit_field inphead" data-table="2" data-id_field="<?=$field['id_field']?>" name="field_usage">
+                            <select class="form-control edit_field" data-table="2" data-id_field="<?=$field['id_field']?>" name="field_usage">
                                 <?php foreach ($date['usage']['ua'] as $usage_id=>$usage_val){?>
                                 <option <?php if($field['field_usage']==$usage_id) echo 'selected'?>  value="<?=$usage_id?>"><?=$usage_val?></option>
                                 <?}?>
@@ -114,7 +114,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label>Вид</label>
-                            <select class="form-control inphead op" id="crop_type">
+                            <select class="form-control dropdown op" id="crop_type">
                                 <option value="1">Рослинництво</option>
                                 <option value="2">Овочівництво</option>
                                 <option value="3">Плоди</option>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-lg-6">
                             <label>Культура</label>
-                            <select class="form-control inphead" name='crop' id="crop_list_select" required>
+                            <select class="form-control dropdown" name='crop' id="crop_list_select" required>
                                 <?foreach($date['crop_us'] as $crop){?>
                                     <option class="crop_list crop_type_<?=$crop['type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
                                 <?}?>

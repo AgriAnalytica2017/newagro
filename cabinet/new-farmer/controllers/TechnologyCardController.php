@@ -64,7 +64,7 @@ class TechnologyCardController{
         return true;
     }
 
-    public function actionSaveEditTechnologyCard($id){
+    public function actionSaveEditTechnologyCard(){
         $id_user = $_SESSION['id_user'];
         $crop_id=SRC::validator($_POST['crop_id']);
         $id_action_type =  SRC::validator($_POST['id_action_type']);
@@ -111,19 +111,62 @@ class TechnologyCardController{
             $save_vehicles=substr($save_vehicles, 0, -2);
             TechnologyCard::createActionVehicles($save_vehicles);
         }
-        ////////////////
-//            var_dump($action_type_name);
-//            var_dump($action_name);
-//            var_dump($id_action_type);
-//            var_dump($id_action);
-//            var_dump($start_date);
-//            var_dump($end_date);
-//            var_dump($unit);
-//            var_dump($save_employee);
-
         SRC::redirect();
         return true;
     }
+
+    public function actionUpdateActionPlan(){
+        $id_user = $_SESSION['id_user'];
+
+        $id_action_type =  SRC::validator($_POST['id_action_type']);
+        $id_action =  SRC::validator($_POST['action_id']);
+        $start_date =  SRC::validator($_POST['strat_data']);
+        $end_date =  SRC::validator($_POST['end_data']);
+        $unit =  SRC::validator($_POST['id_action_unit']);
+        $action_id=SRC::validator($_POST['action_action_id']);
+
+        TechnologyCard::editAction($action_id,$id_user,$id_action,$id_action_type,$start_date,$end_date,$unit);
+        TechnologyCard::removeActionAdd($action_id,$id_user);
+        ////employee////
+        $employee= json_decode($_POST['ex_employe']);
+        if($employee!=false){
+            $save_employee='';
+            foreach ($employee as $ex_employee){
+                $id_employee=SRC::validator($ex_employee->{'id'});
+                $pay_employe=SRC::validator($ex_employee->{'pay'});
+                $save_employee=$save_employee."('$id_user','$action_id','$id_employee','$pay_employe'), ";
+            }
+            $save_employee=substr($save_employee, 0, -2);
+            TechnologyCard::createActionEmployee($save_employee);}
+        ////////////////
+        ////material////
+        $materiale= json_decode($_POST['ex_material']);
+        if($materiale!=false){
+            $save_material='';
+            foreach ($materiale as $ex_material){
+                $id_material=SRC::validator($ex_material->{'id'});
+                $norm_material=SRC::validator($ex_material->{'norm'});
+                $save_material=$save_material."('$id_user','$action_id','$id_material','$norm_material'), ";
+            }
+            $save_material=substr($save_material, 0, -2);
+            TechnologyCard::createActionMaterial($save_material);}
+        ////////////////
+        ////vehicles////
+        $vehicles= json_decode($_POST['ex_vehicles']);
+        if($vehicles!=false){
+            $save_vehicles='';
+            foreach ($vehicles as $ex_vehicles){
+                $id_vehicles=SRC::validator($ex_vehicles->{'id_vehicles'});
+                $id_equipment=SRC::validator($ex_vehicles->{'id_equipment'});
+                $save_vehicles=$save_vehicles."('$id_user','$action_id','$id_vehicles','$id_equipment'), ";
+            }
+            $save_vehicles=substr($save_vehicles, 0, -2);
+            TechnologyCard::createActionVehicles($save_vehicles);
+        }
+        SRC::redirect();
+        return true;
+    }
+
     public function actionCostsTechnologyCard($id){
 
         $id_culture = $id;

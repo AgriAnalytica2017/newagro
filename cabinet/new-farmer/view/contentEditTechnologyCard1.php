@@ -12,17 +12,14 @@
 <div class="rown">
 <div class="box">
     <div class="box-body wt">
-            <form id="form" method="post" action="/new-farmer/save_edit_technology_card">
+            <form method="post" action="/new-farmer/save_edit_technology_card/<?php echo $date['id']?>">
                 <input type="hidden" name="crop_id" value="<?php echo $date['id']?>" required>
                 <input type="hidden" id="ex_employe" name="ex_employe">
                 <input type="hidden" id="ex_material" name="ex_material">
                 <input type="hidden" id="ex_vehicles" name="ex_vehicles">
                 <div class="table-responsive">
                     <table class="table well ">
-                        <thead id="thead_edit" class="">
-                        <tr style="display: none" id="update_title">
-                            <th colspan="7"><h4 class="text-center" >update operation</h4></th>
-                        </tr>
+                        <thead class="">
                             <tr>
                                 <th><label for="id_action_type"><?=$language['farmer-small']['81']?></label></th>
                                 <th><label for="action_id"><?=$language['farmer-small']['82']?></label></th>
@@ -36,14 +33,14 @@
                         <tbody>
                         <tr>
                             <td>
-                                    <select class="form-control inphead" id="id_action_type" name="id_action_type" required>
+                                    <select class="form-control dropdown" name="id_action_type" required>
                                     <?php foreach ($date['action'] as $action_type)if($action_type['type']==1){?>
                                         <option value="<?=$action_type['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
                                     <?php }?>
                                 </select>
                             </td>
                             <td>
-                                <select name="action_id" id="action_id" list="list_action" class="form-control inphead" required>
+                                <select name="action_id" list="list_action" class="form-control dropdown" required>
                                     <?php foreach ($date['action'] as $crop)if($crop['type']==2){?>
                                         <option class="action_select action_select<?php echo $crop['action_type']?>" value="<?php echo $crop['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
                                     <?php }?>
@@ -56,7 +53,7 @@
                                 <input type="date" class="form-control inphead" id="end_data" name="end_data" required>
                             </td>
                             <td>
-                            <select class="form-control inphead" name="id_action_unit" id="id_action_unit" required>
+                            <select class="form-control dropdown" name="id_action_unit" id="id_action_unit" required>
                                 <?php foreach ($date['units'][$_COOKIE['lang']] as $action_type_id=>$action_type){?>
                                     <option value="<?php echo $action_type_id?>"><?php echo $action_type?></option>
                                 <?php }?>
@@ -64,16 +61,9 @@
                             </td>
                             <td colspan="2"><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal">Choose vehicles and equipment<b id="coll_vehicles"></b></a></td>
                         </tr>
-                        <tr id="save_actions">
+                        <tr>
                             <td colspan="7">
                                 <button type="submit" class="btn btn-success Save"><?=$language['farmer-small']['99']?></button>
-                            </td>
-                        </tr>
-                        <tr id="update_actions" style="display: none">
-                            <input name="action_action_id" id="action_action_id" type="hidden">
-                            <td colspan="7">
-                                <button type="submit" class="btn btn-info Save">save changes</button>
-                                <a href="/new-farmer/edit_technology_card/<?php echo $date['id']?>" class="btn btn-warning">cancel</a>
                             </td>
                         </tr>
                         </tbody>
@@ -95,7 +85,6 @@
             <th>vehicles and equipment</th>
             <th>Дата початку</th>
             <th>Дата закінчення</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -123,14 +112,13 @@
             </td>
             <td><?=$action['action_date_start']?></td>
             <td><?=$action['action_date_end']?></td>
-            <td><button data-action='<?=json_encode($action)?>' data-employee='<?=json_encode($date['TC']['new_action_employee'][$action['action_id']])?>' data-material='<?=json_encode($date['TC']['new_action_material'][$action['action_id']])?>' data-equipment='<?=json_encode($date['TC']['new_action_equipment'][$action['action_id']])?>' class="btn btn-warning btn-sm edit_action"><span class="glyphicon glyphicon-pencil"></span></button></td>
         </tr>
     <?} ?>
     </tbody>
 </table>
     </div>
+
 </div>
-<div id="equipment_bd_name" data='<?=json_encode($date['equipment']['TC'])?>'></div>
 <!-------------------------------->
 <div id="Choose_employe" class="modal fade">
   <div class="modal-dialog modal-lg">
@@ -454,82 +442,6 @@
             var id_text=$(this).attr('data-text');
             $('#Choose_equipment').modal('hide');
             $('#vehicles_id_eq_'+id).text(id_text).attr('data-id-equipment', id_equ);
-        }
-
-        var json_equipment_bd_name=$('#equipment_bd_name').attr('data');
-        var equipment_bd_name=JSON.parse( json_equipment_bd_name );
-
-        $('.edit_action').click(open_edit);
-        function open_edit() {
-            $('#thead_edit').css({'background':'rgb(240, 204, 149)'});
-            $('#update_title').show(300);
-            var json_action=$(this).attr('data-action');
-            var action=JSON.parse( json_action );
-            $('#form').attr('action','/new-farmer/update_action');
-
-            var json_employee=$(this).attr('data-employee');
-            var employee=JSON.parse( json_employee );
-            var json_material=$(this).attr('data-material');
-            var material=JSON.parse( json_material );
-            var json_equipment=$(this).attr('data-equipment');
-            var equipment=JSON.parse( json_equipment );
-
-            $("#action_action_id").val(action['action_id']);
-            $('#id_action_type').val(action['action_action_type_id']);
-            $('#action_id').val(action['action_action_id']);
-            $('#strat_data').val(action['action_date_start']);
-            $('#end_data').val(action['action_date_end']);
-            $('#id_action_unit').val(action['action_unit']);
-            //employe
-            $("#action_employe").html('');
-            $.each(employee, function(key, value) {
-                id_employee++;
-                var employee=value;
-                $("#action_employe").append("<tr id='action_employee_"+id_employee+"'><td>"+employee['employee_name']+"</td><td>"+employee['employee_surname']+"</td>" +
-                    "<td><input type='text' data-id='"+employee['id_employee']+"' value='"+employee['action_employee_pay']+"' class='form-control pay_employee'></td>" +
-                    "<td><button class='btn btn-danger btn-sm remove_employee' data-id='"+id_employee+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
-                    "</tr>");
-            });
-            save_employe();
-            //material
-            $("#action_material").html('');
-            $.each(material, function(key, value) {
-                id_material++;
-                var material = value;
-                $("#action_material").append("<tr id='action_material_" + id_material + "'>" +
-                    "<td>" + material['storage_material'] + "</td>" +
-                    "<td>" + material['storage_sum_unit'] + "</td>" +
-                    "<td>" +
-                    "<input value='"+material['action_material_norm']+"' data-id='" + material['storage_material_id'] + "' class='form-control norm_material'>" +
-                    "</td>" +
-                    "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
-                    "</tr>");
-            });
-            save_material();
-            //vehicles
-            $("#action_vehicles").html('');
-            $.each(equipment, function(key, value) {
-                id_vehicles++;
-                var vehicles=value;
-                console.log(vehicles);
-                $("#action_vehicles").append("<tr id='action_vehicles_"+id_vehicles+"'>" +
-                    "<td>"+ equipment_bd_name['vehicles'][vehicles['action_vehicles_id']]['vehicles_name'] +"</td>" +
-                    "<td>" +
-                    "<div class='btn-group'>" +
-                    "<button id='vehicles_id_eq_"+id_vehicles+"' data-id-vehicles='"+vehicles['action_vehicles_id']+"' data-id-equipment='"+vehicles['action_equipment_id']+"' type='button' class='btn btn-default equipment_id' disabled='disabled'>"+equipment_bd_name['equipment'][vehicles['action_equipment_id']]['equipment_name']+"</button>" +
-                    "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
-                    "</div>" +
-                    "</td>" +
-                    "<td><button class='btn btn-danger btn-sm remove_vehicles' data-id='"+id_vehicles+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
-                    "</tr>");
-            });
-            save_vehicles();
-            scroll_to_top(200);
-            $('#save_actions').hide();
-            $('#update_actions').show();
-        }
-        function scroll_to_top(speed) {
-            $('body,html').animate({scrollTop: 0}, speed);
         }
 	});
 </script>
