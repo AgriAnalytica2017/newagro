@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0a3182c4-041b-402f-ace1-aa50b86883bc" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Agro@s25.thehost.com.ua" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Agro@s25.thehost.com.ua" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Agro" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Agro@s25.thehost.com.ua" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Agro" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="new_fact" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="newagro.ru" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="contentFactTechCard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-174">
+              <caret line="487" column="58" lean-forward="false" selection-start-line="487" selection-start-column="58" selection-end-line="487" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FactController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="62" column="38" lean-forward="true" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TechnologyCard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="232" column="135" lean-forward="false" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="135" />
+              <folding>
+                <marker date="1504599661000" expanded="true" signature="353:761" ph="UPDATE new_a... " />
+                <marker date="1504599661000" expanded="true" signature="923:1037" ph="SELECT * FRO... new_action" />
+                <marker date="1504599661000" expanded="true" signature="1193:1315" ph="SELECT * FRO... new_lib_material" />
+                <marker date="1504599661000" expanded="true" signature="1628:1703" ph="SELECT * FRO... new_employee" />
+                <marker date="1504599661000" expanded="true" signature="1993:2068" ph="SELECT * FRO... new_vehicles" />
+                <marker date="1504599661000" expanded="true" signature="2343:2385" ph="SELECT * FRO... new_equipment" />
+                <marker date="1504599661000" expanded="true" signature="2896:3022" ph="SELECT * FRO... sm_crop_head" />
+                <marker date="1504599661000" expanded="true" signature="3266:3391" ph="SELECT * FRO... sm_crop_head" />
+                <marker date="1504599661000" expanded="true" signature="3636:3770" ph="SELECT * FRO... sm_crop_head" />
+                <marker date="1504599661000" expanded="true" signature="4010:4060" ph="SELECT * FRO... new_field" />
+                <marker date="1504599661000" expanded="true" signature="4317:4413" ph="INSERT INTO new_crop_culture... " />
+                <marker date="1504599661000" expanded="true" signature="4746:5185" ph="INSERT INTO new_action... " />
+                <marker date="1504599661000" expanded="true" signature="5415:5541" ph="INSERT INTO new_material_price... " />
+                <marker date="1504599661000" expanded="true" signature="5734:5813" ph="SELECT * FRO... new_crop_culture" />
+                <marker date="1504599661000" expanded="true" signature="6190:6290" ph="INSERT INTO new_crop_culture... " />
+                <marker date="1504599661000" expanded="true" signature="6350:6449" ph="UPDATE new_f... " />
+                <marker date="1504599661000" expanded="true" signature="6609:6699" ph="UPDATE new_c... " />
+                <marker date="1504599661000" expanded="true" signature="6734:6841" ph="UPDATE new_f... " />
+                <marker date="1504599661000" expanded="true" signature="6990:7289" ph="SELECT sm.na... new_field" />
+                <marker date="1504599661000" expanded="true" signature="7545:7654" ph="UPDATE new_f... " />
+                <marker date="1504599661000" expanded="true" signature="7835:7937" ph="UPDATE new_f... " />
+                <marker date="1504599661000" expanded="true" signature="8086:8277" ph="INSERT INTO new_crop_culture... " />
+                <marker date="1504599661000" expanded="true" signature="8155:8277" ph="SELECT id_us... new_crop_culture" />
+                <marker date="1504599661000" expanded="true" signature="8355:8829" ph="INSERT INTO new_action... " />
+                <marker date="1504599661000" expanded="true" signature="8577:8829" ph="SELECT id_us... new_action" />
+                <marker date="1504599661000" expanded="true" signature="9036:9281" ph="SELECT * FRO... new_action_employee" />
+                <marker date="1504599661000" expanded="true" signature="9183:9280" ph="SELECT actio... new_action" />
+                <marker date="1504599661000" expanded="true" signature="9414:9716" ph="SELECT * FRO... new_action_equipment" />
+                <marker date="1504599661000" expanded="true" signature="9618:9715" ph="SELECT actio... new_action" />
+                <marker date="1504599661000" expanded="true" signature="9850:10081" ph="SELECT * FRO... new_action_material" />
+                <marker date="1504599661000" expanded="true" signature="9983:10080" ph="SELECT actio... new_action" />
+                <marker date="1504599661000" expanded="true" signature="10215:10374" ph="SELECT * FRO... new_field" />
+                <marker date="1504599661000" expanded="true" signature="10505:10533" ph="SELECT * FRO... new_action_lib" />
+                <marker date="1504599661000" expanded="true" signature="12145:12269" ph="SELECT * FRO... new_storage_material" />
+                <marker date="1504599661000" expanded="true" signature="12506:12621" ph="DELETE FROM " />
+                <marker date="1504599661000" expanded="true" signature="12645:12746" ph="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fact.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="112" column="5" lean-forward="true" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+              <folding>
+                <marker date="1504600594093" expanded="true" signature="212:410" ph="SELECT * FRO... new_field" />
+                <marker date="1504600594093" expanded="true" signature="651:796" ph="SELECT * FRO... new_action" />
+                <marker date="1504600594093" expanded="true" signature="703:764" ph="SELECT field... new_field" />
+                <marker date="1504600594093" expanded="true" signature="927:955" ph="SELECT * FRO... new_action_lib" />
+                <marker date="1504600594093" expanded="true" signature="1183:1309" ph="SELECT * FRO... new_material_price" />
+                <marker date="1504600594093" expanded="true" signature="1547:1628" ph="SELECT * FRO... new_equipment" />
+                <marker date="1504600594093" expanded="true" signature="1868:1947" ph="SELECT * FRO... new_vehicles" />
+                <marker date="1504600594093" expanded="true" signature="2185:2262" ph="SELECT * FRO... new_employee" />
+                <marker date="1504600594093" expanded="true" signature="2489:2592" ph="SELECT * FRO... new_storage_material" />
+                <marker date="1504600594093" expanded="true" signature="2855:2958" ph="SELECT * FRO... new_storage_material" />
+                <marker date="1504600594093" expanded="true" signature="3196:3297" ph="SELECT * FRO... new_fact" />
+                <marker date="1504600594093" expanded="true" signature="3436:3505" ph="SELECT * FRO... new_storage_material" />
+                <marker date="1504600594093" expanded="true" signature="3919:4038" ph="UPDATE new_s... " />
+                <marker date="1504600594093" expanded="true" signature="4062:4307" ph="INSERT INTO new_fact... " />
+                <marker date="1504600594093" expanded="true" signature="4509:4586" ph="DELETE FROM " />
+                <marker date="1504600594093" expanded="true" signature="4610:4831" ph="INSERT INTO new_fact... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Agro.new_fact" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_fact">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>$date['rent_pay']</find>
+      <find>$ex_date['rent_pay_all']</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/cabinet/business-farmer/controllers/TechnologyController.php" />
+        <option value="$PROJECT_DIR$/cabinet/business-farmer/models/Technology.php" />
+        <option value="$PROJECT_DIR$/cabinet/business-farmer/view/contentTechnologySheet.php" />
+        <option value="$PROJECT_DIR$/cabinet/business-farmer/view/contentEditTechnology.php" />
+        <option value="$PROJECT_DIR$/cabinet/business-farmer/models/DataBase.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentSalePrice.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/css/newstyle.css" />
+        <option value="$PROJECT_DIR$/cabinet/farmer-small/controllers/BudgetController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsMaterials.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard1.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEmployeeSalary.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsFuel.php" />
+        <option value="dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_rent" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEquipment.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFact.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php" />
+        <option value="dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_lib" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/DataBase.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerMonth.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentCashFlow.php" />
+        <option value="$PROJECT_DIR$/../new-mvc/index.php" />
+        <option value="$PROJECT_DIR$/../new-mvc/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/../new-mvc/config/routes.php" />
+        <option value="$PROJECT_DIR$/../new-mvc/components/Router.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFieldManagement.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/FieldManagementController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentSales.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/FieldManagement.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/SalesController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentStorage.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/StorageController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console.sql" />
+        <option value="dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.profile_region" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/config/routes.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentListTechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/GB.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cabinet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="C:/" />
+    <property name="database.data.extractors.current" value="SQL Inserts" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a3182c4-041b-402f-ace1-aa50b86883bc" name="Default" comment="" />
+      <created>1502709973944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1502709973944</updated>
+      <workItem from="1502709975086" duration="1379000" />
+      <workItem from="1502715001141" duration="58000" />
+      <workItem from="1502716261074" duration="43000" />
+      <workItem from="1502716946290" duration="523000" />
+      <workItem from="1502719211037" duration="347000" />
+      <workItem from="1502721734576" duration="59000" />
+      <workItem from="1502778887908" duration="2682000" />
+      <workItem from="1502782240015" duration="7241000" />
+      <workItem from="1502795246337" duration="5755000" />
+      <workItem from="1502870999972" duration="21617000" />
+      <workItem from="1502952290240" duration="12563000" />
+      <workItem from="1503126610686" duration="4959000" />
+      <workItem from="1503295909952" duration="783000" />
+      <workItem from="1503296849863" duration="84000" />
+      <workItem from="1503324362017" duration="2124000" />
+      <workItem from="1503381733868" duration="1522000" />
+      <workItem from="1503467514452" duration="1055000" />
+      <workItem from="1503487769431" duration="700000" />
+      <workItem from="1503500237454" duration="6000" />
+      <workItem from="1503558330804" duration="1922000" />
+      <workItem from="1503560283964" duration="128000" />
+      <workItem from="1503560474857" duration="66000" />
+      <workItem from="1503561440253" duration="96000" />
+      <workItem from="1503562594490" duration="483000" />
+      <workItem from="1503564221522" duration="422000" />
+      <workItem from="1503564875492" duration="276000" />
+      <workItem from="1503566178393" duration="270000" />
+      <workItem from="1503574519751" duration="672000" />
+      <workItem from="1503575466424" duration="938000" />
+      <workItem from="1503577281736" duration="948000" />
+      <workItem from="1503581024133" duration="122000" />
+      <workItem from="1503582602902" duration="2284000" />
+      <workItem from="1503640173712" duration="900000" />
+      <workItem from="1503642548911" duration="1459000" />
+      <workItem from="1503899621414" duration="7374000" />
+      <workItem from="1503925288606" duration="244000" />
+      <workItem from="1503985876892" duration="2013000" />
+      <workItem from="1504072402080" duration="2676000" />
+      <workItem from="1504102758279" duration="1903000" />
+      <workItem from="1504505375541" duration="2285000" />
+      <workItem from="1504507976658" duration="2322000" />
+      <workItem from="1504590326595" duration="2168000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="331416000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2322239" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5021322" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18456884" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.4811784" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23676248" sideWeight="0.5057283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="856" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5021322" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17324094" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15884861" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.4811784" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23676248" sideWeight="0.5057283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5021322" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23903178" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17170954" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.4811784" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23676248" sideWeight="0.5057283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="9" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_incoming_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_sales" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_incoming_material" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFieldManagement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="123" column="82" lean-forward="false" selection-start-line="123" selection-start-column="82" selection-end-line="123" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-179">
+          <caret line="665" column="9" lean-forward="true" selection-start-line="631" selection-start-column="7" selection-end-line="665" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/farmer-small/template/language/GB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_material" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentSales.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="81" column="55" lean-forward="false" selection-start-line="81" selection-start-column="55" selection-end-line="81" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_rent" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentGraphsPlan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="370" column="25" lean-forward="false" selection-start-line="370" selection-start-column="25" selection-end-line="370" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_field" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_other_costs" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/FieldManagement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="112" column="1" lean-forward="true" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="117" column="7" lean-forward="true" selection-start-line="117" selection-start-column="7" selection-end-line="117" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FieldManagementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_come_out" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_sales" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentStorage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="68" column="163" lean-forward="false" selection-start-line="68" selection-start-column="163" selection-end-line="68" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_lib" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_actual_sales" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="64" lean-forward="false" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/StorageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/SalesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="90" lean-forward="false" selection-start-line="33" selection-start-column="90" selection-end-line="33" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_sales_price" />
+    <entry file="file://$PROJECT_DIR$/cabinet/farmer/view/contentBudgetSettingSales.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-936">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/farmer/view/contentBudgetSettingBalance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="67" column="13" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="67" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/farmer/view/contentBudgetSettingMaterial.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-973">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/db_params.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console_1.sql" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.profile_region" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-174">
+          <caret line="487" column="58" lean-forward="false" selection-start-line="487" selection-start-column="58" selection-end-line="487" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="62" column="38" lean-forward="true" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="112" column="5" lean-forward="true" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+          <folding>
+            <marker date="1504600594093" expanded="true" signature="212:410" ph="SELECT * FRO... new_field" />
+            <marker date="1504600594093" expanded="true" signature="651:796" ph="SELECT * FRO... new_action" />
+            <marker date="1504600594093" expanded="true" signature="703:764" ph="SELECT field... new_field" />
+            <marker date="1504600594093" expanded="true" signature="927:955" ph="SELECT * FRO... new_action_lib" />
+            <marker date="1504600594093" expanded="true" signature="1183:1309" ph="SELECT * FRO... new_material_price" />
+            <marker date="1504600594093" expanded="true" signature="1547:1628" ph="SELECT * FRO... new_equipment" />
+            <marker date="1504600594093" expanded="true" signature="1868:1947" ph="SELECT * FRO... new_vehicles" />
+            <marker date="1504600594093" expanded="true" signature="2185:2262" ph="SELECT * FRO... new_employee" />
+            <marker date="1504600594093" expanded="true" signature="2489:2592" ph="SELECT * FRO... new_storage_material" />
+            <marker date="1504600594093" expanded="true" signature="2855:2958" ph="SELECT * FRO... new_storage_material" />
+            <marker date="1504600594093" expanded="true" signature="3196:3297" ph="SELECT * FRO... new_fact" />
+            <marker date="1504600594093" expanded="true" signature="3436:3505" ph="SELECT * FRO... new_storage_material" />
+            <marker date="1504600594093" expanded="true" signature="3919:4038" ph="UPDATE new_s... " />
+            <marker date="1504600594093" expanded="true" signature="4062:4307" ph="INSERT INTO new_fact... " />
+            <marker date="1504600594093" expanded="true" signature="4509:4586" ph="DELETE FROM " />
+            <marker date="1504600594093" expanded="true" signature="4610:4831" ph="INSERT INTO new_fact... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="141" column="20" lean-forward="true" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="232" column="135" lean-forward="false" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="135" />
+          <folding>
+            <marker date="1504599661000" expanded="true" signature="353:761" ph="UPDATE new_a... " />
+            <marker date="1504599661000" expanded="true" signature="923:1037" ph="SELECT * FRO... new_action" />
+            <marker date="1504599661000" expanded="true" signature="1193:1315" ph="SELECT * FRO... new_lib_material" />
+            <marker date="1504599661000" expanded="true" signature="1628:1703" ph="SELECT * FRO... new_employee" />
+            <marker date="1504599661000" expanded="true" signature="1993:2068" ph="SELECT * FRO... new_vehicles" />
+            <marker date="1504599661000" expanded="true" signature="2343:2385" ph="SELECT * FRO... new_equipment" />
+            <marker date="1504599661000" expanded="true" signature="2896:3022" ph="SELECT * FRO... sm_crop_head" />
+            <marker date="1504599661000" expanded="true" signature="3266:3391" ph="SELECT * FRO... sm_crop_head" />
+            <marker date="1504599661000" expanded="true" signature="3636:3770" ph="SELECT * FRO... sm_crop_head" />
+            <marker date="1504599661000" expanded="true" signature="4010:4060" ph="SELECT * FRO... new_field" />
+            <marker date="1504599661000" expanded="true" signature="4317:4413" ph="INSERT INTO new_crop_culture... " />
+            <marker date="1504599661000" expanded="true" signature="4746:5185" ph="INSERT INTO new_action... " />
+            <marker date="1504599661000" expanded="true" signature="5415:5541" ph="INSERT INTO new_material_price... " />
+            <marker date="1504599661000" expanded="true" signature="5734:5813" ph="SELECT * FRO... new_crop_culture" />
+            <marker date="1504599661000" expanded="true" signature="6190:6290" ph="INSERT INTO new_crop_culture... " />
+            <marker date="1504599661000" expanded="true" signature="6350:6449" ph="UPDATE new_f... " />
+            <marker date="1504599661000" expanded="true" signature="6609:6699" ph="UPDATE new_c... " />
+            <marker date="1504599661000" expanded="true" signature="6734:6841" ph="UPDATE new_f... " />
+            <marker date="1504599661000" expanded="true" signature="6990:7289" ph="SELECT sm.na... new_field" />
+            <marker date="1504599661000" expanded="true" signature="7545:7654" ph="UPDATE new_f... " />
+            <marker date="1504599661000" expanded="true" signature="7835:7937" ph="UPDATE new_f... " />
+            <marker date="1504599661000" expanded="true" signature="8086:8277" ph="INSERT INTO new_crop_culture... " />
+            <marker date="1504599661000" expanded="true" signature="8155:8277" ph="SELECT id_us... new_crop_culture" />
+            <marker date="1504599661000" expanded="true" signature="8355:8829" ph="INSERT INTO new_action... " />
+            <marker date="1504599661000" expanded="true" signature="8577:8829" ph="SELECT id_us... new_action" />
+            <marker date="1504599661000" expanded="true" signature="9036:9281" ph="SELECT * FRO... new_action_employee" />
+            <marker date="1504599661000" expanded="true" signature="9183:9280" ph="SELECT actio... new_action" />
+            <marker date="1504599661000" expanded="true" signature="9414:9716" ph="SELECT * FRO... new_action_equipment" />
+            <marker date="1504599661000" expanded="true" signature="9618:9715" ph="SELECT actio... new_action" />
+            <marker date="1504599661000" expanded="true" signature="9850:10081" ph="SELECT * FRO... new_action_material" />
+            <marker date="1504599661000" expanded="true" signature="9983:10080" ph="SELECT actio... new_action" />
+            <marker date="1504599661000" expanded="true" signature="10215:10374" ph="SELECT * FRO... new_field" />
+            <marker date="1504599661000" expanded="true" signature="10505:10533" ph="SELECT * FRO... new_action_lib" />
+            <marker date="1504599661000" expanded="true" signature="12145:12269" ph="SELECT * FRO... new_storage_material" />
+            <marker date="1504599661000" expanded="true" signature="12506:12621" ph="DELETE FROM " />
+            <marker date="1504599661000" expanded="true" signature="12645:12746" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="35" column="143" lean-forward="false" selection-start-line="35" selection-start-column="143" selection-end-line="35" selection-end-column="143" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-199">
+          <caret line="70" column="67" lean-forward="false" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentListTechnologyCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/template/language/GB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="160" column="20" lean-forward="false" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="716">
+          <caret line="160" column="19" lean-forward="false" selection-start-line="160" selection-start-column="19" selection-end-line="160" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

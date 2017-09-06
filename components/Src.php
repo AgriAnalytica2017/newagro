@@ -105,7 +105,8 @@ class SRC
                               'translate' => ['id'=>'translate','item' => 'fa-globe bg-blue', 'name_ua' => 'Словник','name_en'=>'Dictionary', 'cab_name'=>'Кабінет для перекладу'],
                               'farmer-small' => ['id'=>'farmer-small','item' => 'fa-globe bg-green', 'name_ua' => 'Фермер малий','name_en'=>'Farmer sm.', 'cab_name'=>'Кабінет фермера см.'],
                               'shop'=>['id'=>'shop', 'item'=>'fa-tasks bg-green', 'name_ua'=>'Таск менеджер', 'name_en'=>'Task manager', 'cab_name'=>''],
-                              'new-farmer'=>['id'=>'new-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'NEW', 'name_en'=>'NEW','cab_name'=>'new-farmer']
+                              'new-farmer'=>['id'=>'new-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'NEW', 'name_en'=>'NEW','cab_name'=>'new-farmer'],
+                            'business-farmer'=>['id'=>'business-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'business-farmer', 'name_en'=>'business-farmer','cab_name'=>'business-farmer'],
 
             ];
             return $cabbinet_item;

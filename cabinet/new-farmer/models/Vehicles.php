@@ -15,7 +15,7 @@ class Vehicles{
     }
     public static function createVehicles($id_user, $vehicles_name, $vehicles_manufacturer, $vehicles_license, $vehicles_fuel, $vehicles_acquisition, $vehicles_power,$vehicles_depreciation, $vehicles_amount_of_amortization,$vehicles_usage_year,$vehicles_purchase_price){
         $db = Db::getConnection();
-        $db->query("INSERT INTO new_vehicles(id_user, vehicles_name, vehicles_manufacturer, vehicles_license, vehicles_fuel, vehicles_acquisition, vehicles_power, vehicles_depreciation, vehicles_amount_of_amortization) VALUES ('$id_user','$vehicles_name','$vehicles_manufacturer','$vehicles_license','$vehicles_fuel','$vehicles_acquisition', '$vehicles_power', '$vehicles_depreciation', '$vehicles_amount_of_amortization')");
+        $db->query("INSERT INTO new_vehicles(id_user, vehicles_name, vehicles_manufacturer, vehicles_license, vehicles_fuel, vehicles_acquisition, vehicles_power, vehicles_depreciation, vehicles_amount_of_amortization,vehicles_usage_year,vehicles_purchase_price) VALUES ('$id_user','$vehicles_name','$vehicles_manufacturer','$vehicles_license','$vehicles_fuel','$vehicles_acquisition', '$vehicles_power', '$vehicles_depreciation', '$vehicles_amount_of_amortization', '$vehicles_usage_year','$vehicles_purchase_price')");
         return true;
     }
     public static function editVehicles($id_user, $id_vehicles, $vehicles_name, $vehicles_manufacturer, $vehicles_license, $vehicles_fuel, $vehicles_acquisition, $vehicles_power,$vehicles_depreciation, $vehicles_amount_of_amortization,$vehicles_usage_year,$vehicles_purchase_price){

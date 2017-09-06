@@ -1,98 +1,163 @@
-
+<?php
+//var_dump($date['ex']);die;
+ /*echo "<pre>";
+  var_dump($date['storage']['storage_type_material']);die;*/
+ $id_material_type = array(
+     1=>'Насіння',
+     2=>'Добрива',
+     3=>'ЗЗР',
+     4=>'ПММ'
+ );
+?>
 <div class="box">
     <div class="box-bodyn">
       <div class="non-semantic-protector">
                 <h1 class="ribbon">
-                    <strong class="ribbon-content">Storage</strong>
+                    <strong class="ribbon-content"><?=$language['new-farmer']['8']?></strong>
                 </h1>
           </div>
     </div>
     <div class="box-bodyn col-lg-12" style="max-height: 55px">
-      <a class="btn btn-primaryn top" href="#Add_new" data-toggle="modal">Add new material to the storage</a>
-      <a class="btn btn-primaryn top" href="#Add_incoming" data-toggle="modal">Add incoming goods</a>
-      <a class="btn btn-primaryn top" href="#All_incoming" data-toggle="modal">All incoming goods</a>
+      <a class="btn btn-primaryn top" href="#Add_new" data-toggle="modal"><?=$language['new-farmer']['121']?></a>
+    </div>
+    <div class="rown">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+        <div class="table-responsive">
+            <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
+                <table class="table">
+                    <thead>
+                    <tr class="tabletop">
+                        <th><?=$language['new-farmer']['125']?></th>
+                        <th><?=$language['new-farmer']['126']?></th>
+                        <th>Start quantity</th>
+                        <th>Come</th>
+                        <th>Out</th>
+                        <th><?=$language['new-farmer']['127']?></th>
+                        <th>storage_price</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <? foreach($date['storage']['storage_material_fact'] as $storage_material){?>
+                            <? foreach($date['storage']['storage'] as $storage_1)if($storage_1['storage_id']==$storage_material['storage_location']){
+
+                                $open_material++;?>
+                                <tr>
+                                    <td><? echo $id_material_type[$storage_material['storage_type_material']].': '.$date['material_lib'][$storage_material['storage_material']]['name_material'];?></td>
+                                    <td><?=$storage_1['storage_name']?></td>
+                                    <td><?=$storage_material['storage_start']?></td>
+                                    <td><a class="btn come_storage_material" data-id="<?=$open_material?>" data-type="2"><?=$date['incoming_material']['come_material'][$storage_material['storage_material_id']]?></a></td>
+                                    <td><a class="btn out_storage_material" data-id="<?=$open_material?>" data-type="1"><?=$date['incoming_material']['out_material'][$storage_material['storage_material_id']]?></a></td>
+                                    <td>
+                                        <?=$date['ex']['storage_quantity'][$storage_material['storage_material_id']]?>
+                                    </td>
+                                    <td>
+                                        <?=$date['ex']['storage_price'][$storage_material['storage_material_id']]?>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success Add_incoming" href="#Add_incoming" data-toggle="modal" data-data='<?=json_encode($storage_material);?>' data-date="<?=$storage_material['storage_date']?>">Add incoming goods</a>
+                                        <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal" data-id = "<?=$storage_material['storage_material_id']?>" data-stock="<?=$storage_material['storage_quantity']?>"><?=$language['new-farmer']['134']?></a></td>
+                                </tr>
+                            <?}?>
+                                <? foreach($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_material_id']==$storage_material['storage_material_id']){?>
+                                    <tr class="close_material open_material_<?=$open_material?>_<?=$incoming_material['come_out_type']?>" <? if($incoming_material['come_out_type']==1){ echo 'style="display: none; color:red;"';}elseif($incoming_material['come_out_type']=='2'){echo 'style="display: none; color:green;"';}?> >
+                                        <td style="padding-left: 35px"><? echo "Date: ".$incoming_material['come_out_date']?></td>
+                                        <td><? echo "Incoming quantity: ".$incoming_material['come_out_quantity']?></td>
+                                        <td><? echo "Total sum: ".$incoming_material['come_out_sum_total']?></td>
+                                        <td><? echo "Price per unit: ".number_format($incoming_material['come_out_sum_total']/$incoming_material['come_out_quantity'], 2, ',', ' ');?></td>
+                                        <td></td>
+                                    </tr>
+                                <?}?>
+                        <?}?>
+                    </tbody>
+                </table>
+        </div>
+        </div>
+            <div class="col-lg-2"></div>
+    </div>
+    <br>
+    <div class="rown">   
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <a class="btn btn-primaryn top" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a><br><br>
+              <div class="table-responsive">
+                  <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
+                <table class="table">
+                    <thead>
+                    <tr class="tabletop">
+                        <th><?=$language['new-farmer']['129']?></th>
+                        <th><?=$language['new-farmer']['130']?></th>
+                        <th><?=$language['new-farmer']['131']?></th>
+                        <th><?=$language['new-farmer']['114']?></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <? foreach($date['products'] as $product){?>
+                        <tr>
+                          <td><?=$date['crop'][$product['product_type']]['name_crop_ua']?></td>
+                          <td><?=$product['product_quantity']?></td>
+                          <td><?=$product['product_now']?></td>
+                          <td><?=$product['product_comments']?>
+                          </td>
+                          <td><a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>"><?=$language['new-farmer']['134']?></a></td>
+                        </tr>
+                      <?}?>
+                    </tbody>
+                </table>
+        </div>
     </div>
 
+    </div>
     <div class="box-body wt">
-    <div class="row">
-      <div class="col-lg-3">
-      </div>
-      <div class="col-lg-6">
-         <table class="table table-bordered">
-        <thead>
-          <tr class="tabletop">
-            <th>Type of material/Material</th>
-            <th>Storage location</th>
-            <th>Stock</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        <? foreach($date['storage']['storage_material'] as $storage_material){?>
-          <? foreach($date['material_types'] as $storage_material_type)if($storage_material_type['id_action'] == $storage_material['storage_type_material']){?>
-          <? foreach($date['storage']['storage'] as $storage_1)if($storage_1['storage_id']==$storage_material['storage_location']){?>
-          <tr>
-            <td><? echo $storage_material_type['name_ua'].': '.$storage_material['storage_material'];?></td>
-            <td><?=$storage_1['storage_name']?></td>
-            <td><?=$storage_material['storage_quantity']?></td>
-            <td>
-            <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal" data-id = "<?=$storage_material['storage_material_id']?>" data-stock="<?=$storage_material['storage_quantity']?>">Sale</a></td>
-          </tr>
-          <?}?>
-          <?}?>
-          <?}?>
-        </tbody>
-      </table>
-      </div>
-      <div class="col-lg-3">
-      </div>
-     
-    </div>
-			
-
 <div id="Add_new" class="modal fade">
     <div class="modal-dialog modal-lg">
     <form action="/new-farmer/create_storage" method="post">
     <div class="modal-content wt">
         <div class="box-bodyn">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title">Add new material to the storage </span>
+            <span class="box-title"><?=$language['new-farmer']['121']?></span>
         </div>
-     
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-3">
-          <label>Type of Material</label>
-          <select class="form-control dropdown" name="storage_type_material" required>
-            <? foreach($date['material_types'] as $material_type)if($material_type['type'] == '4'){?>
-            <option value="<?=$material_type['id_action']?>"><?=$material_type['name_ua']?></option>
+          <label><?=$language['new-farmer']['117']?></label>
+          <select class="form-control  inphead" name="storage_type_material" required>
+            <? foreach($id_material_type as $key=>$value){?>
+              <option value="<?=$key?>"><?=$value?></option>
             <?}?>
           </select>
         </div>
         <div class="col-lg-3">
-          <label>Material</label>
-          <input class="form-control inphead" name="storage_material" required>
+          <label><?=$language['new-farmer']['118']?></label>
+            <input list="lib_materials" class="form-control inphead" name="name_material" id="name_material" >
+            <datalist id="lib_materials">
+                <?foreach ($date['material_lib'] as $material_lib){?>
+                    <option><?=$material_lib['name_material']?></option>
+                <?}?>
+            </datalist>
         </div>
         <div class="col-lg-3">
-          <label>Quantity</label>
+          <label><?=$language['new-farmer']['119']?></label>
           <input class="form-control storage_quantity inphead" type="text" name="storage_quantity" required>
         </div>
         <div class="col-lg-3">
-          <label>Sum total</label>
+          <label><?=$language['new-farmer']['132']?></label>
           <input class="form-control storage_sum_total inphead" type="text" name="storage_sum_total" required>
         </div>
-
               <div style="margin-top: 95px;"></div>
         <div class="col-lg-3">
-          <label>Sum per unit</label>
+          <label><?=$language['new-farmer']['133']?></label>
           <input class="form-control storage_sum_unit inphead" type="text" name="storage_sum_unit" required>
         </div>
         <div class="col-lg-3">
-          <label>Date</label>
+          <label><?=$language['new-farmer']['111']?></label>
           <input class="form-control inphead" type="date" name="storage_date" required>
         </div>
-                <div class="col-lg-3">
-          <label>Storage location</label>
+        <div class="col-lg-3">
+          <label><?=$language['new-farmer']['112']?></label>
           <input class="form-control inphead" name="storage_location" list="material_storage_location" required>
                 <datalist id="material_storage_location">
                     <?php
@@ -102,16 +167,67 @@
                 </datalist>
         </div>
                 <div class="col-lg-3">
-          <label>Comments</label>
+          <label><?=$language['new-farmer']['114']?></label>
           <textarea name="storage_comments" class="form-control inphead"></textarea>
         </div>
-
-
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="submit" class="btn btn-primaryn">Добавить</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div id="Add_pdoducts" class="modal fade">
+    <div class="modal-dialog modal-lg">
+    <form action="/new-farmer/incoming_products" method="post">
+    <div class="modal-content wt">
+        <div class="box-bodyn">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="box-title"><?=$language['new-farmer']['110']?></span>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['111']?></label>
+              <input class="form-control inphead" type="date" name="product_date">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['129']?></label>
+              <select class="form-control inphead" name="product_type" required>
+                <? foreach ($date['field_management'] as $product){ 
+                    {?>
+                      <option value="<?=$product['field_id_crop']?>"><?=$product['field_name']."/".$product['name_crop_ua']?></option>
+                <?}?>
+                <?}?>
+              </select>
+            </div>
+            <div class="col-lg-3">
+          <label><?=$language['new-farmer']['112']?></label>
+          <input class="form-control inphead" name="product_storage_location" list="material_storage_location" required>
+                <datalist id="material_storage_location">
+                    <?php
+                    foreach ($date['storage']['storage'] as $storage){?>
+                        <option ><?php echo $storage['storage_name'];?></option>
+                    <?php }?>
+                </datalist>
+        </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['113']?></label>
+              <input type="text" name="product_quantity" class="inphead incoming_quantity">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['114']?></label>
+              <textarea name="product_comments" class="form-control inphead"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
         </div>
     </div>
     </form>
@@ -124,100 +240,55 @@
     <div class="modal-content wt">
         <div class="box-bodyn">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title">Add incoming goods </span>
+            <span class="box-title"><?=$language['new-farmer']['122']?></span>
         </div>
      
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-3">
-              <label>Date</label>
-              <input class="form-control inphead" type="date" name="incoming_date">
+              <label><?=$language['new-farmer']['111']?></label>
+              <input class="form-control inphead" type="date" name="incoming_date" id="incoming_date">
+                <input type="hidden" name="type_come" value="2">
             </div>
             <div class="col-lg-3">
-              <label>Type of Material</label>
-              <select class="form-control inphead" name="incoming_type_material" required>
-                <? foreach ($date['storage']['storage_type_material'] as $storage){ 
-                    foreach($date['material_types'] as $material_type)if($material_type['id_action'] == $storage['storage_type_material']){?>
-                      <option value="<?=$material_type['id_action']?>"><?=$material_type['name_ua']?></option>
-                <?}?>
+              <label><?=$language['new-farmer']['117']?></label>
+              <select class="form-control inphead" name="incoming_type_material" id="incoming_type_material" required>
+                <? foreach ($date['storage']['storage_type_material'] as $storage){?>
+                      <option value="<?=$storage['storage_type_material']?>"><?=$id_material_type[$storage['storage_type_material']]?></option>
                 <?}?>
               </select>
             </div>
             <div class="col-lg-3">
-              <label>Material</label>
+              <label><?=$language['new-farmer']['115']?></label>
               <input type="hidden" name="">
-                <select name="incoming_material" class="form-control inphead">
+                <select name="incoming_material" class="form-control inphead" id="incoming_material">
                     <?php
-                    foreach ($date['storage']['storage_material'] as $storage){?>
-                        <option value="<?php echo $storage['storage_material_id'];?>"><?php echo $storage['storage_material'];?></option>
+                    foreach ($date['storage']['storage_material_fact'] as $storage){?>
+                        <option value="<?php echo $storage['storage_material_id'];?>"><?php echo $date['material_lib'][$storage['storage_material']]['name_material'];?></option>
                     <?php }?>
                 </select>
             </div>
             <div class="col-lg-3">
-              <label>Quantity</label>
-              <input type="text" name="incoming_quantity" class="inphead incoming_quantity">
+              <label><?=$language['new-farmer']['113']?></label>
+              <input type="text" name="incoming_quantity" id="incoming_quantity" class="inphead">
             </div>
             <div class="col-lg-3">
-              <label>Sum total</label>
-              <input type="text" name="incoming_sum_total" class="inphead incoming_sum_total">
+              <label><?=$language['new-farmer']['132']?></label>
+              <input type="text" name="incoming_sum_total" id="incoming_sum_total" class="inphead">
             </div>
             <div class="col-lg-3">
-              <label>Price per unit</label>
-              <input type="text" name="incoming_price_unit" class="inphead incoming_price_unit">
+              <label><?=$language['new-farmer']['133']?></label>
+              <input type="text" name="incoming_price_unit" id="incoming_price_unit" class="inphead">
             </div>
             <div class="col-lg-3">
-              <label>Comments</label>
+              <label><?=$language['new-farmer']['114']?></label>
               <textarea name="incoming_comments" class="form-control inphead"></textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="submit" class="btn btn-primaryn">Добавить</button>
-        </div>
-    </div>
-    </form>
-  </div>
-</div>
-
-<div id="All_incoming" class="modal fade">
-    <div class="modal-dialog modal-lg">
-    <form action="/new-farmer/incoming_storage" method="post">
-    <div class="modal-content wt">
-        <div class="box-bodyn">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title">All incoming goods</span>
-        </div>
-     
-          <table class="table">
-            <thead>
-              <tr class="tabletop">
-                <th>Date</th>
-                <th>Type of material</th>
-                <th>Material</th>
-                <th>Quantity</th>
-                <th>Sum total</th>
-                <th>Price per unit</th>
-                <th>Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              <? foreach($date['incoming_material'] as $incoming_material){?>
-                <tr>
-                  <td><?=$incoming_material['incoming_date']?></td>
-                  <td><?=$incoming_material['incoming_type_material']?></td>
-                  <td><?=$incoming_material['incoming_material']?></td>
-                  <td><?=$incoming_material['incoming_quantity']?></td>
-                  <td><?=$incoming_material['incoming_sum_total']?></td>
-                  <td><?=$incoming_material['incoming_price_unit']?></td>
-                  <td><?=$incoming_material['incoming_comments']?></td>
-                </tr>
-              <?}?>
-            </tbody>
-          </table>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="submit" class="btn btn-primaryn">Добавить</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
         </div>
     </div>
     </form>
@@ -230,38 +301,81 @@
     <div class="modal-content wt">
         <div class="box-bodyn">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title">Sale</span>
+            <span class="box-title"><?=$language['new-farmer']['134']?></span>
         </div>
      
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-3">
-              <label>Date</label>
+              <label><?=$language['new-farmer']['111']?></label>
               <input type="hidden" name="sale_id_material" id="sale_id_material">
               <input type="hidden" name="sale_stock" id="sale_stock">
+                <input type="hidden" name="type_out" value="1">
               <input class="form-control inphead" type="date" name="sale_date">
             </div>
             <div class="col-lg-3">
-              <label>Quantity</label>
+              <label><?=$language['new-farmer']['113']?></label>
               <input type="text" name="sale_quantity" class="inphead sale_quantity">
             </div>
             <div class="col-lg-3">
-              <label>Sum total</label>
+              <label><?=$language['new-farmer']['132']?></label>
               <input type="text" name="sale_sum_total" class="inphead sale_sum_total">
             </div>
             <div class="col-lg-3">
-              <label>Price per unit</label>
+              <label><?=$language['new-farmer']['133']?></label>
               <input type="text" name="sale_price_unit" class="inphead sale_price_unit">
             </div>
             <div class="col-lg-3">
-              <label>Comments</label>
+              <label><?=$language['new-farmer']['114']?></label>
               <textarea name="sale_comments" class="form-control inphead"></textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="submit" class="btn btn-primaryn">Добавить</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
+<div id="sale_products" class="modal fade">
+    <div class="modal-dialog modal-lg">
+    <form action="/new-farmer/create_actual_sale" method="post">
+    <div class="modal-content wt">
+        <div class="box-bodyn">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="box-title"><?=$language['new-farmer']['135']?></span>
+        </div>
+     
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['111']?></label>
+              <input class="form-control inphead" type="date" name="actual_sale_date">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['113']?></label>
+              <input type="text" name="actual_sale_quantity" class="inphead actual_sale_quantity">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['132']?></label>
+              <input type="text" name="actual_sale_sum" class="inphead actual_sale_sum">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['133']?></label>
+              <input type="text" name="actual_sale_per_unit" class="inphead actual_sale_per_unit">
+            </div>
+            <div class="col-lg-3">
+              <label><?=$language['new-farmer']['114']?></label>
+              <textarea name="actual_sale_comments" class="form-control inphead"></textarea>
+              <input type="hidden" name="actual_sale_product" id="actual_sale_product">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
         </div>
     </div>
     </form>
@@ -278,11 +392,11 @@
       $('.storage_sum_unit').val(storage_sum_unit);
     });
 
-    $('.incoming_quantity, .incoming_sum_total').change(function(){
-      var incoming_quantity = parseFloat($('.incoming_quantity').val());
-      var incoming_sum_total = parseFloat($('.incoming_sum_total').val());
+    $('#incoming_quantity,#incoming_sum_total').change(function(){
+      var incoming_quantity = parseFloat($('#incoming_quantity').val());
+      var incoming_sum_total = parseFloat($('#incoming_sum_total').val());
       var incoming_price_unit = (incoming_sum_total/incoming_quantity).toFixed(2);
-      $('.incoming_price_unit').val(incoming_price_unit);
+      $('#incoming_price_unit').val(incoming_price_unit);
     });
 
     $('.sale_quantity, .sale_sum_total').change(function(){
@@ -303,5 +417,37 @@
       $('#sale_id_material').val(id);
       $('#sale_stock').val(stock);
     });
+     $('.sale_prod').click(function(){
+       var id = $(this).attr('data-id');
+      $('#actual_sale_product').val(id);
+     });
+
+        $('.actual_sale_quantity, .actual_sale_sum').change(function(){
+      var actual_sale_1 = parseFloat($('.actual_sale_quantity').val());
+      var actual_sale = parseFloat($('.actual_sale_sum').val());
+      var actual_sale_per = (actual_sale/actual_sale_1).toFixed(2);
+      $('.actual_sale_per_unit').val(actual_sale_per);    
+    });
+
+        $('.Add_incoming').click(function () {
+            var json_storage_material = $(this).attr('data-data');
+            var storage_material = JSON.parse(json_storage_material);
+            $('#incoming_type_material').val(storage_material['storage_type_material']);
+           $('#incoming_material').val(storage_material['storage_material_id']);
+        });
+
+        $('.come_storage_material').click(function () {
+            var id = $(this).attr('data-id');
+            var type = $(this).attr('data-type');
+            $('.close_material').css('display','none');
+            $('.open_material_'+id+'_'+type).toggle();
+        });
+        $('.out_storage_material').click(function () {
+            var id = $(this).attr('data-id');
+            var type = $(this).attr('data-type');
+            $('.close_material').css('display','none');
+            $('.open_material_'+id+'_'+type).toggle();
+        });
+
   });
 </script>

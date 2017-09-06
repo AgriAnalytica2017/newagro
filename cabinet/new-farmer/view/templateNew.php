@@ -1,58 +1,91 @@
 <?php
+$language=SRC::getLanguage('new-farmer');
+?>
+<?php
 $top_menu=array(
-    'farm'=>array(
-        'equipment'=>'/new-farmer/equipment',
-        'vehicles'=>'/new-farmer/vehicles',
-        'employee'=>'/new-farmer/employee'
+    $language['new-farmer']['1']=>array(
+        $language['new-farmer']['2']=>'/new-farmer/equipment',
+        $language['new-farmer']['3']=>'/new-farmer/vehicles',
+        $language['new-farmer']['4']=>'/new-farmer/employee',
+        //$language['new-farmer']['53']=>'/new-farmer/sales_price',
     ),
-    'field'=>'/new-farmer/field_management',
-    'technology card'=>'/new-farmer/technology_card',
-    'storage'=>'/new-farmer/storage',
-    'sales'=>'/new-farmer/sales',
-    'analysis'=>array(
-        'Income/Costs'=> array(
-                'Income/Costs per culture'=>'',
-                'Income/Costs per month'=>'',
-                'Income/Costs per field'=>'/new-farmer/budget',),
-        'Actual/Planner income/costs'=>'',
-        'Graphs plan'=>'/new-farmer/graphs_plan',
+    $language['new-farmer']['5']=>'/new-farmer/field_management',
+    $language['new-farmer']['6']=>'/new-farmer/technology_card',
+    $language['new-farmer']['136']=>'/new-farmer/fact_tech_card',
+    //$language['new-farmer']['7']=>'/new-farmer/all_needed_material',
+    $language['new-farmer']['8']=>'/new-farmer/storage',
+    $language['new-farmer']['9']=>'/new-farmer/sales',
+    $language['new-farmer']['10']=>array(
+        $language['new-farmer']['11']=> array(
+            $language['new-farmer']['12']=>'/new-farmer/budget_per_crop',
+            $language['new-farmer']['13']=>'/new-farmer/budget_per_month',
+            $language['new-farmer']['14']=>'/new-farmer/budget',
+            'Cash Flow'=>'/new-farmer/budget_cash_flow',),
+        'actual/planer income/costs'=>'',
+        $language['new-farmer']['15']=>'/new-farmer/graphs_plan',
         ),
-    'budget'=>'/new-farmer/budget',
 );
 ?>
-<html style="height: auto; min-height: 100%;">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Панель управління дистрибютор</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php SRC::getSrc(); ?>/lib/bootstrap/css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-    <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/jquery.easydropdown.js"></script>
-
+    <link rel="stylesheet" href="<?php SRC::getSrc(); ?>/lib/flag-icon/css/flag-icon.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="<?php SRC::getSrc(); ?>/cabinet/new-farmer/template/css/newstyle.css">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/jquery.easydropdown.js"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/lib/jquery-3.2.0.js"></script>
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
-
     <script type="text/javascript" src="<?php SRC::getSrc();?>/lib/script.js"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/script.js"></script>
 </head>
 <!-- ADD THE CLASS layout-top-navn TO REMOVE THE SIDEBAR. -->
 <body class="layout-top-navn skin-green-light bodyn" style="height: auto; min-height: 100%;">
 <div class="wrappern" style="height: auto;">
-
+    <script type="text/javascript">
+         $(document).ready(function () {
+            function setCookie(name, value) {
+                document.cookie = name + "=" + value + "; path=/";
+            }
+            function getCookie(name) {
+                var r = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+                if (r) return r[2];
+                else return "";
+            }
+            var sidebar= getCookie("sidebar");
+            if(sidebar==false){
+                localStorage.setItem('sidebar', 'on')
+                setCookie("sidebar", "ofe")
+            }
+            $('#sidebar-toggle').click(sidebar_toggle);
+            function sidebar_toggle() {
+                var sidebar= getCookie("sidebar");
+                if(sidebar=='ofe'){
+                    setCookie("sidebar", "sidebar-collapse")
+                }
+                if(sidebar=='sidebar-collapse'){
+                    setCookie("sidebar", "ofe")
+                }
+            }
+            $('.lang').click(sidebar_toggles);
+            function sidebar_toggles() {
+                var lang= getCookie("lang");
+                if(lang=='ua'){
+                    setCookie("lang", "ua")
+                }
+                if(lang=='gb'){
+                    setCookie("lang", "gb")
+                }
+            }
+        });
+    </script>
     <header class="main-headern">
         <div class="navibar navibar-static-top">
             <div class="navibar-header">
@@ -64,17 +97,16 @@ $top_menu=array(
                 <div class="navibar-custom-menun">
                     <ul class="navi navibar-navn">
                         <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdownn messages-menu">
                         <li class="messages-menu">
                             <!-- Menu toggle button -->
                             <a href="/language/ua" class="dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
-                                <span>Українська</span></span>
+                                <span class="flag-icon flag-icon-<?php echo SRC::validator($_COOKIE['lang']);?>"></span></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menun">
                                 <li class="headern">Виберіть мову</li>
-                                <li class="footern"><a href="/language/ua">Українська</a></li>
-                                <li class="footern"><a href="/language/gb">English</a></li>
-                                <li class="footern"><a href="#">Ru</a></li>
+                                <li class="footern"><a href="/language/ua" value="ua" class="lang">Українська</a></li>
+                                <li class="footern"><a href="/language/gb" value="gb" class="lang">English</a></li>
+                                
                             </ul>
                         </li>
                         <li class="messages-menu">
@@ -101,46 +133,21 @@ $top_menu=array(
                                 <span class="hidden-xsn"><?php echo  $_COOKIE['name_user'] .' ' .$_COOKIE['last_name_user'];?></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menun">
+                                <?php $cabinet_item = SRC::viewCab();
+                                foreach ($_SESSION['cabinet'] as $item)if($item!=false){?>
                                     <li>
-                                        <a href="/farmer" ]="">
-                                            <i class="menu-icon fa fa-line-chart bg-green"></i>Farmer</a>
+                                        <a href="<? echo SRC::getSRC();?>/<?=$cabinet_item[$item]['id']?>/">
+                                            <i class="menu-icon fa <?php echo $cabinet_item[$item]['item'];?> bg-green"></i><?if($_COOKIE['lang']=='gb'){echo $cabinet_item[$item]['name_en'];} else{echo $cabinet_item[$item]['name_ua'];}?></a>
                                     </li>
-                                    <li>
-                                        <a href="/farmer-small" ]="">
-                                            <i class="menu-icon fa fa-globe bg-green right"></i>Farmer sm.
-                                        </a>
-                                    </li>
-                                <!-- The user image in the menu -->
-<!--                                <li class="user-headern">-->
-<!--                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circlen" alt="User Image">-->
-<!---->
-<!--                                    <p>-->
-<!--                                        Alexander Pierce - Web Developer-->
-<!--                                    </p>-->
-<!--                                </li>-->
-                                <!-- Menu Body -->
-<!--                                <li class="user-bodyn">-->
-<!--                                    <div class="rown">-->
-<!---->
-<!--                                        <div class="col-xs-4n text-centern">-->
-<!--                                            <a href="#">Followers</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-xs-4n text-centern">-->
-<!--                                            <a href="#">Sales</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-xs-4n text-centern">-->
-<!--                                            <a href="#">Friends</a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <!-- /.rown -->
-<!--                                </li>-->
+                                <?}?>
+                        
                                 <!-- Menu Footer-->
                                 <li class="user-footern">
                                     <div class="pull-leftn">
-                                        <a href="/new-farmer/profile" class="btnn btn-defaultn btn-flatn">Профіль</a>
+                                        <a href="<? echo SRC::getSRC();?>/farmer/profile" class="btn btn-default btn-flat">Профіль</a>
                                     </div>
                                     <div class="pull-rightn">
-                                        <a href="#" class="btnn btn-defaultn btn-flatn">Вихід</a>
+                                        <a href="/exit" class="btnn btn-defaultn btn-flatn">Вихід</a>
                                     </div>
                                 </li>
                             </ul>
