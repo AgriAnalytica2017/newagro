@@ -9,4 +9,5 @@ return array(
     'shop' => 'shop',
     'shopadm' => 'shopadm',
     'farmer-small'=> 'farmer-small',
+    'business-farmer'=>'business-farmer'
 );

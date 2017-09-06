@@ -13,40 +13,40 @@
     </style>
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
 </head>
+
+<? //var_dump($date['rent_pay']);die;?>
 <div class="box-bodyn">
-
-
         <div class="non-semantic-protector">
             <h1 class="ribbon">
-                <strong class="ribbon-content">Field management</strong>
+                <strong class="ribbon-content"><?=$language['new-farmer']['42']?></strong>
             </h1>
         </div>
-
 <!--    <img src="/cabinet/new-farmer/template/img/le.svg" class="le" width="50px;"><div class=""></div> <img src="/cabinet/new-farmer/template/img/ri.svg" class="ri" width="50px;">-->
 </div>
-<div class="box head-style">
+<!--<div class="box head-style">
     <div class="box-body wt">
         <div class="form-group fg">
             <div class="col-sm-2 control-label middle"><img src="/cabinet/new-farmer/template/img/1.png" class="img" width="90px;">
-                <img src="/cabinet/new-farmer/template/img/3.png" class="imgi" width="40px;"></div>
-            <label for="inputName" class="col-sm-4 control-label middle">Rent UAH per ha:</label>
+                <img src="/cabinet/new-farmer/template/img/3.svg" class="imgi" width="40px;"></div>
+            <label for="inputName" class="col-sm-4 control-label"><?/*=$language['new-farmer']['43']*/?>:</label>
                 <div class="col-sm-2 col-left">
-                    <input type="text" class="form-control classEdits inphead" id="lease" placeholder="Price" value="" style="margin-bottom: 15px;">
+                    <input type="text" class="form-control classEdits inphead rent_pay"  id="lease" placeholder="Price" data-type="1" value="<?/*=$date['rent_pay']['value']*/?>" style="margin-bottom: 15px;">
                 </div>
         </div>
     </div>
-</div>
+</div>-->
 <div class="box-body wt">
     <div class="rown" style="text-align: center">
+        <div class="table-responsive">
             <table class="table" style="width: 85%;">
                 <thead>
                     <tr class="tabletop">
-                       <th>Field number</th>
-                       <th>Field name</th>
-                       <th>Area, ha</th>
-                       <th>Usage</th>
-                       <th>Culture</th>
-                       <th>Expected yield</th>
+                       <th><?=$language['new-farmer']['44']?></th>
+                       <th><?=$language['new-farmer']['45']?></th>
+                       <th><?=$language['new-farmer']['46']?></th>
+                       <th><?=$language['new-farmer']['47']?></th>
+                       <th><?=$language['new-farmer']['48']?></th>
+                       <th><?=$language['new-farmer']['49']?></th>
                        <th></th>
                        <th></th>
                     </tr>
@@ -56,33 +56,43 @@
                     <tr>
                         <td><?=$field['field_number']?></td>
                         <td><?=$field['field_name']?></td>
-                        <td style="width: 16%;">
-                            <input class="form-control edit_field inphead area_plus" data-table="1" data-id_field="<?=$field['id_field']?>" type="text" name="field_size" value="<?=$field['field_size']?>">
+                        <td style="width: 16%;"  class="edit_field area_plus">
+                            <?=$field['field_size']?>
                             </td>
                         <td>
-                            <select class="form-control edit_field" data-table="2" data-id_field="<?=$field['id_field']?>" name="field_usage">
+                            <select class="form-control edit_field inphead" data-table="2" data-id_field="<?=$field['id_field']?>" name="field_usage">
+                                <?if($_COOKIE['lang']=='ua'){?>
                                 <?php foreach ($date['usage']['ua'] as $usage_id=>$usage_val){?>
-                                <option <?php if($field['field_usage']==$usage_id) echo 'selected'?>  value="<?=$usage_id?>"><?=$usage_val?></option>
-                                <?}?>
+                                <option <?php if($field['field_usage']== $usage_id) echo 'selected'?>  value="<?=$usage_id?>"><?=$usage_val?></option>
+                                <?}}?>
+                                <?if($_COOKIE['lang']=='gb'){?>
+                                    <?php foreach ($date['usage']['gb'] as $usage_id=>$usage_val){?>
+                                        <option <?php if($field['field_usage']== $usage_id) echo 'selected'?>  value="<?=$usage_id?>"><?=$usage_val?></option>
+                                <?}}?>
                             </select>
                         </td>
-                        <td  style="width: 11%;"><?=$field['name_crop_ua']?></td>
-   <th style="width: 16%;"><input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
-    </th>
-
-                        <th><a href="" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a></th>
-                        <th><a href="" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a></th>
+                        <td  style="width: 11%;"><? if($_COOKIE['lang']=='ua'){echo $field['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field['name_crop_en'];}?></td>
+                       <th style="width: 16%;">
+                           <input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
+                       </th>
+                        <th>
+                           <a class="btn btn-warning fa fa-pencil edit_fields" data-data='<?=json_encode($field); ?>'></a>
+                        </th>
+                        <th>
+                            <a href="/new-farmer/remove_field/<?=$field['id_field']?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+                        </th>
                     </tr>
                 <?php }?>
                     <tr>
-                        <th style="font-size: 20px">Total area</th>
-                        <th style="font-size: 20px;"><b id="total_area"></b>, hectare</th>
+                        <th style="font-size: 20px"><?=$language['new-farmer']['50']?></th>
+                        <th style="font-size: 20px;"><b id="total_area"></b>, <?=$language['new-farmer']['51']?></th>
                     </tr>
                 </tbody>
             </table>
+        </div>
     <div style="text-align: center">
         <button type="button" class="btn btn-warning btn-lg sh" data-toggle="modal" data-target="#modal-default" >
-            Add crop
+            <?=$language['new-farmer']['52']?>
         </button>
     </div>
     </div>
@@ -93,39 +103,56 @@
             <div class="modal-header box-bodyn">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Добавить культуру</h4>
+                <h4 class="modal-title"><?=$language['new-farmer']['56']?></h4>
             </div>
             <form action="/new-farmer/create_new_field" method="post">
             <div class="modal-body">
                     <div class="row bo">
-                        <div class="col-lg-4">
-                            <label for="name_field">Номер поля</label>
+                        <div class="col-lg-3">
+                            <label for="name_field"><?=$language['new-farmer']['44']?></label>
                             <input class="form-control inphead" type="text" name="field_number" required>
                         </div>
-                        <div class="col-lg-4">
-                            <label for="area_field">Назва поля</label>
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['45']?></label>
                             <input class="form-control inphead" type="text" name="field_name" required>
                         </div>
-                        <div class="col-lg-4">
-                            <label for="area_field">Площа поля, га</label>
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
                             <input class="form-control inphead" type="text" name="field_area" required>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
+                            <input class="form-control inphead" type="text" name="field_rent" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <label>Вид</label>
-                            <select class="form-control dropdown op" id="crop_type">
-                                <option value="1">Рослинництво</option>
-                                <option value="2">Овочівництво</option>
-                                <option value="3">Плоди</option>
-                                <option value="4">Ягоди</option>
+                            <label><?=$language['new-farmer']['55']?></label>
+                            <select class="form-control inphead op" id="crop_type">
+                                <? if($_COOKIE['lang']=='gb'){?>
+                                <option value="1">Legumes</option>
+                                <option value="2">Crops</option>
+                                <option value="3">Technical</option>
+                                <option value="4">Fodder</option>
+                                <option value="5">Vegetable and melons</option>
+                                <option value="6">Fruit</option>
+                                <option value="7">Вerries</option>
+                                <?} elseif($_COOKIE['lang']=='ua'){?>
+                                    <option value="1">Зерно-бобові</option>
+                                    <option value="2">Зернові</option>
+                                    <option value="3">Технічні</option>
+                                    <option value="4">Кормові</option>
+                                    <option value="5">Овочеві та баштанні</option>
+                                    <option value="6">Плодові</option>
+                                    <option value="7">Ягідні</option>
+                                <?}?>
                             </select>
                         </div>
                         <div class="col-lg-6">
-                            <label>Культура</label>
-                            <select class="form-control dropdown" name='crop' id="crop_list_select" required>
+                            <label><?=$language['new-farmer']['48']?></label>
+                            <select class="form-control inphead" name='crop' id="crop_list_select" required>
                                 <?foreach($date['crop_us'] as $crop){?>
-                                    <option class="crop_list crop_type_<?=$crop['type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
+                                    <option class="crop_list crop_type_<?=$crop['crop_type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
                                 <?}?>
                             </select>
                         </div>
@@ -162,13 +189,75 @@
 <!--                    </div>-->
             </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btnn btn-success save_Field" >Зберегти</button>
+                    <button type="submit" class="btnn btn-success save_Field" ><?=$language['new-farmer']['27']?></button>
                 </div>
             </form>
         </div>
         <!-- /.modal-content wt -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+
+
+<div id="editField" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content wt">
+            <form method="post" action="/new-farmer/edit_all_field">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"><?=$language['new-farmer']['54']?></h4>
+                </div>
+                <div class="modal-body">
+                 <div class="modal-body">
+                    <div class="row bo">
+                        <div class="col-lg-4">
+                            <label for="name_field"><?=$language['new-farmer']['44']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_number" name="ed_field_number" required>
+                            <input  type="hidden" id="ed_field_id" name="ed_field_id">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="area_field"><?=$language['new-farmer']['45']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_name" name="ed_field_name" required>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_area" name="ed_field_area" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label><?=$language['new-farmer']['55']?></label>
+                            <select class="form-control inphead op" id="crop_type">
+                                    <? if($_COOKIE['lang']=='gb'){?>
+                                        <option value="1">Crop Production</option>
+                                        <option value="2">Vegetable growing</option>
+                                        <option value="3">Fruits</option>
+                                        <option value="4">Вerries</option>
+                                    <?} elseif($_COOKIE['lang']=='ua'){?>
+                                        <option value="1">Рослинництво</option>
+                                        <option value="2">Овочівництво</option>
+                                        <option value="3">Фрукти</option>
+                                        <option value="4">Ягоди</option>
+                                    <?}?>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <label><?=$language['new-farmer']['48']?></label>
+                            <select class="form-control inphead" name='crop' id="ed_crop_list_select" required>
+                                <?foreach($date['crop_us'] as $crop){?>
+                                    <option class="crop_list crop_type_<?=$crop['type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
+                                <?}?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     $().ready(function(){
@@ -228,12 +317,37 @@
         function total_area() {
            var total_area=0;
             $(".area_plus").each(function(){
-                var area=parseFloat($(this).val());
+                var area=parseFloat($(this).text());
                 if(isNaN(area)) area=0;
                 
                 total_area += area;
             });
             $('#total_area').text(total_area);
         }
+
+         $('.edit_fields').click(edit_field);
+        function edit_field() {
+            var json_field=$(this).attr('data-data');
+            var field=JSON.parse( json_field );
+            $('#editField').modal('show');
+            $('#ed_field_number').val(field['field_number']);
+            $('#ed_field_id').val(field['id_field']);
+            $('#ed_field_name').val(field['field_name']);
+            $('#ed_field_area').val(field['field_size']);
+            $('#ed_crop_list_select').val(field['field_id_crop']);
+        }
+
+        $('.rent_pay').change(function(){
+            var rent_pay = $(this).val();
+            var costs_type = $(this).attr('data-type');
+                $.ajax({
+                type : 'post',
+                url : '/new-farmer/save_rent',
+                data : {
+                    'value' : rent_pay,
+                    'costs_type' : costs_type
+                }
+            });
+        });
     });
 </script>

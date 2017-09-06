@@ -1,4 +1,4 @@
-<html style="height: auto; min-height: 100%;"><head>
+<html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Панель управління дистрибютор</title>

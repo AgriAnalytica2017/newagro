@@ -7,8 +7,8 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
       <user-name>test_agro</user-name>
-      <introspection-schemas>*:Agro</introspection-schemas>
     </data-source>
   </component>
 </project>

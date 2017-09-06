@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../forex/.idea/forex.iml" filepath="$PROJECT_DIR$/../forex/.idea/forex.iml" />
       <module fileurl="file://$PROJECT_DIR$/../lenta/.idea/lenta.iml" filepath="$PROJECT_DIR$/../lenta/.idea/lenta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../new-mvc/.idea/new-mvc.iml" filepath="$PROJECT_DIR$/../new-mvc/.idea/new-mvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/newagro.ru.iml" filepath="$PROJECT_DIR$/.idea/newagro.ru.iml" />
       <module fileurl="file://$PROJECT_DIR$/../template/.idea/template.iml" filepath="$PROJECT_DIR$/../template/.idea/template.iml" />
     </modules>
