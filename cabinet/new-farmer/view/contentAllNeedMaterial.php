@@ -13,8 +13,9 @@
     2=>'l',
     3=>'t'
     );
-   /* echo "<pre>";
-    var_dump($date['budget']['needed_material']);die;*/
+
+  echo "<pre>";
+  var_dump($date);die;
 ?>
     <div class="box-bodyn">
       <div class="non-semantic-protector">

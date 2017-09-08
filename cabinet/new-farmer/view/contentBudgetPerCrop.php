@@ -24,9 +24,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-12" style="text-align: center;">
+        <!--<div class="col-lg-12" style="text-align: center;">
             <a href="/new-farmer/save_budget" class="btn btnn btn-success">Сохранить бюджет</a>
-        </div>
+        </div>-->
     </div>
 
     <div id="fixEquipment" class="modal fade">

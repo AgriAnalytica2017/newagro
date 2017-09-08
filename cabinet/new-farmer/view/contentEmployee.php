@@ -1,3 +1,13 @@
+<head>
+    <style>
+        .searchs{
+            height: 35px;
+            width: 300px;
+            border-radius:3px;
+        }
+    </style>
+</head>
+
 <div class="box-bodyn col-lg-12">
         <div class="non-semantic-protector">
             <h1 class="ribbon">
@@ -23,7 +33,7 @@
 	</thead>
 	<tbody>
 		<? foreach ($date as $employee){ ?>
-		<tr>
+		<tr class="for_search">
 			<td><? echo $employee['employee_name']." ".$employee['employee_surname'];?></td>
 			<td><?=$employee['employee_phone_number'];?></td>
 			<td><?=$employee['employee_position'];?></td>
@@ -134,5 +144,70 @@
 			$('#edit_employee_phone_number').val(employee_phone_number);
 			$('#edit_employee_position').val(employee_position);
 		}
+        (function( $ ){
+            $.fn.jSearch = function( options ) {
+
+                var defaults = {
+                    selector: null,
+                    child: null,
+                    minValLength: 3,
+                    Found: function(elem, event){},
+                    NotFound: function(elem, event){},
+                    Before: function(t){},
+                    After: function(t){},
+                };
+
+                var options = $.extend(defaults, options);
+                var $this = $(this);
+
+                if ( options.selector == null || options.child === null || typeof options.NotFound != "function" || typeof options.Found != "function" || typeof options.After != "function" || typeof options.Before != "function" )
+                { console.error( 'One of the parameters is incorrect.' ); return false; }
+
+
+                $this.on( 'keyup', function(event){
+
+                    options.Before($this);
+
+                    if ( $(this).val().length >= options.minValLength ) {
+                        console.clear();
+
+                        $( options.selector ).find( options.child ).each(function( event ){
+                            if ( this.innerText.toLowerCase().indexOf( $this.val().toLowerCase() ) == -1 ) {
+                                options.NotFound( this, event );
+                            } else {
+                                options.Found( this, event );
+                            }
+
+                        });
+
+                    }
+
+                    options.After($this);
+
+                });
+
+            };
+        })( jQuery );
+
+        $('#search').jSearch({
+            selector  : 'table',
+            child : 'tr > td',
+            minValLength: 0,
+            Before: function(){
+                $('table tr').data('find','');
+            },
+            Found : function(elem){
+                $(elem).parent().data('find','true');
+                $(elem).parent().show();
+            },
+            NotFound : function(elem){
+                if (!$(elem).parent().data('find'))
+                    $(elem).parent().hide();
+            },
+            After : function(t){
+                if (!t.val().length) $('table tr').show();
+            }
+        });
+
 	});
 </script>

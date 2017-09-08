@@ -34,7 +34,7 @@ echo "</pre>";*/
                     <td><?=$material['action']?></td>
                     <td><?=$material['name']?></td>
                     <td><?=number_format($material['area'], 0,'.',' ')?></td>
-                    <td><?=number_format($material['norm'], 0,'.',' ')?></td>
+                    <td><?=number_format($material['norm'], 2,'.',' ')?></td>
                     <td><?=number_format($material['price'], 0,'.',' ')?></td>
                     <td><?=number_format($material['summ_price'], 0,'.',' ')?></td>
                 </tr>

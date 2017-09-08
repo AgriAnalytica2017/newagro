@@ -51,8 +51,8 @@
                             <td><?=$eq['equipment_name']?></td>
                             <td><?=$date['type_equipment']['ua'][$eq['equipment_type']]?></td>
                             <td><?=$date['kind_equipment'][$eq['equipment_kind']]?></td>
-                            <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['rate'].' l/h'?></td><?} ?>
-                            <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['summ_price']?></td><?} ?>
+                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['rate'].' l/h'?></td><?} ?>
+                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['summ_price']?></td><?} ?>
                         </tr>
                         <?
                         $id=$fuel['id'];$id_v=$equipment['id_v'];
@@ -63,16 +63,15 @@
                             <td><?if($equipment['id_v']!=$id_v) echo $equipment['vehicles_manufacturer']?></td>
                             <td><?if($equipment['id_v']!=$id_v) echo $date['fuel_type']['gb'][$equipment['vehicles_fuel']] ?></td>
                             <td colspan="3"></td>
-                            <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['rate']?></td><?} ?>
-                            <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['summ_price']?></td><?} ?>
+                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=$fuel['row']?>"><? echo $equipment['rate']?></td><?} ?>
+                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=$fuel['row']?>"><? echo $equipment['summ_price']?></td><?} ?>
                         </tr>
                         <?$id=$fuel['id'];$id_v=$equipment['id_v'];}
                     }else{?>
                         <tr>
                             <td><?if($fuel['id']!=$id) echo $fuel['action']?></td>
-                            <td colspan="6"></td>
-                            <td><?if($fuel['id']!=$id) echo $fuel['rate']?></td>
-                            <td><?if($fuel['id']!=$id) echo $fuel['summ_price']?></td>
+                            <td colspan="8"></td>
+
                         </tr>
                     <?$id=$fuel['id'];}
                 }

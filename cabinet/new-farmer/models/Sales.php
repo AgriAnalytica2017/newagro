@@ -71,16 +71,18 @@ class Sales{
 	}
 
 
-	public static function createActualSale($id_user,$actual_sale_product,$actual_sale_date,$actual_sale_quantity,$actual_sale_sum,$actual_sale_per_unit,$actual_sale_comments){
+	public static function createActualSale($id_user,$actual_sale_product, $actual_sale_date, $actual_sale_quantity, $actual_sale_sum, $actual_sale_per_unit,$actual_sale_comments){
 		$db = Db::getConnection();
-		$db->query("INSERT INTO new_actual_sales(id_user,actual_sale_product,actual_sale_sate,actual_sale_quantity,actual_sale_sum,actual_sale_per_unit,actual_sale_comments) VALUES('$id_user','$actual_sale_product','$actual_sale_date','$actual_sale_quantity','$actual_sale_sum','$actual_sale_per_unit','$actual_sale_comments')");
+
+		$db->query("INSERT INTO new_actual_sales(id_user, actual_sale_product, actual_sale_date, actual_sale_quantity, actual_sale_sum, actual_sale_per_unit, actual_sale_comments) 
+                    VALUES('$id_user', '$actual_sale_product', '$actual_sale_date', '$actual_sale_quantity', '$actual_sale_sum', '$actual_sale_per_unit', '$actual_sale_comments')");
 		$db->query("UPDATE new_product_incoming SET product_now = product_now - $actual_sale_quantity WHERE id_user = '$id_user' and product_type = '$actual_sale_product'");
 		return true;
 	}
 
 	public static function getSalesPrice($id_user){
 	    $db = Db::getConnection();
-        $result = $db->query("SELECT DISTINCT ch.name_crop_ua, ch.name_crop_en ch.id_crop FROM new_lib_crop ch, new_field nf WHERE ch.id_crop = nf.field_id_crop and nf.field_sale_status = '0' and nf.field_status = '0' and  nf.id_user = '$id_user'");
+        $result = $db->query("SELECT DISTINCT ch.name_crop_ua, ch.name_crop_en, ch.id_crop FROM new_lib_crop ch, new_field nf WHERE ch.id_crop = nf.field_id_crop and nf.field_sale_status = '0' and nf.field_status = '0' and  nf.id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date['crop'] = $result->fetchAll();
 

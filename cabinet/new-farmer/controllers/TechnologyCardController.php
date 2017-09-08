@@ -72,10 +72,11 @@ class TechnologyCardController{
     public function actionSaveEditTechnologyCard(){
         $id_user = $_SESSION['id_user'];
         $crop_id=SRC::validator($_POST['crop_id']);
-        $id_action_type =  SRC::validator($_POST['id_action_type']);
-        $id_action =  SRC::validator($_POST['action_id']);
-        //$id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
-        //$id_action = DataBase::saveLib($id_user,$action_name,2);
+        //$action_id = SRC::validator($_POST['action_action_id']);
+        $action_type_name=SRC::validator($_POST['id_action_type']);
+        $action_name =  SRC::validator($_POST['action_id']);
+        $id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
+        $id_action = DataBase::saveLib($id_user,$action_name,2);
         $start_date =  SRC::validator($_POST['strat_data']);
         $end_date =  SRC::validator($_POST['end_data']);
         $unit =  SRC::validator($_POST['id_action_unit']);
@@ -101,7 +102,7 @@ class TechnologyCardController{
             foreach ($materiale as $ex_material) {
                 $save_material[]=array(
                     'id'=>SRC::validator($ex_material->{'id'}),
-                    'norm'=>SRC::validator($ex_material->{'norm'})
+                    'norm'=>SRC::validatorPrice($ex_material->{'norm'})
                 );
             }
             $save_material = serialize( $save_material );
@@ -141,14 +142,14 @@ class TechnologyCardController{
         SRC::redirect();
         return true;
     }
-///////////////////////////UPDATE/////////////////////////////////////////////////////////
+/////////////////////////////UPDATE/////////////////////////////////////////////////////////
     public function actionUpdateActionPlan(){
         $id_user = $_SESSION['id_user'];
-        $action_id=SRC::validator($_POST['action_action_id']);
-        $id_action_type =  SRC::validator($_POST['id_action_type']);
-        $id_action =  SRC::validator($_POST['action_id']);
-        //$id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
-        //$id_action = DataBase::saveLib($id_user,$action_name,2);
+        $action_id = SRC::validator($_POST['action_action_id']);
+        $action_type_name=SRC::validator($_POST['id_action_type']);
+        $action_name =  SRC::validator($_POST['action_id']);
+        $id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
+        $id_action = DataBase::saveLib($id_user,$action_name,2);
         $start_date =  SRC::validator($_POST['strat_data']);
         $end_date =  SRC::validator($_POST['end_data']);
 
@@ -175,7 +176,7 @@ class TechnologyCardController{
             foreach ($materiale as $ex_material) {
                 $save_material[]=array(
                     'id'=>SRC::validator($ex_material->{'id'}),
-                    'norm'=>SRC::validator($ex_material->{'norm'})
+                    'norm'=>SRC::validatorPrice($ex_material->{'norm'})
                 );
             }
             $save_material = serialize( $save_material );
@@ -188,7 +189,7 @@ class TechnologyCardController{
             foreach ($employee as $ex_employee) {
                 $save_employee[] = array(
                     'id' => SRC::validator($ex_employee->{'id'}),
-                    'pay' => SRC::validator($ex_employee->{'pay'})
+                    'pay' => SRC::validatorPrice($ex_employee->{'pay'})
                 );
             }
             $save_employee = serialize( $save_employee );
@@ -207,7 +208,7 @@ class TechnologyCardController{
                 $save_vehicles[]=array(
                     'id_veh'=>SRC::validator($ex_vehicles->{'id_vehicles'}),
                     'id_equ'=>$id_equipment,
-                    'fuel'=>SRC::validator($ex_vehicles->{'fuel'})
+                    'fuel'=>SRC::validatorPrice($ex_vehicles->{'fuel'})
                 );
             }
             $save_vehicles = serialize( $save_vehicles );

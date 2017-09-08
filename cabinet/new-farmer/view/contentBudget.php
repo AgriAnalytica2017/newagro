@@ -16,19 +16,19 @@
         </h1>
     </div>
 </div>
-    <div class="box-bodyn col-lg-12" style="max-height: 55px">
+   <!-- <div class="box-bodyn col-lg-12" style="max-height: 55px">
         <div class="col-sm-5"></div>
         <div class="col-sm-2" style="margin-top: -12px;">
         <select onchange="window.location.href=this.options[this.selectedIndex].value" class="form-control inphead">
             <option value="/new-farmer/budget/">budget</option>
-            <?php foreach ($date['save_budget_list'] as $list){?>
-                <option <?php  if($date['id_budget']==$list['id_budget']) echo 'selected'?>  value="<?=SRC::getSrc().'/new-farmer/budget/'.$list['id_budget']?>"><?=$list['data_save'].' '.$list['time_save']?></option>
-            <?}?>
+            <?php /*foreach ($date['save_budget_list'] as $list){*/?>
+                <option <?php /* if($date['id_budget']==$list['id_budget']) echo 'selected'*/?>  value="<?/*=SRC::getSrc().'/new-farmer/budget/'.$list['id_budget']*/?>"><?/*=$list['data_save'].' '.$list['time_save']*/?></option>
+            <?/*}*/?>
         </select>
         </div>
         <div class="col-sm-5"></div>
     </div>
-
+-->
     <div class="rown">
         <div class="table-responsive">
         <table class="table">
@@ -45,9 +45,9 @@
             </tbody>
         </table>
         </div>
-        <div class="col-lg-12" style="text-align: center;">
+       <!-- <div class="col-lg-12" style="text-align: center;">
         <a href="/new-farmer/save_budget" class="btn btnn btn-success">Сохранить бюджет</a>
-        </div>
+        </div>-->
     </div>
 
 </div>

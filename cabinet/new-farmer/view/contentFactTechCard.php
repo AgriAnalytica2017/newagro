@@ -5,11 +5,11 @@
  * Date: 29.08.2017
  * Time: 11:41
  */
-/*
-echo "<pre>";
-var_dump($date['action']['material_lib']);
-die;
-*/
+
+/*echo "<pre>";
+var_dump($date);
+die;*/
+
 ?>
 <div class="rown">
     <div class="col-lg-3">
@@ -97,6 +97,10 @@ die;
     </div>
 </div>
     </div>
+
+
+
+
     <div class="fact_tech_card" style="display: none">
     <div class="col-lg-6">
         <div class="rown">
@@ -177,8 +181,8 @@ die;
                         <table class="table">
                             <thead>
                             <tr class="tabletop">
-                                <th>Equipment</th>
                                 <th>Vehicles</th>
+                                <th>Equipment</th>
                                 <th>Fuel rate</th>
                             </tr>
                             </thead>
@@ -421,35 +425,34 @@ die;
             <div class="modal-body">
 
                 <div class="row">
-                    <div class="col-lg-6">
-                                <table class="table">
-                                    <thead>
-                                    <tr class="tabletop">
-                                        <th><?=$language['new-farmer']['93']?></th>
-                                        <th><?=$language['new-farmer']['95']?></th>
-                                        <th>Кількість на складі</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php foreach ($date['action']['storage_material'] as $storage_material)if($storage_material['storage_type_material']==4){?>
-                                        <tr class="list_fuel type_fuel_<?=$storage_material['storage_type_material']?>" >
-                                            <td><?=$date['material_lib'][$storage_material['storage_material']]['name_material']?></td>
-                                            <td><?=$storage_material['storage_sum_unit']?></td>
-                                            <td id="fuel_st_<?=$storage_material['storage_material_id']?>" data-mass="<?=$storage_material['storage_quantity']?>"><?=$storage_material['storage_quantity']?></td>
-                                            <td><a data-id="<?=$storage_material['storage_material_id']?>" data-name='<?=$date['material_lib'][$storage_material['storage_material']]['name_material']?>' class="btn btn-success btn-sm fact_add_fuel"><i class="fa fa-fw fa-arrow-right"></i>
-                                                </a></td>
-                                        </tr>
-                                    <?php }?>
-                                    </tbody>
-                                </table>
+                    <div class="col-lg-4">
+                        <table class="table tavle1">
+                            <thead>
+                            <tr class="tabletop">
+                                <th><?=$language['new-farmer']['17']?></th>
+                                <th><?=$language['new-farmer']['30']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($date['action']['vehicles'] as $vehicles){?>
+                                <tr class="123">
+                                    <td><?=$vehicles['vehicles_name']?></td>
+                                    <td><?=$vehicles['vehicles_manufacturer']?></td>
+                                    <td><a data-data='<?=json_encode($vehicles); ?>' data-id="<?=$vehicles['id_vehicles']?>" data-name="<?=$vehicles['vehicles_name']?>" class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
+                                        </a></td>
+                                </tr>
+                            <? }?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <table class="table">
                             <thead class="tabletop">
                             <tr>
-                                <th><?=$language['new-farmer']['93']?></th>
-                                <th>Кількість</th>
+                                <th><?=$language['new-farmer']['3']?></th>
+                                <th><?=$language['new-farmer']['2']?></th>
+                                <th>Fuel quantity</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
@@ -469,27 +472,78 @@ die;
     </div>
 </div>
 
+<div id="Choose_equipment" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title"><?=$language['new-farmer']['84']?></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input class="searchs" id="search_equipment" type="text" placeholder="Поиск" style="float: left">
+                    </div>
+                </div><br>
+                <input type="hidden" id="vehicles_id_equipment">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table tavle2">
+                            <thead>
+                            <tr>
+                                <th><?=$language['new-farmer']['85']?></th>
+                                <th><?=$language['new-farmer']['86']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($date['action']['equipment'] as $equipment){?>
+                                <tr>
+                                    <td><?=$equipment['equipment_name']?></td>
+                                    <td><?=$date['equipment_kind'][$equipment['equipment_kind']]?></td>
+                                    <td><a data-data='<?=json_encode($equipment); ?>' class="btn btn-success btn-sm add_equipment"><i class="fa fa-fw fa-arrow-right"></i>
+                                        </a></td>
+                                </tr>
+                            <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><?=$language['new-farmer']['17']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="list_equipment">
 
-
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function () {
-
         var json_plan_material='<?=json_encode($date['action']['material_lib']);?>';
         var json_vehicles ='<?=json_encode($date['action']['vehicles'])?>';
         var json_equipment_lib ='<?=json_encode($date['action']['equipment'])?>';
         var json_plan_employee ='<?=json_encode($date['action']['employee']);?>';
         var json_storage ='<?=json_encode($date['action']['storage_material']);?>';
-
-
-
         var plan_material = JSON.parse(json_plan_material);
         var vehicles = JSON.parse(json_vehicles);
         var equipment_lib = JSON.parse(json_equipment_lib);
         var plan_employee = JSON.parse(json_plan_employee);
         var storage = JSON.parse(json_storage);
         var id_g_employee=0;
-        ///////////////////////////MATERIAL/////////////////////////////////////
+///////////////////////////MATERIAL/////////////////////////////////////
         var id_material=0;
         $('.fact_add_material').click(add_material);
         function add_material() {
@@ -497,7 +551,7 @@ die;
             var name=$(this).attr('data-name');
             var id_materials=$(this).attr('data-id');
 
-            $("#fact_action_material").append("<tr class='material_json' id=' action_material_" + id_material + "'>" +
+            $("#fact_action_material").append("<tr class='material_json' id='action_material_" + id_material + "'>" +
                 "<td>" + name + "</td>" +
                 "<td><input data-id='"+id_materials+"' type='text' class='form-control norm_material material_st_"+id_materials+"' ></td>" +
                 "<td><input class='date_material form-control' type='date'></td>" +
@@ -506,8 +560,6 @@ die;
             save_material();
         }
         $('#fact_action_material').on('change', '.date_material, .norm_material', save_material);
-
-
         $('#fact_action_material').on('keyup', '.norm_material', norm_material);
         function norm_material() {
             var id=$(this).attr('data-id');
@@ -554,23 +606,31 @@ die;
             $('#coll_material_fact').text("("+coll+")");
         }
 
-        ///////////////////////////FUEL/////////////////////////////////////
+///////////////////////////FUEL/////////////////////////////////////
         var id_fuel=0;
-        $('.fact_add_fuel').click(add_fuel);
+        $('.add_vehicles').click(add_fuel);
         function add_fuel() {
             id_fuel++;
+            var json_vehicles = $(this).attr('data-data');
+            var vehicles = JSON.parse(json_vehicles);
             var name=$(this).attr('data-name');
             var id_fuels=$(this).attr('data-id');
 
-            $("#fact_action_fuel").append("<tr class='fuel_json' id=' action_fuel_" + id_fuel + "'>" +
+            $("#fact_action_fuel").append("<tr class='fuel_json' id='action_fuel_" + id_fuel + "'>" +
                 "<td>" + name + "</td>" +
+                "<td >" +
+                "<div class='btn-group'>" +
+                "<button id='vehicles_id_eq_"+id_fuels+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id_equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equipment</button>" +
+                "<button data-id='"+id_fuels+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
+                "</div>" +
+                "</td>" +
                 "<td><input data-id='"+id_fuels+"' type='text' class='form-control norm_fuel fuel_st_"+id_fuel+"' ></td>" +
                 "<td><input class='date_fuel form-control' type='date'></td>" +
                 "<td><button class='btn btn-danger btn-sm remove_fuel' data-id='" + id_fuel + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
             save_fuel();
-
-        }$('#fact_action_fuel').on('change', '.date_fuel', save_fuel);
+        }
+        $('#fact_action_fuel').on('change', '.date_fuel', save_fuel);
         $('#fact_action_fuel').on('keyup', '.norm_fuel', norm_fuel);
         function norm_fuel() {
             var id=$(this).attr('data-id');
@@ -603,12 +663,14 @@ die;
         }
         $('#save_fuel').click(save_fuel);
         function save_fuel() {
+            //
             jsonObj = [];
             var coll=0;
             $(".fuel_json").each(function() {
                 coll++;
                 item = {};
-                item ["id"] = $(this).find('.norm_fuel').attr('data-id');
+                item ["id_veh"] = $(this).find('.norm_fuel').attr('data-id');
+                item ["id_equipment"] = JSON.parse($(this).find('.ex_equ').attr('data-id_equipment'));
                 item ["norm"] = $(this).find('.norm_fuel').val();
                 item ["date"] = $(this).find('.date_fuel').val();
                 jsonObj.push(item);
@@ -616,7 +678,57 @@ die;
             $('#save_fuel_fact').val(JSON.stringify(jsonObj));
             $('#coll_fuel_fact').text("("+coll+")");
         }
-        /////////////////////employe//////////////////////////////////////////////////////////
+
+        var id_equipment=0;
+        $('#fact_action_fuel').on('click', '.open_equipment', open_equipment);
+        function open_equipment() {
+            $('#Choose_equipment').modal('show');
+            var id=$(this).attr('data-id');
+            $('#vehicles_id_equipment').val(id);
+            $("#list_equipment").html(' ');
+            var json_equipment=$('#vehicles_id_eq_'+id).attr('data-id_equipment');
+            var equipment=JSON.parse(json_equipment);
+            if(isNaN(equipment)){
+                $.each(equipment, function(key, value) {
+                    id_equipment++;
+                    $("#list_equipment").append("<tr id='action_equipment_"+id_equipment+"'>" +
+                        "<td>"+equipment_lib[value['id']]['equipment_name']+"</td>" +
+                        "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-idr='"+id_equipment+"' data-id='"+value['id']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
+                        "</tr>");
+                });
+            }
+        }
+        $('.add_equipment').click(add_equipment);
+        function add_equipment(){
+            id_equipment++;
+            var json_equipment=$(this).attr('data-data');
+            var equipment=JSON.parse( json_equipment );
+            $("#list_equipment").append("<tr id='action_equipment_"+id_equipment+"'>" +
+                "<td>"+equipment['equipment_name']+"</td>" +
+                "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-idr='"+id_equipment+"' data-id='"+equipment['id_equipment']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
+                "</tr>");
+            save_equipment();
+        }
+        $('#list_equipment').on('click', '.remove_equipment', remove_equipment);
+        function remove_equipment(){
+            var id=$(this).attr('data-idr');
+            $('#action_equipment_'+id).remove();
+            save_equipment();
+        }
+        function save_equipment(){
+            var id=$('#vehicles_id_equipment').val();
+            jsonObj = [];
+            var coll=0;
+            $(".equipment_lists").each(function() {
+                coll++;
+                item = {};
+                item ['id'] = $(this).attr('data-id');
+                jsonObj.push(item);
+            });
+            $('#vehicles_id_eq_'+id).text(coll).attr('data-id_equipment', JSON.stringify(jsonObj));
+        }
+
+/////////////////////employe//////////////////////////////////////////////////////////
         $('.add_employee').click(function () {
             id_g_employee++;
             var id_employe = $(this).attr('data-id');
@@ -630,7 +742,6 @@ die;
             save_employee();
         });
         $('#save_employe').click(save_employee);
-
         $('#fact_employe_action').on('change', '.em_date, .em_fact', save_employee);
         function save_employee() {
             jsonObj = [];
@@ -647,7 +758,7 @@ die;
             $('#coll_employee_fact').text("("+coll+")");
             //$('#fact_employee').modal("hide");
         }
-        ///////////////////////services///////////////////////////////////////
+///////////////////////services///////////////////////////////////////
         var id_services=0;
         $('#fact_add_services').click(add_services);
         function add_services() {
@@ -674,11 +785,7 @@ die;
             $('#save_services_fact').val(JSON.stringify(jsonObj));
             $('#coll_services').text("("+coll+")");
         }
-
-
-
-
-        //////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
         var def_material = 'Матеріали відсутні';
         var def_employee = 'Працівники відсутні';
         var def_equipment = 'Техніка відсутня';
@@ -698,14 +805,11 @@ die;
             var employee = JSON.parse(json_employee);
             var equipment = JSON.parse(json_equipment);
             var services = JSON.parse(json_services);
-            var fact=JSON.parse(json_fact);
+            var fact = JSON.parse(json_fact);
             if(!isNaN(fact)) fact={};
 
             $('#save_fact_id_action').val(action_id);
-
-
-
-            ///////Загрузка Плана
+///////Загрузка Плана
             if(material == false){
                 $("#material").append(
                     "<tr>" +
@@ -792,7 +896,7 @@ die;
                             "</tr>"
                         );
                         id_material++;
-                        $("#fact_action_material").append("<tr class='material_json' id=' action_material_" + id_material + "'>" +
+                        $("#fact_action_material").append("<tr class='material_json' id='action_material_" + id_material + "'>" +
                             "<td>" + storage[value['id']]['name_material'] + "</td>" +
                             "<td><input data-id='"+value['id']+"' type='text' class='form-control norm_material material_st_"+value['id']+"' value='"+value['norm']+"' ></td>" +
                             "<td><input  value='"+value['date']+"' class='date_material form-control' type='date'></td>" +
@@ -801,8 +905,6 @@ die;
                     });
 
                 }
-
-
                 //////////fact_employee
                 if(fact['fact_employee'] == undefined){
                     $("#in_fact_employee").append("<tr'>" +
@@ -827,7 +929,6 @@ die;
 
                     });
                 }
-
                 ////////fact_machines
                 if(fact['fact_machines'] == undefined){
                     $("#in_fact_equipment").append("<tr>" +
@@ -838,22 +939,25 @@ die;
                     $.each(fact['fact_machines'], function (key, machines) {
                         id_machine++;
                         $("#in_fact_equipment").append("<tr>"+
-                            "<td>"+machines['date']+"</td>"+
-                            "<td ></td>"+
+                            "<td>"+vehicles[machines['id_veh']]['vehicles_name']+"</td>"+
+                            "<td id='fact_equipment_"+id_machine+"'></td>"+
                             "<td>"+machines['norm']+"</td>"+
                             "</tr>"
                         );
-                        id_fuel++;
-                        $("#fact_action_fuel").append("<tr class='fuel_json' id=' action_fuel_" + id_fuel + "'>" +
-                            "<td>" + storage[machines['id_mat']]['name_material'] + "</td>" +
-                            "<td><input value='"+machines['norm']+"' data-id='"+machines['id_mat']+"' type='text' class='form-control norm_fuel fuel_st_"+machines['id_mat']+"' ></td>" +
+                        var id_equ = machines['id_equ'].split(',');
+                        $.each(id_equ, function (key, id_equipment) {
+                            $("#fact_equipment_"+id_machine).append(equipment_lib[id_equipment]['equipment_name']+"<br>");
+                        });
+                       id_fuel++;
+                        $("#fact_action_fuel").append("<tr class='fuel_json' id='action_fuel_" + id_fuel + "'>" +
+                            "<td>" + vehicles[machines['id_veh']]['vehicles_name'] + "</td>" +
+
+                            "<td><input value='"+machines['norm']+"' data-id='"+machines['id_veh']+"' type='text' class='form-control norm_fuel fuel_st_"+machines['id_veh']+"' ></td>" +
                             "<td><input value='"+machines['date']+"' class='date_fuel form-control' type='date'></td>" +
                             "<td><button class='btn btn-danger btn-sm remove_fuel' data-id='" + id_fuel + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                             "</tr>");
                     });
                 }
-
-
                 ////////fact_services
                 if(fact['fact_services'] == undefined){
                     $('#in_fact_services').append(
@@ -881,11 +985,6 @@ die;
                 save_services();
                 save_material();
                 save_fuel();
-
-
-
-
-
         });
         $('.save_change').click(function () {
             location.reload();

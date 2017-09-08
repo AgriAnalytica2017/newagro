@@ -69,7 +69,7 @@
                         <thead>
                             <tr>
                                 <th><?=$language['new-farmer']['141']?></th>
-                                <th colspan="2"></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <thead id="tech_list">
@@ -100,8 +100,8 @@
             $.each(tech_name[id_crop], function(key, value) {
                 $('#tech_list').append("<tr>" +
                     "<td>"+value['tech_name']+"</td>" +
-                    "<td><button type='button' class='btn btn-primary copy_tc' data-id_tech='"+value['id_culture']+"'>Copy and select</button></td>" +
-                    "<td><button type='button' class='btn btn-primary selects_tc' data-name='"+value['tech_name']+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +
+                    "<td><button type='button' class='btn btn-primary copy_tc' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +
+                    /*"<td><button type='button' class='btn btn-primary selects_tc' data-name='"+value['tech_name']+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +*/
                     "</tr>");
             });
         });

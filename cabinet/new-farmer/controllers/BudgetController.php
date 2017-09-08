@@ -13,10 +13,10 @@ class BudgetController{
 
         $date['table']=Budget::getTableBudget();
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
-        if($id_budget==true)$date['save_budget']=Budget::getSaveBudget($db,$id_user,$id_budget);
+        /*if($id_budget==true)$date['save_budget']=Budget::getSaveBudget($db,$id_user,$id_budget);
         $date['save_budget_list']=Budget::getSaveBudgetList($db,$id_user);
         $date['return_budget'] = unserialize($date['save_budget'][0]['budget']);
-        $date['id_budget']=$id_budget;
+        $date['id_budget']=$id_budget;*/
         SRC::template('new-farmer','new','budget',$date);
         return true;
     }
@@ -65,7 +65,7 @@ class BudgetController{
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
         $date['field_management'] = TechnologyCard::getFieldManagement($id_user);
         $date['crop_name'] = DataBase::getCropName($id_user);
-        
+
         foreach ($date['field_management'] as $field_management){
             $date['field'][$field_management['field_id_crop']] += $field_management['field_size'];
         }
@@ -211,7 +211,7 @@ class BudgetController{
         $id_user=$_SESSION['id_user'];
         $field=Budget::getMyCulture($db,$id_user,false,$id_field);
         $date['table']=Budget::getTableBudget();
-        $date['budget']=Budget::getBudget($db,$id_user,$field,$date['table'],3);
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],3);
         $date['type_equipment']=DataBase::getTypeEquipment();
         $date['kind_equipment']=DataBase::getEquipmentKind();
         $date['fuel_type'] = DataBase::getTypeFuel();

@@ -106,25 +106,25 @@ class Budget{
             array(
                 'name_ua'=>'Стаття',
                 'name_en'=>'Item',
-                'php'=>'action',
+                'array'=>'action',
                 'class'=>''
             ),
             array(
                 'name_ua'=>'1. Рух коштів в результаті операційної діяльності',
                 'name_en'=>'1. Cash flow as a result of operating activities',
-                'php'=>'cf_operating_activities',
+                'array'=>'cf_operating_activities',
                 'class'=>''
             ),
             array(
                 'name_ua'=>'Операційна діяльність - надходження',
                 'name_en'=>'Operating activities - supply',
-                'php'=>'revenue',
+                'array'=>'revenue',
                 'class'=>'level2'
             ),
             array(
                 'name_ua'=>'Операційна діяльність - витрати',
                 'name_en'=>'Operating activities - expenses',
-                'php'=>'activities_costs',
+                'array'=>'activities_costs',
                 'class'=>'level2'
             ),
             array(
@@ -165,7 +165,7 @@ class Budget{
             array(
                 'name_ua'=>'Чистий рух коштів від операційної діяльності',
                 'name_en'=>'Net cash flow from operating activities',
-                'php'=>'net_cash_flow',
+                'array'=>'net_cash_flow',
                 'class'=>''
             ),
             /*array(
@@ -219,19 +219,19 @@ class Budget{
             array(
                 'name_ua'=>'Всього надходження',
                 'name_en'=>'Total supply',
-                'php'=>'revenue2',
+                'array'=>'revenue2',
                 'class'=>''
             ),
             array(
                 'name_ua'=>'Всього витрати',
                 'name_en'=>'Total costs',
-                'php'=>'activities_costs',
+                'array'=>'activities_costs',
                 'class'=>''
             ),
             array(
                 'name_ua'=>'Чистий рух грошових коштів за звітний період',
                 'name_en'=>'Net cash flows for reporting period',
-                'php'=>'net_cash_flow',
+                'array'=>'net_cash_flow',
                 'class'=>''
             ),
             /*array(
@@ -318,7 +318,7 @@ class Budget{
         $equipments= $result->fetchAll();
         $date['equipment']=array();
         foreach ($equipments as $equipment){
-            $date['equipment'][$equipment['id_equipment']]=$equipment;
+            $new_equipment['equipment'][$equipment['id_equipment']]=$equipment;
         }
 
 
@@ -386,12 +386,27 @@ class Budget{
             //Операции
             foreach ($date['new_action'] as $action)if($action['action_id_culture']==$arr_field['field_id_culture']){
                 $act_data = explode('-', $action['action_date_start']);
-                $act_data[1]=intval($act_data[1]);
+                $act_data[1]=intval($act_data[0].$act_data[1]);
+
+                $ex_date['month_active'][$act_data[1]]=true;
                 //мaтериалы
                 if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){
                     $price_material[$action['action_id']] = $action_materials['norm'] * $date['new_material'][$action_materials['id']]['price_material'] * $arr_field['field_size'];
                     $ex_date['budget_material'][$arr_field['id_field']][$date['new_material'][$action_materials['id']]['id_type_material']] += $price_material[$action['action_id']];
+
                     $ex_date['budget_material_month'][$act_data[1]][$date['new_material'][$action_materials['id']]['id_type_material']] += $price_material[$action['action_id']];
+
+                    switch ($date['new_material'][$action_materials['id']]['id_type_material']){
+                        case 1:
+                            $ex_date['budget_seeds_month'][$act_data[1]]+=$price_material[$action['action_id']];
+                            break;
+                        case 2:
+                            $ex_date['budget_fertilizers_month'][$act_data[1]]+=$price_material[$action['action_id']];
+                            break;
+                        case 3:
+                            $ex_date['budget_ppa_month'][$act_data[1]]+=$price_material[$action['action_id']];
+                            break;
+                    }
                     if($remains==1){
                         $ex_date['remains'][$date['new_material'][$action_materials['id']]['id_type_material']][]=array(
                             'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
@@ -405,36 +420,62 @@ class Budget{
                     }
                 }
                 //Топливо
-                if(unserialize($action['action_machines'])!=false) foreach(unserialize($action['action_machines']) as $action_machines){
-                    $price_equipment = $action_machines['fuel'] * ($action['action_work']) * 22;
-                    $ex_date['budget_equipment'][$arr_field['id_field']] += $price_equipment;
-                    $ex_date['crop_budget_equipment'][$arr_field['field_id_crop']] += $price_equipment;
-                    $ex_date['budget_equipment_month'][$act_data[1]] += $price_equipment;
-//                    echo $date['TC']['vehicles'][$action_machines['id_veh']]['vehicles_name'];
-//                    $equipments[$action['action_id']]=explode(',',$action_machines['id_equ']);
-//                    $list_equipment="";
-//                    foreach ($equipments[$action['action_id']] as $key){
-//                        $list_equipment .= $date['TC']['equipment'][$key]['equipment_name'].', ';
-//                    }
-//                    echo $list_equipment='('.substr($list_equipment, 0, -2).'), fuel:'.$action_machines['fuel'].'<br>';
-                }
-                //Зарплатаjgjyuih hr
-                if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee){
-                    $pay_employee = $action_employee['pay'] * $action['action_work'];
-                    $ex_date['budget_pay'][$arr_field['id_field']] += $pay_employee;
-                    $ex_date['crop_budget_pay'][$arr_field['field_id_crop']] += $pay_employee;
-                    $ex_date['budget_pay_month'][$act_data[1]] += $pay_employee;
-                    if($remains==2){
-                        $ex_date['remains'][]=array(
-                            'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
-                            'name'=>$action_employee['id'],
-                            'surname'=>$action_employee['id'],
-                            'position'=>$action_employee['id'],
-                            'pay'=>$action_employee['pay'],
-                            'summ_pay'=>$pay_employee
-                        );
+                if(unserialize($action['action_machines'])!=false){
+                    if($remains==3) $ex_date['remains'][$action['action_id']]=array(
+                        'id'=>$action['action_id'],
+                        'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
+                    );
+                    $row=0;
+                    $row2=0;
+                    foreach(unserialize($action['action_machines']) as $action_machines){
+                        $price_equipment = $action_machines['fuel'] * ($action['action_work']) * 22;
+                        $ex_date['budget_equipment'][$arr_field['id_field']] += $price_equipment;
+                        $ex_date['crop_budget_equipment'][$arr_field['field_id_crop']] += $price_equipment;
+                        $ex_date['budget_equipment_month'][$act_data[1]] += $price_equipment;
+                        if($remains==3){
+                            $row2++;
+                            $ex_date['remains'][$action['action_id']]['equipment'][$row2]=array(
+                                'id_v'=>$action_machines['id_veh'],
+                                'vehicles_name'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_name'],
+                                'vehicles_manufacturer'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_manufacturer'],
+                                'vehicles_fuel'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel'],
+                                'rate'=>$action_machines['fuel'],
+                                'summ_price'=>$price_equipment,
+                            );
+                            $equipments[$row2] = explode(',', $action_machines['id_equ']);
+
+                            foreach ($equipments[$row2] as $equipments_arr){
+                                $row++;
+                                $ex_date['remains'][$action['action_id']]['equipment'][$row2]['eq'][$row]=array(
+                                    'equipment_name'=>$new_equipment['equipment'][$equipments_arr]['equipment_name'],
+                                    'equipment_type'=>$new_equipment['equipment'][$equipments_arr]['equipment_type'],
+                                    'equipment_kind'=>$new_equipment['equipment'][$equipments_arr]['equipment_kind'],
+                                );
+                            }
+                        }
+                        if($row>=$row2) $ex_date['remains'][$action['action_id']]['row']=$row;
+                        if($row2>=$row) $ex_date['remains'][$action['action_id']]['row']=$row2;
+
+                        if($row==false and $row2==false) $ex_date['remains'][$action['action_id']]['row']=0;
                     }
                 }
+                    //Зарплата
+                    if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee){
+                        $pay_employee = $action_employee['pay'] * $action['action_work'];
+                        $ex_date['budget_pay'][$arr_field['id_field']] += $pay_employee;
+                        $ex_date['crop_budget_pay'][$arr_field['field_id_crop']] += $pay_employee;
+                        $ex_date['budget_pay_month'][$act_data[1]] += $pay_employee;
+                        if($remains==2){
+                            $ex_date['remains'][]=array(
+                                'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
+                                'name'=>$action_employee['id'],
+                                'surname'=>$action_employee['id'],
+                                'position'=>$action_employee['id'],
+                                'pay'=>$action_employee['pay'],
+                                'summ_pay'=>$pay_employee
+                            );
+                        }
+                    }
                 //Услуги
                 if($action['action_services']!=false) foreach(unserialize($action['action_services']) as $action_service){
                     $pay_services=$action_service['amount']*$action_service['price'];
@@ -487,12 +528,18 @@ class Budget{
             $ex_date['crop_gross_profit'][$arr_field['field_id_crop']]+=$ex_date['gross_profit'][$arr_field['id_field']];
             if ($ex_date['budget_cost'][$arr_field['id_field']] != 0) $ex_date['profitability'][$arr_field['id_field']] = (($ex_date['plane_revenues'][$arr_field['id_field']] - $ex_date['budget_cost'][$arr_field['id_field']]) / $ex_date['budget_cost'][$arr_field['id_field']]) * 100;
             if ($ex_date['crop_budget_cost'][$arr_field['field_id_crop']] != 0) $ex_date['crop_profitability'][$arr_field['field_id_crop']] = (($ex_date['crop_plane_revenues'][$arr_field['field_id_crop']] - $ex_date['crop_budget_cost'][$arr_field['field_id_crop']]) / $ex_date['crop_budget_cost'][$arr_field['field_id_crop']]) * 100;
-
         }
-        for($x=0;$x<=12;$x++){
-            $ex_date['rent_pay_month'][$x]+= $ex_date['rent_pay_all']/12;
-            $ex_date['other_costs_month'][$x]=$ex_date['other_costs_all']/12;
-            $ex_date['budget_repairs_month'][$x]=$ex_date['budget_repairs_all']/12;
+        /*for ($x=1;$x<=9;$x++){
+            $ex_date['month_active']['20170'.$x]=true;
+        }
+        for ($x=10;$x<=12;$x++){
+            $ex_date['month_active']['2017'.$x]=true;
+        }*/
+        $coll_month=count($ex_date['month_active']);
+        foreach ($ex_date['month_active'] as $x=>$true){
+            $ex_date['rent_pay_month'][$x]+= $ex_date['rent_pay_all']/$coll_month;
+            $ex_date['other_costs_month'][$x]=$ex_date['other_costs_all']/$coll_month;
+            $ex_date['budget_repairs_month'][$x]=$ex_date['budget_repairs_all']/$coll_month;
 
             $ex_date['budget_cost_month'][$x]=$ex_date['rent_pay_month'][$x]+$ex_date['other_costs_month'][$x]+$ex_date['budget_repairs_month'][$x]+
                 $ex_date['budget_pay_month'][$x]+$ex_date['budget_equipment_month'][$x]+$ex_date['budget_material_month'][$x][1]+$ex_date['budget_material_month'][$x][2]+$ex_date['budget_material_month'][$x][3]+
@@ -500,10 +547,10 @@ class Budget{
 
             $ex_date['gross_profit_month'][$x] = $ex_date['plane_revenues_month'][$x]-$ex_date['budget_cost_month'][$x];
         }
+        ksort($ex_date['month_active']);
         return $ex_date;
     }
-
-
+    //
     public static function getBudget($db,$id_user,$field,$table,$remains=false){
         $sql1='AND (';
         $sql2='AND (';
@@ -613,10 +660,8 @@ class Budget{
                 $materials[$action['action_id']] = explode(',', $action['action_materials']);
                 $act_data = explode('-', $action['action_date_start']);
                 $act_data[1]=intval($act_data[1]);
-
                 foreach ($materials[$action['action_id']] as $key) if ($action['action_materials'] != 0) {
                     $price_material[$action['action_id']] = $planing_material[$key]['planing_norm'] * $planing_material[$key]['planing_price'] * $arr_field['field_size'];
-
                     if($remains==1){
                         $ex_date['remains'][$planing_material[$key]['planing_type_material']][]=array(
                             'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
@@ -631,7 +676,6 @@ class Budget{
                     $ex_date['action_material'][$action['action_id']] += $price_material[$action['action_id']];
                     $ex_date['budget_material'][$arr_field['id_field']][$planing_material[$key]['planing_type_material']] += $price_material[$action['action_id']];
                     $ex_date['budget_material_month'][$act_data[1]][$planing_material[$key]['planing_type_material']] += $price_material[$action['action_id']];
-
                     $ex_date['crop_budget_material'][$arr_field['field_id_crop']][$planing_material[$key]['planing_type_material']] += $price_material[$action['action_id']];
                     $price_material[$action['action_id']] = 0;
                     $ex_date['needed_material'][$key]['planing_norm'] += $planing_material[$key]['planing_norm']*$arr_field['field_size'];
@@ -668,12 +712,7 @@ class Budget{
                 $ex_date['budget_equipment'][$arr_field['id_field']] += $price_equipment;
                 $ex_date['budget_equipment_month'][$act_data[1]] += $price_equipment;
                 $ex_date['crop_budget_equipment'][$arr_field['field_id_crop']] += $price_equipment;
-                if($remains==3) $ex_date['remains'][$action['action_id']]=array(
-                    'id'=>$action['action_id'],
-                    'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
-                    'rate'=>$lib['operation'][$action['action_action_id']]['rate'],
-                    'summ_price'=>$price_equipment,
-                );
+
                 $price_equipment=0;
                 $row=0;
                 $row2=0;
@@ -698,16 +737,13 @@ class Budget{
                             );
                         }
                     }
-
                 }
                 if($row>=$row2) $ex_date['remains'][$action['action_id']]['row']=$row;
                 if($row2>=$row) $ex_date['remains'][$action['action_id']]['row']=$row2;
 
                 if($row==false and $row2==false) $ex_date['remains'][$action['action_id']]['row']=0;
                 //$ex_date['action_equipment'][$equipment['action_equipment_action_id']] += $price_equipment;
-
-
-                ///
+                //
                 if($action['action_action_type_id']==27) $rev_data[$arr_field['id_field']]=intval($act_data[1]);
             }
             $plane_sales = 0;

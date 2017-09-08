@@ -29,20 +29,6 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="Agro@s25.thehost.com.ua" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="new_employee" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -50,124 +36,96 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BudgetController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="87" column="35" lean-forward="false" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-              <folding>
-                <element signature="n#actionRemainsFuel#0;n#BudgetController#0;n#!!top" expanded="false" />
-                <marker date="1504681089000" expanded="true" signature="2484:5095" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="2959:3067" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3125:3309" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3188:3298" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3385:3775" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3647:3764" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3856:4030" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="3914:4012" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4106:4276" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4160:4258" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4358:4534" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4418:4516" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4608:4776" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4660:4758" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4850:5007" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="4902:4996" ph="..." />
-                <marker date="1504681089000" expanded="false" signature="5137:6091" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="5411:5826" ph="..." />
-                <marker date="1504681089000" expanded="false" signature="6153:8232" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="6576:6720" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="6748:6892" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="6924:7353" ph="..." />
-                <marker date="1504681089000" expanded="true" signature="7386:7876" ph="..." />
-                <marker date="1504681089000" expanded="false" signature="8285:8812" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contentGraphsPlan.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentGraphsPlan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding>
-                <element signature="e#3#41#0#PHP" expanded="true" />
-                <marker date="1504679286514" expanded="true" signature="421:459" ph="{...}" />
-                <marker date="1504679286514" expanded="true" signature="444:459" ph="[...]" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contentGraphsPlan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cabinet/farmer-small/view/contentGraphsPlan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="166" column="51" lean-forward="true" selection-start-line="166" selection-start-column="51" selection-end-line="166" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Agro.new_crop_culture" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_crop_culture">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contentEmployeeSalary.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEmployeeSalary.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Budget.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="336" column="18" lean-forward="false" selection-start-line="336" selection-start-column="10" selection-end-line="336" selection-end-column="18" />
+            <state relative-caret-position="753">
+              <caret line="849" column="1" lean-forward="false" selection-start-line="849" selection-start-column="1" selection-end-line="849" selection-end-column="1" />
               <folding>
-                <marker date="1504617946705" expanded="true" signature="8648:8766" ph="SELECT * FRO... new_field" />
-                <marker date="1504617946705" expanded="true" signature="9417:9445" ph="SELECT * FRO... new_action_lib" />
-                <marker date="1504617946705" expanded="true" signature="9719:9805" ph="SELECT * FRO... new_action" />
-                <marker date="1504617946705" expanded="true" signature="9961:10083" ph="SELECT * FRO... new_lib_material" />
-                <marker date="1504617946705" expanded="true" signature="10397:10472" ph="SELECT * FRO... new_employee" />
-                <marker date="1504617946705" expanded="true" signature="10778:10853" ph="SELECT * FRO... new_vehicles" />
-                <marker date="1504617946705" expanded="true" signature="11151:11228" ph="SELECT * FRO... new_equipment" />
-                <marker date="1504617946705" expanded="true" signature="11517:11572" ph="SELECT * FRO... new_plane_sale" />
-                <marker date="1504617946705" expanded="true" signature="11712:11780" ph="SELECT * FRO... new_lib_crop" />
-                <marker date="1504617946705" expanded="true" signature="11914:11984" ph="SELECT * FRO... new_rent" />
-                <marker date="1504617946705" expanded="true" signature="12166:12221" ph="SELECT * FRO... new_plane_sale" />
-                <marker date="1504617946705" expanded="true" signature="12356:12412" ph="SELECT * FRO... new_other_costs" />
-                <marker date="1504617946705" expanded="true" signature="25154:25367" ph="SELECT * FRO... new_action_employee" />
-                <marker date="1504617946705" expanded="true" signature="25500:25706" ph="SELECT * FRO... new_action_equipment" />
-                <marker date="1504617946705" expanded="true" signature="25840:25894" ph="SELECT * FRO... new_equipment" />
-                <marker date="1504617946705" expanded="true" signature="26190:26389" ph="SELECT * FRO... new_action_material" />
-                <marker date="1504617946705" expanded="true" signature="26522:26571" ph="SELECT * FRO... new_planing_material" />
-                <marker date="1504617946705" expanded="true" signature="26856:26954" ph="SELECT * FRO... new_action" />
-                <marker date="1504617946705" expanded="true" signature="27085:27113" ph="SELECT * FRO... new_action_lib" />
-                <marker date="1504617946705" expanded="true" signature="27368:27423" ph="SELECT * FRO... new_plane_sale" />
-                <marker date="1504617946705" expanded="true" signature="27562:27630" ph="SELECT * FRO... new_lib_crop" />
-                <marker date="1504617946705" expanded="true" signature="28020:28075" ph="SELECT * FRO... new_plane_sale" />
-                <marker date="1504617946705" expanded="true" signature="28210:28266" ph="SELECT * FRO... new_other_costs" />
-                <marker date="1504617946705" expanded="true" signature="44377:44499" ph="INSERT INTO new_budget... " />
-                <marker date="1504617946705" expanded="true" signature="44627:44693" ph="SELECT * FRO... new_budget" />
-                <marker date="1504617946705" expanded="true" signature="44911:44990" ph="SELECT id_bu... new_budget" />
+                <element signature="n#getTableBudget#0;n#Budget#0;n#!!top" expanded="false" />
+                <element signature="n#getTableCashFlow#0;n#Budget#0;n#!!top" expanded="false" />
+                <element signature="e#5446#7294#0#PHP" expanded="false" />
+                <marker date="1504853532000" expanded="true" signature="8664:8782" ph="SELECT * FRO... new_field" />
+                <marker date="1504853532000" expanded="true" signature="9433:9461" ph="SELECT * FRO... new_action_lib" />
+                <marker date="1504853532000" expanded="true" signature="9735:9821" ph="SELECT * FRO... new_action" />
+                <marker date="1504853532000" expanded="true" signature="9977:10099" ph="SELECT * FRO... new_lib_material" />
+                <marker date="1504853532000" expanded="true" signature="10413:10488" ph="SELECT * FRO... new_employee" />
+                <marker date="1504853532000" expanded="true" signature="10794:10869" ph="SELECT * FRO... new_vehicles" />
+                <marker date="1504853532000" expanded="true" signature="11167:11244" ph="SELECT * FRO... new_equipment" />
+                <marker date="1504853532000" expanded="true" signature="11542:11597" ph="SELECT * FRO... new_plane_sale" />
+                <marker date="1504853532000" expanded="true" signature="11737:11805" ph="SELECT * FRO... new_lib_crop" />
+                <marker date="1504853532000" expanded="true" signature="11939:12009" ph="SELECT * FRO... new_rent" />
+                <marker date="1504853532000" expanded="true" signature="12191:12246" ph="SELECT * FRO... new_plane_sale" />
+                <marker date="1504853532000" expanded="true" signature="12381:12437" ph="SELECT * FRO... new_other_costs" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentBudget.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="767">
+              <caret line="52" column="6" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+              <folding>
+                <marker date="1504853488560" expanded="false" signature="345:361" ph="..." />
+                <marker date="1504853488560" expanded="false" signature="438:456" ph="..." />
+                <marker date="1504853488560" expanded="false" signature="2226:2245" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentBudgetPerCrop.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+              <folding>
+                <marker date="1504853502825" expanded="false" signature="1615:1634" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentBudgetPerMonth.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerMonth.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+              <folding>
+                <marker date="1504853509595" expanded="false" signature="2536:2555" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BudgetFactController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetFactController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BudgetController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentAllNeedMaterial.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="39">
+              <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -176,64 +134,72 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>capa</find>
-      <find>var_dump</find>
+      <find>save_fuel</find>
+      <find>em_date</find>
+      <find>action_vehicles</find>
+      <find>norm_fuel</find>
+      <find>Choose_equipment</find>
+      <find>ex_vehicles</find>
+      <find>save_fuel_fact</find>
+      <find>id_equipment</find>
+      <find>data-id-equipment</find>
+      <find>create_actual_sale</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cabinet/business-farmer/view/contentTechnologySheet.php" />
-        <option value="$PROJECT_DIR$/cabinet/business-farmer/view/contentEditTechnology.php" />
-        <option value="$PROJECT_DIR$/cabinet/business-farmer/models/DataBase.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentSalePrice.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/template/css/newstyle.css" />
         <option value="$PROJECT_DIR$/cabinet/farmer-small/controllers/BudgetController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsMaterials.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard1.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsFuel.php" />
         <option value="dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_rent" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEquipment.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFact.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php" />
         <option value="dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_lib" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerMonth.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentCashFlow.php" />
         <option value="$PROJECT_DIR$/../new-mvc/index.php" />
         <option value="$PROJECT_DIR$/../new-mvc/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/../new-mvc/config/routes.php" />
         <option value="$PROJECT_DIR$/../new-mvc/components/Router.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/FieldManagementController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/SalesController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentStorage.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/StorageController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console.sql" />
         <option value="dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.profile_region" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentListTechnologyCard.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/models/FieldManagement.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentSales.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFieldManagement.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/config/routes.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/GB.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentVehicles.php" />
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/DataBase.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEmployeeSalary.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentGraphsPlan.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEmployee.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentVehicles.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEquipment.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsMaterials.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/DataBase.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentCashFlow.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/dead.letter" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/SalesController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsFuel.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentStorage.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/GB.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/StorageController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetFactController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php" />
+        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerMonth.php" />
       </list>
     </option>
   </component>
@@ -267,6 +233,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -290,6 +257,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newagro.ru" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -346,6 +327,10 @@
               <option name="myItemId" value="new-farmer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -362,10 +347,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="new-farmer" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -405,11 +386,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="farmer-small" />
+              <option name="myItemId" value="new-farmer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -427,13 +408,16 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="farmer-small" />
+              <option name="myItemId" value="new-farmer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -567,21 +551,26 @@
       <workItem from="1504507976658" duration="2322000" />
       <workItem from="1504590326595" duration="2168000" />
       <workItem from="1504677051826" duration="1582000" />
+      <workItem from="1504684811843" duration="2469000" />
+      <workItem from="1504764489754" duration="899000" />
+      <workItem from="1504765471787" duration="2044000" />
+      <workItem from="1504850250844" duration="599000" />
+      <workItem from="1504851371597" duration="621000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352774000" />
+    <option name="totallyTimeSpent" value="402269000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17910448" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21002132" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5021322" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15884861" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15724947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.4811784" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
@@ -607,307 +596,283 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbba5d99-9419-40ad-b65b-8726e68f98d3/console_1.sql" />
-    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.profile_region" />
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="70" column="67" lean-forward="false" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentListTechnologyCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="49" column="89" lean-forward="false" selection-start-line="49" selection-start-column="89" selection-end-line="49" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="67" column="12" lean-forward="false" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Equipment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502963081000" expanded="true" signature="220:299" ph="SELECT * FRO... new_equipment" />
-            <marker date="1502963081000" expanded="true" signature="685:1072" ph="INSERT INTO new_equipment... " />
-            <marker date="1502963081000" expanded="true" signature="1382:1806" ph="UPDATE new_e... " />
-            <marker date="1502963081000" expanded="true" signature="1961:2065" ph="UPDATE new_e... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Employee.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1501161651000" expanded="true" signature="199:411" ph="INSERT INTO new_employee... " />
-            <marker date="1501161651000" expanded="true" signature="535:612" ph="SELECT * FRO... new_employee" />
-            <marker date="1501161651000" expanded="true" signature="809:896" ph="UPDATE new_e... " />
-            <marker date="1501161651000" expanded="true" signature="1096:1301" ph="UPDATE new_e... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_material" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_actual_sales" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_budget" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_come_out" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_field" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_material_price" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_other_costs" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_plane_sale" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_planing_material" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_product_incoming" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_rent" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_sales_price" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage" />
     <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_vehicles" />
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/FieldManagement.php">
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="56" />
+        <state relative-caret-position="-2511">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php">
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_lib" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_material_price" />
+    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_sales_price" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/DataBase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="66" column="56" lean-forward="false" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
+        <state relative-caret-position="617">
+          <caret line="95" column="10" lean-forward="true" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentSales.php">
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_equipment" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="106" column="67" lean-forward="false" selection-start-line="106" selection-start-column="67" selection-end-line="106" selection-end-column="67" />
+        <state relative-caret-position="638">
+          <caret line="50" column="105" lean-forward="false" selection-start-line="50" selection-start-column="105" selection-end-line="50" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FieldManagementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Src.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="52" column="62" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentCashFlow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="22" lean-forward="false" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+        <state relative-caret-position="626">
+          <caret line="132" column="116" lean-forward="false" selection-start-line="132" selection-start-column="106" selection-end-line="132" selection-end-column="116" />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/25691920/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_storage_material" />
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_come_out" />
     <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_fact" />
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFieldManagement.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="146" column="57" lean-forward="false" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="57" />
+        <state relative-caret-position="124">
+          <caret line="840" column="60" lean-forward="true" selection-start-line="840" selection-start-column="60" selection-end-line="840" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/dead.letter">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="100" column="59" lean-forward="false" selection-start-line="100" selection-start-column="59" selection-end-line="100" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="283" column="37" lean-forward="false" selection-start-line="283" selection-start-column="37" selection-end-line="283" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/TechnologyCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="241" column="90" lean-forward="false" selection-start-line="241" selection-start-column="90" selection-end-line="241" selection-end-column="90" />
+        <state relative-caret-position="762">
+          <caret line="1247" column="13" lean-forward="true" selection-start-line="1247" selection-start-column="13" selection-end-line="1247" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="532" column="28" lean-forward="true" selection-start-line="532" selection-start-column="28" selection-end-line="532" selection-end-column="28" />
+        <state relative-caret-position="486">
+          <caret line="716" column="9" lean-forward="true" selection-start-line="716" selection-start-column="9" selection-end-line="716" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEditTechnologyCard.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="182" column="6" lean-forward="true" selection-start-line="182" selection-start-column="6" selection-end-line="182" selection-end-column="6" />
+        <state relative-caret-position="291">
+          <caret line="111" column="52" lean-forward="false" selection-start-line="111" selection-start-column="52" selection-end-line="111" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_action_lib" />
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Sales.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="179" column="24" lean-forward="true" selection-start-line="179" selection-start-column="24" selection-end-line="179" selection-end-column="24" />
+        <state relative-caret-position="374">
+          <caret line="78" column="8" lean-forward="false" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/SalesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_product_incoming" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Storage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="139" column="48" lean-forward="true" selection-start-line="139" selection-start-column="48" selection-end-line="139" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_actual_sales" />
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentStorage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="252" column="0" lean-forward="true" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentRemainsFuel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="51" column="33" lean-forward="true" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/TechnologyCardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2278">
+          <caret line="134" column="27" lean-forward="false" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentTechnologyCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="102" column="124" lean-forward="false" selection-start-line="102" selection-start-column="124" selection-end-line="102" selection-end-column="124" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/template/language/GB.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="767">
-          <caret line="195" column="9" lean-forward="true" selection-start-line="171" selection-start-column="4" selection-end-line="195" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEquipment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2652">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentVehicles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="108" column="114" lean-forward="false" selection-start-line="108" selection-start-column="114" selection-end-line="108" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_material" />
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_lib_crop" />
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="336" column="18" lean-forward="false" selection-start-line="336" selection-start-column="10" selection-end-line="336" selection-end-column="18" />
-          <folding>
-            <marker date="1504617946705" expanded="true" signature="8648:8766" ph="SELECT * FRO... new_field" />
-            <marker date="1504617946705" expanded="true" signature="9417:9445" ph="SELECT * FRO... new_action_lib" />
-            <marker date="1504617946705" expanded="true" signature="9719:9805" ph="SELECT * FRO... new_action" />
-            <marker date="1504617946705" expanded="true" signature="9961:10083" ph="SELECT * FRO... new_lib_material" />
-            <marker date="1504617946705" expanded="true" signature="10397:10472" ph="SELECT * FRO... new_employee" />
-            <marker date="1504617946705" expanded="true" signature="10778:10853" ph="SELECT * FRO... new_vehicles" />
-            <marker date="1504617946705" expanded="true" signature="11151:11228" ph="SELECT * FRO... new_equipment" />
-            <marker date="1504617946705" expanded="true" signature="11517:11572" ph="SELECT * FRO... new_plane_sale" />
-            <marker date="1504617946705" expanded="true" signature="11712:11780" ph="SELECT * FRO... new_lib_crop" />
-            <marker date="1504617946705" expanded="true" signature="11914:11984" ph="SELECT * FRO... new_rent" />
-            <marker date="1504617946705" expanded="true" signature="12166:12221" ph="SELECT * FRO... new_plane_sale" />
-            <marker date="1504617946705" expanded="true" signature="12356:12412" ph="SELECT * FRO... new_other_costs" />
-            <marker date="1504617946705" expanded="true" signature="25154:25367" ph="SELECT * FRO... new_action_employee" />
-            <marker date="1504617946705" expanded="true" signature="25500:25706" ph="SELECT * FRO... new_action_equipment" />
-            <marker date="1504617946705" expanded="true" signature="25840:25894" ph="SELECT * FRO... new_equipment" />
-            <marker date="1504617946705" expanded="true" signature="26190:26389" ph="SELECT * FRO... new_action_material" />
-            <marker date="1504617946705" expanded="true" signature="26522:26571" ph="SELECT * FRO... new_planing_material" />
-            <marker date="1504617946705" expanded="true" signature="26856:26954" ph="SELECT * FRO... new_action" />
-            <marker date="1504617946705" expanded="true" signature="27085:27113" ph="SELECT * FRO... new_action_lib" />
-            <marker date="1504617946705" expanded="true" signature="27368:27423" ph="SELECT * FRO... new_plane_sale" />
-            <marker date="1504617946705" expanded="true" signature="27562:27630" ph="SELECT * FRO... new_lib_crop" />
-            <marker date="1504617946705" expanded="true" signature="28020:28075" ph="SELECT * FRO... new_plane_sale" />
-            <marker date="1504617946705" expanded="true" signature="28210:28266" ph="SELECT * FRO... new_other_costs" />
-            <marker date="1504617946705" expanded="true" signature="44377:44499" ph="INSERT INTO new_budget... " />
-            <marker date="1504617946705" expanded="true" signature="44627:44693" ph="SELECT * FRO... new_budget" />
-            <marker date="1504617946705" expanded="true" signature="44911:44990" ph="SELECT id_bu... new_budget" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentEmployeeSalary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state relative-caret-position="260">
+          <caret line="157" column="18" lean-forward="false" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/DataBase.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="183" column="14" lean-forward="true" selection-start-line="183" selection-start-column="14" selection-end-line="183" selection-end-column="14" />
+        <state relative-caret-position="278">
+          <caret line="157" column="19" lean-forward="false" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/components/Router.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="87" column="35" lean-forward="false" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-          <folding>
-            <element signature="n#actionRemainsFuel#0;n#BudgetController#0;n#!!top" expanded="false" />
-            <marker date="1504681089000" expanded="true" signature="2484:5095" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="2959:3067" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3125:3309" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3188:3298" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3385:3775" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3647:3764" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3856:4030" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="3914:4012" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4106:4276" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4160:4258" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4358:4534" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4418:4516" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4608:4776" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4660:4758" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4850:5007" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="4902:4996" ph="..." />
-            <marker date="1504681089000" expanded="false" signature="5137:6091" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="5411:5826" ph="..." />
-            <marker date="1504681089000" expanded="false" signature="6153:8232" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="6576:6720" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="6748:6892" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="6924:7353" ph="..." />
-            <marker date="1504681089000" expanded="true" signature="7386:7876" ph="..." />
-            <marker date="1504681089000" expanded="false" signature="8285:8812" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/fa4350cf/bbba5d99-9419-40ad-b65b-8726e68f98d3/Agro.new_crop_culture">
-      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/farmer-small/view/contentGraphsPlan.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="166" column="51" lean-forward="true" selection-start-line="166" selection-start-column="51" selection-end-line="166" selection-end-column="51" />
+        <state relative-caret-position="238">
+          <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentGraphsPlan.php">
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="765">
+          <caret line="84" column="46" lean-forward="false" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/StorageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="110" column="10" lean-forward="false" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentAllNeedMaterial.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetFactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Budget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="849" column="1" lean-forward="false" selection-start-line="849" selection-start-column="1" selection-end-line="849" selection-end-column="1" />
           <folding>
-            <element signature="e#3#41#0#PHP" expanded="true" />
-            <marker date="1504679286514" expanded="true" signature="421:459" ph="{...}" />
-            <marker date="1504679286514" expanded="true" signature="444:459" ph="[...]" />
+            <element signature="n#getTableBudget#0;n#Budget#0;n#!!top" expanded="false" />
+            <element signature="n#getTableCashFlow#0;n#Budget#0;n#!!top" expanded="false" />
+            <element signature="e#5446#7294#0#PHP" expanded="false" />
+            <marker date="1504853532000" expanded="true" signature="8664:8782" ph="SELECT * FRO... new_field" />
+            <marker date="1504853532000" expanded="true" signature="9433:9461" ph="SELECT * FRO... new_action_lib" />
+            <marker date="1504853532000" expanded="true" signature="9735:9821" ph="SELECT * FRO... new_action" />
+            <marker date="1504853532000" expanded="true" signature="9977:10099" ph="SELECT * FRO... new_lib_material" />
+            <marker date="1504853532000" expanded="true" signature="10413:10488" ph="SELECT * FRO... new_employee" />
+            <marker date="1504853532000" expanded="true" signature="10794:10869" ph="SELECT * FRO... new_vehicles" />
+            <marker date="1504853532000" expanded="true" signature="11167:11244" ph="SELECT * FRO... new_equipment" />
+            <marker date="1504853532000" expanded="true" signature="11542:11597" ph="SELECT * FRO... new_plane_sale" />
+            <marker date="1504853532000" expanded="true" signature="11737:11805" ph="SELECT * FRO... new_lib_crop" />
+            <marker date="1504853532000" expanded="true" signature="11939:12009" ph="SELECT * FRO... new_rent" />
+            <marker date="1504853532000" expanded="true" signature="12191:12246" ph="SELECT * FRO... new_plane_sale" />
+            <marker date="1504853532000" expanded="true" signature="12381:12437" ph="SELECT * FRO... new_other_costs" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="52" column="6" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding>
+            <marker date="1504853488560" expanded="false" signature="345:361" ph="..." />
+            <marker date="1504853488560" expanded="false" signature="438:456" ph="..." />
+            <marker date="1504853488560" expanded="false" signature="2226:2245" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerCrop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+          <folding>
+            <marker date="1504853502825" expanded="false" signature="1615:1634" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentBudgetPerMonth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <marker date="1504853509595" expanded="false" signature="2536:2555" ph="..." />
           </folding>
         </state>
       </provider>
