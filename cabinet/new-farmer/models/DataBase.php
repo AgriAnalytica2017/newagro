@@ -75,6 +75,38 @@ class DataBase{
             )
         );
     }
+    public static function getTypePPA(){
+        return array(
+            'ua'=>array(
+                '1'=>'Протруйник',
+                '2'=>'Гербіциди',
+                '3'=>'Інсектициди',
+                '4'=>'Фунгіциди',
+                '5'=>'Регулятор росту рослин',
+                '6'=>'Десиканти',
+            ),
+            'gb'=>array(
+                '1'=>'Протруйник',
+                '2'=>'Гербіциди',
+                '3'=>'Інсектициди',
+                '4'=>'Фунгіциди',
+                '5'=>'Регулятор росту рослин',
+                '6'=>'Десиканти',
+            )
+        );
+    }
+    public static function getTypeFert(){
+        return array(
+            'ua'=>array(
+                '1'=>'Мінеральні',
+                '2'=>'Органічні',
+            ),
+            'gb'=>array(
+                '1'=>'Мінеральні',
+                '2'=>'Органічні',
+            )
+        );
+    }
     public static function getFieldUsage(){
         return array(
             'ua'=>array(
@@ -110,26 +142,18 @@ class DataBase{
     }
 
 
-    public static function getActionLibs($id_user){
-        $db=Db::getConnection();
-        $result = $db->query("SELECT * FROM sm_action_lib");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $result->fetchAll();
-        return $data;
-    }
-
 
     public static function saveLib($id_user, $name_ua, $type){
         $db=Db::getConnection();
-        $res = $db->query("SELECT id_action FROM sm_action_lib WHERE name_ua = '$name_ua' AND type=$type  AND (user_id=$id_user or user_id=0)");
+        $res = $db->query("SELECT action_id FROM new_action_lib WHERE (name_ua = '$name_ua' or name_en='$name_ua') AND type=$type  AND (id_user=$id_user or id_user=0)");
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $res_1 = $res->fetchAll();
 
-        if($res_1[0]['id_action'] == false) {
-            $db->query("INSERT INTO sm_action_lib (name_ua, type, user_id) VALUE ('$name_ua','$type','$id_user')");
+        if($res_1[0]['action_id'] == false) {
+            $db->query("INSERT INTO new_action_lib (name_ua, name_en, type, id_user) VALUE ('$name_ua','$name_ua','$type','$id_user')");
             $id = $db->lastInsertId();
         }else{
-            $id=$res_1[0]['id_action'];
+            $id=$res_1[0]['action_id'];
         }
         return $id;
     }

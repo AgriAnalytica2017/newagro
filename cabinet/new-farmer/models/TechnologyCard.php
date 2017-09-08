@@ -48,7 +48,7 @@ class TechnologyCard{
             $date['vehicles'][$vehicle['id_vehicles']]=$vehicle;
         }
 
-        $result = $db->query("SELECT * FROM new_equipment WHERE id_user=$id_user ");
+        $result = $db->query("SELECT * FROM new_equipment WHERE id_user=$id_user and equipment_status ='0'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $equipments= $result->fetchAll();
         $date['equipment']=array();

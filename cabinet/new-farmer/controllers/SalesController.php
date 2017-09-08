@@ -31,9 +31,12 @@ class SalesController {
 		if($sale_quantity>$sale_stock){
 			SRC::redirect('/new-farmer/storage');
 		}else{
-			Sales::updateStock($id_user, $sale_material_id, $sale_quantity,$sale_sum_total);
-			Sales::createSale($id_user, $sale_material_id, $sale_date, $sale_quantity, $sale_sum_total, $sale_type, $sale_comments);
-			SRC::redirect('/new-farmer/storage');
+			//Sales::updateStock($id_user, $sale_material_id, $sale_quantity,$sale_sum_total);
+
+            Sales::createSale($id_user, $sale_material_id, $sale_date, $sale_quantity, $sale_sum_total, $sale_type, $sale_comments);
+            include_once ROOT.'/cabinet/new-farmer/models/Storage.php';
+            Storage::updatePriceAndMass();
+            SRC::redirect('/new-farmer/storage');
 		}
 		
 		return true;
@@ -59,7 +62,7 @@ class SalesController {
 		$actual_sale_per_unit = SRC::validatorPrice($_POST['actual_sale_per_unit']);
 		$actual_sale_comments = SRC::validator($_POST['actual_sale_comments']);
 
-		Sales::createActualSale($id_user,$actual_sale_product,$actual_sale_date,$actual_sale_quantity,$actual_sale_sum,$actual_sale_per_unit,$actual_sale_comments);
+		Sales::createActualSale($id_user,$actual_sale_product, $actual_sale_date, $actual_sale_quantity, $actual_sale_sum, $actual_sale_per_unit,$actual_sale_comments);
 		SRC::redirect('/new-farmer/storage');
 	}
 

@@ -2,7 +2,15 @@
     /*echo "<pre>";
     var_dump($date);die;*/
 ?>
-
+<head>
+    <style>
+        .searchs{
+            height: 35px;
+            width: 300px;
+            border-radius:3px;
+        }
+    </style>
+</head>
 <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
@@ -64,18 +72,20 @@
                         <tbody>
                         <tr>
                             <td>
-                                <select class="form-control inphead" id="id_action_type" name="id_action_type" required>
+                                <input list="list_id_action_type" id="id_action_type" name="id_action_type" class="form-control inphead" required>
+                                <datalist id="list_id_action_type" >
                                     <?php foreach ($date['action'] as $action_type)if($action_type['type']==1){?>
-                                        <option value="<?=$action_type['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
+                                        <option><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
                                     <?php }?>
-                                </select>
+                                </datalist>
                             </td>
                             <td>
-                                <select name="action_id" id="action_id" list="list_action" class="form-control inphead" required>
+                                <input list="list_action_id"name="action_id" id="action_id"  class="form-control inphead" required>
+                                <datalist id="list_action_id">
                                     <?php foreach ($date['action'] as $crop)if($crop['type']==2){?>
-                                        <option class="action_select action_select<?php echo $crop['action_type']?>" value="<?php echo $crop['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
+                                        <option class="action_select action_select<?php echo $crop['action_type']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
                                     <?php }?>
-                                </select>
+                                </datalist>
                             </td>
                             <td>
                                 <input type="text" id="work" name="work" class="form-control inphead" value="<?=$date['field']['field_size']?>" required>
@@ -245,9 +255,14 @@
         <span class="box-title"><?=$language['new-farmer']['78']?></span>
       </div>
       <div class="modal-body">
+          <div class="row">
+              <div class="col-lg-12">
+                  <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
+              </div>
+          </div><br>
          	<div class="row">
          		<div class="col-lg-6">
-                    <table class="table">
+                    <table class="table tavle1">
                         <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['17']?></th>
@@ -257,7 +272,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($date['TC']['vehicles'] as $vehicles){?>
-                                <tr>
+                                <tr class="123">
                                     <td><?=$vehicles['vehicles_name']?></td>
                                     <td><?=$vehicles['vehicles_manufacturer']?></td>
                                     <td><a data-data='<?=json_encode($vehicles); ?>' class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
@@ -300,10 +315,15 @@
                     <span class="box-title"><?=$language['new-farmer']['84']?></span>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input class="searchs" id="search_equipment" type="text" placeholder="Поиск" style="float: left">
+                        </div>
+                    </div><br>
                     <input type="hidden" id="vehicles_id_equipment">
                     <div class="row">
                         <div class="col-lg-6">
-                            <table class="table">
+                            <table class="table tavle2">
                                 <thead>
                                 <tr>
                                     <th><?=$language['new-farmer']['85']?></th>
@@ -426,10 +446,11 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <label><?=$language['new-farmer']['106']?></label>
-                                                <select name="unit_material" id="unit_material" class="form-control">
+                                                <select name="unit_material"  class="form-control unit_material">
                                                     <option value="1">kg</option>
                                                     <option value="2">l</option>
                                                     <option value="3">м³</option>
+                                                    <option value="4">п.о</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-6">
@@ -437,7 +458,7 @@
                                                 <input type="text" name="price_material" id="price_material" class="form-control">
                                             </div>
                                             <div class="col-lg-6">
-                                                <label id="units">Norm </label>
+                                                <label class="units">Norm </label>
                                                 <input type="text" name="norm_material" id="norm_material" class="form-control">
                                             </div>
                                         </div>
@@ -712,11 +733,11 @@
                 "<td>"+vehicles['vehicles_name']+"</td>" +
                 "<td >" +
                     "<div class='btn-group'>" +
-                    "<button id='vehicles_id_eq_"+id_vehicles+"' data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' disabled='disabled'>equipment</button>" +
+                    "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equipment</button>" +
                     "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
                     "</div>" +
                 "</td>" +
-                "<td><input type='text' class='form-control fuel'></td>" +
+                "<td><input type='text'  class='form-control fuel'></td>" +
                 "<td><button class='btn btn-danger btn-sm remove_vehicles' data-id='"+id_vehicles+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
         }
@@ -741,8 +762,8 @@
             $('#coll_vehicles').text("("+coll+")");
             $('#Choose_vehicles').modal("hide");
         }
-        ////////////////////////////////equipment////////////////////////////////////////////
 
+        ////////////////////////////////equipment////////////////////////////////////////////
         var id_equipment=0;
         $('#action_vehicles').on('click', '.open_equipment', open_equipment);
         function open_equipment() {
@@ -921,6 +942,105 @@
             }
             else{
                 $('.sub_type').css('display','none');
+            }
+        });
+
+        /*$('.unit_material').change(function () {
+            var unit = $(this).val();
+            alert(unit);
+            if(unit == 1){
+                $('.units').text('Norm kg/h');
+            }
+            if(unit == 2){
+                $('.units').text('Norm l/h');
+            }
+            if(unit == 3){
+                $('.units').text('Norm м³/h');
+            }
+            else {
+                $('.units').text('Norm п.од/г');
+            }
+        });*/
+
+        (function( $ ){
+            $.fn.jSearch = function( options ) {
+
+                var defaults = {
+                    selector: null,
+                    child: null,
+                    minValLength: 3,
+                    Found: function(elem, event){},
+                    NotFound: function(elem, event){},
+                    Before: function(t){},
+                    After: function(t){},
+                };
+
+                var options = $.extend(defaults, options);
+                var $this = $(this);
+
+                if ( options.selector == null || options.child === null || typeof options.NotFound != "function" || typeof options.Found != "function" || typeof options.After != "function" || typeof options.Before != "function" )
+                { console.error( 'One of the parameters is incorrect.' ); return false; }
+
+
+                $this.on( 'keyup', function(event){
+
+                    options.Before($this);
+
+                    if ( $(this).val().length >= options.minValLength ) {
+                        console.clear();
+
+                        $( options.selector ).find( options.child ).each(function( event ){
+                            if ( this.innerText.toLowerCase().indexOf( $this.val().toLowerCase() ) == -1 ) {
+                                options.NotFound( this, event );
+                            } else {
+                                options.Found( this, event );
+                            }
+
+                        });
+
+                    }
+                    options.After($this);
+                });
+            };
+        })( jQuery );
+
+        $('#search_vehicles').jSearch({
+            selector  : '.tavle1',
+            child : 'tr > td',
+            minValLength: 0,
+            Before: function(){
+                $('.tavle1 tr').data('find','');
+            },
+            Found : function(elem){
+                $(elem).parent().data('find','true');
+                $(elem).parent().show();
+            },
+            NotFound : function(elem){
+                if (!$(elem).parent().data('find'))
+                    $(elem).parent().hide();
+            },
+            After : function(t){
+                if (!t.val().length) $('.tavle1 tr').show();
+            }
+        });
+
+        $('#search_equipment').jSearch({
+            selector  : '.tavle2',
+            child : 'tr > td',
+            minValLength: 0,
+            Before: function(){
+                $('.tavle2 tr').data('find','');
+            },
+            Found : function(elem){
+                $(elem).parent().data('find','true');
+                $(elem).parent().show();
+            },
+            NotFound : function(elem){
+                if (!$(elem).parent().data('find'))
+                    $(elem).parent().hide();
+            },
+            After : function(t){
+                if (!t.val().length) $('.tavle2 tr').show();
             }
         });
 	});

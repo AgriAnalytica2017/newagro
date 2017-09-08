@@ -13,8 +13,6 @@ $month = array(
     'November'=>11,
     'December'=>12,
 );
-/*    echo "<pre>";
-    var_dump($date);*/
 ?>
 <div class="box-bodyn">
     <div class="non-semantic-protector">
@@ -32,24 +30,23 @@ $month = array(
 
                        <? foreach ($month as $key=>$mon){?>
                            <td><?
-                               if($table['php'] == 'action')echo $key;
-                               if($table['php'] == 'revenue' or $table['php'] == 'revenue2') echo number_format($date['budget']['plane_revenues_month'][$mon], 0, '.', ' ');
+                               if($table['array'] == 'action')echo $key;
+                               if($table['array'] == 'revenue' or $table['php'] == 'revenue2') echo number_format($date['budget']['plane_revenues_month'][$mon], 0, '.', ' ');
                                if($table['array'] == 'budget_pay') echo number_format($date['budget']['budget_pay_month'][$mon], 0, '.', ' ');
                                if($table['array'] == 'budget_equipment') echo number_format($date['budget']['budget_equipment_month'][$mon], 0, '.', ' ');
                                if($table['array'] == 'budget_seeds') echo number_format($date['budget']['budget_material_month'][$mon][1], 0, '.', ' ');
                                if($table['array'] == 'budget_ppa') echo number_format($date['budget']['budget_material_month'][$mon][2], 0, '.', ' ');
                                if($table['array'] == 'budget_fertilizers') echo number_format($date['budget']['budget_material_month'][$mon][3], 0, '.', ' ');
-                               if($table['php'] == 'activities_costs') echo number_format($date['budget']['budget_cost_month'][$mon], 0, '.', ' ');
+                               if($table['array'] == 'activities_costs') echo number_format($date['budget']['budget_cost_month'][$mon], 0, '.', ' ');
                                if($table['array'] == 'rent_pay') echo number_format($date['budget']['rent_pay_all']/12, 0, '.', ' ');
-                               if($table['php'] == 'net_cash_flow') echo number_format($date['budget']['gross_profit_month'][$mon], 0, '.', ' ');
+                               if($table['array'] == 'net_cash_flow') echo number_format($date['budget']['gross_profit_month'][$mon], 0, '.', ' ');
                                if($table['array'] == 'profitability') echo number_format($date['budget']['profitability_month'][$mon], 0, '.', ' ');
                                //else echo number_format($date['budget']['budget_pay'][], 0, '.', ' ');
                                ?>
                            </td>
                        <?}?>
                    </tr>
-                   <?  if($table['php'] == 'revenue'){
-                       ?>
+                   <? if($table['php'] == 'revenue'){ ?>
                        <? foreach ($date['budget']['plane_revenues_month_crop'] as $id_crop=>$revenues){?>
                        <tr>
                            <th class="level3"><?=$date['budget']['plane_name_crop'][$id_crop]?></th>

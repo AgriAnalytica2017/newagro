@@ -122,12 +122,21 @@ class Fact{
         return true;
     }
 
-
     public static function saveFact($id_user,$id_action,$save_material,$save_employee,$save_fuel,$save_services){
         $db = Db::getConnection();
         $db->query("DELETE FROM new_fact WHERE id_user='$id_user' AND fact_id_action='$id_action'");
         $db->query("INSERT INTO new_fact (id_user, fact_id_action,fact_materials,fact_employee,fact_machines,fact_services) 
                     VALUES ('$id_user','$id_action','$save_material','$save_employee','$save_fuel','$save_services')");
         return true;
+    }
+
+    public static function createSaleStorage($db,$id_user, $sale_material_id, $sale_date, $sale_quantity, $action_id){
+        $db->query("INSERT INTO new_come_out(come_out_material_id,come_out_date,come_out_quantity,action_id,id_user,come_out_type) VALUES ('$sale_material_id','$sale_date','$sale_quantity','$action_id','$id_user',3)");
+        return true;
+    }
+    public static function removeSaleStorage($id_user,$id_action){
+        $db = Db::getConnection();
+        $db->query("DELETE FROM new_come_out WHERE id_user='$id_user' AND action_id='$id_action'");
+        return  true;
     }
 }

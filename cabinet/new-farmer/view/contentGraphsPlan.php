@@ -1,14 +1,6 @@
 <?
 /*echo "<pre>";
 var_dump($date);die;*/
-/*foreach ($date['graphs_7_plane_revenues'] as $value) {
-    if ($value[1] == null) {
-        echo "['$value[0]', 0],";
-    } else {
-        echo "['$value[0]', " . $value[1] . ", " . $value[2] . "],";
-    }
-}*/
-
 
 ?>
 

@@ -2,12 +2,18 @@
 //var_dump($date['ex']);die;
  /*echo "<pre>";
   var_dump($date['storage']['storage_type_material']);die;*/
- $id_material_type = array(
-     1=>'Насіння',
-     2=>'Добрива',
-     3=>'ЗЗР',
-     4=>'ПММ'
- );
+$id_material_type = array(
+    1=>'Насіння',
+    2=>'Добрива',
+    3=>'ЗЗР',
+    4=>'ПММ'
+);
+$unit = array(
+        1=>'кг',
+        2=>'п.од',
+        3=>'т',
+        4=>'л',
+);
 ?>
 <div class="box">
     <div class="box-bodyn">
@@ -31,30 +37,32 @@
                     <tr class="tabletop">
                         <th><?=$language['new-farmer']['125']?></th>
                         <th><?=$language['new-farmer']['126']?></th>
-                        <th>Start quantity</th>
-                        <th>Come</th>
-                        <th>Out</th>
+                        <th>Start quantity, kg</th>
+                        <th>Come, kg</th>
+                        <th>Out, kg</th>
                         <th><?=$language['new-farmer']['127']?></th>
-                        <th>storage_price</th>
+                        <th>Storage_price, UAH</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <? foreach($date['storage']['storage_material_fact'] as $storage_material){?>
                             <? foreach($date['storage']['storage'] as $storage_1)if($storage_1['storage_id']==$storage_material['storage_location']){
-
                                 $open_material++;?>
                                 <tr>
-                                    <td><? echo $id_material_type[$storage_material['storage_type_material']].': '.$date['material_lib'][$storage_material['storage_material']]['name_material'];?></td>
+                                    <td>
+                                        <? echo $id_material_type[$storage_material['storage_type_material']].': '.$date['material_lib'][$storage_material['storage_material']]['name_material'];
+                                        ?>
+                                    </td>
                                     <td><?=$storage_1['storage_name']?></td>
                                     <td><?=$storage_material['storage_start']?></td>
                                     <td><a class="btn come_storage_material" data-id="<?=$open_material?>" data-type="2"><?=$date['incoming_material']['come_material'][$storage_material['storage_material_id']]?></a></td>
-                                    <td><a class="btn out_storage_material" data-id="<?=$open_material?>" data-type="1"><?=$date['incoming_material']['out_material'][$storage_material['storage_material_id']]?></a></td>
+                                    <td><a class="btn out_storage_material" data-id="<?=$open_material?>" data-type="1"><?=$date['incoming_material']['out_material'][$storage_material['storage_material_id']]+$date['incoming_material']['come_fact'][$storage_material['storage_material_id']]?></a></td>
                                     <td>
-                                        <?=$date['ex']['storage_quantity'][$storage_material['storage_material_id']]?>
+                                        <?=$storage_material['storage_quantity']?>
                                     </td>
                                     <td>
-                                        <?=$date['ex']['storage_price'][$storage_material['storage_material_id']]?>
+                                        <?=$storage_material['storage_sum_total']?>
                                     </td>
                                     <td>
                                         <a class="btn btn-success Add_incoming" href="#Add_incoming" data-toggle="modal" data-data='<?=json_encode($storage_material);?>' data-date="<?=$storage_material['storage_date']?>">Add incoming goods</a>
@@ -62,9 +70,9 @@
                                 </tr>
                             <?}?>
                                 <? foreach($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_material_id']==$storage_material['storage_material_id']){?>
-                                    <tr class="close_material open_material_<?=$open_material?>_<?=$incoming_material['come_out_type']?>" <? if($incoming_material['come_out_type']==1){ echo 'style="display: none; color:red;"';}elseif($incoming_material['come_out_type']=='2'){echo 'style="display: none; color:green;"';}?> >
+                                    <tr class="close_material open_material_<?=$open_material?>_<?=$incoming_material['come_out_type']?>" <? if($incoming_material['come_out_type']==1){ echo 'style="display: none; color:red;"';}elseif($incoming_material['come_out_type']=='2'){echo 'style="display: none; color:green;"';}elseif($incoming_material['come_out_type']=='3'){echo 'style="display: none; color:blue;"';}?> >
                                         <td style="padding-left: 35px"><? echo "Date: ".$incoming_material['come_out_date']?></td>
-                                        <td><? echo "Incoming quantity: ".$incoming_material['come_out_quantity']?></td>
+                                        <td><? echo "Quantity: ".$incoming_material['come_out_quantity']?></td>
                                         <td><? echo "Total sum: ".$incoming_material['come_out_sum_total']?></td>
                                         <td><? echo "Price per unit: ".number_format($incoming_material['come_out_sum_total']/$incoming_material['come_out_quantity'], 2, ',', ' ');?></td>
                                         <td></td>
@@ -89,16 +97,21 @@
                     <tr class="tabletop">
                         <th><?=$language['new-farmer']['129']?></th>
                         <th><?=$language['new-farmer']['130']?></th>
+                        <th>Прийшло</th>
+                        <th>Пішло</th>
                         <th><?=$language['new-farmer']['131']?></th>
                         <th><?=$language['new-farmer']['114']?></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                      <? foreach($date['products'] as $product){?>
+                      <? foreach($date['products']['products'] as $product){
+                          $open_products++?>
                         <tr>
                           <td><?=$date['crop'][$product['product_type']]['name_crop_ua']?></td>
                           <td><?=$product['product_quantity']?></td>
+                          <td></td>
+                            <td><a class="btn out_sale_products" data-id="<?=$open_products?>"><?=$date['products']['actual_sales'][$product['product_type']]?></a></td>
                           <td><?=$product['product_now']?></td>
                           <td><?=$product['product_comments']?>
                           </td>
@@ -109,7 +122,6 @@
                 </table>
         </div>
     </div>
-
     </div>
     <div class="box-body wt">
 <div id="Add_new" class="modal fade">
@@ -124,21 +136,79 @@
           <div class="row">
             <div class="col-lg-3">
           <label><?=$language['new-farmer']['117']?></label>
-          <select class="form-control  inphead" name="storage_type_material" required>
+          <select class="form-control  inphead type_material" name="storage_type_material" required>
             <? foreach($id_material_type as $key=>$value){?>
               <option value="<?=$key?>"><?=$value?></option>
             <?}?>
           </select>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 for_seed" style="display: none">
+            <input type="hidden" name="storage_subtype_material" value="0">
+        </div>
+        <div class="col-lg-3 for_fert" style="display: none">
+            <label>Material subtype</label>
+            <select class="form-control inphead" name="storage_subtype_fert">
+                <option value="1">Мінеральні</option>
+                <option value="2">Органічні</option>
+            </select>
+        </div>
+        <div class="col-lg-3 for_ppa" style="display: none">
+            <label>Material subtype</label>
+            <select class="form-control inphead" name="storage_subtype_ppa">
+                <option value="1">Протруйник</option>
+                <option value="2">Гербіциди</option>
+                <option value="3">Інсектициди</option>
+                <option value="4">Фунгіциди</option>
+                <option value="5">Регулятор росту рослин</option>
+                <option value="6">Десиканти</option>
+            </select>
+        </div>
+        <div class="col-lg-3 for_fuel" style="display: none">
+            <label>Material subtype</label>
+            <select class="form-control inphead" name="storage_subtype_fuel">
+                <option value="1">Бензин</option>
+                <option value="2">ДП</option>
+            </select>
+        </div>
+        <div class="col-lg-3 for_seed">
           <label><?=$language['new-farmer']['118']?></label>
             <input list="lib_materials" class="form-control inphead" name="name_material" id="name_material" >
             <datalist id="lib_materials">
-                <?foreach ($date['material_lib'] as $material_lib){?>
+                <?foreach ($date['material_lib'] as $material_lib)if($material_lib['id_type_material']=='1'){?>
                     <option><?=$material_lib['name_material']?></option>
                 <?}?>
             </datalist>
         </div>
+        <div class="col-lg-3 for_seeds">
+            <label>Unit</label>
+                <select class="form-control inphead unit" name="storage_unit_seed">
+                    <option value="1">кг</option>
+                    <option value="2">п.од</option>
+                    <option value="3">т</option>
+                </select>
+        </div>
+              <div class="col-lg-3 for_fert unit_seed" style="display: none">
+                  <label>Unit</label>
+                  <select class="form-control inphead unit" name="storage_unit_fert">
+                      <option value="1">кг</option>
+                      <option value="3">т</option>
+                      <option value="4">л</option>
+                  </select>
+              </div>
+              <div class="col-lg-3 for_ppa unit" style="display: none">
+                  <label>Unit</label>
+                  <select class="form-control inphead unit" name="storage_unit_ppa">
+                      <option value="1">кг</option>
+                      <option value="4">л</option>
+                  </select>
+              </div>
+              <div class="col-lg-3 for_fuel" style="display: none">
+                  <label>Unit</label>
+                  <select class="form-control inphead unit" name="storage_unit_fuel">
+                      <option value="1">кг</option>
+                      <option value="4">л</option>
+                  </select>
+              </div>
         <div class="col-lg-3">
           <label><?=$language['new-farmer']['119']?></label>
           <input class="form-control storage_quantity inphead" type="text" name="storage_quantity" required>
@@ -385,7 +455,11 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function() {   
-    $('.storage_quantity, .storage_sum_total').change(function(){
+    $('.unit,.storage_quantity, .storage_sum_total').change(function(){
+      var unit = $(this).val();
+      if(unit == 3){
+
+      }
       var storage_quantity = parseFloat($('.storage_quantity').val());
       var storage_sum_total = parseFloat($('.storage_sum_total').val());
       var storage_sum_unit = (storage_sum_total/storage_quantity).toFixed(2);
@@ -439,15 +513,42 @@
         $('.come_storage_material').click(function () {
             var id = $(this).attr('data-id');
             var type = $(this).attr('data-type');
-            $('.close_material').css('display','none');
+            /*$('.close_material').css('display','none');*/
             $('.open_material_'+id+'_'+type).toggle();
         });
         $('.out_storage_material').click(function () {
             var id = $(this).attr('data-id');
             var type = $(this).attr('data-type');
-            $('.close_material').css('display','none');
+            /*$('.close_material').css('display','none');*/
             $('.open_material_'+id+'_'+type).toggle();
         });
 
+        $('.type_material').change(function () {
+            var type = $(this).val();
+            if(type == 1){
+                $('.for_seeds').css('display','block');
+                $('.for_fert').css('display','none');
+                $('.for_ppa').css('display','none');
+                $('.for_fuel').css('display','none');
+            }
+            if(type == 2){
+                $('.for_fert').css('display','block');
+                $('.for_seeds').css('display','none');
+                $('.for_ppa').css('display','none');
+                $('.for_fuel').css('display','none');
+            }
+            if(type == 3){
+                $('.for_ppa').css('display','block');
+                $('.for_seeds').css('display','none');
+                $('.for_fert').css('display','none');
+                $('.for_fuel').css('display','none');
+            }
+            if(type == 4){
+                $('.for_fuel').css('display','block');
+                $('.for_seeds').css('display','none');
+                $('.for_ppa').css('display','none');
+                $('.for_fert').css('display','none');
+            }
+        });
   });
 </script>

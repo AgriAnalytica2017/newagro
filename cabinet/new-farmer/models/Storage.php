@@ -55,11 +55,11 @@ class Storage{
         return $storage_material;
     }
 
-	public static function createStorage($id_user,$storage_type_material,$storage_material,$storage_quantity,$storage_sum_total,$storage_date, $storage_id, $storage_comments){
+	public static function createStorage($id_user,$storage_type_material,$storage_subtype_material,$storage_material,$storage_unit,$storage_quantity,$storage_sum_total,$storage_date, $storage_id, $storage_comments){
 
 		$db=Db::getConnection();
-        $res = $db->query("INSERT INTO new_storage_material(storage_type_material,storage_material,storage_quantity,storage_sum_total,storage_date,storage_location,storage_comments,storage_id_user, storage_start) 
-                           VALUES( '$storage_type_material','$storage_material','$storage_quantity','$storage_sum_total','$storage_date','$storage_id','$storage_comments','$id_user','$storage_quantity')");
+        $res = $db->query("INSERT INTO new_storage_material(storage_type_material,storage_subtype_material,storage_material,storage_unit,storage_quantity,storage_sum_total,storage_date,storage_location,storage_comments,storage_id_user, storage_start) 
+                           VALUES( '$storage_type_material','$storage_subtype_material','$storage_material','$storage_unit','$storage_quantity','$storage_sum_total','$storage_date','$storage_id','$storage_comments','$id_user','$storage_quantity')");
 		$id = $db->lastInsertId();
         return $id;
 	}
@@ -87,6 +87,10 @@ class Storage{
 		$result = $db->query("SELECT * FROM new_come_out WHERE id_user = '$id_user' ORDER BY come_out_date ASC");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$date = $result->fetchAll();
+        foreach ($date as $value)if($value['come_out_type']=='3'){
+            $date['come_fact'][$value['come_out_material_id']] += $value['come_out_quantity'];
+        }
+
 		foreach ($date as $value)if($value['come_out_type']=='2'){
 		    $date['come_material'][$value['come_out_material_id']] += $value['come_out_quantity'];
         }
@@ -122,8 +126,53 @@ class Storage{
         $db = Db::getConnection();
         $result = $db->query("SELECT * FROM new_product_incoming WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
-        $date = $result->fetchAll();
+        $date['products'] = $result->fetchAll();
+
+        $result = $db->query("SELECT * FROM new_actual_sales WHERE id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $actual_sales = $result->fetchAll();
+        foreach ($actual_sales as $sale){
+            $date['actual_sales'][$sale['actual_sale_product']] += $sale['actual_sale_quantity'];
+        }
         return $date;
     }
+
+    public static function updatePriceAndMass(){
+        $db=Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $date['incoming_material']=self::getIncomingMaterial($id_user);
+        $date['storage'] = self::getStorage($id_user);
+
+        foreach ($date['storage']['storage_material_fact'] as $storage_material){
+            $total_price[$storage_material['storage_material_id']]=0;
+            $total_price_sale[$storage_material['storage_material_id']]=0;
+
+            foreach ($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_material_id']==$storage_material['storage_material_id']) {
+                if($incoming_material['come_out_type']==1){
+                    $total_price_sale[$storage_material['storage_material_id']]+=$incoming_material['come_out_sum_total'];
+                }
+                if($incoming_material['come_out_type']==2){
+                    $total_price[$storage_material['storage_material_id']]+=$incoming_material['come_out_sum_total'];
+                }
+
+            }
+            $date['ex']['storage_price'][$storage_material['storage_material_id']]=
+                ($total_price[$storage_material['storage_material_id']]-$total_price_sale[$storage_material['storage_material_id']])/($date['incoming_material']['come_material'][$storage_material['storage_material_id']]-$date['incoming_material']['out_material'][$storage_material['storage_material_id']]);
+
+            $date['ex']['storage_quantity'][$storage_material['storage_material_id']]=$date['incoming_material']['come_material'][$storage_material['storage_material_id']]-
+                $date['incoming_material']['out_material'][$storage_material['storage_material_id']]-$date['incoming_material']['come_fact'][$storage_material['storage_material_id']];
+
+            self::updateStorage($db,$id_user,$storage_material['storage_material_id'],$date['ex']['storage_quantity'][$storage_material['storage_material_id']],$date['ex']['storage_price'][$storage_material['storage_material_id']]);
+        }
+
+        return true;
+    }
+
+    public static function updateStorage($db,$id_user,$material_id,$mass,$price){
+        $db->query("UPDATE new_storage_material SET storage_quantity = '$mass', storage_sum_total='$price' WHERE storage_id_user='$id_user' AND storage_material_id='$material_id'");
+        return true;
+
+    }
+
 
 }

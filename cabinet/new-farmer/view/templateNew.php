@@ -20,8 +20,9 @@ $top_menu=array(
             $language['new-farmer']['12']=>'/new-farmer/budget_per_crop',
             $language['new-farmer']['13']=>'/new-farmer/budget_per_month',
             $language['new-farmer']['14']=>'/new-farmer/budget',
-            'Cash Flow'=>'/new-farmer/budget_cash_flow',),
-        'actual/planer income/costs'=>'',
+            'Cash Flow'=>'/new-farmer/budget_cash_flow',
+            ),
+        'actual income/costs'=>'',
         $language['new-farmer']['15']=>'/new-farmer/graphs_plan',
         ),
 );
