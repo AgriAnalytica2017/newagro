@@ -15,13 +15,15 @@ class DataBase{
     public static function getTypeEquipment(){
         return array(
             'ua'=>array(
-                '1'=>'soil cultivation',
-                '2'=>'sowing',
-                '3'=>'plant protection',
-                '4'=>'fertilization',
-                '5'=>'harvest',
-                '6'=>'transport',
-                '7'=>'others'
+                '1'=>'Борони',
+                '9'=>'Бочки',
+                '2'=>'Котки',
+                '3'=>'Культиватори',
+                '4'=>'Обприскувачі',
+                '5'=>'Плуги',
+                '6'=>'Причіпи',
+                '7'=>'Розкидачі добрив',
+                '8'=>'Сівалки',
             ),
             'gb'=>array(
                 '1'=>'soil cultivation',
@@ -30,7 +32,9 @@ class DataBase{
                 '4'=>'fertilization',
                 '5'=>'harvest',
                 '6'=>'transport',
-                '7'=>'others'
+                '7'=>'others',
+                '8'=>'others',
+                '9'=>'others'
             )
         );
     }
@@ -75,6 +79,37 @@ class DataBase{
             )
         );
     }
+
+    public static function getKindVeh(){
+        return array(
+            'ua'=>array(
+                '3'=>'Вантажний автомобіль',
+                '4'=>'Інша самохідна техніка',
+                '2'=>'Комбайн',
+                '1'=>'Трактор',
+                ),
+            'gb'=>array(
+                '3'=>'Truck',
+                '4'=>'Other self-propelled machinery',
+                '2'=>'Combine harvester',
+                '1'=>'Tractor',
+                ),
+            );
+    }
+    public static function getTypeMaterial(){
+        return array(
+            'ua'=>array(
+                '1'=>'Насіння',
+                '2'=>'Добрива',
+                '3'=>'ЗЗР',
+            ),
+            'gb'=>array(
+                '1'=>'Seeds',
+                '2'=>'Fertilizers',
+                '3'=>'PPA',
+            )
+        );
+    }
     public static function getTypePPA(){
         return array(
             'ua'=>array(
@@ -110,24 +145,34 @@ class DataBase{
     public static function getFieldUsage(){
         return array(
             'ua'=>array(
-                '1'=>'поле',
-                '2'=>'grassland',
-                '3'=>'fallow',
-                '4'=>'pasture',
-                '5'=>'forest',
+                '1'=>'рілля',
+                '2'=>'багаторічні насадження',
+                '3'=>'сіножаті',
+                '4'=>'пасовище',
+                '5'=>'ліси',
+                '6'=>'ставки та водойми',
             ),
             'gb'=>array(
-                '1'=>'field',
-                '2'=>'grassland',
-                '3'=>'fallow',
-                '4'=>'pasture',
-                '5'=>'forest',
+                '1'=>'рілля',
+                '2'=>'багаторічні насадження',
+                '3'=>'сіножаті',
+                '4'=>'пасовище',
+                '5'=>'ліси',
+                '6'=>'ставки та водойми',
             )
         );
     }
+    public static function getUnit(){
+        return array(
+                1=>'м³',
+                2=>'t',
+                3=>'l'
+        );
+    }
+
     public static function getCropHead($id_user){
         $db=Db::getConnection();
-        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0");
+        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0 ORDER BY name_crop_ua ASC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $data = $result->fetchAll();
         return $data;
@@ -145,10 +190,9 @@ class DataBase{
 
     public static function saveLib($id_user, $name_ua, $type){
         $db=Db::getConnection();
-        $res = $db->query("SELECT action_id FROM new_action_lib WHERE (name_ua = '$name_ua' or name_en='$name_ua') AND type=$type  AND (id_user=$id_user or id_user=0)");
+        $res = $db->query("SELECT action_id FROM new_action_lib WHERE (name_ua = '$name_ua' or name_en='$name_ua') AND type='$type'  AND (id_user='$id_user' or id_user=0)");
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $res_1 = $res->fetchAll();
-
         if($res_1[0]['action_id'] == false) {
             $db->query("INSERT INTO new_action_lib (name_ua, name_en, type, id_user) VALUE ('$name_ua','$name_ua','$type','$id_user')");
             $id = $db->lastInsertId();
@@ -198,8 +242,8 @@ class DataBase{
     public static function getCropType(){
         $date=array(
             'ua'=>array(
+                2=>'Зернові',
                 1=>'Зерно-бобові ',
-                2=>'Зернові ',
                 3=>'Технічні',
                 4=>'Кормові',
                 5=>'Овочеві та баштанні',
@@ -207,8 +251,8 @@ class DataBase{
                 7=>'Ягодні'
             ),
             'gb'=>array(
-                1=>'Зерно-бобові ',
                 2=>'Зернові ',
+                1=>'Зерно-бобові ',
                 3=>'Технічні',
                 4=>'Кормові',
                 5=>'Овочеві та баштанні',

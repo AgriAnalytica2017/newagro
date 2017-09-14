@@ -95,7 +95,7 @@ $id_material_type = array(
                 <div class="col-lg-10">
                 <div>
                     <h3 style="float: left;"><?=$language['new-farmer']['158']?></h3>
-                    <a  style="float: right;" class="btn btn-primaryn" href="#Plan_sale" data-toggle="modal">Add planning sales</a>
+                    <a  style="float: right;" class="btn btn-primaryn" href="#Plan_sale" data-toggle="modal"><?=$language['new-farmer']['188']?></a>
                 </div>
                     <table class="table">
                         <thead>
@@ -132,18 +132,18 @@ $id_material_type = array(
     <div class="modal-content wt">
         <div class="box-bodyn">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title">Add planning sales</span>
+            <span class="box-title"><?=$language['new-farmer']['188']?></span>
         </div>
         <div class="modal-body">
             <table class="table">
                         <thead>
                             <tr>
-                                <th>Field</th>
-                                <th>Culture</th>
-                                <th>Expected quantity, kg</th>
-                                <th>Sum total per culture, kg</th>
-                                <th>Planned quantity of sale, kg</th>
-                                <th>Average price, UAH</th>
+                                <th><?=$language['new-farmer']['5']?></th>
+                                <th><?=$language['new-farmer']['48']?></th>
+                                <th><?=$language['new-farmer']['159']?></th>
+                                <th><?=$language['new-farmer']['186']?></th>
+                                <th><?=$language['new-farmer']['187']?></th>
+                                <th><?=$language['new-farmer']['161']?></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -161,7 +161,7 @@ $id_material_type = array(
                                 <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary btn-sm add_sale"
                                 data-crop="<?=$plane_sales['id_crop']?>"
                                 data-expected = "<?=$date['sum_yield'][$plane_sales['id_crop']]?>"
-                                >Add to sale
+                                ><?=$language['new-farmer']['189']?>
                                 </a></td>
                                 <?}?>
                                 <input type="hidden" data-id="<?=$plane_sales['id_field'];?>">

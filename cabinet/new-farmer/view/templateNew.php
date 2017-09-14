@@ -7,23 +7,32 @@ $top_menu=array(
         $language['new-farmer']['2']=>'/new-farmer/equipment',
         $language['new-farmer']['3']=>'/new-farmer/vehicles',
         $language['new-farmer']['4']=>'/new-farmer/employee',
+        'bd materials'=>'/new-farmer/materials',
         //$language['new-farmer']['53']=>'/new-farmer/sales_price',
     ),
+    'Технології'=>'/new-farmer/list_technology_card',
     $language['new-farmer']['5']=>'/new-farmer/field_management',
-    $language['new-farmer']['6']=>'/new-farmer/technology_card',
     $language['new-farmer']['136']=>'/new-farmer/fact_tech_card',
-    //$language['new-farmer']['7']=>'/new-farmer/all_needed_material',
+    $language['new-farmer']['7']=>'/new-farmer/all_needed_material',
     $language['new-farmer']['8']=>'/new-farmer/storage',
     $language['new-farmer']['9']=>'/new-farmer/sales',
+    'Overhead'=>'/new-farmer/other_cost',
     $language['new-farmer']['10']=>array(
         $language['new-farmer']['11']=> array(
+            $language['new-farmer']['14']=>'/new-farmer/budget',
             $language['new-farmer']['12']=>'/new-farmer/budget_per_crop',
             $language['new-farmer']['13']=>'/new-farmer/budget_per_month',
-            $language['new-farmer']['14']=>'/new-farmer/budget',
             'Cash Flow'=>'/new-farmer/budget_cash_flow',
             ),
-        'actual income/costs'=>'',
+        'fact'=>array(
+            'fact field'=>'/new-farmer/fact_budget_field',
+            'fact crop'=>'/new-farmer/fact_budget_crop',
+
+        ),
+        //'actual income/costs'=>'/new-farmer/fact_budget',
+
         $language['new-farmer']['15']=>'/new-farmer/graphs_plan',
+        'financial'=>'/new-farmer/financial',
         ),
 );
 ?>

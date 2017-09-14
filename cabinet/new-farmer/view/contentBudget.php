@@ -15,7 +15,7 @@
             <strong class="ribbon-content">Budget</strong>
         </h1>
     </div>
-</div>
+    </div>
    <!-- <div class="box-bodyn col-lg-12" style="max-height: 55px">
         <div class="col-sm-5"></div>
         <div class="col-sm-2" style="margin-top: -12px;">
@@ -29,6 +29,7 @@
         <div class="col-sm-5"></div>
     </div>
 -->
+    <a href="/new-farmer/budget_per_crop" class="btn btn-success" style="float: left; margin-left: 30px; margin-top: 10px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a><br><br>
     <div class="rown">
         <div class="table-responsive">
         <table class="table">

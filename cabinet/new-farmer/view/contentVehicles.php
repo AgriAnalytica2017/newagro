@@ -23,32 +23,32 @@
             </div>
 </div>
 <div class="box-bodyn col-lg-12" style="max-height: 55px">
+    <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
     <a class="btn btn-primaryn top sh" href="#newVehicles" data-toggle="modal"><?=$language['new-farmer']['29']?></a>
-    <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: right">
 </div>
 <div class="rown">
     <div class="table-responsive">
 <table class="table">
     <thead>
         <tr class="tabletop">
+            <th>Тип</th>
             <th><?=$language['new-farmer']['17']?></th>
-            <th><?=$language['new-farmer']['30']?></th>
             <th><?=$language['new-farmer']['31']?></th>
-            <th><?=$language['new-farmer']['32']?></th>
             <th><?=$language['new-farmer']['20']?></th>
             <th><?=$language['new-farmer']['34']?></th>
+            <th>Вантажопідйомність, т</th>
             <th></th><th></th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($date['vehicles'] as $vehicles){?>
         <tr>
+            <td><?=$date['kind_vehicles']['ua'][$vehicles['vehicles_kind']]?></td>
             <td><?=$vehicles['vehicles_name']?></td>
-            <td><?=$vehicles['vehicles_manufacturer']?></td>
             <td><?=$vehicles['vehicles_license']?></td>
-            <td><?=$date['fuel_type']['ua'][$vehicles['vehicles_fuel']]?></td>
             <td><?=$vehicles['vehicles_acquisition']?></td>
-            <td><?=$vehicles['vehicles_power'].' HP'?></td>
+            <td><? echo $vehicles['vehicles_power']?></td>
+            <td><? echo $vehicles['vehicles_load_capacity']?></td>
             <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($vehicles); ?>'></a></td>
             <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>" class="btn btn-danger fa fa-remove"></a></td>
         </tr>
@@ -63,15 +63,33 @@
             <form method="post" action="/new-farmer/create_vehicles">
                 <div class="box-bodyn">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <span class="box-title"><?=$language['new-farmer']['29']?></span>
+                    <span class="box-title"><?=$language['new-farmer']['190']?></span>
                 </div>
             <div class="modal-body">
+                    <label>Тип с/г техніки</label>
+                    <select class="form-control inphead vehicle_kind" name="vehicle_kind" required>
+                        <?if($_COOKIE['lang']=='ua'){?>
+                            <?php foreach ($date['kind_vehicles']['ua'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                <option  value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                            <?}}?>
+                            <?if($_COOKIE['lang']=='gb'){?>
+                                <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                    <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                            <?}}?>
+                    </select>
+                    <div class="vehicle_info" style="display:none "> 
                     <label><?=$language['new-farmer']['17']?></label>
-                    <input type="text" name="vehicles_name" class="form-control inphead" required>
-                    <label><?=$language['new-farmer']['30']?></label>
-                    <input type="text" name="vehicles_manufacturer" class="form-control inphead" >
+                    <input type="text" name="vehicles_name" class="form-control inphead">
                     <label><?=$language['new-farmer']['31']?></label>
                     <input type="text" name="vehicles_license" class="form-control inphead" >
+                    <label>Інвентарний номер</label>
+                    <input type="text" name="vehicle_int_number" class="form-control inphead">
+                        <label><?=$language['new-farmer']['34']?></label>
+                        <input type="text" name="vehicles_power" class="form-control inphead" >
+                        <div class="load_capacity" style="display: none">
+                            <label>Вантажопідйомність, т</label>
+                            <input type="text" name="load_capacity" class="form-control inphead">
+                        </div>
                     <label><?=$language['new-farmer']['32']?></label>
                     <select name="vehicles_fuel" class="form-control inphead">
                         <?php  foreach ($date['fuel_type']['ua'] as $id_type=>$name_type){?>
@@ -84,13 +102,12 @@
                             <option><?=$x?></option>
                         <?}?>
                     </select>
+                        <label>Вартість, тис. грн</label>
+                        <input type="text" name="purchase_price" class="form-control inphead">
                     <label><?=$language['new-farmer']['22']?></label>
                     <input type="text" name="usage_year" class="form-control inphead">
-                    <label><?=$language['new-farmer']['33']?></label>
-                    <input type="text" name="purchase_price" class="form-control inphead">
                     <input type="hidden" name="current_year" value="<?php echo date('Y')?>">
-                    <label><?=$language['new-farmer']['34']?></label>
-                    <input type="text" name="vehicles_power" class="form-control inphead" >
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
@@ -106,16 +123,33 @@
             <form method="post" action="/new-farmer/edit_vehicles">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title"><?=$language['new-farmer']['35']?></h4>
+                    <h4 class="modal-title" style="text-align: center;"><?=$language['new-farmer']['190']?></h4>
                 </div>
                 <div class="modal-body">
                     <input id="id_vehicles" type="hidden" name="id_vehicles">
+                    <label>Тип с/г техніки</label>
+                    <select class="form-control inphead" id="edit_vehicles_kind" name="vehicle_kind"> 
+                        <?if($_COOKIE['lang']=='ua'){?>
+                            <?php foreach ($date['kind_vehicles']['ua'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                <option  value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                            <?}}?>
+                            <?if($_COOKIE['lang']=='gb'){?>
+                                <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                    <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                            <?}}?>
+                    </select>
                     <label><?=$language['new-farmer']['17']?></label>
                     <input type="text" name="vehicles_name" id="vehicles_name" class="form-control inphead" >
-                    <label><?=$language['new-farmer']['30']?></label>
-                    <input type="text" name="vehicles_manufacturer" id="vehicles_manufacturer" class="form-control inphead" >
                     <label><?=$language['new-farmer']['31']?></label>
                     <input type="text" name="vehicles_license" id="vehicles_license" class="form-control inphead" >
+                    <label>Інвентарний номер</label>
+                    <input type="text" name="vehicle_int_number" id="vehicle_int_number" class="form-control inphead">
+                    <label><?=$language['new-farmer']['34']?></label>
+                    <input type="text" name="vehicles_power" id="vehicles_power" class="form-control inphead" required>
+                    <div class="edit_load_capacity" style="display: none">
+                        <label>Вантажопідйомність, т</label>
+                        <input type="text" name="load_capacity" id="load_capacity" class="form-control inphead">
+                    </div>
                     <label><?=$language['new-farmer']['32']?></label>
                     <select name="vehicles_fuel" id="vehicles_fuel" class="form-control inphead">
                         <?php  foreach ($date['fuel_type']['ua'] as $id_type=>$name_type){?>
@@ -128,12 +162,10 @@
                             <option><?=$x?></option>
                         <?}?>
                     </select>
-                    <label><?=$language['new-farmer']['34']?></label>
-                    <input type="text" name="vehicles_power" id="vehicles_power" class="form-control inphead" required>
-                    <label><?=$language['new-farmer']['22']?></label>
-                    <input type="text" name="usage_year" id="vehicles_usage_year" class="form-control inphead">
                     <label><?=$language['new-farmer']['33']?></label>
                     <input type="text" name="purchase_price" id="vehicles_purchase_price" class="form-control inphead">
+                    <label><?=$language['new-farmer']['22']?></label>
+                    <input type="text" name="usage_year" id="vehicles_usage_year" class="form-control inphead">
                     <input type="hidden" name="current_year" value="<?php echo date('Y')?>">
                 </div>
                 <div class="modal-footer">
@@ -152,16 +184,30 @@
             var vehicles=JSON.parse( json_vehicles );
             $('#editVehicles').modal('show');
             $('#id_vehicles').val(vehicles['id_vehicles']);
+            $('#edit_vehicles_kind').val(vehicles['vehicles_kind']);
             $('#vehicles_name').val(vehicles['vehicles_name']);
-            $('#vehicles_manufacturer').val(vehicles['vehicles_manufacturer']);
             $('#vehicles_license').val(vehicles['vehicles_license']);
+            $('#vehicle_int_number').val(vehicles['vehicles_inventory_number']);
             $('#vehicles_fuel').val(vehicles['vehicles_fuel']);
             $('#vehicles_acquisition').val(vehicles['vehicles_acquisition']);
             $('#vehicles_power').val(vehicles['vehicles_power']);
             $('#vehicles_usage_year').val(vehicles['vehicles_usage_year']);
             $('#vehicles_purchase_price').val(vehicles['vehicles_purchase_price']);
+            if(vehicles['vehicles_kind']==3){
+                $('.edit_load_capacity').css('display','block');
+                $('#load_capacity').val(vehicles['vehicles_load_capacity']);
+            }
         }
-
+        $('.vehicle_kind').change(function (){
+            var kind = $(this).val();
+            if(kind == 3){
+                $('.vehicle_info').css('display','block');
+                $('.load_capacity').css('display','block');
+            }else{
+                $('.vehicle_info').css('display','block');
+                $('.load_capacity').css('display','none');
+            }
+        });
         (function( $ ){
             $.fn.jSearch = function( options ) {
 

@@ -21,6 +21,7 @@ class BudgetController{
         return true;
     }
 
+
     public function actionGetBudgetPerCrop(){
         //$id_budget=SRC::validatorPrice($id_budget);
         $db = Db::getConnection();
@@ -45,6 +46,31 @@ class BudgetController{
         return true;
     }
 
+    public function actionGetBudgetFactPerCrop(){
+
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user);
+
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
+
+        SRC::template('new-farmer','new','budgetFactPerCrop',$date);
+        return true;
+    }
+    public function actionGetBudgetFactPerField(){
+
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user);
+
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
+
+        SRC::template('new-farmer','new','budgetFactPerField',$date);
+        return true;
+    }
+
 
     public function actionBudgetCashFlow(){
         $db = Db::getConnection();
@@ -52,7 +78,7 @@ class BudgetController{
         $field=Budget::getMyCulture($db,$id_user);
         $date['table']=Budget::getTableBudget();
         $date['table_cash']=Budget::getTableCashFlow();
-        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,true);
         SRC::template('new-farmer','new','cashFlow',$date);
         return true;
     }
@@ -216,6 +242,60 @@ class BudgetController{
         $date['kind_equipment']=DataBase::getEquipmentKind();
         $date['fuel_type'] = DataBase::getTypeFuel();
         SRC::template('new-farmer','new','remainsFuel',$date);
+        return true;
+    }
+    public function actionFinancial(){
+
+
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user);
+
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],5);
+        $date['fin_table_ua']=array(
+            'crop_name'=>'#',
+            'area'=>'Посівна площа, га',
+            //'yaled'=>'Урожайність, ц/га',
+            'mass'=>'Обсяг реалізації, кг',
+            'price'=>'Середня ціна реалізації, грн/кг',
+            'revenue'=>'Доходи від реалізації всього, грн',
+            'revenue_area'=>'Доходи від реалізації, грн/га',
+            'revenue_mass'=>'Доходи від реалізації, грн/кг',
+            'production_costs'=>'Виробничі витрати всього, грн',
+            'production_area'=>'Виробничі витрати, грн/га',
+            'production_mass'=>'Виробничі витрати, грн/кг',
+            'gross_profit'=>'Валовий прибуток (збиток) всього, грн',
+            'gross_profit_area'=>'Валовий прибуток (збиток), грн/га',
+            'gross_profit_mass'=>'Валовий прибуток (збиток), грн/кг',
+            'profitability'=>'Рентабельність виробництва, %',
+            'marginal_profit'=>'Маржинальний прибуток, грн/га',
+            'total_cost'=>'Повна собівартість',
+            'total_cost_area'=>'Повна собівартість, грн/га',
+            'total_cost_mass'=>'Повна собівартість, грн/кг',
+        );
+        $date['fin_table_en']=array(
+            'crop_name'=>'#',
+            'area'=>'Sown area, hectare',
+            //'yaled'=>'Yield, centners per hectare',
+            'mass'=>'Volume of sale, kilogram',
+            'price'=>'Average sale price of 1 kilogram, UAH',
+            'revenue'=>'Revenue from sales total, UAH',
+            'revenue_area'=>'Revenue from sales, UAH per hectare',
+            'revenue_mass'=>'Revenue from sales, UAH per kilogram',
+            'production_costs'=>'Productive expenses total, UAH',
+            'production_area'=>'Productive expenses, UAH per hectare',
+            'production_mass'=>'Productive expenses, UAH per kilogram',
+            'gross_profit'=>'Gross profit (loss) total, UAH',
+            'gross_profit_area'=>'Gross profit (loss), UAH per hectare',
+            'gross_profit_mass'=>'Gross profit (loss), UAH per kilogram',
+            'profitability'=>'Profitability of production, %',
+            'marginal_profit'=>'Marginal profit, UAH per hectare',
+            'total_cost'=>'Complete cost',
+            'total_cost_area'=>'Complete cost, UAH per hectare',
+            'total_cost_mass'=>'Complete cost, UAH per kilogram',
+        );
+        SRC::template('new-farmer','new','financial',$date);
         return true;
     }
 }

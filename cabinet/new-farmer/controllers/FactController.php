@@ -61,12 +61,9 @@ class FactController{
     }
 
     public function actionSaveFact(){
-        $db=Db::getConnection();
         $id_user=$_SESSION['id_user'];
         $id_action=SRC::validator($_POST['save_fact_id_action']);
-        $storage_material=array();
-        Fact::removeSaleStorage($id_user,$id_action);
-        ////services////;
+        ////services////
         $services= json_decode($_POST['save_services_fact']);
         $save_services = array();
         if($services!=false) {
@@ -83,14 +80,13 @@ class FactController{
         $materiale= json_decode($_POST['save_material_fact']);
         $save_material = array();
         if($materiale!=false) {
+
             foreach ($materiale as $ex_material) {
                 $save_material[]=array(
                     'id'=>SRC::validator($ex_material->{'id'}),
-                    'norm'=>SRC::validatorPrice($ex_material->{'norm'}),
-                    'date'=>SRC::validator($ex_material->{'date'})
+                    'norm'=>SRC::validator($ex_material->{'norm'}),
+                    'date'=>SRC::validatorPrice($ex_material->{'date'})
                 );
-                $storage_material[SRC::validator($ex_material->{'id'})]+=SRC::validatorPrice($ex_material->{'norm'});
-                Fact::createSaleStorage($db,$id_user, SRC::validator($ex_material->{'id'}), SRC::validator($ex_material->{'date'}), SRC::validatorPrice($ex_material->{'norm'}), $id_action);
             }
             $save_material = serialize( $save_material );
         }
@@ -107,32 +103,20 @@ class FactController{
             }
             $save_employee = serialize( $save_employee );
         }
-
         ////fuel////
         $fuele= json_decode($_POST['save_fuel_fact']);
         $save_fuel = array();
-        if($fuele !=false){
-            foreach ($fuele as $ex_fuel){
-                $equipments = $ex_fuel->{'id_equipment'};
-                $id_equipment='';
-                foreach ($equipments as $value){
-                    $id_equipment.=SRC::validator($value->{'id'}).",";
-                }
-                $id_equipment=substr($id_equipment, 0, -1);
-            $save_fuel[]=array(
-                    'id_veh'=>SRC::validator($ex_fuel->{'id_veh'}),
-                    'id_equ'=>$id_equipment,
-                'norm'=>SRC::validatorPrice($ex_fuel->{'norm'}),
-                'date'=>SRC::validator($ex_fuel->{'date'})
+        if($fuele!=false) {
+
+            foreach ($fuele as $ex_fuel) {
+                $save_fuel[]=array(
+                    'id_mat'=>SRC::validator($ex_fuel->{'id'}),
+                    'norm'=>SRC::validator($ex_fuel->{'norm'}),
+                    'date'=>SRC::validatorPrice($ex_fuel->{'date'})
                 );
-            Fact::createSaleStorage($db,$id_user, SRC::validator($ex_fuel->{'id_veh'}), SRC::validator($ex_fuel->{'date'}), SRC::validatorPrice($ex_fuel->{'norm'}), $id_action);
             }
             $save_fuel = serialize( $save_fuel );
         }
-
-        include_once ROOT.'/cabinet/new-farmer/models/Storage.php';
-        Storage::updatePriceAndMass();
-
         Fact::saveFact($id_user,$id_action,$save_material,$save_employee,$save_fuel,$save_services);
         SRC::redirect();
         return true;

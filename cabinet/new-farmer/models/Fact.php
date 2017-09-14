@@ -23,7 +23,6 @@ class Fact{
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date['action'] = $result->fetchAll();
 
-
         $result = $db->query("SELECT * FROM new_fact WHERE id_user=$id_user");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $fact = $result->fetchAll();
@@ -35,8 +34,6 @@ class Fact{
                 'fact_services'=>unserialize($arr_fact['fact_services']),
             );
         }
-
-
 
         $result = $db->query("SELECT * FROM new_action_lib");
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -110,7 +107,6 @@ class Fact{
         foreach ($res as $value){
             $date['material'][$value['storage_material_id']] = $value;
         }
-
         return $date;
     }
 

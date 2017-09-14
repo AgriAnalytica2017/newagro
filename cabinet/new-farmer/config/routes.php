@@ -1,11 +1,16 @@
 <?php
-
 return array(
+    'new-farmer/other_cost'=>'otherCosts/getOtherCost',
+    'new-farmer/save_other_cost'=>'otherCosts/savePlanOther',
+    'new-farmer/create_other_fact'=>'otherCosts/createOtherFact',
+
+    'new-farmer/materials'=>'material/getMaterials',
+    'new-farmer/save_material_bd'=>'material/createMaterial',
+    'new-farmer/save_edit_material_bd'=>'material/saveEditMaterial',
+    'new-farmer/remove_material/([0-9]+)'=>'material/removeMaterial/$1',
 
     'new-farmer/save_rent'=>'fieldManagement/saveRentPay',
     'new-farmer/save_costs'=>'fieldManagement/saveCosts',
-
-
 
     'new-farmer/sales_price'=>'sales/addSalePrice',
     'new-farmer/add_price'=>'sales/addPrice',
@@ -34,6 +39,7 @@ return array(
     'new-farmer/remove_technology_card/([0-9]+)'=>'technologyCard/removeTech/$1',
     'new-farmer/remove_operation/([0-9]+)'=>'technologyCard/removeOperation/$1',
     'new-farmer/copy_technology_card/([0-9]+)'=>'technologyCard/copyTech/$1',
+    'new-farmer/copy_technology_template'=>'technologyCard/copyTechTemplate',
     'new-farmer/copy_tech_field/([0-9]+)/([0-9]+)'=>'technologyCard/copyTechField/$1/$2',
 
 
@@ -72,18 +78,21 @@ return array(
     'new-farmer/budget'=>'budget/getBudget',
     'new-farmer/remains'=>'budget/remainsMaterial',
     'new-farmer/save_budget'=>'budget/saveBudget',
+    'new-farmer/financial'=>'budget/financial',
 
     'new-farmer/fact_tech_card/([0-9]+)'=>'fact/factTechCard/$1',
     'new-farmer/fact_tech_card'=>'fact/factTechCard/0',
     'new-farmer/add_fact'=>'fact/fact',
     'new-farmer/create_fact'=>'fact/createFact',
     'new-farmer/save_fact'=>'fact/saveFact',
+    'new-farmer/fact_budget_crop'=>'budget/getBudgetFactPerCrop',
+    'new-farmer/fact_budget_field'=>'budget/getBudgetFactPerField',
 
 
     'new-farmer/graphs_plan'=>'budget/getGraphsPlan',
 
     'new-farmer/all_needed_material'=>'storage/getAllNeedMaterial',
-
+    'new-farmer/change_status'=>'fieldManagement/changeStatus',
     'new-farmer'=>'fieldManagement/fieldManagement',
 
 

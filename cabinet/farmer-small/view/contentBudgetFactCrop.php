@@ -77,7 +77,7 @@ table,tr, th, td{
                                 план - факт - +/-
                            <? }
                             else if($table['href']==false) echo number_format($value, 0, '.', ' ');
-                            else echo "<a href='".$table['href'].$item."'>".number_format($value, 0, '.', ' ')."</a>"
+                            else echo "<a href='".['hre$tablef'].$item."'>".number_format($value, 0, '.', ' ')."</a>"
 
                             ?>
                         </th>

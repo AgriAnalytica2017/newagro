@@ -19,9 +19,9 @@ class FieldManagement{
 
         return $id_culture;
     }
-     public static function createFieldManagement($id_user, $id_culture, $field_number, $field_name, $field_size, $field_rent){
+     public static function createFieldManagement($id_user, $id_crop, $field_number, $field_name, $field_size, $field_rent,$field_usage){
         $db= Db::getConnection();
-        $db->query("INSERT INTO new_field (field_number, field_name, field_size, field_id_crop, field_status, field_rent, id_user) VALUES ('$field_number','$field_name','$field_size','$id_culture','0', '$field_rent', '$id_user')");
+        $db->query("INSERT INTO new_field (field_number, field_name, field_size, field_usage, field_id_crop, field_status, field_rent, id_user) VALUES ('$field_number','$field_name','$field_size', '$field_usage', '$id_crop','0', '$field_rent', '$id_user')");
         return true;
     }
 
@@ -109,5 +109,10 @@ class FieldManagement{
         return true;
     }
 
+    public static function changeStatus($id_user,$id_field,$status){
 
+        $db = Db::getConnection();
+        $db->query("UPDATE new_field SET field_technology_status='$status' WHERE id_field = '$id_field' and id_user = '$id_user'");
+        return true;
+    }
 }

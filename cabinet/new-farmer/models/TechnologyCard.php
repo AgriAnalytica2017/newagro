@@ -70,7 +70,7 @@ class TechnologyCard{
 
 	public static function getListTechnologyCard($id_user){
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM new_lib_crop h, new_crop_culture c WHERE c.id_user = '$id_user' AND c.id_crop=h.id_crop and c.tech_status = '0'");
+        $result = $db->query("SELECT * FROM new_lib_crop h, new_crop_culture c WHERE c.id_user = '$id_user' AND c.id_crop=h.id_crop and c.tech_status = '0' and copy_status = '0' ORDER BY name_crop_ua ASC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date = $result->fetchAll();
         return $date;
@@ -107,9 +107,9 @@ class TechnologyCard{
         return $action_id;
     }
     //ok
-    public static function createNewMaterial($id_user, $id_material, $material_price){
+    public static function createNewMaterial($id_user, $id_material, $material_price,$material_unit){
         $db = Db::getConnection();
-        $db->query("INSERT INTO new_material_price (id_user, id_lib_material, price_material) VALUES ('$id_user','$id_material','$material_price')");
+        $db->query("INSERT INTO new_material_price (id_user, id_lib_material, price_material,material_unit) VALUES ('$id_user','$id_material','$material_price','$material_unit')");
         $id = $db->lastInsertId();
         return $id;
     }
@@ -121,17 +121,25 @@ class TechnologyCard{
         $res = $result->fetchAll();
 
         foreach ($res as  $value) {
+            $date['tech'][$value['id_crop']][$value['id_culture']]=$value;
+        }
+
+        $result = $db->query("SELECT * FROM new_crop_culture WHERE id_user = '$id_user' and tech_status = '0' and copy_status='0'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $result->fetchAll();
+
+        foreach ($res as  $value) {
             $date[$value['id_crop']][$value['id_culture']]=$value;
         }
         return $date;
     }
     //ok
-    public static function createNewTech($id_user,$id_crop,$tech_name,$id_field){
+    public static function createNewTech($id_user,$id_crop,$tech_name,$yield){
         $db = Db::getConnection();
-        $db->query("INSERT INTO new_crop_culture(id_user, id_crop, tech_name) VALUES('$id_user','$id_crop','$tech_name')");
+        $db->query("INSERT INTO new_crop_culture(id_user, id_crop, tech_name,yield) VALUES('$id_user','$id_crop','$tech_name','$yield')");
         $id = $db->lastInsertId();
 
-        $db->query("UPDATE new_field SET field_id_culture = '$id' WHERE id_field = '$id_field' and id_user = '$id_user'");
+        /*$db->query("UPDATE new_field SET field_id_culture = '$id' WHERE id_field = '$id_field' and id_user = '$id_user'");*/
         return $id;
     }
     //ok
@@ -144,7 +152,7 @@ class TechnologyCard{
     //ok
     public static function getFieldTech($id){
         $db=Db::getConnection();
-        $result = $db->query("SELECT sm.name_crop_ua, sm.name_crop_en, nf.field_id_crop, nf.field_name, nf.field_size, nc.tech_name  FROM new_field nf, new_crop_culture nc, new_lib_crop sm 
+        $result = $db->query("SELECT sm.name_crop_ua, sm.name_crop_en, nf.field_id_crop, nf.field_number, nf.field_yield, nf.field_name, nf.field_size, nc.tech_name  FROM new_field nf, new_crop_culture nc, new_lib_crop sm 
                     WHERE nf.field_id_crop = sm.id_crop and nf.field_id_culture = '$id' and nc.id_culture = '$id' and nf.field_status = '0'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date = $result->fetch();
@@ -165,7 +173,20 @@ class TechnologyCard{
     //ok
     public static function copyTech($id_tech,$id_user){
         $db=Db::getConnection();
-        $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT id_user,id_crop,concat('Копія ',tech_name),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user");
+        $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT id_user,id_crop,concat(tech_name),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user");
+        $id_copy_tech = $db->lastInsertId();
+
+        $db->query("UPDATE new_crop_culture SET copy_status = '1' WHERE id_culture = '$id_copy_tech'");
+
+        $db->query("INSERT INTO new_action (id_user,action_id_culture,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee) 
+        SELECT id_user,$id_copy_tech,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee FROM new_action WHERE action_id_culture=$id_tech AND id_user=$id_user");
+
+        return $id_copy_tech;
+    }
+
+    public static function copyTechTemplate($id_tech,$id_user,$tech_name){
+        $db=Db::getConnection();
+        $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT id_user,id_crop,concat('$tech_name'),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user");
         $id_copy_tech = $db->lastInsertId();
 
         $db->query("INSERT INTO new_action (id_user,action_id_culture,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee) 

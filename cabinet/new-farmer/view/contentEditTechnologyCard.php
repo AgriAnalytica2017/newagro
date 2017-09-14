@@ -1,6 +1,10 @@
 <?
-    /*echo "<pre>";
-    var_dump($date);die;*/
+    $units = array(
+        1=>'kg',
+        2=>'l',
+        3=>'м³',
+        4=>'п.о'
+    );
 ?>
 <head>
     <style>
@@ -14,7 +18,7 @@
 <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
-            <strong class="ribbon-content"><?=$language['new-farmer']['6']?></strong>
+            <strong class="ribbon-content"><?=$language['new-farmer']['194']?></strong>
         </h1>
     </div>
 </div>
@@ -28,17 +32,25 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $date['field']['name_crop_en'];}?></td>
-                            <td><?=$date['field']['field_name']?></td>
                             <td><?=$date['field']['tech_name']?></td>
+                            <td><?=$date['field']['field_number']?></td>
+                            <td><?=$date['field']['field_name']?></td>
+                            <td><?=$date['field']['field_size'].'га'?></td>
+                            <td><?=$date['field']['field_yield'].'ц/га'?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="col-lg-8">
+            <a href="/new-farmer/list_technology_card" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
         </div>
     </div>
 </div>
@@ -61,31 +73,37 @@
                             <tr>
                                 <th><label for="id_action_type"><?=$language['new-farmer']['65']?></label></th>
                                 <th><label for="action_id"><?=$language['new-farmer']['66']?></label></th>
+                                <th><label for="unit"><?=$language['new-farmer']['72']?></label></th>
                                 <th><label for="work"><?=$language['new-farmer']['154']?></label></th>
                                 <th><label for="strat_data"><?=$language['new-farmer']['67']?></label></th>
                                 <th><label for="end_data"><?=$language['new-farmer']['68']?></label></th>
-                                <th><label for="unit"><?=$language['new-farmer']['72']?></label></th>
+                                <th><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
                                 <th><a class="btn btnn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
-                                <th><a class="btn btnn btn-success btn-block" href="#Choose_material" data-toggle="modal"><?=$language['new-farmer']['74']?><b id="coll_material"></b></a></th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>
-                                <input list="list_id_action_type" id="id_action_type" name="id_action_type" class="form-control inphead" required>
-                                <datalist id="list_id_action_type" >
-                                    <?php foreach ($date['action'] as $action_type)if($action_type['type']==1){?>
-                                        <option><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
+                                <select class="form-control inphead list_id_action_type" name="list_id_action_type">
+                                    <?php foreach ($date['action'] as $action_type)if($action_type['type']=='1'){?>
+                                        <option value="<?=$action_type['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
+                                    <?php }?>
+                                </select>
+                            </td>
+                            <td>
+                                <input list="list_action_id" name="action_id" id="action_id"  class="form-control inphead" autocomplete="off" required>
+                                <datalist id="list_action_id">
+                                    <?php foreach ($date['action'] as $crop)if($crop['type']==2){?>
+                                        <option class="type_op type_operation_<?=$crop['subtype']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
                                     <?php }?>
                                 </datalist>
                             </td>
                             <td>
-                                <input list="list_action_id"name="action_id" id="action_id"  class="form-control inphead" required>
-                                <datalist id="list_action_id">
-                                    <?php foreach ($date['action'] as $crop)if($crop['type']==2){?>
-                                        <option class="action_select action_select<?php echo $crop['action_type']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
+                                <select class="form-control inphead" name="id_action_unit" id="id_action_unit" required>
+                                    <?php foreach ($date['units'][$_COOKIE['lang']] as $action_type_id=>$action_type){?>
+                                        <option value="<?php echo $action_type_id?>"><?php echo $action_type?></option>
                                     <?php }?>
-                                </datalist>
+                                </select>
                             </td>
                             <td>
                                 <input type="text" id="work" name="work" class="form-control inphead" value="<?=$date['field']['field_size']?>" required>
@@ -96,14 +114,7 @@
                             <td>
                                 <input type="date" class="form-control inphead" id="end_data" name="end_data" required>
                             </td>
-                            <td>
-                            <select class="form-control inphead" name="id_action_unit" id="id_action_unit" required>
-                                <?php foreach ($date['units'][$_COOKIE['lang']] as $action_type_id=>$action_type){?>
-                                    <option value="<?php echo $action_type_id?>"><?php echo $action_type?></option>
-                                <?php }?>
-                            </select>
-                            </td>
-                            <td><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></td>
+                            <td><a class="btn btnn btn-success btn-block" href="#Choose_material" data-toggle="modal"><?=$language['new-farmer']['74']?><b id="coll_material"></b></a></td>
                             <td><a class="btn btnn btn-success btn-block" href="#Choose_services" data-toggle="modal"><?=$language['new-farmer']['152']?><b id="coll_services"></b></a></td>
                         </tr>
                         <tr id="save_actions">
@@ -132,35 +143,23 @@
             <th><?=$language['new-farmer']['65']?></th>
             <th><?=$language['new-farmer']['66']?></th>
             <th><?=$language['new-farmer']['154']?></th>
-            <th><?=$language['new-farmer']['4']?></th>
-            <th><?=$language['new-farmer']['80']?></th>
-            <th><?=$language['new-farmer']['81']?></th>
-            <th><?=$language['new-farmer']['152']?></th>
             <th><?=$language['new-farmer']['67']?></th>
             <th><?=$language['new-farmer']['68']?></th>
+            <th><?=$language['new-farmer']['81']?></th>
+            <th>Оплата праці грн/га</th>
+            <th>Матеріал<br>Норма на га</th>
+            <th><?=$language['new-farmer']['152']?></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($date['TC']['new_action'] as $action){?>
         <tr>
-            <td><?=$date['lib'][$action['action_action_type_id']]?></td>
-            <td><?=$date['lib'][$action['action_action_id']]?></td>
+            <td><? if($_COOKIE['lang']=='ua'){echo $date['lib'][$action['action_action_type_id']]['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $date['lib'][$action['action_action_type_id']]['name_en'];}?></td>
+            <td><?=$date['lib'][$action['action_action_id']]['name_ua']?></td>
             <td><?=number_format($action['action_work'])?></td>
-            <td>
-                <?
-                if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee){?>
-                    <?=$date['TC']['new_employee'][$action_employee['id']]['employee_surname']?>(<?=$action_employee['pay']?>)
-                    <br>
-                <?}?>
-            </td>
-            <td>
-                <?
-                if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){?>
-                    <?=$date['TC']['new_material'][$action_materials['id']]['name_material']?> (<?=$action_materials['norm']?>)
-                    <br>
-                <?}?>
-            </td>
+            <td><?=$action['action_date_start']?></td>
+            <td><?=$action['action_date_end']?></td>
             <td>
                 <?
                 if(unserialize($action['action_machines'])!=false) foreach(unserialize($action['action_machines']) as $action_machines){
@@ -174,12 +173,29 @@
                 }?>
             </td>
             <td>
+                <?
+                $new_employee=false;
+                $sum_pay =0;
+                if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee) {
+                    $new_employee[$action_employee['pay']]++;
+                }
+                    if($new_employee!=false)foreach ($new_employee as $new_employee_pay=>$new_employee_arr){
+                        $sum_pay +=$new_employee_arr*$new_employee_pay;
+                }?>
+                <?=$sum_pay?>
+            </td>
+            <td>
+                <?
+                if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){?>
+                    <?=$date['TC']['new_material'][$action_materials['id']]['name_material']?> (<?echo $action_materials['norm'].' '.$units[$date['TC']['new_material'][$action_materials['id']]['material_unit']]?>)
+                    <br>
+                <?}?>
+            </td>
+            <td>
                 <? if($action['action_services']!=false) foreach(unserialize($action['action_services']) as $action_service){
                     echo $action_service['name'].' ('.$action_service['amount'].') '.$action_service['price'].'<br>';
                 }?>
             </td>
-            <td><?=$action['action_date_start']?></td>
-            <td><?=$action['action_date_end']?></td>
             <td><button data-services='<?=json_encode(unserialize($action['action_services']))?>' data-action='<?=json_encode($action)?>' data-employee='<?=json_encode(unserialize($action['action_employee']))?>' data-material='<?=json_encode(unserialize($action['action_materials']))?>' data-equipment='<?=json_encode(unserialize($action['action_machines']))?>' class="btn btn-warning btn-sm edit_action"><span class="glyphicon glyphicon-pencil"></span></button>
                 <a class="btn btn-danger" href="/new-farmer/remove_operation/<?=$action['action_id']?>"><span class="glyphicon glyphicon-remove"></span></a>
                 <a class="btn btn-primary add_prod_<?=$action['action_action_type_id']?>"  style="display: none;" href="#add_prod" data-toggle="modal"><?=$language['new-farmer']['82']?></a>
@@ -191,7 +207,7 @@
         </div>
     </div>
 </div>
-<!------------employe-------------------->
+<!------------employee-------------------->
 <div id="Choose_employe" class="modal fade">
   <div class="modal-dialog modal-lg">
     <div class="modal-content wt">
@@ -258,6 +274,7 @@
           <div class="row">
               <div class="col-lg-12">
                   <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
+                   <button id="save_vehicles" type="submit" style="float: right" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
               </div>
           </div><br>
          	<div class="row">
@@ -266,7 +283,8 @@
                         <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['17']?></th>
-                                <th><?=$language['new-farmer']['30']?></th>
+                                <th><?=$language['new-farmer']['34']?></th>
+                                <th>Вантажопідйомність, т</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -274,7 +292,8 @@
                             <?php foreach ($date['TC']['vehicles'] as $vehicles){?>
                                 <tr class="123">
                                     <td><?=$vehicles['vehicles_name']?></td>
-                                    <td><?=$vehicles['vehicles_manufacturer']?></td>
+                                    <td><?=$vehicles['vehicles_power'].' HP'?></td>
+                                    <td><? echo $vehicles['vehicles_load_capacity'].' т'?></td>
                                     <td><a data-data='<?=json_encode($vehicles); ?>' class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
                                         </a></td>
                                 </tr>
@@ -301,14 +320,13 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-          <button id="save_vehicles" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
       </div>
     </div>
   </div>
 </div>
 <!---------------Choose_Equipment----------------->
 <div id="Choose_equipment" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
             <div class="modal-content wt">
                 <div class="box-bodyn">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -318,6 +336,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <input class="searchs" id="search_equipment" type="text" placeholder="Поиск" style="float: left">
+                            <button type="button" class="btn btn-primary" style="float: right" data-dismiss="modal"><?=$language['new-farmer']['27']?></button>
                         </div>
                     </div><br>
                     <input type="hidden" id="vehicles_id_equipment">
@@ -326,16 +345,18 @@
                             <table class="table tavle2">
                                 <thead>
                                 <tr>
-                                    <th><?=$language['new-farmer']['85']?></th>
                                     <th><?=$language['new-farmer']['86']?></th>
+                                    <th><?=$language['new-farmer']['85']?></th>
+                                    <th><?=$language['new-farmer']['24']?></th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($date['TC']['equipment'] as $equipment){?>
                                     <tr>
+                                        <td><?=$date['equipment_type']['ua'][$equipment['equipment_type']]?></td>
                                         <td><?=$equipment['equipment_name']?></td>
-                                        <td><?=$date['equipment_kind'][$equipment['equipment_kind']]?></td>
+                                        <td><? if($equipment['equipment_type']=='9'){echo $equipment['equipment_capacity'].' '.$date['equipment_unit'][$equipment['equipment_unit']];} else{echo $equipment['equipment_width'].'m';}?></td>
                                         <td><a data-data='<?=json_encode($equipment); ?>' class="btn btn-success btn-sm add_equipment"><i class="fa fa-fw fa-arrow-right"></i>
                                             </a></td>
                                     </tr>
@@ -446,7 +467,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <label><?=$language['new-farmer']['106']?></label>
-                                                <select name="unit_material"  class="form-control unit_material">
+                                                <select name="unit_material" id="unit_material"  class="form-control unit_material">
                                                     <option value="1">kg</option>
                                                     <option value="2">l</option>
                                                     <option value="3">м³</option>
@@ -499,7 +520,7 @@
                 <span class="box-title"><?=$language['new-farmer']['87']?></span>
             </div>
             <div class="modal-header">
-                <button id="add_services" class="btn btn-success"><?=$language['new-farmer']['109']?></button>
+                <button id="add_services" class="btn btn-success"><?=$language['new-farmer']['152']?></button>
             </div>
             <div class="modal-body">
                 <table class="table" >
@@ -582,6 +603,15 @@
         var json_employe='<?=json_encode($date['TC']['new_employee'])?>';
         var employe_bd=JSON.parse( json_employe );
 
+        $('#end_data').change(function () {
+            var start_date = $('#strat_data').val();
+            var end_date = $('#end_data').val();
+            if(end_date<start_date){
+                alert('Дата закінчення операції не може бути швидше за дату початку');
+                $('#end_data').val('');
+            }
+        });
+
         $('.list_materials').hide();
         $('.type_matrial_1').show();
 	    $("#type_material_list_bd").change(function () {
@@ -595,11 +625,12 @@
         function add_services() {
             var total_work=$('#work').val();
             id_services++;
-            $('#action_services').append("<tr class='action_services'>" +
+            $('#action_services').append("<tr class='action_services' id='action_services_"+id_services+"'>" +
                 "<td><input  class='name form-control ' type='text'></td>" +
                 "<td><input data-id='"+id_services+"' id='s_amount"+id_services+"' class='amount form-control in_services' type='text' value='"+total_work+"'></td>" +
                 "<td><input data-id='"+id_services+"' id='s_price"+id_services+"' class='price form-control in_services' type='text'></td>" +
                 "<td id='s_total"+id_services+"'></td>" +
+                "<td><button class='btn btn-danger btn-sm remove_services' data-id='"+id_services+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
         }
         $('#action_services').on('change', '.in_services', function () {
@@ -608,7 +639,12 @@
             var price=parseFloat($('#s_price'+id).val());
             $('#s_total'+id).text(amount*price)
         });
+        $('#action_services').on('click','.remove_services', remove_services);
         $('#save_services').click(save_services);
+        function remove_services() {
+            var id = $(this).attr('data-id');
+            $('#action_services_'+id).remove();
+        }
         function save_services() {
             jsonObj = [];
             var coll=0;
@@ -699,6 +735,7 @@
             var material_name=$('#name_material').val();
             var price=$('#price_material').val();
             var norm=$('#norm_material').val();
+            var unit=$('#unit_material').val();
 
             $('#name_material').val('');
             $('#price_material').val('');
@@ -733,7 +770,7 @@
                 "<td>"+vehicles['vehicles_name']+"</td>" +
                 "<td >" +
                     "<div class='btn-group'>" +
-                    "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equipment</button>" +
+                    "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equ</button>" +
                     "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
                     "</div>" +
                 "</td>" +
@@ -848,11 +885,12 @@
             $("#action_services").html('');
             $.each(services, function(key, value) {
                 id_services++;
-                $('#action_services').append("<tr class='action_services'>" +
+                $('#action_services').append("<tr class='action_services' id='action_services_"+id_services+"'>" +
                     "<td><input  class='name form-control ' type='text' value='"+value['name']+"'></td>" +
                     "<td><input data-id='"+id_services+"' id='s_amount"+id_services+"' class='amount form-control in_services' type='text' value='"+value['amount']+"'></td>" +
                     "<td><input data-id='"+id_services+"' id='s_price"+id_services+"' class='price form-control in_services' type='text' value='"+value['price']+"'></td>" +
                     "<td id='s_total"+id_services+"'>"+value['amount']*value['price']+"</td>" +
+                    "<td><button class='btn btn-danger btn-sm remove_services' data-id='"+id_services+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
                     "</tr>");
             });
             save_services();
@@ -1042,6 +1080,12 @@
             After : function(t){
                 if (!t.val().length) $('.tavle2 tr').show();
             }
+        });
+
+        $('.list_id_action_type').change(function () {
+            var type_operation = $(this).val();
+            $('.type_op').hide();
+            $('.type_operation_'+type_operation).show();
         });
 	});
 

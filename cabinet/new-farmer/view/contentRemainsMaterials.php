@@ -16,6 +16,7 @@ echo "</pre>";*/
             <h3 style="float: left;">
                 <? if($_COOKIE['lang']=='ua'){echo $date['table_name_ua'];} elseif($_COOKIE['lang']=='gb'){ echo $date['table_name_en'];}?>
             </h3>
+            <a href="/new-farmer/budget" class="btn btn-success" style="float: right; margin-top: 7px; margin-right: 15px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
         </div>
         <table class="table table-striped well">
             <thead>

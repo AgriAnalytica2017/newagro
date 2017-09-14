@@ -1,3 +1,4 @@
+
 <head>
 	<style type="text/css">
 		.cont{
@@ -14,9 +15,11 @@
        </div>
     </div>
     <div class="box-bodyn col-lg-12" style="max-height: 55px">
-        <div class="col-sm-2">
-            <a class="btnn btn-primaryn topn sh" href="/new-farmer/list_technology_card"><?=$language['new-farmer']['57']?></a></div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <a class="btnn btn-primaryn topn sh" href="/new-farmer/list_technology_card" style="display: none"><?=$language['new-farmer']['57']?></a></div>
+        <div class="col-sm-4">
+
+        </div>
     </div>
     <div class="box-body wt">
         <div class="rown">
@@ -26,7 +29,6 @@
                         <th><?=$language['new-farmer']['44']?></th>
                         <th><?=$language['new-farmer']['45']?></th>
                         <th><?=$language['new-farmer']['46']?></th>
-                        <th><?=$language['new-farmer']['47']?></th>
                         <th><?=$language['new-farmer']['48']?></th>
                         <th><?=$language['new-farmer']['49']?></th>
                         <th class="text-center" colspan="4"><?=$language['new-farmer']['147']?></th>
@@ -38,17 +40,16 @@
 						<td><?=$field_management['field_number']?></td>
 						<td><?=$field_management['field_name']?></td>
 						<td><?=$field_management['field_size']?></td>
-						<td><? if($_COOKIE['lang']=='ua'){echo $date['usage']['ua'][$field_management['field_usage']];}elseif($_COOKIE['lang']=='gb'){echo $date['usage']['gb'][$field_management['field_usage']];}?></td>
 						<td><? if($_COOKIE['lang']=='ua'){echo $field_management['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field_management['name_crop_en'];}?></td>
                         <td><?=$field_management['field_yield']?></td>
-						<td><a class="btn btn-primary create_tech_cart" data-lang="<?=$_COOKIE['lang']?>" data-id="<?=$field_management['id_field']?>" data-id_crop="<?=$field_management['field_id_crop']?>"><?=$language['new-farmer']['148']?></a></td>
+						<!--<td><a class="btn btn-primary create_tech_cart" data-lang="<?/*=$_COOKIE['lang']*/?>" data-id="<?/*=$field_management['id_field']*/?>" data-id_crop="<?/*=$field_management['field_id_crop']*/?>"><?/*=$language['new-farmer']['148']*/?></a></td>-->
                         <td>
                             <button data-field="<?=$field_management['id_field']?>"  data-crop="<?=$field_management['field_id_crop']?>"  class="btn btn-primary select_tc"><?=$language['new-farmer']['149']?></button>
                         </td>
                         <td id="tech_name_field<?=$field_management['id_field']?>">
-                            <?=$date['tech_cart'][$field_management['field_id_crop']][$field_management['field_id_culture']]['tech_name']?>
+                            <?=$date['tech_cart']['tech'][$field_management['field_id_crop']][$field_management['field_id_culture']]['tech_name']?>
                         </td>
-                        <td ><a id="tech_edit_field<?=$field_management['id_field']?>" class="btn btn-warning" href="/new-farmer/edit_technology_card/<?=$field_management['field_id_culture']?>"><?=$language['new-farmer']['60']?></a></td>
+                        <td ><a id="tech_edit_field<?=$field_management['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<?=$field_management['field_id_culture']?>">Переглянути ТК</a></td>
 					</tr>
                     <?}?>
 				</tbody>
@@ -168,5 +169,19 @@
             });
         }
         });
+
+        var crop_id_st=$('#crop_list_select').val();
+        $('.rad').hide();
+        $('.tech_cart_crop_'+crop_id_st).show();
+        $('#crop_type').click(crop_list_type);
+        function crop_list_type() {
+            var id_type=$(this).val();
+            $('.crop_list').hide();
+            $('.crop_type_'+id_type).show();
+            $('#crop_list_select').val(' ');
+            $('.rad').hide();
+            $('input[name="optionsRadios"]').attr('checked', false);
+            $("#new_tech_cart").hide();
+        }
 	});
 </script>

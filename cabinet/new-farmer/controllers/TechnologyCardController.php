@@ -19,6 +19,7 @@ class TechnologyCardController{
       
         $date['tech_cart'] = TechnologyCard::getListTechCart($id_user);
         $date['field'] = TechnologyCard::getField($id_user);
+
     	$date['id'] = $id; 
         SRC::template('new-farmer','new', 'TechnologyCard', $date);
         return true;
@@ -28,6 +29,7 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $date['new_crop_culture']=TechnologyCard::getListTechnologyCard($id_user);
         $date['crop']=DataBase::getCropHead($id_user);
+        $date['crop_us'] = DataBase::getCropHead($id_user);
         SRC::template('new-farmer','new','ListTechnologyCard',$date);
         return true;
     }
@@ -54,7 +56,7 @@ class TechnologyCardController{
         $date['action']=DataBase::getActionLib($id_user);
         $date['units']=DataBase::getUnits();
         foreach ($date['action'] as $action){
-            $date['lib'][$action['action_id']]=$action['name_en'];
+            $date['lib'][$action['action_id']]=$action;
         }
         $date['TC']=TechnologyCard::getNewAction($id_user,$id);
 
@@ -63,7 +65,8 @@ class TechnologyCardController{
         $date['storage'] = TechnologyCard::getStorage($id_user);
 
         $date['field'] = TechnologyCard::getFieldTech($id);
-        $date['equipment_kind']=DataBase::getEquipmentKind();
+        $date['equipment_type']=DataBase::getTypeEquipment();
+        $date['equipment_unit']=DataBase::getUnit();
         $date['id'] = $id;
         SRC::template('new-farmer', 'new','editTechnologyCard',$date);
         return true;
@@ -73,9 +76,8 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $crop_id=SRC::validator($_POST['crop_id']);
         //$action_id = SRC::validator($_POST['action_action_id']);
-        $action_type_name=SRC::validator($_POST['id_action_type']);
+        $id_action_type=SRC::validator($_POST['list_id_action_type']);
         $action_name =  SRC::validator($_POST['action_id']);
-        $id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
         $id_action = DataBase::saveLib($id_user,$action_name,2);
         $start_date =  SRC::validator($_POST['strat_data']);
         $end_date =  SRC::validator($_POST['end_data']);
@@ -233,7 +235,8 @@ class TechnologyCardController{
         $key_material=SRC::validator($_POST['key_material_'+$id_type_material]);
         $id_material=DataBase::saveLibMaterial($id_user,$name_material,$id_type_material,$key_material);
         $material_price=SRC::validator($_POST['price_material']);
-        $id=TechnologyCard::createNewMaterial($id_user, $id_material, $material_price);
+        $material_unit=SRC::validator($_POST['unit_material']);
+        $id=TechnologyCard::createNewMaterial($id_user, $id_material, $material_price,$material_unit);
         echo $id;
         return true;
     }
@@ -248,10 +251,10 @@ class TechnologyCardController{
 
     public function actionCreateNewTech(){
         $id_user = $_SESSION['id_user'];
-        $id_field = $_POST['id_field'];
         $id_crop = $_POST['id_crop'];
         $tech_name = $_POST['tech_name'];
-        $id = TechnologyCard::createNewTech($id_user,$id_crop,$tech_name,$id_field);
+        $yield = $_POST['crop_yield'];
+        $id = TechnologyCard::createNewTech($id_user,$id_crop,$tech_name,$yield);
         echo $id;
         return true;
     }
@@ -268,6 +271,15 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $id_copy=TechnologyCard::copyTech($id_tech,$id_user);
         SRC::redirect();
+        return true;
+    }
+    public function actionCopyTechTemplate(){
+        $id_tech=SRC::validatorPrice($_POST['id_culture']);
+        $tech_name=SRC::validator($_POST['tech_name']);
+        $tech_name=SRC::validator($tech_name);
+        $id_user = $_SESSION['id_user'];
+        $id_copy=TechnologyCard::copyTechTemplate($id_tech,$id_user,$tech_name);
+        echo $id_copy;
         return true;
     }
     public function actionCopyTechField($id_tech,$id_field){

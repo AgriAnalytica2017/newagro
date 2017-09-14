@@ -1,6 +1,7 @@
 <?php
 include_once ROOT.'/cabinet/new-farmer/models/DataBase.php';
 include_once ROOT.'/cabinet/new-farmer/models/FieldManagement.php';
+include_once ROOT.'/cabinet/new-farmer/models/TechnologyCard.php';
 class FieldManagementController{
 
 	public function actionFieldManagement(){
@@ -10,6 +11,7 @@ class FieldManagementController{
         $date['crop_us']=FieldManagement::getCrop($id_user);
         $date['crop_culture']=FieldManagement::getCropCulture($id_user);
         $date['rent_pay']=FieldManagement::getRentPay($id_user);
+        $date['tech_cart'] = TechnologyCard::getListTechCart($id_user);
 
 		SRC::template('new-farmer','new','fieldManagement', $date);
 		return true;
@@ -21,9 +23,10 @@ class FieldManagementController{
         $field_name=SRC::validator($_POST['field_name']);
         $field_size=SRC::validator($_POST['field_area']);
         $field_rent = SRC::validatorPrice($_POST['field_rent']);
+        $field_usage = SRC::validatorPrice($_POST['field_usage']);
         $id_culture = SRC::validator($_POST['crop']);
 
-        FieldManagement::createFieldManagement($id_user, $id_culture, $field_number, $field_name, $field_size, $field_rent);
+        FieldManagement::createFieldManagement($id_user, $id_culture, $field_number, $field_name, $field_size, $field_rent,$field_usage);
 
         SRC::redirect('/new-farmer/field_management');
 	    return true;
@@ -84,6 +87,13 @@ class FieldManagementController{
 
         FieldManagement::saveCosts($id_user,$costs_plan,$costs_type,$costs_comments);
 
+    }
+
+    public function actionChangeStatus(){
+        $id_user = SRC::validatorPrice($_SESSION['id_user']);
+        $id_field = SRC::validatorPrice($_POST['id_field']);
+        $status=SRC::validatorPrice($_POST['status']);
+        FieldManagement::changeStatus($id_user,$id_field,$status);
     }
 
 }
