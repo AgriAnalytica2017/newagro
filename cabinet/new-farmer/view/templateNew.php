@@ -147,7 +147,7 @@ $top_menu=array(
                                 foreach ($_SESSION['cabinet'] as $item)if($item!=false){?>
                                     <li>
                                         <a href="<? echo SRC::getSRC();?>/<?=$cabinet_item[$item]['id']?>/">
-                                            <i class="menu-icon fa <?php echo $cabinet_item[$item]['item'];?> bg-green"></i><?if($_COOKIE['lang']=='gb'){echo $cabinet_item[$item]['name_en'];} else{echo $cabinet_item[$item]['name_ua'];}?></a>
+                                            <i class="menu-icon fa <?php echo $cabinet_item[$item]['item'];?>"></i><?if($_COOKIE['lang']=='gb'){echo $cabinet_item[$item]['name_en'];} else{echo $cabinet_item[$item]['name_ua'];}?></a>
                                     </li>
                                 <?}?>
                         
@@ -174,7 +174,7 @@ $top_menu=array(
                     <div class="box-bodyn2">
                         <div class="containern">
                             <div class="collapsen navibar-collapse pull-leftn" id="navibar-collapse">
-                                <ul class="navi navibar-navn">
+                                <ul class="navi navibar-navn" id="top_menu">
                                     <?php foreach ($top_menu as $menu_text=>$menu_href){
                                         if(is_string($menu_href)) {?>
                                             <li><a href="<?=$menu_href?>"><?=$menu_text?></a></li>
