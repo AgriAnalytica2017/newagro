@@ -11,45 +11,77 @@
 var_dump($date['new_crop_culture']);die;*/
 ?>
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Sansita+One);
-
+   @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500');
     .big-button {
-        position: relative;
-        background-color:#ccffcc;
-        color: #000000;
-        font-family: 'Sansita One', cursive;
-        font-size: 17px;
-        font-weight: 500;
-
-        padding: 10px;
-        height: 110px;
-        width: 200px;
-        text-decoration: none;
-        text-transform: capitalize;
-
-
-        -webkit-border-radius: 12px;
-        -moz-border-radius: 12px;
-        border-radius: 12px;
-
-        -webkit-box-shadow: 0px 15px 0px #009933, 0px 10px 25px rgba(0,0,0,.5);
-        -moz-box-shadow: 0px 15px 0px #009933, 0px 10px 25px rgba(0,0,0,.5);
-        box-shadow: 0px 15px 0px #009933, 0px 10px 25px rgba(0,0,0,.5);
-
-        margin: 20px;
-
-        border-color: #66ff66;
-        border-width: 10px;
-        border-radius: 40px 100px 100px 100px;
+      position: relative;
+    background-color: #ffffff;
+    color: #111;
+    font-family: 'Ubuntu', cursive;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+    height: 120px;
+    width: 180px;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 6px 0px #59ae7f, 0px 10px 15px rgb(89, 174, 127);
+    -moz-box-shadow: 0px 10px 0px #009933, 0px 10px 15px rgba(0,0,0,.5);
+    box-shadow: 0px 0px 0px #59ae7f9e, 0px 2px 7px rgba(46, 90, 65, 0.35);
+    border-color: #59ae7f;
+    border-width: 0;
+    border-radius: 5% 60% 0% 60%;
+    border: 2px solid #59ae7f;
     }
 
+    .big-button:hover, .big-button:active{
+         box-shadow:  0px 0px 0px #59ae7f9e, 0px 3px 9px rgba(46, 90, 65, 0.39);
+    }
+    
     .big-button:active {
-        box-shadow: 0px 3px 0px #33CC33, 0px 3px 6px rgba(0,0,0,.9);
-        position: relative;
-        top: 10px;
+        background-image: none;
+     box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+    position: relative;
+    top: 2px;
+    }
+    
+    .big-button:focus{
+        outline: none;
     }
 
+    @media (max-width: 1250px){
+        .big-button{
+              position: relative;
+    background-color: #ffffff;
+    color: #111;
+    font-family: 'Ubuntu', cursive;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+    height: 120px;
+    width: 180px;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 6px 0px #59ae7f, 0px 10px 15px rgb(89, 174, 127);
+    -moz-box-shadow: 0px 10px 0px #009933, 0px 10px 15px rgba(0,0,0,.5);
+    box-shadow: 0px 0px 0px #59ae7f9e, 0px 2px 7px rgba(46, 90, 65, 0.35);
+    border-color: #59ae7f;
+    border-width: 0;
+    border-radius: 5% 60% 0% 60%;
+    border: 2px solid #59ae7f;
+        }
+        
+         .bottom{
+    clear: both;
+    margin-bottom: 20px;
+             width: 100%;
+    }
+}
 
+   
 </style>
 <div class="box-bodyn">
 
@@ -112,7 +144,7 @@ var_dump($date['new_crop_culture']);die;*/
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 bottom">
                 <button class="big-button" href="#newTech" data-toggle="modal">
                     Створити нову технологію
                 </button>
