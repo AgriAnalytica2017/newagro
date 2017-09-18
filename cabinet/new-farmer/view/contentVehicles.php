@@ -15,46 +15,55 @@
         }
     </style>
 </head>
-    <div class="box-bodyn">
-            <div class="non-semantic-protector">
-                <h1 class="ribbon">
-                    <strong class="ribbon-content"><?=$language['new-farmer']['3']?></strong>
-                </h1>
-            </div>
+<div class="box-bodyn">
+    <div class="non-semantic-protector">
+        <h1 class="ribbon">
+            <strong class="ribbon-content">С/г техніка</strong>
+        </h1>
+    </div>
 </div>
 <div class="box-bodyn col-lg-12" style="max-height: 55px">
-    <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
-    <a class="btn btn-primaryn top sh" href="#newVehicles" data-toggle="modal"><?=$language['new-farmer']['29']?></a>
+    <div class="row">
+        <div class="col-lg-4">
+            <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
+        </div>
+        <div class="col-lg-4">
+            <a class="btn btn-primaryn top sh" href="#newVehicles" data-toggle="modal"><?=$language['new-farmer']['29']?></a>
+        </div>
+    </div>
 </div>
 <div class="rown">
     <div class="table-responsive">
-<table class="table">
-    <thead>
-        <tr class="tabletop">
-            <th>Тип</th>
-            <th><?=$language['new-farmer']['17']?></th>
-            <th><?=$language['new-farmer']['31']?></th>
-            <th><?=$language['new-farmer']['20']?></th>
-            <th><?=$language['new-farmer']['34']?></th>
-            <th>Вантажопідйомність, т</th>
-            <th></th><th></th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($date['vehicles'] as $vehicles){?>
-        <tr>
-            <td><?=$date['kind_vehicles']['ua'][$vehicles['vehicles_kind']]?></td>
-            <td><?=$vehicles['vehicles_name']?></td>
-            <td><?=$vehicles['vehicles_license']?></td>
-            <td><?=$vehicles['vehicles_acquisition']?></td>
-            <td><? echo $vehicles['vehicles_power']?></td>
-            <td><? echo $vehicles['vehicles_load_capacity']?></td>
-            <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($vehicles); ?>'></a></td>
-            <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>" class="btn btn-danger fa fa-remove"></a></td>
-        </tr>
-    <? }?>
-    </tbody>
-</table>
+        <table class="table">
+            <thead>
+            <tr class="tabletop">
+                <th>Тип</th>
+                <th><?=$language['new-farmer']['17']?></th>
+                <th><?=$language['new-farmer']['31']?></th>
+                <th><?=$language['new-farmer']['20']?></th>
+                <th><?=$language['new-farmer']['34']?></th>
+                <th>Паливо</th>
+                <th>Вантажопідйомність, т</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($date['vehicles'] as $vehicles){?>
+                <tr>
+                    <td><?=$date['kind_vehicles']['ua'][$vehicles['vehicles_kind']]?></td>
+                    <td><?=$vehicles['vehicles_name']?></td>
+                    <td><?=$vehicles['vehicles_license']?></td>
+                    <td><?=$vehicles['vehicles_acquisition']?></td>
+                    <td><? echo $vehicles['vehicles_power']?></td>
+                    <td><?=$date['fuel_name_price'][$vehicles['vehicles_fuel']]['name_material']?></td>
+                    <td><?if ($vehicles['vehicles_load_capacity']!=0){echo $vehicles['vehicles_load_capacity'];}else{echo "";}?></td>
+                    <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($vehicles); ?>'></a></td>
+                    <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>" class="btn btn-danger fa fa-remove"></a></td>
+                </tr>
+            <? }?>
+            </tbody>
+        </table>
     </div>
 </div>
 <div id="newVehicles" class="modal fade">
@@ -65,54 +74,61 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <span class="box-title"><?=$language['new-farmer']['190']?></span>
                 </div>
-            <div class="modal-body">
+                <div class="modal-body">
                     <label>Тип с/г техніки</label>
                     <select class="form-control inphead vehicle_kind" name="vehicle_kind" required>
                         <?if($_COOKIE['lang']=='ua'){?>
                             <?php foreach ($date['kind_vehicles']['ua'] as $kind_vehicles_id=>$kind_vehicles){?>
                                 <option  value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
                             <?}}?>
-                            <?if($_COOKIE['lang']=='gb'){?>
-                                <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
-                                    <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                        <?if($_COOKIE['lang']=='gb'){?>
+                            <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
                             <?}}?>
                     </select>
-                    <div class="vehicle_info" style="display:none "> 
-                    <label><?=$language['new-farmer']['17']?></label>
-                    <input type="text" name="vehicles_name" class="form-control inphead">
-                    <label><?=$language['new-farmer']['31']?></label>
-                    <input type="text" name="vehicles_license" class="form-control inphead" >
-                    <label>Інвентарний номер</label>
-                    <input type="text" name="vehicle_int_number" class="form-control inphead">
+                    <div class="vehicle_info" style="display:none ">
+                        <label><?=$language['new-farmer']['17']?></label>
+                        <input type="text" name="vehicles_name" class="form-control inphead">
+                        <label><?=$language['new-farmer']['31']?></label>
+                        <input type="text" name="vehicles_license" class="form-control inphead" >
+                        <label>Інвентарний номер</label>
+                        <input type="text" name="vehicle_int_number" class="form-control inphead">
                         <label><?=$language['new-farmer']['34']?></label>
                         <input type="text" name="vehicles_power" class="form-control inphead" >
                         <div class="load_capacity" style="display: none">
                             <label>Вантажопідйомність, т</label>
                             <input type="text" name="load_capacity" class="form-control inphead">
                         </div>
-                    <label><?=$language['new-farmer']['32']?></label>
-                    <select name="vehicles_fuel" class="form-control inphead">
-                        <?php  foreach ($date['fuel_type']['ua'] as $id_type=>$name_type){?>
-                        <option value="<?=$id_type?>"><?=$name_type?></option>
-                        <? }?>
-                    </select>
-                    <label><?=$language['new-farmer']['20']?></label>
-                    <select class="form-control inphead" name="vehicles_acquisition" required>
-                        <?php for($x=2017;$x>=1930;$x--){?>
-                            <option><?=$x?></option>
-                        <?}?>
-                    </select>
+                        <label><?=$language['new-farmer']['32']?></label>
+                        <select name="vehicles_fuel" class="form-control inphead">
+                            <?php  foreach ($date['fuel_type']['ua'] as $id_type=>$name_type){?>
+                                <option value="<?=$id_type?>"><?=$name_type?></option>
+                            <? }?>
+                        </select>
+                        <label>Назва топлива</label>
+                        <input list="list_fuel" name="vehicles_fuel_name" id="vehicles_fuel_name"  class="form-control inphead" autocomplete="off" required>
+                        <datalist id="list_fuel">
+                            <?php foreach ($date['fuel_name'] as $fuel_name){?>
+                                <option><?=$fuel_name['name_material']?></option>
+                            <?php }?>
+                        </datalist>
+                        <label><?=$language['new-farmer']['20']?></label>
+                        <select class="form-control inphead" name="vehicles_acquisition" required>
+                            <?php for($x=2017;$x>=1930;$x--){?>
+                                <option><?=$x?></option>
+                            <?}?>
+                        </select>
                         <label>Вартість, тис. грн</label>
                         <input type="text" name="purchase_price" class="form-control inphead">
-                    <label><?=$language['new-farmer']['22']?></label>
-                    <input type="text" name="usage_year" class="form-control inphead">
-                    <input type="hidden" name="current_year" value="<?php echo date('Y')?>">
+                        <label><?=$language['new-farmer']['22']?></label>
+                        <input type="text" name="usage_year" class="form-control inphead">
+                        <input type="hidden" name="current_year" value="<?php echo date('Y')?>">
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
+                </div>
             </form>
         </div>
     </div>
@@ -128,14 +144,14 @@
                 <div class="modal-body">
                     <input id="id_vehicles" type="hidden" name="id_vehicles">
                     <label>Тип с/г техніки</label>
-                    <select class="form-control inphead" id="edit_vehicles_kind" name="vehicle_kind"> 
+                    <select class="form-control inphead" id="edit_vehicles_kind" name="vehicle_kind">
                         <?if($_COOKIE['lang']=='ua'){?>
                             <?php foreach ($date['kind_vehicles']['ua'] as $kind_vehicles_id=>$kind_vehicles){?>
                                 <option  value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
                             <?}}?>
-                            <?if($_COOKIE['lang']=='gb'){?>
-                                <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
-                                    <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
+                        <?if($_COOKIE['lang']=='gb'){?>
+                            <?php foreach ($date['kind_vehicles']['gb'] as $kind_vehicles_id=>$kind_vehicles){?>
+                                <option value="<?=$kind_vehicles_id?>"><?=$kind_vehicles?></option>
                             <?}}?>
                     </select>
                     <label><?=$language['new-farmer']['17']?></label>
@@ -156,6 +172,15 @@
                             <option value="<?=$id_type?>"><?=$name_type?></option>
                         <? }?>
                     </select>
+                    <label>Назва топлива</label>
+                    <input list="list_fuel" id="vehicles_fuel_name" name="vehicles_fuel_name" id="vehicles_fuel_name"  class="form-control inphead" autocomplete="off" required>
+                    <datalist id="list_fuel">
+                        <?php foreach ($date['fuel_name'] as $fuel_name){?>
+                            <option><?=$fuel_name['name_material']?></option>
+                        <?php }?>
+                    </datalist>
+
+
                     <label><?=$language['new-farmer']['20']?></label>
                     <select class="form-control inphead" name="vehicles_acquisition" id="vehicles_acquisition" required>
                         <?php for($x=2017;$x>=1930;$x--){?>

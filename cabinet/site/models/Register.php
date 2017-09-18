@@ -5,7 +5,7 @@ class Register{
     public static function registered($name, $last_name, $phone, $email, $password, $date){
         $db = Db::getConnection();
                     $db->query("INSERT INTO users (name, last_name, phone, email, password, type_user, data_register )
-                    VALUE ('$name', '$last_name', '$phone', '$email', '$password', 'farmer', '$date')");
+                    VALUE ('$name', '$last_name', '$phone', '$email', '$password', 'new-farmer', '$date')");
                     $db->query("DELETE  FROM validate_info WHERE email = '$email'");
         return true;
      }

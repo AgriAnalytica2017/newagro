@@ -1,5 +1,11 @@
 <?php
 return array(
+    'new-farmer/graphs'=>'graphs/getGraphs',
+    'new-farmer/load_his'=>'graphs/jsonHis',
+
+    'new-farmer/forma50/([0-9]+)'=>'forma50/getForma/$1',
+    'new-farmer/saveForma50'=>'forma50/saveForma50',
+
     'new-farmer/other_cost'=>'otherCosts/getOtherCost',
     'new-farmer/save_other_cost'=>'otherCosts/savePlanOther',
     'new-farmer/create_other_fact'=>'otherCosts/createOtherFact',
@@ -8,6 +14,8 @@ return array(
     'new-farmer/save_material_bd'=>'material/createMaterial',
     'new-farmer/save_edit_material_bd'=>'material/saveEditMaterial',
     'new-farmer/remove_material/([0-9]+)'=>'material/removeMaterial/$1',
+    'new-farmer/all_needed_material'=>'material/getAllNeedMaterial',
+
 
     'new-farmer/save_rent'=>'fieldManagement/saveRentPay',
     'new-farmer/save_costs'=>'fieldManagement/saveCosts',
@@ -40,7 +48,7 @@ return array(
     'new-farmer/remove_operation/([0-9]+)'=>'technologyCard/removeOperation/$1',
     'new-farmer/copy_technology_card/([0-9]+)'=>'technologyCard/copyTech/$1',
     'new-farmer/copy_technology_template'=>'technologyCard/copyTechTemplate',
-    'new-farmer/copy_tech_field/([0-9]+)/([0-9]+)'=>'technologyCard/copyTechField/$1/$2',
+    'new-farmer/copy_tech_field/([0-9]+)/([0-9]+)/([0-9]+)'=>'technologyCard/copyTechField/$1/$2/$3',
 
 
 
@@ -87,11 +95,13 @@ return array(
     'new-farmer/save_fact'=>'fact/saveFact',
     'new-farmer/fact_budget_crop'=>'budget/getBudgetFactPerCrop',
     'new-farmer/fact_budget_field'=>'budget/getBudgetFactPerField',
+    'new-farmer/fact_budget_month'=>'budget/getBudgetFactPerMonth',
+    'new-farmer/fact_cash_flow'=>'budget/budgetCashFlowFact',
 
 
     'new-farmer/graphs_plan'=>'budget/getGraphsPlan',
+    'new-farmer/edit_technology_card_list'=>'technologyCard/editTechCardList',
 
-    'new-farmer/all_needed_material'=>'storage/getAllNeedMaterial',
     'new-farmer/change_status'=>'fieldManagement/changeStatus',
     'new-farmer'=>'fieldManagement/fieldManagement',
 

@@ -10,7 +10,7 @@ class Storage{
         $date['storage'] = $res->fetchAll();
 
 
-        $res = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '0'");
+        $res = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '0' ORDER BY storage_type_material, storage_subtype_material  DESC");
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $date['storage_material_fact'] = $res->fetchAll();
 
@@ -55,14 +55,22 @@ class Storage{
         return $storage_material;
     }
 
-	public static function createStorage($id_user,$storage_type_material,$storage_subtype_material,$storage_material,$storage_unit,$storage_quantity,$storage_sum_total,$storage_date, $storage_id, $storage_comments){
-
-		$db=Db::getConnection();
-        $res = $db->query("INSERT INTO new_storage_material(storage_type_material,storage_subtype_material,storage_material,storage_unit,storage_quantity,storage_sum_total,storage_date,storage_location,storage_comments,storage_id_user, storage_start) 
-                           VALUES( '$storage_type_material','$storage_subtype_material','$storage_material','$storage_unit','$storage_quantity','$storage_sum_total','$storage_date','$storage_id','$storage_comments','$id_user','$storage_quantity')");
-		$id = $db->lastInsertId();
+    public static function createStorage($id_user,$storage_type_material,$storage_subtype_material,$storage_material,$storage_unit,$storage_quantity,$storage_sum_total,$storage_date, $storage_comments){
+        $db=Db::getConnection();
+        $result = $db->query("SELECT storage_material_id FROM new_storage_material WHERE storage_material = '$storage_material' and storage_unit = '$storage_unit' and storage_id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetch();
+        $storage_id = $date['storage_material_id'];
+        if($date == false) {
+            $res = $db->query("INSERT INTO new_storage_material(storage_type_material,storage_subtype_material,storage_material,storage_unit,storage_quantity,storage_sum_total,storage_date,storage_comments,storage_id_user, storage_start) 
+                           VALUES( '$storage_type_material','$storage_subtype_material','$storage_material','$storage_unit','$storage_quantity','$storage_sum_total','$storage_date','$storage_comments','$id_user','$storage_quantity') ");
+            $id = $db->lastInsertId();
+        }else{
+            $db->query("UPDATE new_storage_material SET storage_quantity = storage_quantity+'$storage_quantity' WHERE storage_material_id = '$storage_id'");
+            $id = $date['storage_material_id'];
+        }
         return $id;
-	}
+    }
 
 
 	public static function changeStorageStock($id_user, $incoming_material, $incoming_quantity,$incoming_sum_total){
@@ -103,7 +111,7 @@ class Storage{
 		return $date;
 	}
 
-    public static function saveIncomingProducts($product_date,$product_type,$product_storage_location,$product_quantity,$product_comments,$id_user){
+    public static function saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user){
         $db = Db::getConnection();
         $result = $db->query("SELECT product_type FROM new_product_incoming WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);

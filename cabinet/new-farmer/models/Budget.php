@@ -88,7 +88,7 @@ class Budget{
             ),
             array(
                 'array'=>'other_costs',
-                'name_ua'=>'Інші',
+                'name_ua'=>'Інші виробничі витрати',
                 'name_en'=>'Others',
                 'class'=>'level2',
             ),
@@ -211,6 +211,54 @@ class Budget{
                 'class'=>''
             ),
             array(
+                'name_ua'=>'2. Рух коштів у результаті інвестиційної діяльності',
+                'name_en'=>'2. Cash flow as a result of investment activity',
+                'php'=>'',
+                'class'=>''
+            ),
+            array(
+                'name_ua'=>'Інвестиційна діяльність - надходження',
+                'name_en'=>'Cash flow as a result of investment activity',
+                'php'=>'',
+                'class'=>'level2'
+            ),
+            array(
+                'name_ua'=>'Інвестиційна діяльність - витрати',
+                'name_en'=>'Investment activity - expenses',
+                'php'=>'',
+                'class'=>'level2'
+            ),
+            array(
+                'name_ua'=>'Чистий рух коштів від інвестиційної діяльності',
+                'name_en'=>'Net cash flow from investing activities',
+                'php'=>'',
+                'class'=>''
+            ),
+            array(
+                'name_ua'=>'3. Рух коштів у результаті фінансової діяльності',
+                'name_en'=>'3. Cash flow as a result of financial activity',
+                'php'=>'',
+                'class'=>''
+            ),
+            array(
+                'name_ua'=>'Фінансова діяльність - надходження',
+                'name_en'=>'Financial activities - supply',
+                'php'=>'',
+                'class'=>'level2'
+            ),
+            array(
+                'name_ua'=>'Фінансова діяльність - витрати',
+                'name_en'=>'Financial activity - expenses',
+                'php'=>'',
+                'class'=>'level2'
+            ),
+            array(
+                'name_ua'=>'Чистий рух коштів від фінансової діяльності',
+                'name_en'=>'Net cash flow from financial activities',
+                'php'=>'',
+                'class'=>''
+            ),
+            array(
                 'name_ua'=>'Всього надходження',
                 'name_en'=>'Total supply',
                 'array'=>'plane_revenues',
@@ -246,7 +294,7 @@ class Budget{
         return $date;
     }
     public static function getNewBudget($db,$id_user,$field,$table,$remains=false,$strorage=false){
-
+        $ex_date=array();
         $sql1='AND (';
         $sql2='AND (';
         $sql3='AND (';
@@ -345,13 +393,54 @@ class Budget{
         foreach ($fact_data as $fact){
             $date['fact_data'][$fact['fact_id_action']] = $fact;
         }
+        $result = $db->query("SELECT * FROM new_other_costs_fact WHERE id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date['fact_other_costs'] = $result->fetchAll();
+        $id_fact=0;
+        $others_fact=0;
+        $repairs_fact=0;
+        $operating_fact=0;
+        foreach ($date['fact_other_costs'] as $fact_other_costs_arr){
+
+            $id_fact++;
+            $fact_data[$id_fact] = explode('-', $fact_other_costs_arr['cost_fact_date']);
+            $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+            $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
+
+            switch ($fact_other_costs_arr['cost_fact_type']){
+                case 1:
+                    $operating_fact+=$fact_other_costs_arr['cost_fact'];
+                    $ex_date['month_fact_budget_operating_cost'][$ex_fact_data[$id_fact]]+=$fact_other_costs_arr['cost_fact'];
+                    break;
+                case 2:
+                    $repairs_fact+=$fact_other_costs_arr['cost_fact'];
+                    $ex_date['month_fact_budget_repairs'][$ex_fact_data[$id_fact]]+=$fact_other_costs_arr['cost_fact'];
+                    break;
+                case 3:
+                    $others_fact+=$fact_other_costs_arr['cost_fact'];
+                    $ex_date['month_fact_other_costs'][$ex_fact_data[$id_fact]]+=$fact_other_costs_arr['cost_fact'];
+                    break;
+            }
+        }
+
+
+
 
         $result = $db->query("SELECT * FROM new_actual_sales WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $actual_sale = $result->fetchAll();
 
         foreach ($actual_sale as $sale){
+            $id_fact++;
+            $fact_data[$id_fact] = explode('-', $sale['actual_sale_date']);
+            $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+            $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
             $date['actual_sale'][$sale['actual_sale_product']] += $sale['actual_sale_sum'];
+            //$date['actual_sale_date'][$sale['actual_sale_product']] = $ex_fact_data[$id_fact];
+
+
+            $ex_date['month_fact_plane_revenues'][$ex_fact_data[$id_fact]]+= $sale['actual_sale_sum'];
+            $ex_date['month_crop_fact_revenue'][$ex_fact_data[$id_fact]][$sale['actual_sale_product']]+= $sale['actual_sale_sum'];
         }
 
         //Storage setting
@@ -376,7 +465,7 @@ class Budget{
         foreach ($data['crop_name'] as $value){
             $crop_name[$value['id_crop']]= $value['name_crop_ua'];
         }
-        $ex_date=array();
+
         $summ_area=0;
         $rev_m_c_summ=array();
         foreach ($field as $arr_field){
@@ -386,19 +475,15 @@ class Budget{
         foreach ($date['other_costs'] as $other_cost){
             if($other_cost['costs_type']=='3'){
                 $others = $other_cost['costs_plan'];
-                //$others_fact = $other_cost['costs_fact'];
             }
             elseif($other_cost['costs_type']=='2'){
                 $repairs = $other_cost['costs_plan'];
-               // $repairs_fact = $other_cost['costs_fact'];
             }
             elseif($other_cost['costs_type']=='1'){
-                $operating = $other_cost['costs_plan']/100;
-                //$repairs_fact = $other_cost['costs_fact'];
+                $operating = $other_cost['costs_plan'];
             }
         }
         /*$others=100000;*/
-        /*$repairs=200;*/
         $total_mas_crop=array();
         $total_area_crop=array();
         foreach ($field as $arr_field) {
@@ -419,7 +504,7 @@ class Budget{
             $ex_date['crop_fact_plane_revenues'][$arr_field['field_id_crop']] = $date['actual_sale'][$arr_field['field_id_crop']];
             $ex_date['field_fact_plane_revenues'][$arr_field['id_field']] = $date['actual_sale'][$arr_field['field_id_crop']]*$proc_rew_mass[$arr_field['id_field']];
 
-            $ex_date['budget_crop_name'][$arr_field['id_field']] = $arr_field['field_name'] . '/' . $crop_name[$arr_field['field_id_crop']];
+            $ex_date['budget_crop_name'][$arr_field['id_field']] = '# '.$arr_field['field_number'] . ' ' . $crop_name[$arr_field['field_id_crop']];
 
             $ex_date['crop_budget_crop_name'][$arr_field['field_id_crop']] = $crop_name[$arr_field['field_id_crop']];
 
@@ -430,61 +515,73 @@ class Budget{
             foreach ($date['new_action'] as $action)if($action['action_id_culture']==$arr_field['field_id_culture']){
                 $act_data = explode('-', $action['action_date_start']);
                 $act_data[1]=intval($act_data[0].$act_data[1]);
-
                 $ex_date['month_active'][$act_data[1]]=true;
                 //services actual costs
-
-
                 ////////////////////FACT/////////////////
-
                 //Material fact +
                 if(unserialize($date['fact_data'][$action['action_id']]['fact_materials'])!=false)foreach (unserialize($date['fact_data'][$action['action_id']]['fact_materials']) as $fact_materials){
-
+                    $id_fact++;
+                    $fact_data[$id_fact] = explode('-', $fact_materials['date']);
+                    $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+                    $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
                     $fact_price_material=$fact_materials['norm']*$date['fact_materials'][$fact_materials['id']]['storage_sum_total'];
                     if($date['fact_materials'][$fact_materials['id']]['storage_type_material']==1){
                         $ex_date['field_fact_budget_seeds'][$arr_field['id_field']] += $fact_price_material;
                         $ex_date['crop_fact_budget_seeds'][$arr_field['field_id_crop']] += $fact_price_material;
-
+                        $ex_date['month_fact_budget_seeds'][$ex_fact_data[$id_fact]] += $fact_price_material;
                     }elseif ($date['fact_materials'][$fact_materials['id']]['storage_type_material']==2) {
                         $ex_date['field_fact_budget_fertilizers'][$arr_field['id_field']] += $fact_price_material;
                         $ex_date['crop_fact_budget_fertilizers'][$arr_field['field_id_crop']] += $fact_price_material;
+                        $ex_date['month_fact_budget_fertilizers'][$ex_fact_data[$id_fact]] += $fact_price_material;
                     }elseif ($date['fact_materials'][$fact_materials['id']]['storage_type_material']==3) {
                         $ex_date['field_fact_budget_ppa'][$arr_field['id_field']] += $fact_price_material;
                         $ex_date['crop_fact_budget_ppa'][$arr_field['field_id_crop']] += $fact_price_material;
+                        $ex_date['month_fact_budget_ppa'][$ex_fact_data[$id_fact]] += $fact_price_material;
                     }
                     $fact_price_material=0;
                 }
                 //Fuel fact +
                 if(unserialize($date['fact_data'][$action['action_id']]['fact_machines'])!=false)foreach (unserialize($date['fact_data'][$action['action_id']]['fact_machines']) as $fact_machines){
+                    $id_fact++;
+                    $fact_data[$id_fact] = explode('-', $fact_machines['date']);
+                    $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+                    $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
+
                     $ex_date['field_fact_budget_equipment'][$arr_field['id_field']] += $fact_machines['norm']*$date['fuel_price'][0]['storage_sum_total'];
                     $ex_date['crop_fact_budget_equipment'][$arr_field['field_id_crop']] += $fact_machines['norm']*$date['fuel_price'][0]['storage_sum_total'];
+                    $ex_date['month_fact_budget_equipment'][$ex_fact_data[$id_fact]] += $fact_machines['norm']*$date['fuel_price'][0]['storage_sum_total'];
                 }
                 //Salary fact +
                 if(unserialize($date['fact_data'][$action['action_id']]['fact_employee'])!=false)foreach (unserialize($date['fact_data'][$action['action_id']]['fact_employee']) as $fact_employee){
+                    $id_fact++;
+                    $fact_data[$id_fact] = explode('-', $fact_employee['date']);
+                    $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+                    $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
+
                     $ex_date['field_fact_budget_pay'][$arr_field['id_field']] += $fact_employee['pay'];
                     $ex_date['crop_fact_budget_pay'][$arr_field['field_id_crop']] += $fact_employee['pay'];
+                    $ex_date['month_fact_budget_pay'][$ex_fact_data[$id_fact]] += $fact_employee['pay'];
                 }
                 //Services fact +
                 if(unserialize($date['fact_data'][$action['action_id']]['fact_services'])!=false)foreach (unserialize($date['fact_data'][$action['action_id']]['fact_services']) as $fact_services){
+                    $id_fact++;
+                    $fact_data[$id_fact] = explode('-', $fact_services['date']);
+                    $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
+                    $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
+
                     $ex_date['field_fact_budget_services'][$arr_field['id_field']] += $fact_services['price'];
                     $ex_date['crop_fact_budget_services'][$arr_field['field_id_crop']] += $fact_services['price'];
+                    $ex_date['month_fact_budget_services'][$ex_fact_data[$id_fact]] += $fact_services['price'];
                 } ;
-
-
-
-
-
-
-                $ex_date['crop_fact_other_costs'][$arr_field['field_id_crop']] = $others_fact;
-               // $ex_date['crop_fact_budget_cost'][$arr_field['field_id_crop']] = $ex_date['fact_budget_services'][$arr_field['field_id_crop']] +$ex_date['fact_budget_pay'][$arr_field['field_id_crop']] +$ex_date['fact_budget_equipment'][$arr_field['field_id_crop']]+$ex_date['fact_budget_ppa'][$arr_field['field_id_crop']]+$ex_date['fact_budget_fertilizers'][$arr_field['field_id_crop']]+$ex_date['fact_budget_seeds'][$arr_field['field_id_crop']];
-
+                // $ex_date['crop_fact_budget_cost'][$arr_field['field_id_crop']] = $ex_date['fact_budget_services'][$arr_field['field_id_crop']] +$ex_date['fact_budget_pay'][$arr_field['field_id_crop']] +$ex_date['fact_budget_equipment'][$arr_field['field_id_crop']]+$ex_date['fact_budget_ppa'][$arr_field['field_id_crop']]+$ex_date['fact_budget_fertilizers'][$arr_field['field_id_crop']]+$ex_date['fact_budget_seeds'][$arr_field['field_id_crop']];
                 /////////////////PLAN//////////////////
                 //мaтериалы
                 if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){
                     $m_id++;
-
                     //////////////////////////////////////////////////////
                     $mass_material[$m_id]=($action_materials['norm'] * $arr_field['field_size'])-$material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']];
+                    $ex_date['need_material'][$action_materials['id']]+=$mass_material[$m_id];
+
                     $material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']]-=($action_materials['norm'] * $arr_field['field_size']);
                     if($mass_material[$m_id]<=0){
                         $mass_material[$m_id]=0;
@@ -493,7 +590,6 @@ class Budget{
                         $material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']]=0;
                     }
                     /////////////////////////////////////////////////////
-
                     $price_material[$action['action_id']] = $mass_material[$m_id] * $date['new_material'][$action_materials['id']]['price_material'];
                     $ex_date['budget_material'][$arr_field['id_field']][$date['new_material'][$action_materials['id']]['id_type_material']] += $price_material[$action['action_id']];
 
@@ -512,7 +608,7 @@ class Budget{
                     }
                     if($remains==1){
                         $ex_date['remains'][$date['new_material'][$action_materials['id']]['id_type_material']][]=array(
-                            'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
                             'name'=>$date['new_material'][$action_materials['id']]['name_material'],
                             'norm'=>$action_materials['norm'],
                             'area'=>$arr_field['field_size'],
@@ -526,12 +622,30 @@ class Budget{
                 if(unserialize($action['action_machines'])!=false){
                     if($remains==3) $ex_date['remains'][$action['action_id']]=array(
                         'id'=>$action['action_id'],
-                        'action'=>$lib['operation'][$action['action_action_id']]['name_en'],
+                        'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
                     );
                     $row=0;
                     $row2=0;
                     foreach(unserialize($action['action_machines']) as $action_machines){
-                        $price_equipment = $action_machines['fuel'] * ($action['action_work']) * 22;
+                        $m_id++;
+                        $mass_material[$m_id]=($action_machines['fuel'] * $action['action_work'])-$material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']];
+                        $ex_date['need_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]+=$mass_material[$m_id];
+
+                        $material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]-=($action_machines['fuel'] * $action['action_work']);
+                        if($mass_material[$m_id]<=0){
+                            $mass_material[$m_id]=0;
+                        }
+                        if($material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]<=0){
+                            $material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]=0;
+                        }
+
+                        if($date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['price_material']!=0){
+                            $price_fuel=$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['price_material'];
+                        }else{
+                            $price_fuel=0;
+                        };
+
+                        $price_equipment = $mass_material[$m_id] * $price_fuel;
                         $ex_date['budget_equipment'][$arr_field['id_field']] += $price_equipment;
                         $ex_date['crop_budget_equipment'][$arr_field['field_id_crop']] += $price_equipment;
                         $ex_date['budget_equipment_month'][$act_data[1]] += $price_equipment;
@@ -586,7 +700,8 @@ class Budget{
                     $ex_date['crop_budget_services'][$arr_field['field_id_crop']] += $pay_services;
                     $ex_date['budget_services_month'][$act_data[1]] += $pay_services;
                 }
-                if($action['action_action_type_id']==27) $rev_data[$arr_field['id_field']]=$act_data[1];
+                if($action['action_action_type_id']==32) $rev_data[$arr_field['id_field']]=$act_data[1];
+                
             }
 
             $ex_date['budget_seeds'][$arr_field['id_field']] = $ex_date['budget_material'][$arr_field['id_field']][1];
@@ -608,6 +723,7 @@ class Budget{
 
             $ex_date['budget_cost_total']+=$ex_date['budget_cost'][$arr_field['id_field']];
 
+
             $ex_date['plane_revenues_month'][$rev_data[$arr_field['id_field']]] += $ex_date['plane_revenues'][$arr_field['id_field']];
             $ex_date['plane_revenues_month_crop'][$arr_field['field_id_crop']][$rev_data[$arr_field['id_field']]] += $ex_date['plane_revenues'][$arr_field['id_field']];
             $ex_date['plane_name_crop'][$arr_field['field_id_crop']]=$crop_name[$arr_field['field_id_crop']];
@@ -616,6 +732,17 @@ class Budget{
             ////Rent fact
             $ex_date['field_fact_rent_pay'][$arr_field['id_field']] = $rent_pay[$arr_field['id_field']]*$arr_field['field_size'];
             $ex_date['crop_fact_rent_pay'][$arr_field['field_id_crop']] += $rent_pay[$arr_field['id_field']]*$arr_field['field_size'];
+
+
+            $ex_date['field_fact_budget_cost'][$arr_field['id_field']]=$ex_date['field_fact_budget_seeds'][$arr_field['id_field']]+$ex_date['field_fact_budget_fertilizers'][$arr_field['id_field']]+$ex_date['field_fact_budget_ppa'][$arr_field['id_field']]+
+                $ex_date['field_fact_budget_equipment'][$arr_field['id_field']]+$ex_date['field_fact_budget_pay'][$arr_field['id_field']]+$ex_date['field_fact_budget_services'][$arr_field['id_field']]+$ex_date['field_fact_rent_pay'][$arr_field['id_field']];
+
+
+
+
+
+
+            $ex_date['field_fact_budget_cost_total']+=$ex_date['field_fact_budget_cost'][$arr_field['id_field']];
         }
         $ex_date['plane_revenues_month_crop'][$arr_field['field_id_crop']][$rev_data[$arr_field['id_field']]] += $ex_date['plane_revenues'][$arr_field['id_field']];
         $ex_date['plane_name_crop'][$arr_field['field_id_crop']]=$crop_name[$arr_field['field_id_crop']];
@@ -635,8 +762,8 @@ class Budget{
 
             $ex_date['crop_budget_cost'][$arr_field['field_id_crop']]+=$ex_date['other_costs'][$arr_field['id_field']]+$ex_date['budget_repairs'][$arr_field['id_field']];
 
-            $ex_date['budget_operating_cost'][$arr_field['id_field']]=$ex_date['budget_cost'][$arr_field['id_field']]*$operating;
-            $ex_date['crop_budget_operating_cost'][$arr_field['field_id_crop']]+=$ex_date['budget_cost'][$arr_field['id_field']]*$operating;
+            $ex_date['budget_operating_cost'][$arr_field['id_field']]=$operating*$proc_cost[$arr_field['id_field']];
+            $ex_date['crop_budget_operating_cost'][$arr_field['field_id_crop']]+=$ex_date['budget_operating_cost'][$arr_field['id_field']];
 
             $ex_date['budget_total_cost'][$arr_field['id_field']]=$ex_date['budget_cost'][$arr_field['id_field']]+$ex_date['budget_operating_cost'][$arr_field['id_field']];
             $ex_date['crop_budget_total_cost'][$arr_field['field_id_crop']]+=$ex_date['budget_cost'][$arr_field['id_field']]+$ex_date['budget_operating_cost'][$arr_field['id_field']];
@@ -650,11 +777,23 @@ class Budget{
 
 
             ///FACT
-            $ex_date['field_fact_budget_cost'][$arr_field['id_field']]=$ex_date['field_fact_budget_seeds'][$arr_field['id_field']]+$ex_date['field_fact_budget_fertilizers'][$arr_field['id_field']]+$ex_date['field_fact_budget_ppa'][$arr_field['id_field']]+
-                $ex_date['field_fact_budget_equipment'][$arr_field['id_field']]+$ex_date['field_fact_budget_pay'][$arr_field['id_field']]+$ex_date['field_fact_budget_services'][$arr_field['id_field']]+$ex_date['field_fact_rent_pay'][$arr_field['id_field']]+$ex_date['field_fact_budget_repairs'][$arr_field['id_field']]+$ex_date['field_fact_budget_amortization'][$arr_field['id_field']]
-                +$ex_date['field_fact_other_costs'][$arr_field['id_field']];
+
+            $proc_cost_fact[$arr_field['id_field']]=$ex_date['field_fact_budget_cost'][$arr_field['id_field']]/$ex_date['field_fact_budget_cost_total'];
+
+            $ex_date['field_fact_budget_repairs'][$arr_field['id_field']]=$repairs_fact*$proc_cost_fact[$arr_field['id_field']];
+            $ex_date['crop_fact_budget_repairs'][$arr_field['field_id_crop']]+=$ex_date['field_fact_budget_repairs'][$arr_field['id_field']];
+
+            $ex_date['field_fact_other_costs'][$arr_field['id_field']]=$others_fact*$proc_cost_fact[$arr_field['id_field']];
+            $ex_date['crop_fact_other_costs'][$arr_field['field_id_crop']]+=$ex_date['field_fact_other_costs'][$arr_field['id_field']];
+
+            $ex_date['field_fact_budget_operating_cost'][$arr_field['id_field']]=$operating_fact*$proc_cost_fact[$arr_field['id_field']];
+            $ex_date['crop_fact_budget_operating_cost'][$arr_field['field_id_crop']]+= $ex_date['field_fact_budget_operating_cost'][$arr_field['id_field']];
+
+            $ex_date['field_fact_budget_cost'][$arr_field['id_field']]+=$ex_date['field_fact_budget_repairs'][$arr_field['id_field']]+$ex_date['field_fact_other_costs'][$arr_field['id_field']]+$ex_date['field_fact_budget_amortization'][$arr_field['id_field']];
             $ex_date['crop_fact_budget_cost'][$arr_field['field_id_crop']] +=$ex_date['field_fact_budget_cost'][$arr_field['id_field']];
 
+            $ex_date['field_fact_budget_total_cost'][$arr_field['id_field']]=$ex_date['field_fact_budget_cost'][$arr_field['id_field']]+$ex_date['field_fact_budget_operating_cost'][$arr_field['id_field']];
+            $ex_date['crop_fact_budget_total_cost'][$arr_field['field_id_crop']]+=$ex_date['field_fact_budget_total_cost'][$arr_field['id_field']];
 
             $ex_date['fact_gross_profit'][$arr_field['field_id_crop']] = 100;
         }
@@ -679,6 +818,16 @@ class Budget{
             $ex_date['budget_operating_cost_month'][$x]=$ex_date['budget_cost_month'][$x]*$operating;
             $ex_date['budget_total_cost_month'][$x]=$ex_date['budget_cost_month'][$x]+$ex_date['budget_operating_cost_month'][$x];
             $ex_date['gross_profit_month'][$x] = $ex_date['plane_revenues_month'][$x]-$ex_date['budget_cost_month'][$x];
+
+
+            ///FACT
+            $ex_date['month_fact_rent_pay'][$x]+= $ex_date['rent_pay_all']/$coll_month;
+            $ex_date['month_fact_budget_cost'][$x]=$ex_date['rent_pay'][$x]+$ex_date['month_fact_budget_seeds'][$x]+$ex_date['month_fact_budget_fertilizers'][$x]+
+                $ex_date['month_fact_budget_ppa'][$x]+$ex_date['month_fact_budget_equipment'][$x]+$ex_date['month_fact_budget_pay'][$x]+$ex_date['month_fact_budget_services'][$x]+$ex_date['month_fact_rent_pay'][$x]+
+                $ex_date['month_fact_budget_repairs'][$x]+$ex_date['month_fact_budget_amortization'][$x]+$ex_date['month_fact_other_costs'][$x];
+
+            $ex_date['month_fact_budget_total_cost'][$x]=$ex_date['month_fact_budget_cost'][$x]+$ex_date['month_fact_budget_operating_cost'][$x];
+            $ex_date['month_fact_gross_profit'][$x]=$ex_date['month_fact_plane_revenues'][$x]-$ex_date['month_fact_budget_cost'][$x];
         }
         ksort($ex_date['month_active']);
 
@@ -694,11 +843,13 @@ class Budget{
                 if($total_area_crop[$crops_arr]!=false)             $financial[$crops_arr]['marginal_profit']=($ex_date['crop_plane_revenues'][$crops_arr]-($ex_date['crop_budget_cost'][$crops_arr]-$ex_date['crop_budget_repairs'][$crops_arr]))/$total_area_crop[$crops_arr];
                 if($total_area_crop[$crops_arr]!=false)             $financial[$crops_arr]['total_cost_area']=$ex_date['crop_budget_total_cost'][$crops_arr]/$total_area_crop[$crops_arr];
                 if($total_mas_crop[$crops_arr]!=false)              $financial[$crops_arr]['total_cost_mass']=$ex_date['crop_budget_total_cost'][$crops_arr]/$total_mas_crop[$crops_arr];
-
+                if($total_area_crop[$crops_arr]!=false)             $financial[$crops_arr]['net_profit_area']=($ex_date['crop_plane_revenues'][$crops_arr]-$ex_date['crop_budget_total_cost'][$crops_arr])/$total_area_crop[$crops_arr];;
+                if($total_mas_crop[$crops_arr]!=false)              $financial[$crops_arr]['net_profit_mass']=($ex_date['crop_plane_revenues'][$crops_arr]-$ex_date['crop_budget_total_cost'][$crops_arr])/$total_mas_crop[$crops_arr];;
                 $ex_date['remains']['fin'][$crops_arr]=array(
+                    'id_crop'=>$crops_arr,
                     'crop_name'=>$ex_date['crop_budget_crop_name'][$crops_arr],
                     'area'=>$total_area_crop[$crops_arr],
-                    //'yaled'=>777,
+                    'yaled'=>$total_mas_crop[$crops_arr]/$total_area_crop[$crops_arr]/100,
                     'mass'=>$total_mas_crop[$crops_arr],
                     'price'=> $ex_plane_sale[$crops_arr]['plane_sale_avr_price'],
                     'revenue'=>$ex_date['crop_plane_revenues'][$crops_arr],
@@ -715,9 +866,12 @@ class Budget{
                     'total_cost'=>$ex_date['crop_budget_total_cost'][$crops_arr],
                     'total_cost_area'=>$financial[$crops_arr]['total_cost_area'],
                     'total_cost_mass'=>$financial[$crops_arr]['total_cost_mass'],
+                    'net_profit_area'=>$financial[$crops_arr]['net_profit_area'],
+                    'net_profit_mass'=>$financial[$crops_arr]['net_profit_mass']
                 );
             }
         }
+
         return $ex_date;
     }
 //    public static function getBudget($db,$id_user,$field,$table,$remains=false){

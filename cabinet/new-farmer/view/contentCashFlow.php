@@ -1,20 +1,3 @@
-<?php
-$month = array(
-    'January'=>1,
-    'February'=>2,
-    'March'=>3,
-    'April'=>4,
-    'May'=>5,
-    'June'=>6,
-    'July'=>7,
-    'August'=>8,
-    'September'=>9,
-    'October'=>10,
-    'November'=>11,
-    'December'=>12,
-);
-?>
-
     <style>
         .table{
             overflow: auto;
@@ -52,7 +35,7 @@ $month = array(
                 <?php foreach ($date['table_cash'] as $table){ ?>
                     <tr>
                         <th class="fix_table <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></th>
-                        <td class="padding_fix"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></td>
+                        <td class="padding_fix <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></td>
                         <? foreach ($date['budget']['month_active'] as $month=>$true){?>
                             <td class="ov_table <?if($left[$table['array']]==false) echo 'left_tableq'?>"><?if($table['array'] == 'budget_crop_name')echo '<b>'.$month.'</b>'; else echo number_format($date['budget'][$table['array'].'_month'][$month], 0, '.', ' ');?></td>
                             <? $left[$table['array']]=true;
@@ -72,9 +55,6 @@ $month = array(
                 <? }?>
                 </tbody>
             </table>
-        </div>
-        <div class="col-lg-12" style="text-align: center;">
-            <a href="/new-farmer/save_budget" class="btn btnn btn-success">Сохранить бюджет</a>
         </div>
     </div>
 </div>

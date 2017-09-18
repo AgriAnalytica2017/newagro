@@ -51,24 +51,36 @@ class TechnologyCardController{
     }
 
     public function actionEditTechnologyCard($id){
-        $id=SRC::validator($id);
-        $id_user = $_SESSION['id_user'];
-        $date['action']=DataBase::getActionLib($id_user);
-        $date['units']=DataBase::getUnits();
-        foreach ($date['action'] as $action){
-            $date['lib'][$action['action_id']]=$action;
+        if ($id=='0'){
+            SRC::redirect('/new-farmer/field_management');
+        }else {
+            $id = SRC::validator($id);
+            $id_user = $_SESSION['id_user'];
+            $date['action'] = DataBase::getActionLib($id_user);
+            $date['units'] = DataBase::getUnits();
+            foreach ($date['action'] as $action) {
+                $date['lib'][$action['action_id']] = $action;
+            }
+            $date['TC'] = TechnologyCard::getNewAction($id_user, $id);
+
+            $date['material_lib'] = DataBase::getMaterial($id_user);
+
+            $date['storage'] = TechnologyCard::getStorage($id_user);
+
+            $date['field'] = TechnologyCard::getFieldTech($id);
+            $date['equipment_type'] = DataBase::getTypeEquipment();
+            $date['equipment_unit'] = DataBase::getUnit();
+            $date['only_tech'] = TechnologyCard::getTechWithoutField($id_user, $id);
+            if($date['field'] != false){
+                $date['yield'] = $date['field']['field_yield'];
+                $date['size'] = $date['field']['field_size'];
+            }else{
+                $date['yield'] = $date['only_tech']['yield'];
+                $date['size'] = $date['only_tech']['area'];
+            }
+            $date['id'] = $id;
+            SRC::template('new-farmer', 'new', 'editTechnologyCard', $date);
         }
-        $date['TC']=TechnologyCard::getNewAction($id_user,$id);
-
-        $date['material_lib']=DataBase::getMaterial($id_user);
-
-        $date['storage'] = TechnologyCard::getStorage($id_user);
-
-        $date['field'] = TechnologyCard::getFieldTech($id);
-        $date['equipment_type']=DataBase::getTypeEquipment();
-        $date['equipment_unit']=DataBase::getUnit();
-        $date['id'] = $id;
-        SRC::template('new-farmer', 'new','editTechnologyCard',$date);
         return true;
     }
 
@@ -148,9 +160,8 @@ class TechnologyCardController{
     public function actionUpdateActionPlan(){
         $id_user = $_SESSION['id_user'];
         $action_id = SRC::validator($_POST['action_action_id']);
-        $action_type_name=SRC::validator($_POST['id_action_type']);
+        $id_action_type=SRC::validator($_POST['list_id_action_type']);
         $action_name =  SRC::validator($_POST['action_id']);
-        $id_action_type = DataBase::saveLib($id_user,$action_type_name,1);
         $id_action = DataBase::saveLib($id_user,$action_name,2);
         $start_date =  SRC::validator($_POST['strat_data']);
         $end_date =  SRC::validator($_POST['end_data']);
@@ -210,7 +221,7 @@ class TechnologyCardController{
                 $save_vehicles[]=array(
                     'id_veh'=>SRC::validator($ex_vehicles->{'id_vehicles'}),
                     'id_equ'=>$id_equipment,
-                    'fuel'=>SRC::validatorPrice($ex_vehicles->{'fuel'})
+                    'fuel'=>SRC::validatorPrice($ex_vehicles->{'fuel'}),
                 );
             }
             $save_vehicles = serialize( $save_vehicles );
@@ -232,7 +243,11 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $name_material=SRC::validator($_POST['name_material']);
         $id_type_material=SRC::validator($_POST['id_type_material']);
-        $key_material=SRC::validator($_POST['key_material_'+$id_type_material]);
+        if($id_type_material=='1'){
+            $key_material = SRC::validator($_POST['key_material_seed']);
+        }else{
+            $key_material=SRC::validator($_POST['key_material_'+$id_type_material]);
+        }
         $id_material=DataBase::saveLibMaterial($id_user,$name_material,$id_type_material,$key_material);
         $material_price=SRC::validator($_POST['price_material']);
         $material_unit=SRC::validator($_POST['unit_material']);
@@ -251,10 +266,11 @@ class TechnologyCardController{
 
     public function actionCreateNewTech(){
         $id_user = $_SESSION['id_user'];
-        $id_crop = $_POST['id_crop'];
-        $tech_name = $_POST['tech_name'];
-        $yield = $_POST['crop_yield'];
-        $id = TechnologyCard::createNewTech($id_user,$id_crop,$tech_name,$yield);
+        $id_crop = SRC::validatorPrice($_POST['id_crop']);
+        $tech_name = SRC::validator($_POST['tech_name']);
+        $yield = SRC::validatorPrice($_POST['crop_yield']);
+        $area = SRC::validatorPrice($_POST['area']);
+        $id = TechnologyCard::createNewTech($id_user,$id_crop,$tech_name,$yield,$area);
         echo $id;
         return true;
     }
@@ -282,11 +298,12 @@ class TechnologyCardController{
         echo $id_copy;
         return true;
     }
-    public function actionCopyTechField($id_tech,$id_field){
+    public function actionCopyTechField($id_tech,$id_field,$amount_work){
         $id_tech=SRC::validatorPrice($id_tech);
         $id_field=SRC::validatorPrice($id_field);
+        $amount_work = SRC::validatorPrice($amount_work);
         $id_user = $_SESSION['id_user'];
-        $id_copy=TechnologyCard::copyTech($id_tech,$id_user);
+        $id_copy=TechnologyCard::copyTech($id_tech,$id_user,$amount_work);
         TechnologyCard::changeTechCart($id_user,$id_field,$id_copy);
         SRC::redirect();
         return true;
@@ -298,5 +315,17 @@ class TechnologyCardController{
         TechnologyCard::removeOperation($id,$id_user);
         SRC::redirect();
         return true;
+    }
+
+    public function actionEditTechCardList(){
+        $id_user = $_SESSION['id_user'];
+        $edit_name_tech_card = SRC::validator($_POST['edit_name_tech_card']);
+        $edit_crop_type = SRC::validatorPrice($_POST['edit_crop_type']);
+        $edit_crop_id = SRC::validatorPrice($_POST['edit_crop_list_select']);
+        $edit_yield = SRC::validatorPrice($_POST['edit_yield']);
+        $edit_area = SRC::validatorPrice($_POST['edit_area']);
+        $edit_tech_id = SRC::validator($_POST['edit_id_culture']);
+
+        TechnologyCard::saveEditTechCardList($id_user,$edit_name_tech_card,$edit_crop_type,$edit_crop_id,$edit_yield,$edit_area,$edit_tech_id);
     }
 }

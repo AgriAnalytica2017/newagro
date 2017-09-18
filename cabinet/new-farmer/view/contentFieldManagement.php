@@ -48,44 +48,44 @@
             <table class="table" style="width: 100%;">
                 <thead>
                     <tr class="tabletop">
-                       <th><?=$language['new-farmer']['44']?></th>
+                       <th style="width: 20px;"><?=$language['new-farmer']['44']?></th>
                        <th><?=$language['new-farmer']['45']?></th>
                        <th><?=$language['new-farmer']['46']?></th>
                        <th><?=$language['new-farmer']['48']?></th>
-                       <th><?=$language['new-farmer']['49']?></th>
+                       <th>Урожайність, ц/га</th>
                        <th></th>
                        <th></th>
-                       <th colspan="3">Технологія вирощування</th>
-                       <th>Статус технології</th>
+                       <th colspan="3" style="text-align: center;">Технологія вирощування</th>
+                       <th>Статус ТК</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($date['field'] as $field){ ?>
                     <tr>
-                        <td><?=$field['field_number']?></td>
+                        <td style="width: 5%;"><?=$field['field_number']?></td>
                         <td><?=$field['field_name']?></td>
-                        <td style="width: 16%;"  class="edit_field area_plus">
+                        <td style="width: 7%;"  class="edit_field area_plus">
                             <?=$field['field_size']?>
                             </td>
                         <td  style="width: 11%;"><? if($_COOKIE['lang']=='ua'){echo $field['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field['name_crop_en'];}?></td>
-                       <th style="width: 16%;">
+                       <th style="width: 13%;">
                            <input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
                        </th>
                         <th>
                            <a class="btn btn-warning fa fa-pencil edit_fields" data-data='<?=json_encode($field); ?>'></a>
                         </th>
                         <th>
-                            <a href="/new-farmer/remove_field/<?=$field['id_field']?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="/new-farmer/remove_field/<?=$field['id_field']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </th>
                         <th>
-                            <button data-field_name="<?=$field['field_name']?>" data-name_culture="<?=$field['name_crop_ua']?>" data-field="<?=$field['id_field']?>"  data-crop="<?=$field['field_id_crop']?>"  class="btn btn-primary select_tc">Вибрати технологію</button>
+                            <button data-field_name="<?=$field['field_name']?>" data-name_culture="<?=$field['name_crop_ua']?>" data-field="<?=$field['id_field']?>" data-size="<?=$field['field_size']?>"  data-crop="<?=$field['field_id_crop']?>"  class="btn btn-primary select_tc">Вибрати технологію</button>
                         </th>
-                        <th id="tech_name_field<?=$field['id_field']?>">
+                        <th style="width: 13%;" id="tech_name_field<?=$field['id_field']?>">
                             <?=$date['tech_cart']['tech'][$field['field_id_crop']][$field['field_id_culture']]['tech_name']?>
                         </th>
-                        <th ><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<?=$field['field_id_culture']?>">Переглянути ТК</a></th>
+                        <th ><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<? if($field['field_id_culture']==null){echo '0';}else{echo $field['field_id_culture'];}?>">Переглянути ТК</a></th>
                         <th>
-                            <select class="form-control changes_status" data-id="<?=$field['id_field']?>">
+                         <select class="form-control changes_status" data-id="<?=$field['id_field']?>">
                                 <? foreach ($status_card as $key=>$value){?>
                                     <option value="<?=$key?>"<?if($field['field_technology_status']==$key){echo "selected";}?> ><?=$value?></option>
                                 <?}?>
@@ -156,10 +156,6 @@
                             <input class="form-control inphead" type="text" name="field_name" required>
                         </div>
                         <div class="col-lg-3">
-                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
-                            <input class="form-control inphead" type="text" name="field_area" required>
-                        </div>
-                        <div class="col-lg-3">
                             <label>Тип с/г угідь</label>
                             <select class="form-control inphead" name="field_usage">
                                 <?if($_COOKIE['lang']=='ua'){?>
@@ -172,13 +168,12 @@
                                     <?}}?>
                             </select>
                         </div>
-
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
+                            <input class="form-control inphead" type="text" name="field_area" required>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
-                            <input class="form-control inphead" type="text" name="field_rent" required>
-                        </div>
                         <div class="col-lg-4">
                             <label><?=$language['new-farmer']['55']?></label>
                             <select class="form-control inphead op" id="crop_type">
@@ -208,6 +203,10 @@
                                     <option class="crop_list crop_type_<?=$crop['crop_type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
                                 <?}?>
                             </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
+                            <input class="form-control inphead" type="text" name="field_rent" required>
                         </div>
                     </div>
 <!--                    <div class="tech_cart">-->
@@ -242,7 +241,8 @@
 <!--                    </div>-->
             </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btnn btn-success save_Field" ><?=$language['new-farmer']['27']?></button>
+                    <button type="submit" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primary save_Field" ><?=$language['new-farmer']['27']?></button>
                 </div>
             </form>
         </div>
@@ -271,16 +271,6 @@
                             <input class="form-control inphead" type="text" id="ed_field_name" name="ed_field_name" required>
                         </div>
                         <div class="col-lg-3">
-                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
-                            <input class="form-control inphead" type="text" id="ed_field_area" name="ed_field_area" required>
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
-                            <input class="form-control inphead" type="text" id="field_rent" name="field_rent" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
                         <label>Тип с/г угідь</label>
                             <select class="form-control inphead" name="field_usage" id="edit_field_usage">
                                 <?if($_COOKIE['lang']=='ua'){?>
@@ -293,6 +283,12 @@
                                 <?}}?>
                             </select>
                         </div>
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_area" name="ed_field_area" required>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-4">
                             <label><?=$language['new-farmer']['55']?></label>
                             <select class="form-control inphead op" id="edit_crop_type">
@@ -323,6 +319,10 @@
                                 <?}?>
                             </select>
                         </div>
+                        <div class="col-lg-4">
+                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
+                            <input class="form-control inphead" type="text" id="field_rent" name="field_rent" required>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -346,6 +346,7 @@
             $('#Select_tc').modal('show');
             var id_crop=$(this).attr('data-crop');
             var id_field=$(this).attr('data-field');
+            var field_size = $(this).attr('data-size');
             var field_name=$(this).attr('data-field_name');
             var name_culture = $(this).attr('data-name_culture');
             $('#name_culture').text(name_culture);
@@ -353,7 +354,7 @@
             $.each(tech_name[id_crop], function(key, value) {
                 $('#tech_list').append("<tr>" +
                     "<td>"+value['tech_name']+"</td>" +
-                    "<td><button type='button' class='btn btn-primary copy_tc' data-name='"+field_name+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +
+                    "<td><button type='button' class='btn btn-primary copy_tc' data-name='"+field_name+"' data-work='"+field_size+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +
                         /*"<td><button type='button' class='btn btn-primary selects_tc' data-name='"+value['tech_name']+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +*/
                     "</tr>");
             });
@@ -362,10 +363,11 @@
 
         $('#tech_list').on('click','.copy_tc', function () {
 
-            alert('copy?');
+            alert('Застосувати технологію на цьому полі?');
             var id_field = $('#field_id').val();
             var id_tech_cart = $(this).attr('data-id_tech');
-            $(location).attr('href','/new-farmer/copy_tech_field/'+id_tech_cart+'/'+id_field);
+            var field_work = $(this).attr('data-work');
+            $(location).attr('href','/new-farmer/copy_tech_field/'+id_tech_cart+'/'+id_field+'/'+field_work);
         });
 
         $('#tech_list').on('click','.selects_tc', save_tech_cart);

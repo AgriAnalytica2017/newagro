@@ -7,12 +7,39 @@
  */
 
 ?>
-
+<script>
+    $(document).ready(function (){
+        $(".open_page").click(open_page);
+        function open_page() {
+            var page = $(this).attr("data-num");
+            $(".open_page").removeClass("btn-success");
+            $(this).addClass("btn-success");
+            $(".crop_date").css({
+                "display":"none"
+            });
+            $(".pr"+page).css({
+                "display":"table-cell"
+            })
+        }
+        $("#btnExport").click(function(e) {
+            e.preventDefault();
+            //getting data from our table
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_div = document.getElementById('for_export');
+            var table_html = table_div.outerHTML.replace(/ /g, '%20');
+            var meta ="<meta http-equiv='content-type' content='text/plain; charset=UTF-8'>";
+            var a = document.createElement('a');
+            a.href = data_type + ', ' + meta +  table_html;
+            a.download = 'AgriAnalytica(BudgetFieldPlan).xls';
+            a.click();
+        });
+    });
+</script>
 <div class="box">
     <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
-            <strong class="ribbon-content">Budget</strong>
+            <strong class="ribbon-content">Бюджет по полях</strong>
         </h1>
     </div>
     </div>
@@ -31,7 +58,7 @@
 -->
     <a href="/new-farmer/budget_per_crop" class="btn btn-success" style="float: left; margin-left: 30px; margin-top: 10px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a><br><br>
     <div class="rown">
-        <div class="table-responsive">
+        <div class="table-responsive" id="for_export">
         <table class="table">
             <tbody>
                 <?php foreach ($date['table'] as $table){?>
@@ -50,5 +77,8 @@
         <a href="/new-farmer/save_budget" class="btn btnn btn-success">Сохранить бюджет</a>
         </div>-->
     </div>
-
+    <div style="text-align:center;">
+        <button  class="btn btn-primary" id="btnExport" type="submit" style="margin-bottom: 10px;">Експорт в Exel
+        </button>
+    </div>
 </div>

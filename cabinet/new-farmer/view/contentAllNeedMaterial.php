@@ -1,86 +1,215 @@
+<style>
+    #sub_type_material, #label_sub_type_material,.filter_ppa{
+        display: none;
+    }
+</style>
 <?
-  $subtype = array(
-    71=>'Гербіцид',
-    72=>'Фунгіцид',
-    73=>'Інсектицид',
-    74=>'Ретардант',
-    75=>'Протруйник насіння',
-    76=>'Десикант',
-    77=>'Інші ЗЗР',
-    );
-  $unit = array(
-    1=>'kg',
-    2=>'l',
-    3=>'t'
-    );
-
-  echo "<pre>";
-  var_dump($date);die;
+$date['type_material']['ua'][4]='Пальне';
+$date['fuel_type']['ua']=array(
+        1=>'Дизель',
+        2=>'Бензин'
+);
+$unit=array(
+    1=>'кг',
+    2=>'л',
+    3=>'м³',
+    4=>'п.о'
+);
 ?>
-    <div class="box-bodyn">
-      <div class="non-semantic-protector">
-                <h1 class="ribbon">
-                    <strong class="ribbon-content"><?=$language['new-farmer']['7']?></strong>
-                </h1>
-          </div>
-    </div>
+<section class="content">
     <div class="box">
-        <div class="table-responsive">
-      <div class="col-lg-2">
-      </div>
-      <div class="col-lg-9">
-         <table class="table table-bordered">
-        <thead>
-          <tr class="tabletop">
-            <th colspan="4" style="text-align: center;"><?=$language['new-farmer']['115']?></th>
-            <th rowspan="2" style="text-align: center;"><?=$language['new-farmer']['116']?></th>
-          </tr>
-          <tr>
-              <th><?=$language['new-farmer']['117']?></th>
-              <th><?=$language['new-farmer']['118']?></th>
-              <th><?=$language['new-farmer']['119']?></th>
-              <th><?=$language['new-farmer']['120']?></th>
-          </tr>
-        </thead>
-        <tbody>
-        <?
-        $open_remains=0;
-        foreach($date['budget']['needed_material'] as $key=>$needed_material){
-            foreach($date['material_types'] as $material_type)if($material_type['id_action'] == $needed_material['type']){
-                $open_remains++;?>
-                <tr>
-                    <td><? if($needed_material['type'] == 17 or $needed_material['type'] ==18){echo $material_type['name_ua'];}else{echo $material_type['name_ua'].": ".'<b>'.$subtype[$needed_material['subtype_material']].'</b>';}?></td>
-                    <td><a class="btn open_remains" data-id="<?=$open_remains?>"><?=$needed_material['name']?></a></td>
-                    <td><?=$needed_material['planing_norm']?></td>
-                    <td><?=$unit[$needed_material['planing_unit']]?></td>
-                    <? foreach($date['storage']['storage_material_fact'] as $str_mat)if($needed_material['name'] == $str_mat['storage_material']){
-                        $min[$key]=$str_mat['storage_quantity'];
-                    }?>
-                    <td><?if($needed_material['planing_norm']-$min[$key] <= 0){echo '0';}else{echo $needed_material['planing_norm']-$min[$key];} ?></td>
-                </tr>
-                <?php foreach ($date['budget']['needed_material_field'][$key] as $value){?>
-                <tr class="remains_<?=$open_remains?>" style="display: none">
-                    <td style="padding-left: 30px">field: <?=$value['field_name']?></td>
-                    <td>crop: <?=$value['crop']?></td>
-                    <td><?=$value['planing_norm']?></td>
-                    <td><?=$unit[$needed_material['planing_unit']]?></td>
-                    <td></td>
-                </tr>
-                <?php } ?>
-        <?}?>
-        <?}?>
-        </tbody>
-      </table>
-      </div>
-      <div class="col-lg-1">
-      </div>
+        <div class="box-bodyn">
+            <div class="non-semantic-protector">
+                <h1 class="ribbon">
+                    <strong class="ribbon-content">Потреба в матеріальних ресурсах</strong>
+                </h1>
+            </div>
         </div>
+    </div>
+    <div class="rown">
+        <div class="col-sm-9">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Тип матеріалу</th>
+                    <th>Назва</th>
+                    <th>Од.виміру</th>
+                    <th>Кількість</th>
+                    <th>Ціна, грн</th>
+                    <th>Сума, грн.</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?foreach ($date['material'] as $material)if ($date['budget']['need_material'][$material['id_material_price']]>0){?>
+                    <tr class="materil_list type_material_<?=$material['id_type_material']; if($material['id_type_material']==3){?> subtype_<?=$material['key_material']; }?>">
+                        <td><?=$date['type_material']['ua'][$material['id_type_material']]?>
+                            <? if($material['id_type_material']==1) echo '/'.$date['crop_list'][$material['key_material']]['name_crop_ua']?>
+                            <? if($material['id_type_material']==3) echo '/'.$date['ppa_material']['ua'][$material['key_material']]?>
+                            <? if($material['id_type_material']==4) echo '/'.$date['fuel_type']['ua'][$material['key_material']]?>
+                        </td>
+                        <td><?=$material['name_material']?></td>
+                        <td><?=$unit[$material['material_unit']]?></td>
+                        <td><?=$date['budget']['need_material'][$material['id_material_price']]?></td>
+                        <td><?=$material['price_material']?> </td>
+                        <td><?=number_format($date['budget']['need_material'][$material['id_material_price']]*$material['price_material'])?></td>
+                    </tr>
+                <?  $summ['mass'][$material['id_type_material']]+=$date['budget']['need_material'][$material['id_material_price']];
+                    $summ['price'][$material['id_type_material']]+=$date['budget']['need_material'][$material['id_material_price']]*$material['price_material'];
+                }?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-3">
+            <h4 class="text-center">Фільтр</h4>
+            <select class="form-control filter_type">
+                <option value="0">Всі матеріали</option>
+                <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
+                    <option value="<?=$key?>"><?=$value?></option>
+                <?} ?>
+            </select>
+            <br>
+            <select class="form-control filter_ppa">
+                <option value="0">Всі види</option>
+                <?php foreach ($date['ppa_material']['ua'] as $key=>$value){?>
+                    <option value="<?=$key?>"><?=$value?></option>
+                <?} ?>
+            </select>
+            <hr>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="3" class="text-center">Потреба, грн</th>
+                    </tr>
+<!--                    <tr>-->
+<!--                        <td>#</td>-->
+<!--                        <td>вартість</td>-->
+<!--                    </tr>-->
+                </thead>
+                <tbody>
+                <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
+                    <tr>
+                        <td><?=$value?></td>
+
+                        <td><?=number_format($summ['price'][$key])?></td>
+                    </tr>
+                <?}?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+<div id="material_modal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title">Картка матеріалу</span>
+            </div>
+            <div class="modal-body">
+                <form id="form_material" method="post" action="/new-farmer/save_material_bd">
+                    <input type="hidden" id="id_material_price" name="id_material_price">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Тип матеріалу</label>
+                            <select id="type_materia" class="form-control" name="type_material">
+                                <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
+                                    <option value="<?=$key?>"><?=$value?></option>
+                                <?} ?>
+                            </select>
+                            <br>
+                            <label><?=$language['new-farmer']['105']?></label>
+                            <input list="lib_materials" class="form-control" name="name_material" id="name_material" >
+                            <datalist id="lib_materials">
+                                <?foreach ($date['material_lib'] as $material_lib){?>
+                                    <option><?=$material_lib['name_material']?></option>
+                                <?}?>
+                            </datalist>
+                        </div>
+                        <div class="col-lg-6">
+                            <label><?=$language['new-farmer']['107']?></label>
+                            <input type="text" name="price_material" id="price_material" class="form-control">
+                            <br>
+                            <label id="label_sub_type_material">Підтип матеріалу</label>
+                            <select id="sub_type_material" class="form-control" name="sub_type_material">
+                                <?php foreach ($date['ppa_material']['ua'] as $key=>$value){?>
+                                    <option value="<?=$key?>"><?=$value?></option>
+                                <?} ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-success btn-block" id="add_material_bd">save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $('.open_remains').click(function () {
-           var id=$(this).attr('data-id');
-            $('.remains_'+id).toggle();
+    $(document).ready(function () {
+        $('#type_materia').change(function () {
+            var value=$(this).val();
+            if(value==3){
+                $('#sub_type_material, #label_sub_type_material').show();
+            }else {
+                $('#sub_type_material, #label_sub_type_material').hide();
+            }
         });
+        //filter
+        $('.filter_type').change(filter_type);
+        function filter_type() {
+            var time=200;
+            var type=$(this).val();
+            if(type==0){
+                $('.materil_list').show(time);
+                $('.filter_ppa').hide(time);
+            }else {
+                if(type==3){
+                    $('.filter_ppa').show(time);
+                }else {
+                    $('.filter_ppa').hide(time);
+                }
+                $('.materil_list').hide(time);
+                $('.type_material_'+type).show(time);
+            }
+        }
+        $('.filter_ppa').change(filter_ppa);
+        function filter_ppa() {
+            var time=200;
+            var subtype=$(this).val();
+            $('.materil_list').hide(time);
+            if(subtype==0){
+                $('.type_material_3').show(time);
+            }else {
+                $('.subtype_' + subtype).show(time);
+            }
+        }
+        $('#add_new_material').click(function () {
+            $('#form_material').attr('action','/new-farmer/save_material_bd');
+            $('#id_material_price').val('');
+            $('#name_material').val('');
+            $('#price_material').val('');
+            $('#type_materia').val('');
+            $('#sub_type_material').val('');
+            $('#material_modal').modal('show');
+        });
+        $('.edit_material').click(function () {
+            $('#form_material').attr('action','/new-farmer/save_edit_material_bd');
+            var material_json=$(this).attr('data-material');
+            var material=JSON.parse(material_json);
+            $('#id_material_price').val(material['id_material_price']);
+            $('#name_material').val(material['name_material']);
+            $('#price_material').val(material['price_material']);
+            $('#type_materia').val(material['id_type_material']);
+            $('#sub_type_material').val(material['key_material']);
+            if(material['id_type_material']==3){
+                $('#sub_type_material, #label_sub_type_material').show();
+            }else {
+                $('#sub_type_material, #label_sub_type_material').hide();
+            }
+            $('#material_modal').modal('show');
+        })
     });
 </script>

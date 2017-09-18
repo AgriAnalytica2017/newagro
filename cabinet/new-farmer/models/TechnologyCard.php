@@ -80,7 +80,11 @@ class TechnologyCard{
         $db = Db::getConnection();
         $result = $db->query("SELECT * FROM new_lib_crop ch, new_field nf WHERE ch.id_crop = nf.field_id_crop and  nf.id_user = '$id_user' and nf.field_status = '0'");
         $result ->setFetchMode(PDO::FETCH_ASSOC);
-        $date = $result->fetchAll();
+        $ex_date = $result->fetchAll();
+
+        foreach ($ex_date as $value){
+            $date[$value['id_field']] = $value;
+        }
         return $date;
     }
     //ok
@@ -134,9 +138,9 @@ class TechnologyCard{
         return $date;
     }
     //ok
-    public static function createNewTech($id_user,$id_crop,$tech_name,$yield){
+    public static function createNewTech($id_user,$id_crop,$tech_name,$yield,$area){
         $db = Db::getConnection();
-        $db->query("INSERT INTO new_crop_culture(id_user, id_crop, tech_name,yield) VALUES('$id_user','$id_crop','$tech_name','$yield')");
+        $db->query("INSERT INTO new_crop_culture(id_user, id_crop, tech_name,yield,area) VALUES('$id_user','$id_crop','$tech_name','$yield','$area')");
         $id = $db->lastInsertId();
 
         /*$db->query("UPDATE new_field SET field_id_culture = '$id' WHERE id_field = '$id_field' and id_user = '$id_user'");*/
@@ -171,7 +175,7 @@ class TechnologyCard{
         return true;
     }
     //ok
-    public static function copyTech($id_tech,$id_user){
+    public static function copyTech($id_tech,$id_user,$amount_work){
         $db=Db::getConnection();
         $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT id_user,id_crop,concat(tech_name),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user");
         $id_copy_tech = $db->lastInsertId();
@@ -179,7 +183,7 @@ class TechnologyCard{
         $db->query("UPDATE new_crop_culture SET copy_status = '1' WHERE id_culture = '$id_copy_tech'");
 
         $db->query("INSERT INTO new_action (id_user,action_id_culture,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee) 
-        SELECT id_user,$id_copy_tech,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee FROM new_action WHERE action_id_culture=$id_tech AND id_user=$id_user");
+        SELECT id_user,$id_copy_tech,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,$amount_work,action_materials,action_machines,action_services,action_employee FROM new_action WHERE action_id_culture=$id_tech AND id_user=$id_user");
 
         return $id_copy_tech;
     }
@@ -261,6 +265,22 @@ class TechnologyCard{
     public static function removeOperation($id,$id_user){
         $db = Db::getConnection();
         $db->query("DELETE FROM new_action WHERE action_id = '$id' and id_user = '$id_user'");
+        return true;
+    }
+
+    public static function getTechWithoutField($id_user,$id){
+        $db=Db::getConnection();
+        $result = $db->query("SELECT * FROM new_crop_culture ncc, new_lib_crop nlc WHERE ncc.id_crop = nlc.id_crop and ncc.id_user = '$id_user' and ncc.tech_status ='0' and ncc.id_culture = '$id'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetch();
+        return $date;
+    }
+
+    public static function saveEditTechCardList($id_user,$edit_name_tech_card,$edit_crop_type,$edit_crop_id,$edit_yield,$edit_area,$edit_tech_id){
+        $db = Db::getConnection();
+        $db->query("UPDATE new_crop_culture SET tech_name = '$edit_name_tech_card',id_crop = '$edit_crop_id',yield = '$edit_yield', area='$edit_area' WHERE id_user = '$id_user' and id_culture = '$edit_tech_id'");
+
+
         return true;
     }
 }

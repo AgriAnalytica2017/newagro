@@ -8,7 +8,7 @@
 class Material{
     public static function getMaterial($id_user){
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM new_lib_material as lib,new_material_price as price WHERE lib.id_material=price.id_lib_material AND price.id_user=$id_user AND price.statys_material=0");
+        $result = $db->query("SELECT * FROM new_lib_material as lib,new_material_price as price WHERE lib.id_material=price.id_lib_material AND price.id_user=$id_user AND price.statys_material=0 ORDER BY lib.id_type_material");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date = $result->fetchAll();
         return $date;

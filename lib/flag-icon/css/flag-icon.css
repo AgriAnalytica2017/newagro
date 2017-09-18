@@ -1393,7 +1393,7 @@
   background-image: url(../flags/1x1/tz.svg);
 }
 .flag-icon-ua {
-  background-image: url(../flags/4x3/ua.svg);
+  background-image: url(/lib/flag-icon/css/../flags/4x3/ua.svg);
 }
 .flag-icon-ua.flag-icon-squared {
   background-image: url(../flags/1x1/ua.svg);

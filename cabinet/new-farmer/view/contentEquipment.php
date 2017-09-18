@@ -9,7 +9,7 @@ $unit = array(
     1=>'м³',
     2=>'t',
     3=>'l'
-    );
+);
 /*$equipment_kind = array(
     1=>'Sprayer',
     2=>'Field cultivator',
@@ -57,39 +57,47 @@ $unit = array(
 
 </div>
 <div class="box-bodyn col-lg-12" style="max-height: 55px">
-    <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
-    <a class="btn btn-primaryn top sh" href="#newEquipment" data-toggle="modal"><?=$language['new-farmer']['16']?></a>
+    <div class="row">
+        <div class="col-lg-4">
+            <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
+        </div>
+        <div class="col-lg-4">
+            <a class="btn btn-primaryn top sh" href="#newEquipment" data-toggle="modal"><?=$language['new-farmer']['16']?></a>
+        </div>
+    </div>
+
+
 
 </div>
 <div class="rown">
     <div class="table-responsive">
-<table class="table">
-    <thead>
-        <tr class="tabletop">
-            <th><?=$language['new-farmer']['18']?></th>
-            <th><?=$language['new-farmer']['17']?></th>
-            <th><?=$language['new-farmer']['24']?></th>
-            <th><?=$language['new-farmer']['23']?></th>
-            <!--<th><?/*=$language['new-farmer']['19']*/?></th>-->
-            <th><?=$language['new-farmer']['20']?></th>
-            <th></th><th></th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($date['equipment'] as $equipment){?>
-        <tr>
-            <td><?=$date['equipment_type']['ua'][$equipment['equipment_type']]?></td>
-            <td><?=$equipment['equipment_name']?></td>
-            <td><?=$equipment['equipment_width']?></td>
-            <td><?=$equipment['equipment_capacity'].' '.$unit[$equipment['equipment_unit']]?></td>
-           <!-- <td><?/*=$equipment_kind[$equipment['equipment_kind']]*/?></td>-->
-            <td><?=$equipment['equipment_aquisition']?></td>
-            <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($equipment); ?>'></a></td>
-            <td><a href="/new-farmer/remove_equipment/<?=$equipment['id_equipment']?>" class="btn btn-danger fa fa-remove"></a></td>
-        </tr>
-    <? }?>
-    </tbody>
-</table>
+        <table class="table">
+            <thead>
+            <tr class="tabletop">
+                <th><?=$language['new-farmer']['18']?></th>
+                <th><?=$language['new-farmer']['17']?></th>
+                <th><?=$language['new-farmer']['24']?></th>
+                <th><?=$language['new-farmer']['23']?></th>
+                <!--<th><?/*=$language['new-farmer']['19']*/?></th>-->
+                <th><?=$language['new-farmer']['20']?></th>
+                <th></th><th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($date['equipment'] as $equipment){?>
+                <tr>
+                    <td><?=$date['equipment_type']['ua'][$equipment['equipment_type']]?></td>
+                    <td><?=$equipment['equipment_name']?></td>
+                    <td><? if($equipment['equipment_width']!=0){echo $equipment['equipment_width'];}else{echo "";}?></td>
+                    <td><? if($equipment['equipment_capacity']!=0){echo $equipment['equipment_capacity'].' '.$unit[$equipment['equipment_unit']];}else{ echo "";}?></td>
+                    <!-- <td><?/*=$equipment_kind[$equipment['equipment_kind']]*/?></td>-->
+                    <td><?=$equipment['equipment_aquisition']?></td>
+                    <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($equipment); ?>'></a></td>
+                    <td><a href="/new-farmer/remove_equipment/<?=$equipment['id_equipment']?>" class="btn btn-danger fa fa-remove"></a></td>
+                </tr>
+            <? }?>
+            </tbody>
+        </table>
     </div>
 </div>
 <div id="newEquipment" class="modal fade">
@@ -97,56 +105,56 @@ $unit = array(
         <div class="modal-content wt">
             <form method="post" action="/new-farmer/create_equipment">
                 <div class="box-bodyn">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <span class="box-title"><?=$language['new-farmer']['192']?></span>
                 </div>
 
-            <div class="modal-body">
-                <label><?=$language['new-farmer']['18']?></label>
-                <select name="equipment_type" class="form-control inphead">
-                    <?php  foreach ($date['equipment_type']['ua'] as $id_type=>$name_type){?>
-                        <option value="<?=$id_type?>"><?=$name_type?></option>
-                    <? }?>
-                </select>
+                <div class="modal-body">
+                    <label><?=$language['new-farmer']['18']?></label>
+                    <select name="equipment_type" class="form-control inphead">
+                        <?php  foreach ($date['equipment_type']['ua'] as $id_type=>$name_type){?>
+                            <option value="<?=$id_type?>"><?=$name_type?></option>
+                        <? }?>
+                    </select>
                     <label><?=$language['new-farmer']['17']?></label>
                     <input type="text" name="equipment_name" class="form-control inphead" required>
-                <label>Інвентарний номер</label>
-                <input type="text" name="equipment_int_number" class="form-control inphead">
+                    <label>Інвентарний номер</label>
+                    <input type="text" name="equipment_int_number" class="form-control inphead">
                     <!--<label><?/*=$language['new-farmer']['19']*/?></label>-->
-<!--                    <select name="equipment_kind" class="form-control inphead">
+                    <!--                    <select name="equipment_kind" class="form-control inphead">
                         <?/*foreach($equipment_kind as $key => $value){*/?>
                             <option value="<?/*=$key*/?>"><?/*=$value*/?></option>
                         <?/*}*/?>
                     </select>-->
                     <label><?=$language['new-farmer']['24']?></label>
                     <input type="text" name="equipment_width" class="form-control inphead" >
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label><?=$language['new-farmer']['23']?></label>
-                        <input type="text" name="equipment_capacity" class="form-control inphead" >
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label><?=$language['new-farmer']['23']?></label>
+                            <input type="text" name="equipment_capacity" class="form-control inphead" >
+                        </div>
+                        <div class="col-lg-6">
+                            <label><?=$language['new-farmer']['25']?></label>
+                            <select class="form-control inphead" name="equipment_unit">
+                                <option value="1">м³</option>
+                                <option value="2">t</option>
+                                <option value="3">l</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <label><?=$language['new-farmer']['25']?></label>
-                        <select class="form-control inphead" name="equipment_unit">
-                            <option value="1">м³</option>
-                            <option value="2">t</option>
-                            <option value="3">l</option>
-                        </select>
-                    </div>
-                </div>
 
-                <label><?=$language['new-farmer']['20']?></label>
-                <input type="text" name="equipment_aquisition" class="form-control inphead" >
-                <label><?=$language['new-farmer']['33']?></label>
-                <input type="text" name="equipment_Price" class="form-control inphead" >
-                <label><?=$language['new-farmer']['22']?></label>
-                <input type="text" name="equipment_usage" class="form-control inphead" >
-                   
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
-            </div>
+                    <label><?=$language['new-farmer']['20']?></label>
+                    <input type="text" name="equipment_aquisition" class="form-control inphead" >
+                    <label><?=$language['new-farmer']['33']?></label>
+                    <input type="text" name="equipment_Price" class="form-control inphead" >
+                    <label><?=$language['new-farmer']['22']?></label>
+                    <input type="text" name="equipment_usage" class="form-control inphead" >
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
+                </div>
             </form>
         </div>
     </div>

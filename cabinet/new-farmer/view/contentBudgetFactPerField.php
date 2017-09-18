@@ -12,7 +12,7 @@
     <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
-            <strong class="ribbon-content">Plan/Fact budget per field</strong>
+            <strong class="ribbon-content">План/Факт бюджет по полях</strong>
         </h1>
     </div>
     </div>
@@ -42,10 +42,21 @@
                             <? if($table['array']!='budget_crop_name' and $date['id_budget']!=false){?><td><? echo number_format($date['return_budget'][$table['array']][$key]);?></td><?}?>
                             <? if($table['array']!='budget_crop_name'){?>
                                 <td><a><? echo number_format($date['budget']['field_fact_'.$table['array']][$key]);?></a></td>
-                                <td><a><? echo number_format($value-$date['budget']['field_fact_'.$table['array']][$key]);?></a></td>
+                                <td class="<? if($value-$date['budget']['field_fact_'.$table['array']][$key]<0) echo 'minus'; else echo 'plus'?>"><a><? echo number_format($value-$date['budget']['field_fact_'.$table['array']][$key]);?></a></td>
                             <?}?>
                         <?}?>
                     </tr>
+                    <? if($table['array'] =='budget_crop_name'){?>
+
+                        <tr>
+                            <td></td>
+                        <?php foreach ($date['budget'][$table['array']] as $key => $value){?>
+                            <td class="line_left">План</td>
+                            <td>Факт</td>
+                            <td>(+/-)</td>
+                        <?}?>
+                        </tr>
+                    <?}?>
                 <?}?>
             </tbody>
         </table>

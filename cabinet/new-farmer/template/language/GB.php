@@ -198,5 +198,11 @@ $language['new-farmer'] = array(
     '187'=>'Planned quantity of sale, kg',
     '188'=>'Add planning sales',
     '189'=>'Add to sale',
+    '190'=>'Картка с/г техніка',
+    '191'=>'С/г машини та обладнання',
+    '192'=>'Картка с/г машини та обладнання',
+    '193'=>'Картка працівника',
+    '194'=>'Technology card',
+    '195'=>'Overhead',
     ''=>'',
 );

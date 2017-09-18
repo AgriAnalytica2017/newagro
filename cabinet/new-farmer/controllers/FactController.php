@@ -63,6 +63,7 @@ class FactController{
     public function actionSaveFact(){
         $id_user=$_SESSION['id_user'];
         $id_action=SRC::validator($_POST['save_fact_id_action']);
+        Fact::removeSaleStorage($id_user,$id_action);
         ////services////
         $services= json_decode($_POST['save_services_fact']);
         $save_services = array();
@@ -77,10 +78,10 @@ class FactController{
         }
         $save_services = serialize( $save_services );
         ////material////
+        $db=Db::getConnection();
         $materiale= json_decode($_POST['save_material_fact']);
         $save_material = array();
         if($materiale!=false) {
-
             foreach ($materiale as $ex_material) {
                 $save_material[]=array(
                     'id'=>SRC::validator($ex_material->{'id'}),
@@ -89,6 +90,7 @@ class FactController{
                 );
             }
             $save_material = serialize( $save_material );
+            Fact::createSaleStorage($db,$id_user, SRC::validator($ex_material->{'id'}), SRC::validatorPrice($ex_material->{'date'}), SRC::validator($ex_material->{'norm'}), $id_action);
         }
         ////employee////
         $employee= json_decode($_POST['save_employee_fact']);
@@ -118,6 +120,8 @@ class FactController{
             $save_fuel = serialize( $save_fuel );
         }
         Fact::saveFact($id_user,$id_action,$save_material,$save_employee,$save_fuel,$save_services);
+
+
         SRC::redirect();
         return true;
     }

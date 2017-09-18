@@ -113,7 +113,7 @@ class DataBase{
     public static function getTypePPA(){
         return array(
             'ua'=>array(
-                '1'=>'Протруйник',
+                '1'=>'Протруювач',
                 '2'=>'Гербіциди',
                 '3'=>'Інсектициди',
                 '4'=>'Фунгіциди',
@@ -121,7 +121,7 @@ class DataBase{
                 '6'=>'Десиканти',
             ),
             'gb'=>array(
-                '1'=>'Протруйник',
+                '1'=>'Протруювач',
                 '2'=>'Гербіциди',
                 '3'=>'Інсектициди',
                 '4'=>'Фунгіциди',
@@ -172,7 +172,7 @@ class DataBase{
 
     public static function getCropHead($id_user){
         $db=Db::getConnection();
-        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0 ORDER BY name_crop_ua ASC");
+        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0 ORDER BY name_crop_ua COLLATE  utf8_unicode_ci ASC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $data = $result->fetchAll();
         return $data;
@@ -204,7 +204,7 @@ class DataBase{
 
     public static function getCropName($id_user){
         $db=Db::getConnection();
-        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0");
+        $result = $db->query("SELECT * FROM new_lib_crop WHERE id_user = '$id_user' or id_user = 0 ORDER BY name_crop_ua COLLATE utf8_unicode_ci ASC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $res = $result->fetchAll();
 
@@ -226,8 +226,9 @@ class DataBase{
         return $date;
     }
     public static function saveLibMaterial($id_user,$name_material,$type_material,$key_material=false){
+        if($key_material==true) $where="AND key_material='".$key_material."'";
         $db=Db::getConnection();
-        $res = $db->query("SELECT * FROM new_lib_material WHERE name_material = '$name_material' AND id_type_material=$type_material  AND (id_user=$id_user or id_user=0)");
+        $res = $db->query("SELECT * FROM new_lib_material WHERE name_material = '$name_material' AND id_type_material='$type_material'  AND (id_user='$id_user' or id_user=0) $where");
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $res_1 = $res->fetchAll();
 
@@ -273,6 +274,94 @@ class DataBase{
         foreach ($employee as $value){
             $date[$value['id_employee']] = $value;
         }
+        return $date;
+    }
+    public static function getRegion(){
+        $date=array(
+            'ua'=>array(
+                '1'=>'Вінницька область',
+                '2'=>'Волинська область',
+                '3'=>'Дніпропетровська область',
+                '4'=>'Донецька область',
+                '5'=>'Житомирська область',
+                '6'=>'Закарпатська область',
+                '7'=>'Запорізька область',
+                '8'=>'Івано-Франківська область',
+                '9'=>'Київська область',
+                '10'=>'Кіровоградська область',
+                '11'=>'Луганська область',
+                '12'=>'Львівська область',
+                '13'=>'Миколаївська область',
+                '14'=>'Одеська область',
+                '15'=>'Полтавська область',
+                '16'=>'Рівненська область',
+                '17'=>'Сумська область',
+                '18'=>'Тернопільська область',
+                '19'=>'Харківська область',
+                '20'=>'Херсонська область',
+                '21'=>'Хмельницька область',
+                '22'=>'Черкаська область',
+                '23'=>'Чернівецька область',
+                '24'=>'Чернігівська область',
+            ),
+            'gb'=>array(
+                '1'=>'Вінницька область',
+                '2'=>'Волинська область',
+                '3'=>'Дніпропетровська область',
+                '4'=>'Донецька область',
+                '5'=>'Житомирська область',
+                '6'=>'Закарпатська область',
+                '7'=>'Запорізька область',
+                '8'=>'Івано-Франківська область',
+                '9'=>'Київська область',
+                '10'=>'Кіровоградська область',
+                '11'=>'Луганська область',
+                '12'=>'Львівська область',
+                '13'=>'Миколаївська область',
+                '14'=>'Одеська область',
+                '15'=>'Полтавська область',
+                '16'=>'Рівненська область',
+                '17'=>'Сумська область',
+                '18'=>'Тернопільська область',
+                '19'=>'Харківська область',
+                '20'=>'Херсонська область',
+                '21'=>'Хмельницька область',
+                '22'=>'Черкаська область',
+                '23'=>'Чернівецька область',
+                '24'=>'Чернігівська область',
+            ),
+        );
+        return $date[SRC::validator($_COOKIE['lang'])];
+    }
+    public static function getGraphsName(){
+        $date=array(
+            'ua'=>array(
+                1=>'Урожайність, ц/га',
+                2=>'Середня ціна реалізації, грн/кг',
+                3=>'Повна собівартість, грн/га',
+                4=>'Повна собівартість, грн/кг',
+                5=>'Чистий прибуток (збиток), грн/га',
+                6=>'Чистий прибуток (збиток), грн/кг',
+                7=>'Рівень рентабельності виробництва, %',
+            ),
+            'gb'=>array(
+                1=>'Урожайність, ц/га',
+                2=>'Середня ціна реалізації, грн/кг',
+                3=>'Повна собівартість, грн/га',
+                4=>'Повна собівартість, грн/кг',
+                5=>'Чистий прибуток (збиток), грн/га',
+                6=>'Чистий прибуток (збиток), грн/кг',
+                7=>'Рівень рентабельності виробництва, %',
+            ),
+        );
+        return $date[SRC::validator($_COOKIE['lang'])];
+    }
+
+    public static function getOnlyFuel($id_user){
+        $db = Db::getConnection();
+        $result = $db->query("SELECT * FROM new_lib_material WHERE id_type_material = '4' and (id_user='$id_user' or id_user = '0')");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
         return $date;
     }
 

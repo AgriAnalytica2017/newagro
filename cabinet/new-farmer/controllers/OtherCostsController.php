@@ -27,7 +27,7 @@ class OtherCostsController{
         $cost_fact_type=SRC::validator($_POST['cost_fact_type']);
         $cost_fact=SRC::validatorPrice($_POST['cost_fact']);
         $cost_fact_note=SRC::validator($_POST['cost_fact_note']);
-        $cost_fact_date=SRC::validator($_POST['cost_fact_data']);
+        $cost_fact_date=SRC::validator($_POST['cost_fact_date']);
         OtherCosts::createOtherFact($id_user,$cost_fact_type,$cost_fact,$cost_fact_note,$cost_fact_date);
         SRC::redirect();
         return true;

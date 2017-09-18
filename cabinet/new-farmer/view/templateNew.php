@@ -1,39 +1,52 @@
 <?php
 $language=SRC::getLanguage('new-farmer');
-?>
-<?php
 $top_menu=array(
     $language['new-farmer']['1']=>array(
-        $language['new-farmer']['2']=>'/new-farmer/equipment',
-        $language['new-farmer']['3']=>'/new-farmer/vehicles',
         $language['new-farmer']['4']=>'/new-farmer/employee',
-        'bd materials'=>'/new-farmer/materials',
-        //$language['new-farmer']['53']=>'/new-farmer/sales_price',
+        'СГ техніка'=>'/new-farmer/vehicles',
+        'СГ обладнання'=>'/new-farmer/equipment',
+        'Ф. 50'=>array(
+            2014=>'/new-farmer/forma50/2014',
+            2015=>'/new-farmer/forma50/2015',
+            2016=>'/new-farmer/forma50/2016',
+        ),
+        'Ф. 1'=>'#',
+        'Ф. 2'=>'#',
     ),
-    'Технології'=>'/new-farmer/list_technology_card',
-    $language['new-farmer']['5']=>'/new-farmer/field_management',
-    $language['new-farmer']['136']=>'/new-farmer/fact_tech_card',
-    $language['new-farmer']['7']=>'/new-farmer/all_needed_material',
+    'План'=>array(
+        'Технології'=>'/new-farmer/list_technology_card',
+        'Посівні площі'=>'/new-farmer/field_management',
+        'Тех карти'=>'/new-farmer/field_management',
+        'Потреба в матеріалах'=>'/new-farmer/all_needed_material',
+        'Реалізація'=>'/new-farmer/sales',
+        'БД Ціни'=>'/new-farmer/materials',
+    ),
+    'План/факт'=>array(
+        'виробничі витрати'=>'/new-farmer/fact_tech_card',
+        $language['new-farmer']['195']=>'/new-farmer/other_cost',
+    ),
     $language['new-farmer']['8']=>'/new-farmer/storage',
-    $language['new-farmer']['9']=>'/new-farmer/sales',
-    'Overhead'=>'/new-farmer/other_cost',
     $language['new-farmer']['10']=>array(
-        $language['new-farmer']['11']=> array(
-            $language['new-farmer']['14']=>'/new-farmer/budget',
-            $language['new-farmer']['12']=>'/new-farmer/budget_per_crop',
-            $language['new-farmer']['13']=>'/new-farmer/budget_per_month',
-            'Cash Flow'=>'/new-farmer/budget_cash_flow',
-            ),
-        'fact'=>array(
-            'fact field'=>'/new-farmer/fact_budget_field',
-            'fact crop'=>'/new-farmer/fact_budget_crop',
-
+        $language['new-farmer']['14']=>array(
+                'План'=>'/new-farmer/budget',
+                'План/факт'=>'/new-farmer/fact_budget_field',
         ),
-        //'actual income/costs'=>'/new-farmer/fact_budget',
-
-        $language['new-farmer']['15']=>'/new-farmer/graphs_plan',
-        'financial'=>'/new-farmer/financial',
+        $language['new-farmer']['12']=>array(
+                'План'=>'/new-farmer/budget_per_crop',
+                'План/факт'=>'/new-farmer/fact_budget_crop',
         ),
+        $language['new-farmer']['13']=>array(
+                'План'=>'/new-farmer/budget_per_month',
+                'План/факт'=>'/new-farmer/fact_budget_month',
+        ),
+        'Cash Flow'=>array(
+                'План'=>'/new-farmer/budget_cash_flow',
+                'План/факт'=>'/new-farmer/fact_cash_flow',
+        ),
+        'графіки, діаграми'=>'/new-farmer/graphs_plan',
+        'економічні показники'=>'/new-farmer/financial',
+        'бенчмаркінг'=>'/new-farmer/graphs',
+    ),
 );
 ?>
 <html>
@@ -48,7 +61,6 @@ $top_menu=array(
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php SRC::getSrc(); ?>/cabinet/new-farmer/template/css/newstyle.css">
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/jquery.easydropdown.js"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/lib/jquery-3.2.0.js"></script>
@@ -132,7 +144,6 @@ $top_menu=array(
                             </ul>
                         </li>
                         <!-- /.messages-menu -->
-
                         <!-- User Account Menu -->
                         <li class="smalln user user-menun dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
                             <!-- Menu Toggle Button -->
@@ -146,8 +157,9 @@ $top_menu=array(
                                 <?php $cabinet_item = SRC::viewCab();
                                 foreach ($_SESSION['cabinet'] as $item)if($item!=false){?>
                                     <li>
-                                        <a href="<? echo SRC::getSRC();?>/<?=$cabinet_item[$item]['id']?>/">
-                                            <i class="menu-icon fa <?php echo $cabinet_item[$item]['item'];?>"></i><?if($_COOKIE['lang']=='gb'){echo $cabinet_item[$item]['name_en'];} else{echo $cabinet_item[$item]['name_ua'];}?></a>
+                                        <a href="<?=SRC::getSRC();?>/<?=$cabinet_item[$item]['id']?>/">
+                                            <i class="menu-icon fa <?php echo $cabinet_item[$item]['item'];?>"></i><?if($_COOKIE['lang']=='gb'){echo $cabinet_item[$item]['name_en'];} else{echo $cabinet_item[$item]['name_ua'];}?>
+                                        </a>
                                     </li>
                                 <?}?>
                         
@@ -232,4 +244,14 @@ $top_menu=array(
 <script src="<?php SRC::getSrc(); ?>/lib/dist/js/app.min.js"></script>
 
 
-</body></html>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('.right-siden').animate({-->
+<!--            'background-blend-mode': 'hard-light',-->
+<!--        }, 1000);-->
+<!--    })-->
+<!--</script>-->
+
+
+</body>
+</html>

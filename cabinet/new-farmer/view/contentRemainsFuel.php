@@ -5,9 +5,8 @@
  * Date: 24.08.2017
  * Time: 12:16
  */
-//echo "<pre>";
-//var_dump($date['budget']['remains']);
-//echo "</pre>";
+/*echo "<pre>";
+var_dump($date['budget']['remains']);die;*/
     ?>
 <style>
     td{

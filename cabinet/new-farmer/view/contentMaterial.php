@@ -3,12 +3,15 @@
     display: none;
 }
 </style>
+<?
+$date['type_material']['ua'][4]='Топливо';
+?>
 <section class="content">
     <div class="box">
         <div class="box-bodyn">
             <div class="non-semantic-protector">
                 <h1 class="ribbon">
-                    <strong class="ribbon-content">Planning material</strong>
+                    <strong class="ribbon-content">Планові матеріали</strong>
                 </h1>
             </div>
         </div>
@@ -18,16 +21,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>type</th>
-                        <th>name</th>
-                        <th>price</th>
+                        <th>Тип матеріалу</th>
+                        <th>Назва матеріалу</th>
+                        <th>Ціна, грн за одинию</th>
                         <th ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?foreach ($date['material'] as $material){?>
                         <tr class="materil_list type_material_<?=$material['id_type_material']; if($material['id_type_material']==3){?> subtype_<?=$material['key_material']; }?>">
-                            <td><?=$date['type_material']['ua'][$material['id_type_material']]?><? if($material['id_type_material']==3) echo '/'.$date['ppa_material']['ua'][$material['key_material']]?></td>
+                            <td><?=$date['type_material']['ua'][$material['id_type_material']]?>
+                                <? if($material['id_type_material']==1) echo '/'.$date['crop_list'][$material['key_material']]['name_crop_ua']?>
+                                <? if($material['id_type_material']==3) echo '/'.$date['ppa_material']['ua'][$material['key_material']]?>
+                                <? if($material['id_type_material']==4) echo '/'.$date['fuel_material']['ua'][$material['key_material']]?>
+                            </td>
                             <td><?=$material['name_material']?></td>
                             <td><?=$material['price_material']?></td>
                             <td style="width: 150px">
@@ -40,10 +47,10 @@
             </table>
         </div>
         <div class="col-sm-3">
-            <br>
-            <button id="add_new_material" class="btn btn-block">add new material</button>
-            <hr>
-            <h4 class="text-center">filter</h4>
+<!--            <br>-->
+<!--            <button id="add_new_material" class="btn btn-block">Додати новий матеріал</button>-->
+<!--            <hr>-->
+            <h4 class="text-center">Фільтр</h4>
             <select class="form-control filter_type">
                 <option value="0">Всі матеріали</option>
                 <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
@@ -65,13 +72,20 @@
         <div class="modal-content wt">
             <div class="box-bodyn">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <span class="box-title">Material</span>
+                <span class="box-title">Картка матеріалу</span>
             </div>
             <div class="modal-body">
                 <form id="form_material" method="post" action="/new-farmer/save_material_bd">
                     <input type="hidden" id="id_material_price" name="id_material_price">
                 <div class="row">
                     <div class="col-lg-6">
+                        <label>Тип матеріалу</label>
+                        <select id="type_materia" class="form-control" name="type_material">
+                            <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
+                                <option value="<?=$key?>"><?=$value?></option>
+                            <?} ?>
+                        </select>
+                        <br>
                         <label><?=$language['new-farmer']['105']?></label>
                         <input list="lib_materials" class="form-control" name="name_material" id="name_material" >
                         <datalist id="lib_materials">
@@ -79,19 +93,12 @@
                                 <option><?=$material_lib['name_material']?></option>
                             <?}?>
                         </datalist>
-                        <br>
-                        <label>Type material</label>
-                        <select id="type_materia" class="form-control" name="type_material">
-                            <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
-                                <option value="<?=$key?>"><?=$value?></option>
-                            <?} ?>
-                        </select>
                     </div>
                     <div class="col-lg-6">
                         <label><?=$language['new-farmer']['107']?></label>
                         <input type="text" name="price_material" id="price_material" class="form-control">
                         <br>
-                        <label id="label_sub_type_material">Subtype material</label>
+                        <label id="label_sub_type_material">Підтип матеріалу</label>
                         <select id="sub_type_material" class="form-control" name="sub_type_material">
                             <?php foreach ($date['ppa_material']['ua'] as $key=>$value){?>
                                 <option value="<?=$key?>"><?=$value?></option>
@@ -100,7 +107,7 @@
                     </div>
                 </div>
                 <br><br>
-                <button type="submit" class="btn btn-success btn-block" id="add_material_bd">save</button>
+                <button type="submit" class="btn btn-success btn-block" id="add_material_bd">Зберегти</button>
                 </form>
             </div>
         </div>

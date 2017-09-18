@@ -21,24 +21,17 @@ class SalesController {
 	public function actionCreateSales(){
 
 		$id_user = $_SESSION['id_user'];
-		$sale_material_id = SRC::validatorPrice($_POST['sale_id_material']);
+		$sale_material_id = SRC::validatorPrice($_POST['sale_material_name']);
 		$sale_date = SRC::validator($_POST['sale_date']);
 		$sale_quantity = SRC::validatorPrice($_POST['sale_quantity']);
 		$sale_sum_total = SRC::validatorPrice($_POST['sale_sum_total']);
 		$sale_comments = SRC::validator($_POST['sale_comments']);
-		$sale_stock = SRC::validatorPrice($_POST['sale_stock']);
 		$sale_type = SRC::validatorPrice($_POST['type_out']);
-		if($sale_quantity>$sale_stock){
-			SRC::redirect('/new-farmer/storage');
-		}else{
 			//Sales::updateStock($id_user, $sale_material_id, $sale_quantity,$sale_sum_total);
-
-            Sales::createSale($id_user, $sale_material_id, $sale_date, $sale_quantity, $sale_sum_total, $sale_type, $sale_comments);
-            include_once ROOT.'/cabinet/new-farmer/models/Storage.php';
-            Storage::updatePriceAndMass();
-            SRC::redirect('/new-farmer/storage');
-		}
-		
+        Sales::createSale($id_user, $sale_material_id, $sale_date, $sale_quantity, $sale_sum_total, $sale_type, $sale_comments);
+        include_once ROOT.'/cabinet/new-farmer/models/Storage.php';
+        Storage::updatePriceAndMass();
+        SRC::redirect('/new-farmer/storage');
 		return true;
 	}
 
@@ -65,7 +58,6 @@ class SalesController {
 		Sales::createActualSale($id_user,$actual_sale_product, $actual_sale_date, $actual_sale_quantity, $actual_sale_sum, $actual_sale_per_unit,$actual_sale_comments);
 		SRC::redirect('/new-farmer/storage');
 	}
-
 
 	public function actionAddSalePrice(){
 	    $id_user = $_SESSION['id_user'];

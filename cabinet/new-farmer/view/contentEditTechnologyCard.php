@@ -1,10 +1,12 @@
 <?
-    $units = array(
-        1=>'kg',
-        2=>'l',
-        3=>'м³',
-        4=>'п.о'
-    );
+$units = array(
+    1=>'кг',
+    2=>'л',
+    3=>'м³',
+    4=>'п.о'
+);
+/* echo "<pre>";
+ var_dump($date['lib']);die;*/
 ?>
 <head>
     <style>
@@ -18,45 +20,47 @@
 <div class="box-bodyn">
     <div class="non-semantic-protector">
         <h1 class="ribbon">
-            <strong class="ribbon-content"><?=$language['new-farmer']['194']?></strong>
+            <strong class="ribbon-content">Технологія на вирощування <?=mb_strtolower($date['only_tech']['name_for_tech_head'],'UTF-8');?></strong>
         </h1>
     </div>
 </div>
 <div class="box-bodyn">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $date['field']['name_crop_en'];}?></td>
-                            <td><?=$date['field']['tech_name']?></td>
-                            <td><?=$date['field']['field_number']?></td>
-                            <td><?=$date['field']['field_name']?></td>
-                            <td><?=$date['field']['field_size'].'га'?></td>
-                            <td><?=$date['field']['field_yield'].'ц/га'?></td>
-                        </tr>
+                    <tr style="font-size: 20px;">
+                        <?if($date['field']!=false){?>
+                            <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?></td>
+                            <td><? echo '<b> Технологія: </b>'.$date['only_tech']['tech_name'].'<br>'?>
+                                <? echo '<b>Площа: </b>'.$date['field']['field_size'].'га <br>'?>
+                                <? echo '<b>Урожайність: </b>'.$date['field']['field_yield'].' ц/га <br>'?>
+                            </td>
+                        <?}else{?>
+                            <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?></td>
+                            <td><? echo '<b>Технологія:</b> '.$date['only_tech']['tech_name'].'<br>'?>
+                                <? echo '<b>Площа: </b>'.$date['only_tech']['area'].' га '.'<br>'?>
+                                <? echo '<b> Урожайність: </b>'.$date['only_tech']['yield'].' ц/га <br>'?></td>
+                        <?}?>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-lg-8">
-            <a href="/new-farmer/list_technology_card" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
+        <div class="col-lg-9">
+            <a href="/new-farmer/field_management" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
         </div>
     </div>
 </div>
 <div class="rown">
-<div class="box">
-    <div class="box-body wt">
+    <div class="box">
+        <div class="box-body wt">
             <form id="form" method="post" action="/new-farmer/save_edit_technology_card">
                 <input type="hidden" name="crop_id" value="<?php echo $date['id']?>" required>
                 <input type="hidden" id="ex_employe" name="ex_employe">
@@ -67,24 +71,24 @@
                 <div class="table-responsive">
                     <table class="table well ">
                         <thead id="thead_edit" class="">
-                            <tr style="display: none" id="update_title">
-                                <th colspan="8"><h4 class="text-center" ><?=$language['new-farmer']['79']?></h4></th>
-                            </tr>
-                            <tr>
-                                <th><label for="id_action_type"><?=$language['new-farmer']['65']?></label></th>
-                                <th><label for="action_id"><?=$language['new-farmer']['66']?></label></th>
-                                <th><label for="unit"><?=$language['new-farmer']['72']?></label></th>
-                                <th><label for="work"><?=$language['new-farmer']['154']?></label></th>
-                                <th><label for="strat_data"><?=$language['new-farmer']['67']?></label></th>
-                                <th><label for="end_data"><?=$language['new-farmer']['68']?></label></th>
-                                <th><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
-                                <th><a class="btn btnn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
-                            </tr>
+                        <tr style="display: none" id="update_title">
+                            <th colspan="8"><h4 class="text-center" ><?=$language['new-farmer']['79']?></h4></th>
+                        </tr>
+                        <tr>
+                            <th><label for="id_action_type"><?=$language['new-farmer']['65']?></label></th>
+                            <th><label for="action_id"><?=$language['new-farmer']['66']?></label></th>
+                            <th><label for="unit"><?=$language['new-farmer']['72']?></label></th>
+                            <th><label for="work"><?=$language['new-farmer']['154']?></label></th>
+                            <th><label for="strat_data"><?=$language['new-farmer']['67']?></label></th>
+                            <th><label for="end_data"><?=$language['new-farmer']['68']?></label></th>
+                            <th><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
+                            <th><a class="btn btnn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
+                        </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>
-                                <select class="form-control inphead list_id_action_type" name="list_id_action_type">
+                                <select class="form-control inphead list_id_action_type" name="list_id_action_type" id="id_action_type" selected>
                                     <?php foreach ($date['action'] as $action_type)if($action_type['type']=='1'){?>
                                         <option value="<?=$action_type['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
                                     <?php }?>
@@ -106,7 +110,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" id="work" name="work" class="form-control inphead" value="<?=$date['field']['field_size']?>" required>
+                                <input type="text" id="work" name="work" class="form-control inphead" value="<?if($date['field'] == false){echo $date['only_tech']['area'];}else{echo $date['field']['field_size'];}?>" required>
                             </td>
                             <td>
                                 <input type="date" class="form-control inphead" id="strat_data" name="strat_data" required>
@@ -133,315 +137,331 @@
                     </table>
                 </div>
             </form>
+        </div>
     </div>
-</div>
     <div class="box-body wt">
         <div class="table-responsive">
-<table class="table">
-    <thead>
-        <tr class="tabletop">
-            <th><?=$language['new-farmer']['65']?></th>
-            <th><?=$language['new-farmer']['66']?></th>
-            <th><?=$language['new-farmer']['154']?></th>
-            <th><?=$language['new-farmer']['67']?></th>
-            <th><?=$language['new-farmer']['68']?></th>
-            <th><?=$language['new-farmer']['81']?></th>
-            <th>Оплата праці грн/га</th>
-            <th>Матеріал<br>Норма на га</th>
-            <th><?=$language['new-farmer']['152']?></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($date['TC']['new_action'] as $action){?>
-        <tr>
-            <td><? if($_COOKIE['lang']=='ua'){echo $date['lib'][$action['action_action_type_id']]['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $date['lib'][$action['action_action_type_id']]['name_en'];}?></td>
-            <td><?=$date['lib'][$action['action_action_id']]['name_ua']?></td>
-            <td><?=number_format($action['action_work'])?></td>
-            <td><?=$action['action_date_start']?></td>
-            <td><?=$action['action_date_end']?></td>
-            <td>
-                <?
-                if(unserialize($action['action_machines'])!=false) foreach(unserialize($action['action_machines']) as $action_machines){
-                    echo $date['TC']['vehicles'][$action_machines['id_veh']]['vehicles_name'];
-                    $equipments[$action['action_id']]=explode(',',$action_machines['id_equ']);
-                    $list_equipment="";
-                    foreach ($equipments[$action['action_id']] as $key){
-                        $list_equipment .= $date['TC']['equipment'][$key]['equipment_name'].', ';
-                    }
-                    echo $list_equipment='('.substr($list_equipment, 0, -2).'), fuel:'.$action_machines['fuel'].'<br>';
-                }?>
-            </td>
-            <td>
-                <?
-                $new_employee=false;
-                $sum_pay =0;
-                if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee) {
-                    $new_employee[$action_employee['pay']]++;
-                }
-                    if($new_employee!=false)foreach ($new_employee as $new_employee_pay=>$new_employee_arr){
-                        $sum_pay +=$new_employee_arr*$new_employee_pay;
-                }?>
-                <?=$sum_pay?>
-            </td>
-            <td>
-                <?
-                if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){?>
-                    <?=$date['TC']['new_material'][$action_materials['id']]['name_material']?> (<?echo $action_materials['norm'].' '.$units[$date['TC']['new_material'][$action_materials['id']]['material_unit']]?>)
-                    <br>
-                <?}?>
-            </td>
-            <td>
-                <? if($action['action_services']!=false) foreach(unserialize($action['action_services']) as $action_service){
-                    echo $action_service['name'].' ('.$action_service['amount'].') '.$action_service['price'].'<br>';
-                }?>
-            </td>
-            <td><button data-services='<?=json_encode(unserialize($action['action_services']))?>' data-action='<?=json_encode($action)?>' data-employee='<?=json_encode(unserialize($action['action_employee']))?>' data-material='<?=json_encode(unserialize($action['action_materials']))?>' data-equipment='<?=json_encode(unserialize($action['action_machines']))?>' class="btn btn-warning btn-sm edit_action"><span class="glyphicon glyphicon-pencil"></span></button>
-                <a class="btn btn-danger" href="/new-farmer/remove_operation/<?=$action['action_id']?>"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="btn btn-primary add_prod_<?=$action['action_action_type_id']?>"  style="display: none;" href="#add_prod" data-toggle="modal"><?=$language['new-farmer']['82']?></a>
-            </td>
-        </tr>
-    <?} ?>
-    </tbody>
-</table>
+            <table class="table">
+                <thead>
+                <tr class="tabletop">
+                    <th><?=$language['new-farmer']['65']?></th>
+                    <th><?=$language['new-farmer']['66']?></th>
+                    <th><?=$language['new-farmer']['154']?></th>
+                    <th><?=$language['new-farmer']['67']?></th>
+                    <th><?=$language['new-farmer']['68']?></th>
+                    <th><?=$language['new-farmer']['81']?></th>
+                    <th>Оплата праці грн/га</th>
+                    <th>Матеріал<br>Норма на 1 га</th>
+                    <th><?=$language['new-farmer']['152']?></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($date['TC']['new_action'] as $action){?>
+                    <tr>
+                        <td style="width: 10%"><? if($_COOKIE['lang']=='ua')
+                            {echo $date['lib'][$action['action_action_type_id']]['name_ua'];}
+                            elseif($_COOKIE['lang']=='gb'){echo $date['lib'][$action['action_action_type_id']]['name_en'];}?></td>
+                        <td><?=$date['lib'][$action['action_action_id']]['name_ua']?></td>
+                        <td><?=number_format($action['action_work']).' '.$date['units']['ua'][$action['action_unit']]?></td>
+                        <td><?=$action['action_date_start']?></td>
+                        <td><?=$action['action_date_end']?></td>
+                        <td>
+                            <?
+                            if(unserialize($action['action_machines'])!=false)
+                                foreach(unserialize($action['action_machines']) as $action_machines){
+                                    echo $date['TC']['vehicles'][$action_machines['id_veh']]['vehicles_name'];
+                                    $equipments[$action['action_id']]=explode(',',$action_machines['id_equ']);
+                                    $list_equipment="";
+                                    foreach ($equipments[$action['action_id']] as $key){
+                                        $list_equipment .= $date['TC']['equipment'][$key]['equipment_name'].', ';
+                                    }
+                                    echo $list_equipment=' + '.substr($list_equipment, 0, -2).', Пальне:'.$action_machines['fuel'].'л/га <br>';
+                                }?>
+                        </td>
+                        <td>
+                            <?
+                            $new_employee=false;
+                            $sum_pay =0;
+                            if(unserialize($action['action_employee'])!=false)
+                                foreach(unserialize($action['action_employee']) as $action_employee) {
+                                    $new_employee[$action_employee['pay']]++;
+                                }
+                            if($new_employee!=false)foreach ($new_employee as $new_employee_pay=>$new_employee_arr){
+                                $sum_pay +=$new_employee_arr*$new_employee_pay;
+                            }?>
+                            <?=$sum_pay?>
+                        </td>
+                        <td>
+                            <?
+                            if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){?>
+                                <?=$date['TC']['new_material'][$action_materials['id']]['name_material']?>
+                                (<?echo $action_materials['norm'].' '.$units[$date['TC']['new_material'][$action_materials['id']]['material_unit']]?>)
+                                <br>
+                            <?}?>
+                        </td>
+                        <td>
+                            <? if($action['action_services']!=false) foreach(unserialize($action['action_services']) as $action_service){
+                                echo $action_service['name'].' ('.$action_service['amount'].') '.$action_service['price'].'<br>';
+                            }?>
+                        </td>
+                        <td><a data-services='<?=json_encode(unserialize($action['action_services']))?>'
+                               data-action='<?=json_encode($action)?>'
+                               data-employee='<?=json_encode(unserialize($action['action_employee']))?>'
+                               data-material='<?=json_encode(unserialize($action['action_materials']))?>'
+                               data-equipment='<?=json_encode(unserialize($action['action_machines']))?>'
+                               class="btn btn-warning edit_action"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" href="/new-farmer/remove_operation/<?=$action['action_id']?>">
+                                <span class="glyphicon glyphicon-remove"></span></a>
+                            <a class="btn btn-primary add_prod_<?=$action['action_action_type_id']?>"
+                               style="display: none;" href="#add_prod" data-toggle="modal"><?=$language['new-farmer']['82']?></a>
+                        </td>
+                    </tr>
+                <?} ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 <!------------employee-------------------->
 <div id="Choose_employe" class="modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content wt">
-        <div class="box-bodyn">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title"><?=$language['new-farmer']['73']?></span>
-        </div>
-      <div class="modal-body">
-         	<div class="row">
-				<div class="col-lg-6">
-					<table class="table">
-                        <thead>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title">Картка вибору працівникdів</span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['37']?></th>
                                 <th><?=$language['new-farmer']['38']?></th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <? foreach ($date['TC']['new_employee'] as $employe){?>
-                            <tr>
-                                <td><?=$employe['employee_name'] ?></td>
-                                <td><?=$employe['employee_surname'] ?></td>
-                                <td><a data-data=<?=json_encode($employe); ?> class="btn btn-success btn-sm add_employee"><i class="fa fa-fw fa-arrow-right"></i>
-                                </a></td>
-                            </tr>
-                        <?}?>
-                        </tbody>
-                    </table>
-				</div>
-                <div class="col-lg-6">
-                    <table class="table">
-                        <thead>
+                            </thead>
+                            <tbody>
+                            <? foreach ($date['TC']['new_employee'] as $employe){?>
+                                <tr>
+                                    <td><?=$employe['employee_name'] ?></td>
+                                    <td><?=$employe['employee_surname'] ?></td>
+                                    <td><a data-data=<?=json_encode($employe); ?> class="btn btn-success btn-sm add_employee"><i class="fa fa-fw fa-arrow-right"></i>
+                                        </a></td>
+                                </tr>
+                            <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['37']?></th>
                                 <th><?=$language['new-farmer']['38']?></th>
                                 <th><?=$language['new-farmer']['83']?></th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody id="action_employe">
+                            </thead>
+                            <tbody id="action_employe">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-			</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-        <button id="save_employe" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
-      </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                <button id="save_employe" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!---------------Choose_vehicles----------------->
 <div id="Choose_vehicles" class="modal fade">
-  <div class="modal-dialog  modal-lg">
-    <div class="modal-content wt">
-        <div class="box-bodyn">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <span class="box-title"><?=$language['new-farmer']['78']?></span>
-      </div>
-      <div class="modal-body">
-          <div class="row">
-              <div class="col-lg-12">
-                  <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
-                   <button id="save_vehicles" type="submit" style="float: right" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
-              </div>
-          </div><br>
-         	<div class="row">
-         		<div class="col-lg-6">
-                    <table class="table tavle1">
-                        <thead>
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title">Картка вибору с/г техніки</span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
+                        <button id="save_vehicles" type="submit" style="float: right" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table tavle1">
+                            <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['17']?></th>
                                 <th><?=$language['new-farmer']['34']?></th>
                                 <th>Вантажопідйомність, т</th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <?php foreach ($date['TC']['vehicles'] as $vehicles){?>
                                 <tr class="123">
                                     <td><?=$vehicles['vehicles_name']?></td>
-                                    <td><?=$vehicles['vehicles_power'].' HP'?></td>
-                                    <td><? echo $vehicles['vehicles_load_capacity'].' т'?></td>
+                                    <td><?=$vehicles['vehicles_power']?></td>
+                                    <td style="width:20%;"><? if($vehicles['vehicles_load_capacity']!=0){echo $vehicles['vehicles_load_capacity'];}else{echo "";}?></td>
                                     <td><a data-data='<?=json_encode($vehicles); ?>' class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
                                         </a></td>
                                 </tr>
                             <? }?>
-                        </tbody>
-                    </table>
-				</div>
-				<div class="col-lg-6">
-                    <table class="table">
-                        <thead>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['3']?></th>
                                 <th><?=$language['new-farmer']['2']?></th>
                                 <th><?=$language['new-farmer']['155']?></th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody id="action_vehicles">
+                            </thead>
+                            <tbody id="action_vehicles">
 
-                        </tbody>
-                    </table>
-				</div>
-			</div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-      </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!---------------Choose_Equipment----------------->
 <div id="Choose_equipment" class="modal fade">
     <div class="modal-dialog modal-lg">
-            <div class="modal-content wt">
-                <div class="box-bodyn">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <span class="box-title"><?=$language['new-farmer']['84']?></span>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input class="searchs" id="search_equipment" type="text" placeholder="Поиск" style="float: left">
-                            <button type="button" class="btn btn-primary" style="float: right" data-dismiss="modal"><?=$language['new-farmer']['27']?></button>
-                        </div>
-                    </div><br>
-                    <input type="hidden" id="vehicles_id_equipment">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <table class="table tavle2">
-                                <thead>
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title"><?=$language['new-farmer']['84']?></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input class="searchs" id="search_equipment" type="text" placeholder="Поиск" style="float: left">
+                        <button type="button" class="btn btn-primary" style="float: right" data-dismiss="modal"><?=$language['new-farmer']['27']?></button>
+                    </div>
+                </div><br>
+                <input type="hidden" id="vehicles_id_equipment">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table tavle2">
+                            <thead>
+                            <tr>
+                                <th><?=$language['new-farmer']['86']?></th>
+                                <th><?=$language['new-farmer']['85']?></th>
+                                <th><?=$language['new-farmer']['24']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($date['TC']['equipment'] as $equipment){?>
                                 <tr>
-                                    <th><?=$language['new-farmer']['86']?></th>
-                                    <th><?=$language['new-farmer']['85']?></th>
-                                    <th><?=$language['new-farmer']['24']?></th>
-                                    <th></th>
+                                    <td><?=$date['equipment_type']['ua'][$equipment['equipment_type']]?></td>
+                                    <td><?=$equipment['equipment_name']?></td>
+                                    <td><? if($equipment['equipment_type']=='9'){echo $equipment['equipment_capacity'].' '.$date['equipment_unit'][$equipment['equipment_unit']];} else{echo $equipment['equipment_width'].'m';}?></td>
+                                    <td><a data-data='<?=json_encode($equipment); ?>' class="btn btn-success btn-sm add_equipment"><i class="fa fa-fw fa-arrow-right"></i>
+                                        </a></td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($date['TC']['equipment'] as $equipment){?>
-                                    <tr>
-                                        <td><?=$date['equipment_type']['ua'][$equipment['equipment_type']]?></td>
-                                        <td><?=$equipment['equipment_name']?></td>
-                                        <td><? if($equipment['equipment_type']=='9'){echo $equipment['equipment_capacity'].' '.$date['equipment_unit'][$equipment['equipment_unit']];} else{echo $equipment['equipment_width'].'m';}?></td>
-                                        <td><a data-data='<?=json_encode($equipment); ?>' class="btn btn-success btn-sm add_equipment"><i class="fa fa-fw fa-arrow-right"></i>
-                                            </a></td>
-                                    </tr>
-                                <?}?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><?=$language['new-farmer']['17']?></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list_equipment">
+                            <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><?=$language['new-farmer']['17']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="list_equipment">
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            </div>
+        </div>
     </div>
 </div>
 <!-----------------Choose_material--------------->
 <div id="Choose_material" class="modal fade">
     <div class="modal-dialog modal-lg">
-            <div class="modal-content wt">
-                <div class="box-bodyn">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <span class="box-title"><?=$language['new-farmer']['87']?></span>
-                </div>
-                <div class="modal-body">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title"><?=$language['new-farmer']['87']?></span>
+            </div>
+            <div class="modal-body">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#bd_materials" data-toggle="tab"><?=$language['new-farmer']['88']?></a></li>
-                                <li><a href="#new_materials" data-toggle="tab"><?=$language['new-farmer']['89']?></a></li>
-                            </ul>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#bd_materials" data-toggle="tab"><?=$language['new-farmer']['88']?></a></li>
+                            <li><a href="#new_materials" data-toggle="tab"><?=$language['new-farmer']['89']?></a></li>
+                        </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="bd_materials">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="bd_materials">
 
-                                    <select class="form-control"  id="type_material_list_bd">
+                                <select class="form-control"  id="type_material_list_bd">
+                                    <option value="1"><?=$language['new-farmer']['90']?></option>
+                                    <option value="2"><?=$language['new-farmer']['91']?></option>
+                                    <option value="3"><?=$language['new-farmer']['92']?></option>
+                                </select>
+                                <br>
+                                <table class="table">
+                                    <thead>
+                                    <tr class="tabletop">
+                                        <th><?=$language['new-farmer']['93']?></th>
+                                        <!-- <th><?=$language['new-farmer']['95']?></th> -->
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($date['TC']['new_material'] as $new_material){?>
+                                        <tr class="list_materials type_matrial_<?=$new_material['id_type_material']?>" >
+                                            <td><?=$new_material['name_material']?></td>
+                                            <!-- <td><?=$new_material['price_material']?></td> -->
+                                            <td><a data-data='<?=json_encode($new_material); ?>' class="btn btn-success btn-sm add_material"><i class="fa fa-fw fa-arrow-right"></i>
+                                                </a></td>
+                                        </tr>
+                                    <?php }?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="new_materials">
+                                <form method="post" id="material_form" action="javascript:void(null);">
+                                    <label><?=$language['new-farmer']['96']?></label>
+                                    <select class="form-control" name="id_type_material" id="id_type_material">
                                         <option value="1"><?=$language['new-farmer']['90']?></option>
                                         <option value="2"><?=$language['new-farmer']['91']?></option>
                                         <option value="3"><?=$language['new-farmer']['92']?></option>
                                     </select>
                                     <br>
-                                    <table class="table">
-                                        <thead>
-                                        <tr class="tabletop">
-                                            <th><?=$language['new-farmer']['93']?></th>
-                                            <th><?=$language['new-farmer']['95']?></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach ($date['TC']['new_material'] as $new_material){?>
-                                            <tr class="list_materials type_matrial_<?=$new_material['id_type_material']?>" >
-                                                <td><?=$new_material['name_material']?></td>
-                                                <td><?=$new_material['price_material']?></td>
-                                                <td><a data-data='<?=json_encode($new_material); ?>' class="btn btn-success btn-sm add_material"><i class="fa fa-fw fa-arrow-right"></i>
-                                                    </a></td>
-                                            </tr>
-                                        <?php }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tab-pane" id="new_materials">
-                                    <form method="post" id="material_form" action="javascript:void(null);">
-                                        <label><?=$language['new-farmer']['96']?></label>
-                                        <select class="form-control" name="id_type_material" id="id_type_material">
-                                            <option value="1"><?=$language['new-farmer']['90']?></option>
-                                            <option value="2"><?=$language['new-farmer']['91']?></option>
-                                            <option value="3"><?=$language['new-farmer']['92']?></option>
-                                        </select>
-                                        <br>
-                                        <div class="sub_type" style="display: none">
+                                    <input type="hidden" name="key_material_seed" value="<?=$date['field']['field_id_crop']?>">
+                                    <div class="sub_type" style="display: none">
                                         <label><?=$language['new-farmer']['97']?></label>
                                         <select class="form-control" name="key_material_3" id="key_material_3">
                                             <option value="1"><?=$language['new-farmer']['102']?></option>
@@ -453,62 +473,62 @@
                                             <option value="7"><?=$language['new-farmer']['101']?></option>
                                             <option value="8"><?=$language['new-farmer']['104']?></option>
                                         </select>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <label><?=$language['new-farmer']['105']?></label>
-                                                <input list="lib_materials" class="form-control" name="name_material" id="name_material" >
-                                                <datalist id="lib_materials">
-                                                    <?foreach ($date['material_lib'] as $material_lib){?>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <label><?=$language['new-farmer']['105']?></label>
+                                            <input list="lib_materials" class="form-control" name="name_material" id="name_material" >
+                                            <datalist id="lib_materials">
+                                                <?foreach ($date['material_lib'] as $material_lib){?>
                                                     <option><?=$material_lib['name_material']?></option>
-                                                    <?}?>
-                                                </datalist>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <label><?=$language['new-farmer']['106']?></label>
-                                                <select name="unit_material" id="unit_material"  class="form-control unit_material">
-                                                    <option value="1">kg</option>
-                                                    <option value="2">l</option>
-                                                    <option value="3">м³</option>
-                                                    <option value="4">п.о</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label><?=$language['new-farmer']['107']?></label>
-                                                <input type="text" name="price_material" id="price_material" class="form-control">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label class="units">Norm </label>
-                                                <input type="text" name="norm_material" id="norm_material" class="form-control">
-                                            </div>
+                                                <?}?>
+                                            </datalist>
                                         </div>
-                                        <br>
-                                        <button type="submit" class="btn btn-success btn-block" id="add_material_bd"><?=$language['new-farmer']['109']?></button>
-                                    </form>
-                                </div>
+                                        <div class="col-lg-5">
+                                            <label><?=$language['new-farmer']['106']?></label>
+                                            <select name="unit_material" id="unit_material"  class="form-control unit_material">
+                                                <option value="1">kg</option>
+                                                <option value="2">l</option>
+                                                <option value="3">м³</option>
+                                                <option value="4">п.о</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label><?=$language['new-farmer']['107']?></label>
+                                            <input type="text" name="price_material" id="price_material" class="form-control">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="units">Норма на 1 га </label>
+                                            <input type="text" name="norm_material" id="norm_material" class="form-control">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-success btn-block" id="add_material_bd"><?=$language['new-farmer']['109']?></button>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <thead class="tabletop">
-                                    <th><?=$language['new-farmer']['93']?></th>
-                                    <th><?=$language['new-farmer']['107']?></th>
-                                    <th><?=$language['new-farmer']['108']?></th>
-                                    <th></th>
-                                </thead>
-                                <tbody  id="action_material">
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table">
+                            <thead class="tabletop">
+                            <th><?=$language['new-farmer']['93']?></th>
+                            <th><?=$language['new-farmer']['72']?></th>
+                            <th><?=$language['new-farmer']['108']?></th>
+                            <th></th>
+                            </thead>
+                            <tbody  id="action_material">
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                    <button id="save_material" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
-                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                <button id="save_material" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+            </div>
+        </div>
     </div>
 </div>
 <!---------services----------->
@@ -517,20 +537,20 @@
         <div class="modal-content wt">
             <div class="box-bodyn">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <span class="box-title"><?=$language['new-farmer']['87']?></span>
+                <span class="box-title">Картка Послуги</span>
             </div>
             <div class="modal-header">
-                <button id="add_services" class="btn btn-success"><?=$language['new-farmer']['152']?></button>
+                <button id="add_services" class="btn btn-success">Додати послугу</button>
             </div>
             <div class="modal-body">
                 <table class="table" >
                     <thead>
-                        <tr>
-                            <th><?=$language['new-farmer']['141']?></th>
-                            <th><?=$language['new-farmer']['153']?></th>
-                            <th><?=$language['new-farmer']['143']?></th>
-                            <th><?=$language['new-farmer']['144']?></th>
-                        </tr>
+                    <tr>
+                        <th>Назва послуги</th>
+                        <th>Обсяг роботи</th>
+                        <th>Оплата за од. роботи, грн</th>
+                        <th>Загальна сума, грн</th>
+                    </tr>
                     </thead>
                     <tbody id="action_services">
 
@@ -544,56 +564,60 @@
         </div>
     </div>
 </div>
-<div id="material_bd_name" data='<?=json_encode($date['TC']['new_planing_material'])?>'></div>
-<div id="equipment_bd_name" data='<?=json_encode($date['equipment']['TC'])?>'></div>
-
 
 <div id="add_prod" class="modal fade">
     <div class="modal-dialog modal-lg">
-    <form action="/new-farmer/incoming_products" method="post">
-    <div class="modal-content wt">
-        <div class="box-bodyn">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <span class="box-title"><?=$language['new-farmer']['110']?></span>
-        </div>
-     
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-3">
-              <label><?=$language['new-farmer']['111']?></label>
-              <input class="form-control inphead" type="date" name="product_date">
+        <form action="/new-farmer/incoming_products" method="post">
+            <div class="modal-content wt">
+                <div class="box-bodyn">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <span class="box-title"><?=$language['new-farmer']['110']?></span>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label><?=$language['new-farmer']['111']?></label>
+                            <input class="form-control inphead" type="date" name="product_date">
+                        </div>
+                        <div class="col-lg-3">
+                            <label><?=$language['new-farmer']['112']?></label>
+                            <input class="form-control inphead" name="product_storage_location" list="material_storage_location" required>
+                            <datalist id="material_storage_location">
+                                <?php
+                                foreach ($date['storage']['storage'] as $storage){?>
+                                    <option ><?php echo $storage['storage_name'];?></option>
+                                <?php }?>
+                            </datalist>
+                        </div>
+                        <div class="col-lg-3">
+                            <label><?=$language['new-farmer']['113']?></label>
+                            <input type="text" name="product_quantity" class="inphead incoming_quantity">
+                        </div>
+                        <div class="col-lg-3">
+                            <label><?=$language['new-farmer']['114']?></label>
+                            <textarea name="product_comments" class="form-control inphead"></textarea>
+                            <input type="hidden" name="product_type" value="<?=$date['field']['field_id_crop']?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+                </div>
             </div>
-            <div class="col-lg-3">
-          <label><?=$language['new-farmer']['112']?></label>
-          <input class="form-control inphead" name="product_storage_location" list="material_storage_location" required>
-                <datalist id="material_storage_location">
-                    <?php
-                    foreach ($date['storage']['storage'] as $storage){?>
-                        <option ><?php echo $storage['storage_name'];?></option>
-                    <?php }?>
-                </datalist>
-            </div>
-            <div class="col-lg-3">
-              <label><?=$language['new-farmer']['113']?></label>
-              <input type="text" name="product_quantity" class="inphead incoming_quantity">
-            </div>
-            <div class="col-lg-3">
-              <label><?=$language['new-farmer']['114']?></label>
-              <textarea name="product_comments" class="form-control inphead"></textarea>
-              <input type="hidden" name="product_type" value="<?=$date['field']['field_id_crop']?>">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
-        </div>
+        </form>
     </div>
-    </form>
-  </div>
 </div>
+<!--<div id="select_fuel" style="display:none;">
+    <select class="form-control id_fuel">
+        <?php /*foreach ($date['TC']['new_material'] as $new_material)if($new_material['id_type_material']==4){*/?>
+            <option value="<?/*=$new_material['id_material_price']*/?>"><?/*=$new_material['name_material']*/?></option>
+        <?php /*}*/?>
+    </select>
+</div>-->
 <script type="text/javascript">
-	$(document).ready(function(){
+    $(document).ready(function(){
         var json_vehicles_bd_name='<?=json_encode($date['TC']['vehicles'])?>';
         var vehicles_bd_name=JSON.parse( json_vehicles_bd_name );
         var json_equipment_bd_name='<?=json_encode($date['TC']['equipment'])?>';
@@ -602,6 +626,12 @@
         var material_bd=JSON.parse( json_material );
         var json_employe='<?=json_encode($date['TC']['new_employee'])?>';
         var employe_bd=JSON.parse( json_employe );
+        var json_action_lib='<?=json_encode($date['lib'])?>';
+        var action_lib = JSON.parse(json_action_lib);
+        var json_units = '<?=json_encode($date['units']['ua'])?>';
+        var units = JSON.parse(json_units);
+        var html_fuel_select=$('#select_fuel').html();
+
 
         $('#end_data').change(function () {
             var start_date = $('#strat_data').val();
@@ -614,9 +644,9 @@
 
         $('.list_materials').hide();
         $('.type_matrial_1').show();
-	    $("#type_material_list_bd").change(function () {
-           $('.list_materials').hide();
-           var type=$(this).val();
+        $("#type_material_list_bd").change(function () {
+            $('.list_materials').hide();
+            var type=$(this).val();
             $('.type_matrial_'+type).show();
         });
         ////////////////////////////SERVICES///////////////////////////////////
@@ -635,6 +665,7 @@
         }
         $('#action_services').on('change', '.in_services', function () {
             var id=$(this).attr('data-id');
+            var unit = $('#id_action_unit').val();
             var amount=parseFloat($('#s_amount'+id).val());
             var price=parseFloat($('#s_price'+id).val());
             $('#s_total'+id).text(amount*price)
@@ -660,10 +691,10 @@
             $('#coll_services').text("("+coll+")");
             $('#Choose_services').modal("hide");
         }
-	    ///////////////////////////EMPLOYEE////////////////////////////////////
-	    var id_employee=0;
-	    $('.add_employee').click(add_employee);
-	    function add_employee() {
+        ///////////////////////////EMPLOYEE////////////////////////////////////
+        var id_employee=0;
+        $('.add_employee').click(add_employee);
+        function add_employee() {
             id_employee++;
             var json_employee=$(this).attr('data-data');
             var employee=JSON.parse( json_employee );
@@ -673,12 +704,12 @@
                 "</tr>");
         }
         $('#action_employe').on('click', '.remove_employee', remove_employee);
-	    function remove_employee() {
+        function remove_employee() {
             var id=$(this).attr('data-id');
             $('#action_employee_'+id).remove();
         }
         $('#save_employe').click(save_employe);
-	    function save_employe() {
+        function save_employe() {
             jsonObj = [];
             var coll=0;
             $(".pay_employee").each(function() {
@@ -695,25 +726,25 @@
         ///////////////////////////MATERIAL/////////////////////////////////////
         var id_material=0;
         $('.add_material').click(add_material);
-	    function add_material() {
+        function add_material() {
             id_material++;
             var json_material=$(this).attr('data-data');
             var material=JSON.parse( json_material );
             $("#action_material").append("<tr id='action_material_" + id_material + "'>" +
                 "<td>" + material['name_material'] + "</td>" +
-                "<td>" + material['price_material'] + "</td>" +
+                "<td>" + units[material['material_unit']] + "</td>" +
                 "<td><input data-id='"+material['id_material_price']+"' type='text' class='form-control norm_material' ></td>" +
                 "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
 
         }
         $('#action_material').on('click', '.remove_material', remove_material);
-	    function remove_material() {
+        function remove_material() {
             var id=$(this).attr('data-id');
             $('#action_material_'+id).remove();
         }
         $('#save_material').click(save_material);
-	    function save_material() {
+        function save_material() {
             jsonObj = [];
             var coll=0;
             $(".norm_material").each(function() {
@@ -769,10 +800,10 @@
             $("#action_vehicles").append("<tr class='equipment_id' id='action_vehicles_"+id_vehicles+"'>" +
                 "<td>"+vehicles['vehicles_name']+"</td>" +
                 "<td >" +
-                    "<div class='btn-group'>" +
-                    "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equ</button>" +
-                    "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
-                    "</div>" +
+                "<div class='btn-group'>" +
+                "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equ</button>" +
+                "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
+                "</div>" +
                 "</td>" +
                 "<td><input type='text'  class='form-control fuel'></td>" +
                 "<td><button class='btn btn-danger btn-sm remove_vehicles' data-id='"+id_vehicles+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
@@ -869,17 +900,16 @@
             var equipment=JSON.parse( json_equipment );
             var json_services=$(this).attr('data-services');
             var services=JSON.parse( json_services );
-
             $("#action_action_id").val(action['action_id']);
             $('#id_action_type').val(action['action_action_type_id']);
-            $('#action_id').val(action['action_action_id']);
+            $('#action_id').val(action_lib[action['action_action_id']]['name_ua']);
             $('#strat_data').val(action['action_date_start']);
             $('#end_data').val(action['action_date_end']);
             $('#id_action_unit').val(action['action_unit']);
             $('#work').val(action['action_work']);
             var type_id = $(this).attr('data-type_action');
             if(type_id == 27){
-               $('.add_prod_'+type_id).css('display','inline');
+                $('.add_prod_'+type_id).css('display','inline');
             }
             //services
             $("#action_services").html('');
@@ -938,7 +968,7 @@
                         jsonObj.push(item);
                     });
                 }
-               $("#action_vehicles").append("<tr class='equipment_id' id='action_vehicles_"+id_vehicles+"'>" +
+                $("#action_vehicles").append("<tr class='equipment_id' id='action_vehicles_"+id_vehicles+"'>" +
                     "<td>"+ vehicles_bd_name[vehicles['id_veh']]['vehicles_name'] +"</td>" +
                     "<td>" +
                     "<div class='btn-group'>" +
@@ -947,6 +977,7 @@
                     "</div>" +
                     "</td>" +
                     "<td><input type='text' class='form-control fuel' value='"+vehicles['fuel']+"'></td>" +
+                    "<td>"+html_fuel_select+"</td>" +
                     "<td><button class='btn btn-danger btn-sm remove_vehicles' data-id='"+id_vehicles+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
                     "</tr>");
             });
@@ -984,21 +1015,21 @@
         });
 
         /*$('.unit_material').change(function () {
-            var unit = $(this).val();
-            alert(unit);
-            if(unit == 1){
-                $('.units').text('Norm kg/h');
-            }
-            if(unit == 2){
-                $('.units').text('Norm l/h');
-            }
-            if(unit == 3){
-                $('.units').text('Norm м³/h');
-            }
-            else {
-                $('.units').text('Norm п.од/г');
-            }
-        });*/
+         var unit = $(this).val();
+         alert(unit);
+         if(unit == 1){
+         $('.units').text('Norm kg/h');
+         }
+         if(unit == 2){
+         $('.units').text('Norm l/h');
+         }
+         if(unit == 3){
+         $('.units').text('Norm м³/h');
+         }
+         else {
+         $('.units').text('Norm п.од/г');
+         }
+         });*/
 
         (function( $ ){
             $.fn.jSearch = function( options ) {
@@ -1082,13 +1113,10 @@
             }
         });
 
-        $('.list_id_action_type').change(function () {
-            var type_operation = $(this).val();
-            $('.type_op').hide();
-            $('.type_operation_'+type_operation).show();
-        });
-	});
-
-
-
+        /*        $('.list_id_action_type').change(function () {
+         var type_operation = $(this).val();
+         $('.type_op').hide();
+         $('.type_operation_'+type_operation).show();
+         });*/
+    });
 </script>

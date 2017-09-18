@@ -8,9 +8,7 @@
     <div class="rown">
 
         <div class="table-responsive">
-            <a href="#fixEquipment" data-toggle="modal" class="btn btn-success" style="float: left;">Ремонт основних засобів</a>
-            <a href="#other_costs" data-toggle="modal" class="btn btn-primary other_costs_op" style="float: left;">Інші витрати</a><br><br>
-            <table class="table">
+           <table class="table">
                 <tbody>
                 <?php foreach ($date['table'] as $table){?>
                     <tr>

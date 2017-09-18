@@ -24,11 +24,11 @@ class EmployeeController {
 		$employee_date_start = SRC::validator($_POST['date_start']);
 		$employee_date_end = SRC::validator($_POST['date_end']);
 		$employee_description = SRC::validator($_POST['description']);
-
 		Employee::createEmployee($id_user, $employee_name, $employee_surname,$employee_father_name, $employee_phone_number, $employee_position,$employee_description,$employee_date_end,$employee_date_start,$employee_salary);
 		SRC::redirect('/new-farmer/employee');
 		return true;
 	}
+
 	public function actionEditEmployee(){
 		$employee_id = SRC::validator($_POST['edit_id_employee']);
 		$employee_name = SRC::validator($_POST['edit_employee_name']);
@@ -45,12 +45,10 @@ class EmployeeController {
 		return true;
 	}
 
-
 	public function actionRemoveEmployee($id){	
 		$id_user = $_SESSION['id_user'];
 		Employee::removeEmployee($id_user, $id);
 		SRC::redirect('/new-farmer/employee');
 		return true;
 	}
-
 }

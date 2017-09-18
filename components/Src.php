@@ -98,15 +98,17 @@ class SRC
         }
         //
         public static function viewCab(){
-            $cabbinet_item = ['farmer' => ['id'=>'farmer','item' => 'fa-line-chart bg-green', 'name_ua' => 'Фермер середній','name_en'=>'Farmer', 'cab_name'=>'Кабінет фермера'],
+            $cabbinet_item = [
+                'new-farmer'=>['id'=>'new-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'NEW', 'name_en'=>'NEW','cab_name'=>'new-farmer'],
+                'farmer' => ['id'=>'farmer','item' => 'fa-line-chart bg-green', 'name_ua' => 'Фермер середній','name_en'=>'Farmer', 'cab_name'=>'Кабінет фермера'],
                               'distributor' => ['id'=>'distributor','item' => 'fa-shopping-basket bg-info', 'name_ua' => 'Дистрибютор','name_en'=>'Distributor', 'cab_name'=>'Кабінет дистрибютора'],
                               'add-crop' => ['id'=>'add-crop','item' => 'fa-leaf bg-orange', 'name_ua' => 'Культури','name_en'=>'Cultures', 'cab_name'=>'Кабінет додавання культур'],
                               'bank' => ['id'=>'bank','item' => 'fa-bank bg-blue', 'name_ua' => 'Банк','name_en'=>'Bank', 'cab_name'=>'Кабінет банка'],
                               'translate' => ['id'=>'translate','item' => 'fa-globe bg-blue', 'name_ua' => 'Словник','name_en'=>'Dictionary', 'cab_name'=>'Кабінет для перекладу'],
                               'farmer-small' => ['id'=>'farmer-small','item' => 'fa-globe bg-green', 'name_ua' => 'Фермер малий','name_en'=>'Farmer sm.', 'cab_name'=>'Кабінет фермера см.'],
                               'shop'=>['id'=>'shop', 'item'=>'fa-tasks bg-green', 'name_ua'=>'Таск менеджер', 'name_en'=>'Task manager', 'cab_name'=>''],
-                              'new-farmer'=>['id'=>'new-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'NEW', 'name_en'=>'NEW','cab_name'=>'new-farmer'],
-                            'business-farmer'=>['id'=>'business-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'business-farmer', 'name_en'=>'business-farmer','cab_name'=>'business-farmer'],
+
+                'business-farmer'=>['id'=>'business-farmer','item'=>'fa-tasks bg-green', 'name_ua'=>'business-farmer', 'name_en'=>'business-farmer','cab_name'=>'business-farmer'],
 
             ];
             return $cabbinet_item;

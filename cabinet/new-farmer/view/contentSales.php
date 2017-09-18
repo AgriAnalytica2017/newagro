@@ -26,42 +26,42 @@ $id_material_type = array(
     <div class="box-bodyn">
             <div class="non-semantic-protector">
             <h1 class="ribbon">
-                <strong class="ribbon-content"><?=$language['new-farmer']['9']?></strong>
+                <strong class="ribbon-content">Реалізація продукції</strong>
             </h1>
         </div>
     </div>
     <div class="box">
         <div class="box-body">
-            <div class="rown">
+<!--            <div class="rown">
                 <div class="table-responsive">
                 <div class="col-lg-10">
                 <div>
-                    <h3 style="float: left;"><?=$language['new-farmer']['156']?></h3>
+                    <h3 style="float: left;"><?/*=$language['new-farmer']['156']*/?></h3>
                 </div>
                     <table class="table">
                         <thead>
                             <tr class="tabletop">
-                                <th><?=$language['new-farmer']['111']?></th>
-                                <th><?=$language['new-farmer']['80']?></th>
-                                <th><?=$language['new-farmer']['142']?></th>
-                                <th><?=$language['new-farmer']['132']?></th>
-                                <th><?=$language['new-farmer']['133']?></th>
-                                <th><?=$language['new-farmer']['114']?></th>
+                                <th><?/*=$language['new-farmer']['111']*/?></th>
+                                <th><?/*=$language['new-farmer']['80']*/?></th>
+                                <th><?/*=$language['new-farmer']['142']*/?></th>
+                                <th><?/*=$language['new-farmer']['132']*/?></th>
+                                <th><?/*=$language['new-farmer']['133']*/?></th>
+                                <th><?/*=$language['new-farmer']['114']*/?></th>
                             </tr>
                         </thead>
                         <tbody class="sales">
-                            <? foreach($date['sales'] as $sales){
+                            <?/* foreach($date['sales'] as $sales){
                                 $date_elements  = explode("-",$sales['come_out_date']);
-                                $month=$date_elements[1]+0;?>
-                                <tr class="fact <?php echo 'material_st_'.$sales['storage_type_material'].' month_'.$month?>">
-                                    <td><?=$sales['come_out_date']?></td>
-                                    <td><? echo $id_material_type[$sales['storage_type_material']].': '.$sales['name_material'];?></td>
-                                    <td><?=$sales['come_out_quantity']?></td>
-                                    <td><?=$sales['come_out_sum_total']?></td>
-                                    <td><?=$sales['come_out_price_unit']?></td>
-                                    <td><?=$sales['sadsa']?></td>
+                                $month=$date_elements[1]+0;*/?>
+                                <tr class="fact <?php /*echo 'material_st_'.$sales['storage_type_material'].' month_'.$month*/?>">
+                                    <td><?/*=$sales['come_out_date']*/?></td>
+                                    <td><?/* echo $id_material_type[$sales['storage_type_material']].': '.$sales['name_material'];*/?></td>
+                                    <td><?/*=$sales['come_out_quantity']*/?></td>
+                                    <td><?/*=$sales['come_out_sum_total']*/?></td>
+                                    <td><?/*=$sales['come_out_price_unit']*/?></td>
+                                    <td><?/*=$sales['sadsa']*/?></td>
                                 </tr>
-                            <?}?>
+                            <?/*}*/?>
                         </tbody>
                     </table>
                 </div>
@@ -69,32 +69,32 @@ $id_material_type = array(
                 <div class="col-lg-2">
                     <div class="box">
                         <div class="box-bodyn">
-                            <label for="material_id"><?=$language['new-farmer']['80']?></label>
+                            <label for="material_id"><?/*=$language['new-farmer']['80']*/?></label>
                             <select name="material_id" id="material_id" class="form-control inphead">
-                                <option value="0"><?=$language['new-farmer']['80']?></option>
-                                <?php foreach ($id_material_type as  $key=> $crop){ ?>
-                                    <option value="<?php echo $key?>"><?php {echo $crop;}?></option>
-                                <?php }?>
+                                <option value="0"><?/*=$language['new-farmer']['80']*/?></option>
+                                <?php /*foreach ($id_material_type as  $key=> $crop){ */?>
+                                    <option value="<?php /*echo $key*/?>"><?php /*{echo $crop;}*/?></option>
+                                <?php /*}*/?>
                             </select>
                             <br>
-                            <label for="month"><?=$language['new-farmer']['157']?></label>
+                            <label for="month"><?/*=$language['new-farmer']['157']*/?></label>
                             <select name="month" id="month" class="form-control  inphead">
-                                <option value="0"><?=$language['new-farmer']['157']?></option>
-                                <?php for ($x=1;$x<=12;$x++){ ?>
-                                    <option value="<?php echo $x?>"><?=$month_name_en[$x]?></option>
-                                <?php }?>
+                                <option value="0"><?/*=$language['new-farmer']['157']*/?></option>
+                                <?php /*for ($x=1;$x<=12;$x++){ */?>
+                                    <option value="<?php /*echo $x*/?>"><?/*=$month_name_en[$x]*/?></option>
+                                <?php /*}*/?>
                             </select>
                         </div>
                     </div>
                 </div>
                 </div>
-            </div>
+            </div>-->
 
              <div class="rown">
                  <div class="table-responsive">
                 <div class="col-lg-10">
                 <div>
-                    <h3 style="float: left;"><?=$language['new-farmer']['158']?></h3>
+                    <h3 style="float: left;">Планова реалізація товарної продукції</h3>
                     <a  style="float: right;" class="btn btn-primaryn" href="#Plan_sale" data-toggle="modal"><?=$language['new-farmer']['188']?></a>
                 </div>
                     <table class="table">
@@ -141,7 +141,7 @@ $id_material_type = array(
                                 <th><?=$language['new-farmer']['5']?></th>
                                 <th><?=$language['new-farmer']['48']?></th>
                                 <th><?=$language['new-farmer']['159']?></th>
-                                <th><?=$language['new-farmer']['186']?></th>
+                                <th>Загальна кількість по культурах, кг</th>
                                 <th><?=$language['new-farmer']['187']?></th>
                                 <th><?=$language['new-farmer']['161']?></th>
                                 <th></th>

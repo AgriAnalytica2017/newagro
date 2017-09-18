@@ -49,10 +49,10 @@ class StorageController{
 		return true;
 	}
 
-	public function actionCreateStorage(){
-		$id_user = $_SESSION['id_user'];
-		$storage_type_material = SRC::validatorPrice($_POST['storage_type_material']);
-		if($storage_type_material == 2){
+    public function actionCreateStorage(){
+        $id_user = $_SESSION['id_user'];
+        $storage_type_material = SRC::validatorPrice($_POST['storage_type_material']);
+        if($storage_type_material == 2){
             $storage_subtype_material = SRC::validatorPrice($_POST['storage_subtype_fert']);
             $storage_unit = SRC::validatorPrice($_POST['storage_unit_fert']);
         }elseif ($storage_type_material == 3){
@@ -71,21 +71,20 @@ class StorageController{
         }else{
             $storage_quantity = SRC::validatorPrice($_POST['storage_quantity']);
         }
-		$storage_material = DataBase::saveLibMaterial($id_user,SRC::validator($_POST['name_material']),$storage_type_material);
-		$storage_sum_total = SRC::validatorPrice($_POST['storage_sum_total']);
-		$storage_date = SRC::validator($_POST['storage_date']);
-		$storage_name = SRC::validator($_POST['storage_location']);
-		$storage_comments = SRC::validator($_POST['storage_comments']);
-		$storage_id = Storage::saveStorage($id_user,$storage_name);
+        $storage_material = DataBase::saveLibMaterial($id_user,SRC::validator($_POST['name_material']),$storage_type_material,$storage_subtype_material);
+        $storage_sum_total = SRC::validatorPrice($_POST['storage_sum_total']);
+        $storage_date = SRC::validator($_POST['storage_date']);
+        //$storage_name = SRC::validator($_POST['storage_location']);
+        $storage_comments = SRC::validator($_POST['storage_comments']);
+        //$storage_id = Storage::saveStorage($id_user,$storage_name);
         $storage_type =2;
-        var_dump($storage_unit);
-        var_dump($storage_quantity);die;
-		$storage_material_id = Storage::createStorage($id_user,$storage_type_material,$storage_subtype_material,$storage_material,$storage_unit,$storage_quantity,$storage_sum_total,$storage_date, $storage_id, $storage_comments);
 
-		Storage::createIncomingMaterial($id_user,$storage_date,$storage_material_id,$storage_quantity,$storage_sum_total,$storage_type,$storage_comments);
-		SRC::redirect('/new-farmer/storage');
-		return true;
-	}
+        $storage_material_id = Storage::createStorage($id_user,$storage_type_material,$storage_subtype_material,$storage_material,$storage_unit,$storage_quantity,$storage_sum_total,$storage_date, $storage_comments);
+        Storage::createIncomingMaterial($id_user,$storage_date,$storage_material_id,$storage_quantity,$storage_sum_total,$storage_type,$storage_comments);
+        Storage::updatePriceAndMass();
+        SRC::redirect('/new-farmer/storage');
+        return true;
+    }
 
 	public function actionIncomingStorage(){
 		$id_user = $_SESSION['id_user'];
@@ -124,12 +123,19 @@ class StorageController{
 
 		$id_user = $_SESSION['id_user'];
 		$product_date = SRC::validator($_POST['product_date']);
-		$product_type = SRC::validatorPrice($_POST['product_type']);
-		$product_storage_location = Storage::saveStorage($id_user,SRC::validatorPrice($_POST['product_storage_location']));
-		$product_quantity = SRC::validatorPrice($_POST['product_quantity']);
+		$product_type = SRC::validatorPrice($_POST['product_name']);
+        /*		$product_storage_location = Storage::saveStorage($id_user,SRC::validatorPrice($_POST['product_storage_location']));*/
+        $product_unit = SRC::validatorPrice($_POST['product_unit']);
+        $quantity = SRC::validatorPrice($_POST['product_quantity']);
+        if($product_unit == '1'){
+            $product_quantity = $quantity;
+        }else{
+            $product_quantity = $quantity*1000;
+        }
+		
 		$product_comments = SRC::validator($_POST['product_comments']);
 
-		Storage::saveIncomingProducts($product_date,$product_type,$product_storage_location,$product_quantity,$product_comments,$id_user);
+		Storage::saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user);
 
 		SRC::redirect('/new-farmer/storage');
 	}

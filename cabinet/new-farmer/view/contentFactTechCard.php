@@ -1,71 +1,60 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 29.08.2017
- * Time: 11:41
- */
-/*
-echo "<pre>";
-var_dump($date['action']['material_lib']);
-die;
-*/
-?>
-<div class="rown">
-    <div class="col-lg-3">
-        <div class="table-responsive">
-            <table class="table table-striped well">
-                <tr>
-                    <td>
-                        <label for="id_action_type"><?=$language['farmer-small']['24']?></label><br><br>
-                        <select onchange="window.location.href=this.options[this.selectedIndex].value" class="form-control sub-header inphead" id="select_crop" required>
-                            <?php if($date['id']==0){?><option selected value="0">Choose field</option><?php }?>
-                            <?php foreach ($date['field'] as $field){?>
-                                <option <?php if($field['id_field']==$date['id']) echo "selected"?> value="<?php SRC::getSrc();?>/new-farmer/fact_tech_card/<?php echo $field['id_field']?>" ><?=$field['field_name'];?></option>
-                            <?php }?>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+
+<div class="box">
+    <div class="box-bodyn">
+        <div class="non-semantic-protector">
+            <h1 class="ribbon">
+                <strong class="ribbon-content"><?=$language['new-farmer']['164']?></strong>
+            </h1>
         </div>
     </div>
 </div>
+<div class="box-bodyn col-lg-12">
+    <select onchange="window.location.href=this.options[this.selectedIndex].value" style="width:300px; margin: 0 auto" class="form-control  inphead" id="select_crop" required>
+        <?php if($date['id']==0){?><option selected value="0"><?=$language['new-farmer']['163']?></option><?php }?>
+        <?php foreach ($date['field'] as $field){?>
+            <option <?php if($field['id_field']==$date['id']) echo "selected"?> value="<?php SRC::getSrc();?>/new-farmer/fact_tech_card/<?php echo $field['id_field']?>" ><?='#  '.$field['field_number']."_".$field['field_name'];?></option>
+        <?php }?>
+    </select>
+</div>
 <? if($date['id']<>0){?>
+<div class="box-bodyn col-lg-12" id="scroll_for_op">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?=$language['new-farmer']['61']?></th>
+            <th>№ поля</th>
+            <th><?=$language['new-farmer']['45']?></th>
+            <th><?=$language['new-farmer']['63']?></th>
+            <th><?=$language['new-farmer']['46']?></th>
+            <th>Урожайність ц/га</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?foreach ($date['field'] as $field_tab)if($date['id']==$field_tab['id_field']){?>
+            <tr>
+                <td><? if ($_COOKIE['lang']=='ua'){ echo $field_tab['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field_tab['name_crop_en'];}?></td>
+                <td><?=$field['field_number']?></td>
+                <td><?=$field_tab['field_name']?></td>
+                <td><?=$field_tab['tech_name']?></td>
+                <td id="field_size"><?=$field_tab['field_size']?></td>
+                <td><?=$field['field_yield']?></td>
+            </tr>
+        <?}?>
+        </tbody>
+    </table>
+</div>
     <div class="rown">
+        <br><br>
         <div class="col-lg-6">
-            <div class="box-bodyn">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th><?=$language['new-farmer']['61']?></th>
-                                    <th><?=$language['new-farmer']['45']?></th>
-                                    <th><?=$language['new-farmer']['63']?></th>
-                                    <th>field size</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?foreach ($date['field'] as $field_tab)if($date['id']==$field_tab['id_field']){?>
-                                    <tr>
-                                        <td><? if ($_COOKIE['lang']=='ua'){ echo $field_tab['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field_tab['name_crop_en'];}?></td>
-                                        <td><?=$field_tab['field_name']?></td>
-                                        <td><?=$field_tab['tech_name']?></td>
-                                        <td id="field_size"><?=$field_tab['field_size']?></td>
-                                    </tr>
-                                <?}?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="rown">
                 <div class="box-body wt">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
+                            <tr class="tabletop">
+                                <th colspan="5"><h4 class="text-center"><?=$language['new-farmer']['168']?></h4></th>
+                            </tr>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['65']?></th>
                                 <th><?=$language['new-farmer']['66']?></th>
@@ -77,17 +66,22 @@ die;
                             <tbody>
                             <? foreach ($date['action']['action'] as $action){?>
                                 <tr>
-                                    <td><?=$date['action']['action_type'][$action['action_action_id']]['name_en']?></td>
-                                    <td><?=$date['action']['action_type'][$action['action_action_type_id']]['name_en']?></td>
+                                    <td style="width: 29%"><? if($_COOKIE['lang']=='gb'){echo $date['action']['action_type'][$action['action_action_type_id']]['name_en'];}elseif($_COOKIE['lang']=='ua'){echo $date['action']['action_type'][$action['action_action_type_id']]['name_ua'];}?></td>
+                                    <td style="width: 29%"><? if($_COOKIE['lang']=='gb'){echo $date['action']['action_type'][$action['action_action_id']]['name_en'];}elseif($_COOKIE['lang']=='ua'){echo $date['action']['action_type'][$action['action_action_id']]['name_ua'];}?>
                                     <td><?=$action['action_date_start']?></td>
                                     <td><?=$action['action_date_end']?></td>
-                                    <td><button data-action_id="<?=$action['action_id']?>"
+                                    <td style="width: 10%"><a data-action_id="<?=$action['action_id']?>"
+                                                data-start_date="<?=$action['action_date_start']?>"
+                                                data-end_date="<?=$action['action_date_end']?>"
+                                                data-action_type_id="<?=$action['action_action_type_id']?>"
+                                                data-action_action_id="<?=$action['action_action_id']?>"
                                                 data-material='<?=json_encode(unserialize($action['action_materials']));?>'
                                                 data-employee='<?=json_encode(unserialize($action['action_employee']));?>'
                                                 data-machines='<?=json_encode(unserialize($action['action_machines']));?>'
                                                 data-services='<?=json_encode(unserialize($action['action_services']));?>'
                                                 data-fact='<?=json_encode($date['action']['fact'][$action['action_id']])?>'
-                                                class="btn btn-primary btn-sm edit_action">Actual data</button></td>
+                                                class="btn btn-primary btn-sm edit_action" href="#scroll_for_op"><?=$language['new-farmer']['169']?></a>
+                                    </td>
                                 </tr>
                             <?}?>
                             </tbody>
@@ -96,150 +90,165 @@ die;
                 </div>
             </div>
         </div>
-        <div class="fact_tech_card" style="display: none">
-            <div class="col-lg-6">
-                <div class="rown">
-                    <div class="col-lg-6">
-                        <div class="box-body wt">
-                            <h4>Material</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
+        <div class="col-lg-6">
+            <div class="fact_tech_card" style="display: none">
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 15px;">
+                        <table class="table">
+                            <thead>
+                            <tr class="tabletop">
+                                <th colspan="5"><h4 class="text-center"><?=$language['new-farmer']['169']?></h4></th>
+                            </tr>
+                            <tr class="tabletop" id="info_operation_fact">
+
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+                    <div class="col-lg-12" style="margin-top: 31px;">
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-lg-3">
+                            <button class="btn btn-success  new_open_material">Матеріали</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-success new_open_employee">Працівники</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-success new_open_ppa">ПММ</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-success new_open_services">Послуги</button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="style_open_material" style="display: none; margin-top: 10px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr class="tabletop">
-                                        <th>Name material</th>
-                                        <th>Total amount of material</th>
+                                        <th>Назва матеріалу</th>
+                                        <th>Загальна кількість матеріалу, кг</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <th colspan="3" class="text-center">План</th>
                                     </tr>
-                                    </tbody>
-                                    <tbody id="material">
+                                </tbody>
+                                <tbody id="material">
 
-                                    </tbody>
-                                    <tbody>
+                                </tbody>
+                                <tbody>
                                     <tr>
                                         <th colspan="3" class="text-center">Факт</th>
                                     </tr>
-                                    </tbody>
-                                    <tbody id="in_fact_material">
+                                </tbody>
+                                <tbody id="in_fact_material">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
+                                <button class='btn btn-success' href='#mat_fact' data-toggle='modal'>Факт<b id="coll_material_fact"></b></button>
                         </div>
-                        <button class='btn btn-success' href='#mat_fact' data-toggle='modal'>Факт<b id="coll_material_fact"></b></button>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="box-body wt">
-                            <h4>Employee</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
+                    <div class="col-lg-12" id="style_open_employee" style="display: none; margin-top: 10px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr class="tabletop">
-                                        <th>Employee name</th>
-                                        <th>Total salary</th>
+                                        <th>П.І.П працівника</th>
+                                        <th>Зарплата, грн</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <th colspan="2" class="text-center">План</th>
                                     </tr>
-                                    </tbody>
-                                    <tbody id="employee">
+                                </tbody>
+                                <tbody id="employee">
 
-                                    </tbody>
-                                    <tbody>
+                                </tbody>
+                                <tbody>
                                     <tr>
                                         <th colspan="2" class="text-center">Факт</th>
                                     </tr>
-                                    </tbody>
-                                    <tbody id="in_fact_employee">
+                                </tbody>
+                                <tbody id="in_fact_employee">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
+                            <button class='btn btn-success' href='#fact_employee' data-toggle='modal'>Факт<b id="coll_employee_fact"></b></button>
                         </div>
-                        <button class='btn btn-success' href='#fact_employee' data-toggle='modal'>Факт<b id="coll_employee_fact"></b></button>
                     </div>
+                    <div class="col-lg-12" id="style_open_ppa" style="display: none; margin-top: 10px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr class="tabletop">
+                                    <th>С/г техніка</th>
+                                    <th>С/г машини</th>
+                                    <th>Кількість пального, л</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <th colspan="3" class="text-center">План</th>
+                                </tr>
+                                <tbody id="equipment">
+
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <th colspan="3" class="text-center">Факт</th>
+                                </tr>
+                                </tbody>
+                                <tbody id="in_fact_equipment">
+
+                                </tbody>
+                            </table>
+                            <button class='btn btn-success' href='#fact_machines' data-toggle='modal'>Факт<b id="coll_fuel_fact"></b></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="style_open_services" style="display: none; margin-top: 10px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr class="tabletop">
+                                    <th>Назва послуги</th>
+                                    <th>Загальна сума, грн</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <th colspan="2" class="text-center">План</th>
+                                </tr>
+                                <tbody id="services">
+
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <th colspan="2" class="text-center">Факт</th>
+                                </tr>
+                                </tbody>
+                                <tbody id="in_fact_services">
+
+                                </tbody>
+                            </table>
+                            <button class='btn btn-success' href='#fact_services' data-toggle='modal'>Факт<b id="coll_services"></b></button>
+                        </div>
+                    </div>
+
+
+                <div class="col-lg-12">
+                    <form action="/new-farmer/save_fact" method="post">
+                        <input name="save_fact_id_action" id="save_fact_id_action" type="hidden">
+                        <input name="save_fuel_fact" id="save_fuel_fact" type="hidden">
+                        <input name="save_material_fact" id="save_material_fact" type="hidden">
+                        <input name="save_services_fact" id="save_services_fact" type="hidden">
+                        <input name="save_employee_fact" id="save_employee_fact" type="hidden">
+                        <button class="btn btn-primary save_change"  style="float: left; margin-top: 45px;" type="submit"><?=$language['new-farmer']['184']?></button>
+                    </form>
                 </div>
             </div>
-            <div class="col-lg-6 ">
-
-                <div class="rown">
-                    <div class="col-lg-6">
-                        <div class="box-body wt">
-                            <h4>Equipment</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr class="tabletop">
-                                        <th>Equipment</th>
-                                        <th>Vehicles</th>
-                                        <th>Total fuel</th>
-                                    </tr>
-                                    </thead>
-                                    <tr>
-                                        <th colspan="3" class="text-center">План</th>
-                                    </tr>
-                                    <tbody id="equipment">
-
-                                    </tbody>
-                                    <tbody>
-                                    <tr>
-                                        <th colspan="3" class="text-center">Факт</th>
-                                    </tr>
-                                    </tbody>
-                                    <tbody id="in_fact_equipment">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <button class='btn btn-success' href='#fact_machines' data-toggle='modal'>Факт<b id="coll_fuel_fact"></b></button>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box-body wt">
-                            <h4>Services</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr class="tabletop">
-                                        <th>Services name</th>
-                                        <th>Total price</th>
-                                    </tr>
-                                    </thead>
-                                    <tr>
-                                        <th colspan="2" class="text-center">План</th>
-                                    </tr>
-                                    <tbody id="services">
-
-                                    </tbody>
-                                    <tbody>
-                                    <tr>
-                                        <th colspan="2" class="text-center">Факт</th>
-                                    </tr>
-                                    </tbody>
-                                    <tbody id="in_fact_services">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <button class='btn btn-success' href='#fact_services' data-toggle='modal'>Факт<b id="coll_services"></b></button>
-                    </div>
-                </div>
-            </div>
-            <form action="/new-farmer/save_fact" method="post">
-                <input name="save_fact_id_action" id="save_fact_id_action" type="hidden">
-                <input name="save_fuel_fact" id="save_fuel_fact" type="hidden">
-                <input name="save_material_fact" id="save_material_fact" type="hidden">
-                <input name="save_services_fact" id="save_services_fact" type="hidden">
-                <input name="save_employee_fact" id="save_employee_fact" type="hidden">
-                <button class="btn btn-primary save_change" style="float: right" type="submit">Save change</button>
-            </form>
-
+        </div>
         </div>
     </div>
 <?}?>
@@ -249,15 +258,12 @@ die;
         <div class="modal-content wt">
             <div class="box-bodyn">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <span class="box-title"><?=$language['new-farmer']['87']?></span>
+                <span class="box-title">Картка списання матеріалу</span>
             </div>
             <div class="modal-body">
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#bd_materials" data-toggle="tab"><?=$language['new-farmer']['88']?></a></li>
-                        </ul>
+                    <div class="col-lg-5">
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="bd_materials">
@@ -271,8 +277,8 @@ die;
                                     <thead>
                                     <tr class="tabletop">
                                         <th><?=$language['new-farmer']['93']?></th>
-                                        <th><?=$language['new-farmer']['95']?></th>
-                                        <th>Кількість на складі</th>
+                                        <!-- <th><?=$language['new-farmer']['95']?></th> -->
+                                        <th>Кількість на складі, кг/л</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -280,7 +286,7 @@ die;
                                     <?php foreach ($date['action']['storage_material'] as $storage_material)if($storage_material['storage_type_material']!=4){?>
                                         <tr class="list_materials type_material_<?=$storage_material['storage_type_material']?>" >
                                             <td><?=$date['material_lib'][$storage_material['storage_material']]['name_material']?></td>
-                                            <td><?=$storage_material['storage_sum_unit']?></td>
+                                            <!-- <td><?=$storage_material['storage_sum_unit']?></td> -->
                                             <td id="material_st_<?=$storage_material['storage_material_id']?>" data-mass="<?=$storage_material['storage_quantity']?>"><?=$storage_material['storage_quantity']?></td>
                                             <td><a data-id="<?=$storage_material['storage_material_id']?>" data-name='<?=$date['material_lib'][$storage_material['storage_material']]['name_material']?>' class="btn btn-success btn-sm fact_add_material"><i class="fa fa-fw fa-arrow-right"></i>
                                                 </a></td>
@@ -291,18 +297,18 @@ die;
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <table class="table">
                             <thead class="tabletop">
                             <tr>
                                 <th><?=$language['new-farmer']['93']?></th>
-                                <th>Кількість</th>
-                                <th>Date</th>
+                                <th>Кількість, кг/л</th>
+                                <th>Дата</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody  id="fact_action_material">
-
+                                
                             </tbody>
                         </table>
                     </div>
@@ -310,7 +316,7 @@ die;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_material" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+               <!-- <button id="save_material" type="submit" class="btn btn-primary"><?/*=$language['new-farmer']['27']*/?></button>-->
             </div>
         </div>
     </div>
@@ -353,8 +359,8 @@ die;
                             <thead>
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['38']?></th>
-                                <th>Total salary</th>
-                                <th>Date</th>
+                                <th>Зарплата, грн</th>
+                                <th>Дата</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -367,7 +373,7 @@ die;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_employe" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+                <!--<button id="save_employe" type="submit" class="btn btn-primary"><?/*=$language['new-farmer']['27']*/?></button>-->
             </div>
         </div>
     </div>
@@ -389,9 +395,9 @@ die;
                 <table class="table" >
                     <thead>
                     <tr>
-                        <th>name</th>
-                        <th>total price</th>
-                        <th>date</th>
+                        <th>Назва</th>
+                        <th>Загальна ціна, грн</th>
+                        <th>Дата</th>
                     </tr>
                     </thead>
                     <tbody id="fact_action_services">
@@ -401,7 +407,7 @@ die;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_employe" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+               <!-- <button id="save_employe" type="submit" class="btn btn-primary"><?/*=$language['new-farmer']['27']*/?></button>-->
             </div>
         </div>
     </div>
@@ -424,7 +430,7 @@ die;
                             <tr class="tabletop">
                                 <th><?=$language['new-farmer']['93']?></th>
                                 <th><?=$language['new-farmer']['95']?></th>
-                                <th>Кількість на складі</th>
+                                <th>Кількість на складі, л</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -447,7 +453,7 @@ die;
                             <tr>
                                 <th><?=$language['new-farmer']['93']?></th>
                                 <th>Кількість</th>
-                                <th>Date</th>
+                                <th>Дата</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -460,15 +466,11 @@ die;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_material" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+                <!--<button id="save_material" type="submit" class="btn btn-primary"><?/*=$language['new-farmer']['27']*/?></button>-->
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 <script>
     $(document).ready(function () {
 
@@ -477,8 +479,8 @@ die;
         var json_equipment_lib ='<?=json_encode($date['action']['equipment'])?>';
         var json_plan_employee ='<?=json_encode($date['action']['employee']);?>';
         var json_storage ='<?=json_encode($date['action']['storage_material']);?>';
-
-
+        var json_action_type='<?=json_encode($date['action']['action_type'])?>';
+        var action_type_name=JSON.parse(json_action_type);
 
         var plan_material = JSON.parse(json_plan_material);
         var vehicles = JSON.parse(json_vehicles);
@@ -494,11 +496,11 @@ die;
             var name=$(this).attr('data-name');
             var id_materials=$(this).attr('data-id');
 
-            $("#fact_action_material").append("<tr class='material_json' id=' action_material_" + id_material + "'>" +
+            $("#fact_action_material").append("<tr class='material_json' id='f_action_material_"+id_material+"'>" +
                 "<td>" + name + "</td>" +
                 "<td><input data-id='"+id_materials+"' type='text' class='form-control norm_material material_st_"+id_materials+"' ></td>" +
                 "<td><input class='date_material form-control' type='date'></td>" +
-                "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
+                "<td><button class='btn btn-danger btn-sm remove_material' data-id='"+id_material+"'><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
             save_material();
         }
@@ -532,7 +534,7 @@ die;
         $('#fact_action_material').on('click', '.remove_material', remove_material);
         function remove_material() {
             var id=$(this).attr('data-id');
-            $('#action_material_'+id).remove();
+            $('#f_action_material_'+id).remove();
             save_material();
         }
         $('#save_material').click(save_material);
@@ -559,7 +561,7 @@ die;
             var name=$(this).attr('data-name');
             var id_fuels=$(this).attr('data-id');
 
-            $("#fact_action_fuel").append("<tr class='fuel_json' id=' action_fuel_" + id_fuel + "'>" +
+            $("#fact_action_fuel").append("<tr class='fuel_json' id='action_fuel_" + id_fuel + "'>" +
                 "<td>" + name + "</td>" +
                 "<td><input data-id='"+id_fuels+"' type='text' class='form-control norm_fuel fuel_st_"+id_fuel+"' ></td>" +
                 "<td><input class='date_fuel form-control' type='date'></td>" +
@@ -618,14 +620,22 @@ die;
             id_g_employee++;
             var id_employe = $(this).attr('data-id');
             $('#fact_employe_action').append(
-                "<tr class='ex_fact_employe' id='g_employee"+id_g_employee+"'>" +
+                "<tr class='ex_fact_employe' id='g_employee_"+id_g_employee+"'>" +
                 "<td>"+plan_employee[id_employe]['employee_surname']+"</td>" +
                 "<td><input data-id='"+id_employe+"' type='text' class='form-control em_fact'></td>" +
                 "<td><input class='form-control em_date' type='date'></td>" +
+                "<td><button class='btn btn-danger btn-sm remove_employe' data-id='" + id_g_employee + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "<td></td>" +
                 "</tr>");
             save_employee();
         });
+
+        $('#fact_employe_action').on('click', '.remove_employe', remove_employe);
+        function remove_employe() {
+            var id=$(this).attr('data-id');
+            $('#g_employee_'+id).remove();
+            save_employe();
+        }
         $('#save_employe').click(save_employee);
 
         $('#fact_employe_action').on('change', '.em_date, .em_fact', save_employee);
@@ -649,11 +659,19 @@ die;
         $('#fact_add_services').click(add_services);
         function add_services() {
             id_services++;
-            $('#fact_action_services').append("<tr class='fact_action_services'>" +
+            $('#fact_action_services').append("<tr class='fact_action_services' id='f_services_"+id_services+"'>" +
                 "<td><input  class='name form-control se_name' type='text'></td>" +
                 "<td><input  class='name form-control se_price' type='text'></td>" +
                 "<td><input  class='name form-control se_date' type='date'></td>" +
+                "<td><button class='btn btn-danger btn-sm remove_service' data-id='" + id_services + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
+        }
+
+        $('#fact_action_services').on('click', '.remove_service', remove_service);
+        function remove_service() {
+            var id=$(this).attr('data-id');
+            $('#f_services_'+id).remove();
+            save_services();
         }
         $('#fact_add_services').click(save_services);
         $('#fact_action_services').on('change', '.se_name, .se_price, .se_date', save_services);
@@ -681,16 +699,27 @@ die;
         var def_equipment = 'Техніка відсутня';
         var def_services = 'Послуги відсутні';
         var def_plan='План';
+
         $('.edit_action').click(function () {
             $('.fact_tech_card').css('display','block');
             $("#material,#employee, #services,#equipment,#serv,#emplo,#mat,#equp," +
-                "#in_fact_material,#in_fact_employee,#in_fact_equipment,#in_fact_services").html('');
+                "#in_fact_material,#in_fact_employee,#in_fact_equipment,#in_fact_services, #info_operation_fact").html('');
+
+            var elementClick = $(this).attr("href");
+            var destination = $(elementClick).offset().top;
+                $('html').animate({ scrollTop: destination }, 35);
+
+
             var action_id = $(this).attr('data-action_id');
             var json_equipment = $(this).attr('data-machines');
             var json_services = $(this).attr('data-services');
             var json_material =$(this).attr('data-material');
             var json_employee = $(this).attr('data-employee');
             var json_fact = $(this).attr('data-fact');
+            var action_action_id = $(this).attr('data-action_action_id');
+            var action_type_id = $(this).attr('data-action_type_id');
+            var start_date = $(this).attr('data-start_date');
+            var end_date = $(this).attr('data-end_date');
             var field_size=parseFloat($('#field_size').text());
             var material = JSON.parse(json_material);
             var employee = JSON.parse(json_employee);
@@ -698,11 +727,17 @@ die;
             var services = JSON.parse(json_services);
             var fact=JSON.parse(json_fact);
             if(!isNaN(fact)) fact={};
+            var fuel_storage_name=[];
 
             $('#save_fact_id_action').val(action_id);
 
 
-
+            $('#info_operation_fact').append(
+                "<th>"+ action_type_name[action_type_id]['name_ua'] +"</th>"+
+                "<th>"+ action_type_name[action_action_id]['name_ua'] +"</th>"+
+                "<th>"+ start_date +"</th>"+
+                "<th>"+ end_date +"</th>"
+            );
             ///////Загрузка Плана
             if(material == false){
                 $("#material").append(
@@ -741,19 +776,24 @@ die;
             }
             else{
                 var id_machine=0;
-                $.each(equipment, function (key, machines) {
-                    id_machine++;
-                    $("#equipment").append("<tr>"+
-                        "<td>"+vehicles[machines['id_veh']]['vehicles_name']+"</td>"+
-                        "<td id='equipment_"+id_machine+"'></td>"+
-                        "<td>"+machines['fuel']*field_size+"</td>"+
-                        "</tr>"
-                    );
-                    var id_equ = machines['id_equ'].split(',');
-                    $.each(id_equ, function (key, id_equipment) {
-                        $("#equipment_"+id_machine).append(equipment_lib[id_equipment]['equipment_name']+"<br>");
+
+                    $.each(equipment, function (key, machines) {
+                        id_machine++;
+                        if(machines['id_veh']!=false){
+                        $("#equipment").append("<tr>"+
+                            "<td>"+ vehicles[machines['id_veh']]['vehicles_name']+"</td>"+
+                            "<td id='equipment_"+id_machine+"'></td>"+
+                            "<td>"+machines['fuel']*field_size+"</td>"+
+                            "</tr>"
+                        );}
+                       if(machines['id_equ'] == true){
+                            var id_equ = machines['id_equ'].split(',');
+                            $.each(id_equ, function (key, id_equipment) {
+                                $("#equipment_"+id_machine).append(equipment_lib[id_equipment]['equipment_name']+"<br>");
+                            });
+                       }
                     });
-                });
+
             }
             if(services == false){
                 $('#services').append(
@@ -773,38 +813,39 @@ die;
             ////////////Загрузка Факта
             $('#fact_employe_action, #fact_action_fuel, #fact_action_services, #fact_action_material').html('');
             ////fact_materials
-            if(fact['fact_materials'] == undefined){
+            if(fact['fact_materials'] == undefined || fact['fact_materials']== false){
                 $("#in_fact_material").append(
                     "<tr>" +
                     "<td colspan='3' class='text-center'>" + def_material + "</td>" +
                     "</tr>");
             }else {
                 $.each(fact['fact_materials'], function (key, value) {
-                    $("#in_fact_material").append(
-                        "<tr>" +
-                        "<td>" + storage[value['id']]['name_material'] + "</td>" +
-                        "<td>" + value['norm'] + "</td>"+
-                        "</tr>"
-                    );
-                    id_material++;
-                    $("#fact_action_material").append("<tr class='material_json' id=' action_material_" + id_material + "'>" +
-                        "<td>" + storage[value['id']]['name_material'] + "</td>" +
-                        "<td><input data-id='"+value['id']+"' type='text' class='form-control norm_material material_st_"+value['id']+"' value='"+value['norm']+"' ></td>" +
-                        "<td><input  value='"+value['date']+"' class='date_material form-control' type='date'></td>" +
-                        "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
-                        "</tr>");
+                    if(storage[value['id']]!=undefined) {
+                        $("#in_fact_material").append(
+                            "<tr>" +
+                            "<td>" + storage[value['id']]['name_material'] + "</td>" +
+                            "<td>" + value['norm'] + "</td>"+
+                            "</tr>"
+                        );
+                        id_material++;
+                        $("#fact_action_material").append("<tr class='material_json' id='f_action_material_" + id_material + "'>" +
+                            "<td>" +  storage[value['id']]['name_material'] + "</td>" +
+                            "<td><input data-id='"+value['id']+"' type='text' class='form-control norm_material material_st_"+value['id']+"' value='"+value['norm']+"' ></td>" +
+                            "<td><input  value='"+value['date']+"' class='date_material form-control' type='date'></td>" +
+                            "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
+                            "</tr>");
+                    }
                 });
 
             }
-
-
             //////////fact_employee
-            if(fact['fact_employee'] == undefined){
+            if(fact['fact_employee'] == undefined || fact['fact_employee'] ==false){
                 $("#in_fact_employee").append("<tr'>" +
                     "<td colspan='2' class='text-center'>" + def_employee + "</td>" +
                     "</tr>");
             }else{
                 $.each(fact['fact_employee'], function (key, employee) {
+                    if( plan_employee[employee['id']]!=undefined){
                     $("#in_fact_employee").append(
                         "<tr>" +
                         "<td>" + plan_employee[employee['id']]['employee_name'] +' '+ plan_employee[employee['id']]['employee_surname']+"</td>" +
@@ -813,17 +854,18 @@ die;
                     );
                     id_g_employee++;
                     $('#fact_employe_action').append(
-                        "<tr class='ex_fact_employe' id='g_employee"+id_g_employee+"'>" +
+                        "<tr class='ex_fact_employe' id='g_employee_"+id_g_employee+"'>" +
                         "<td>"+plan_employee[employee['id']]['employee_surname']+"</td>" +
                         "<td><input value='"+employee['pay']+"' data-id='"+employee['id']+"' type='text' class='form-control em_fact'></td>" +
                         "<td><input value='"+employee['date']+"' class='form-control em_date' type='date'></td>" +
+                        "<td><button class='btn btn-danger btn-sm remove_employe' data-id='" + id_g_employee + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                         "<td></td>" +
                         "</tr>");
-
+                    }
                 });
             }
             ////////fact_machines
-            if(fact['fact_machines'] == undefined){
+            if(fact['fact_machines'] == undefined || fact['fact_machines'] == false){
                 $("#in_fact_equipment").append("<tr>" +
                     "<td colspan='3' class='text-center'>" + def_equipment + "</td>" +
                     "</tr>");
@@ -831,23 +873,25 @@ die;
                 var id_machine=0;
                 $.each(fact['fact_machines'], function (key, machines) {
                     id_machine++;
-                    $("#in_fact_equipment").append("<tr>"+
-                        "<td>"+machines['date']+"</td>"+
-                        "<td ></td>"+
-                        "<td>"+machines['norm']+"</td>"+
-                        "</tr>"
-                    );
-                    id_fuel++;
-                    $("#fact_action_fuel").append("<tr class='fuel_json' id=' action_fuel_" + id_fuel + "'>" +
-                        "<td>" + storage[machines['id_mat']]['name_material'] + "</td>" +
-                        "<td><input value='"+machines['norm']+"' data-id='"+machines['id_mat']+"' type='text' class='form-control norm_fuel fuel_st_"+machines['id_mat']+"' ></td>" +
-                        "<td><input value='"+machines['date']+"' class='date_fuel form-control' type='date'></td>" +
-                        "<td><button class='btn btn-danger btn-sm remove_fuel' data-id='" + id_fuel + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
-                        "</tr>");
+                    if(storage[machines['id_mat']]!=undefined) {
+                        $("#in_fact_equipment").append("<tr>"+
+                            "<td>"+machines['date']+"</td>"+
+                            "<td ></td>"+
+                            "<td>"+machines['norm']+"</td>"+
+                            "</tr>"
+                        );
+                        id_fuel++;
+                        $("#fact_action_fuel").append("<tr class='fuel_json' id='action_fuel_" + id_fuel + "'>" +
+                            "<td>" + storage[machines['id_mat']]['name_material'] + "</td>" +
+                            "<td><input value='"+machines['norm']+"' data-id='"+machines['id_mat']+"' type='text' class='form-control norm_fuel fuel_st_"+machines['id_mat']+"' ></td>" +
+                            "<td><input value='"+machines['date']+"' class='date_fuel form-control' type='date'></td>" +
+                            "<td><button class='btn btn-danger btn-sm remove_fuel' data-id='" + id_fuel + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
+                            "</tr>");
+                    }
                 });
             }
             ////////fact_services
-            if(fact['fact_services'] == undefined){
+            if(fact['fact_services'] == undefined || fact['fact_services']==false){
                 $('#in_fact_services').append(
                     "<tr>" +
                     "<td colspan='3' class='text-center'>" + def_services + "</td>" +
@@ -861,10 +905,12 @@ die;
                         "<td>" + service['price']+ "</td>" +
                         "</tr>"
                     );
-                    $('#fact_action_services').append("<tr class='fact_action_services'>" +
+                    id_services++;
+                    $('#fact_action_services').append("<tr class='fact_action_services' id='f_services_"+id_services+"'>" +
                         "<td><input value='" + service['name']+"'  class='name form-control se_name' type='text'></td>" +
                         "<td><input value='" + service['price']+"'  class='name form-control se_price' type='text'></td>" +
                         "<td><input value='" + service['date']+"'  class='name form-control se_date' type='date'></td>" +
+                        "<td><button class='btn btn-danger btn-sm remove_service' data-id='" + id_services + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                         "</tr>");
                 });
             }
@@ -873,8 +919,36 @@ die;
             save_material();
             save_fuel();
         });
+
         $('.save_change').click(function () {
             location.reload();
+        });
+
+
+        $('.new_open_material').click(function(){
+            $('#style_open_material').toggle();
+            $('#style_open_employee').hide();
+            $('#style_open_ppa').hide();
+            $('#style_open_services').hide();
+        });
+
+        $('.new_open_employee').click(function(){
+            $('#style_open_employee').toggle();
+            $('#style_open_ppa').hide();
+            $('#style_open_material').hide();
+            $('#style_open_services').hide();
+        });
+        $('.new_open_ppa').click(function(){
+            $('#style_open_ppa').toggle();
+            $('#style_open_material').hide();
+            $('#style_open_employee').hide();
+            $('#style_open_services').hide();
+        });
+        $('.new_open_services').click(function(){
+            $('#style_open_services').toggle();
+            $('#style_open_material').hide();
+            $('#style_open_ppa').hide();
+            $('#style_open_employee').hide();
         });
     });
 </script>

@@ -5,16 +5,18 @@
  * Date: 08.09.2017
  * Time: 14:56
  */
+include_once ROOT.'/cabinet/new-farmer/models/Budget.php';
 include_once ROOT.'/cabinet/new-farmer/models/DataBase.php';
 include_once ROOT.'/cabinet/new-farmer/models/Material.php';
 class MaterialController{
     public function actionGetMaterials(){
-
         $id_user=$_SESSION['id_user'];
         $date['material']=Material::getMaterial($id_user);
         $date['type_material']=DataBase::getTypeMaterial();
         $date['ppa_material']=DataBase::getTypePPA();
+        $date['fuel_material']=DataBase::getTypeFuel();
         $date['material_lib']=DataBase::getMaterial($id_user);
+        $date['crop_list']=DataBase::getCropName($id_user);
         SRC::template('new-farmer','new','material',$date);
         return true;
     }
@@ -47,5 +49,23 @@ class MaterialController{
         Material::removeMaterial($id_user,$id_material_price);
         SRC::redirect();
         return true;
+    }
+    public function actionGetAllNeedMaterial(){
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
+
+        $date['crop_list']=DataBase::getCropName($id_user);
+        $date['material']=Material::getMaterial($id_user);
+        $date['type_material']=DataBase::getTypeMaterial();
+        $date['ppa_material']=DataBase::getTypePPA();
+        $date['material_lib']=DataBase::getMaterial($id_user);
+
+
+        SRC::template('new-farmer','new','allNeedMaterial',$date);
+        return true;
+
     }
 }

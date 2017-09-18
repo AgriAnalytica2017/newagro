@@ -11,7 +11,7 @@
     <div class="box-bodyn">
         <div class="non-semantic-protector">
             <h1 class="ribbon">
-                <strong class="ribbon-content">Plan/Fact budget per crop</strong>
+                <strong class="ribbon-content">План/Факт бюджет по культурах</strong>
             </h1>
         </div>
     </div>
@@ -27,10 +27,21 @@
                             <td class="line_left" <? if($table['array'] =='budget_crop_name') echo "colspan=3 style='text-align:center;'"?> ><a href="/new-farmer/budget"><?if($table['array']!='budget_crop_name') echo number_format($value); else echo $value;?></a></td>
                             <? if($table['array']!='budget_crop_name'){?>
                                 <td><a><? echo number_format($date['budget']['crop_fact_'.$table['array']][$key]);?></a></td>
-                                <td><a><? echo number_format($value-$date['budget']['crop_fact_'.$table['array']][$key]);?></a></td>
+                                <td class="<? if($value-$date['budget']['crop_fact_'.$table['array']][$key]<0) echo 'minus'; else echo 'plus'?>"><a><? echo number_format($value-$date['budget']['crop_fact_'.$table['array']][$key]);?></a></td>
                             <?}?>
                         <?} ?>
                     </tr>
+                    <? if($table['array'] =='budget_crop_name'){?>
+
+                        <tr>
+                            <td></td>
+                            <?php foreach ($date['budget']['crop_'.$table['array']] as $key => $value){?>
+                                <td class="line_left">План</td>
+                                <td>Факт</td>
+                                <td>(+/-)</td>
+                            <?}?>
+                        </tr>
+                    <?}?>
                 <?}?>
                 </tbody>
             </table>
