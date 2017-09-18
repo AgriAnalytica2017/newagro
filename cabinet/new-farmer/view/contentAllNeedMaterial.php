@@ -15,8 +15,6 @@ $unit=array(
     3=>'м³',
     4=>'п.о'
 );
-/* echo "<pre>";
-var_dump($date);*/
 ?>
 <section class="content">
     <div class="box">
