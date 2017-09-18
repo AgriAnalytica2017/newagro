@@ -32,6 +32,7 @@ $date['type_material']['ua'][4]='Топливо';
                         <tr class="materil_list type_material_<?=$material['id_type_material']; if($material['id_type_material']==3){?> subtype_<?=$material['key_material']; }?>">
                             <td><?=$date['type_material']['ua'][$material['id_type_material']]?>
                                 <? if($material['id_type_material']==1) echo '/'.$date['crop_list'][$material['key_material']]['name_crop_ua']?>
+                                <? if($material['id_type_material']==2) echo '/'.$date['fert_material']['ua'][$material['key_material']]?>
                                 <? if($material['id_type_material']==3) echo '/'.$date['ppa_material']['ua'][$material['key_material']]?>
                                 <? if($material['id_type_material']==4) echo '/'.$date['fuel_material']['ua'][$material['key_material']]?>
                             </td>
@@ -86,6 +87,27 @@ $date['type_material']['ua'][4]='Топливо';
                             <?} ?>
                         </select>
                         <br>
+                        <label id="label_sub_type_material">Підтип матеріалу</label>
+                        <select id="sub_type_material_seed" class="form-control" name="sub_type_material_seed">
+                            <? foreach ($date['crop_list'] as $crop_list){?>
+                                <option value="<?=$crop_list['id_crop']?>"><?=$crop_list['name_crop_ua']?></option>
+                            <?}?>
+                        </select>
+                        <select id="sub_type_material_ppa" class="form-control" name="sub_type_material_ppa" style="display: none">
+                            <?php foreach ($date['ppa_material']['ua'] as $key=>$value){?>
+                                <option value="<?=$key?>"><?=$value?></option>
+                            <?} ?>
+                        </select>
+                        <select id="sub_type_material_fert" class="form-control" name="sub_type_material_fert" style="display: none">
+                            <option value="1">Мінеральні</option>
+                            <option value="2">Органічні</option>
+                        </select>
+                        <select id="sub_type_material_fuel" class="form-control" name="sub_type_material_fuel" style="display: none">
+                            <option value="1">Дизельне паливо</option>
+                            <option value="2">Бензин</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
                         <label><?=$language['new-farmer']['105']?></label>
                         <input list="lib_materials" class="form-control" name="name_material" id="name_material" >
                         <datalist id="lib_materials">
@@ -93,17 +115,9 @@ $date['type_material']['ua'][4]='Топливо';
                                 <option><?=$material_lib['name_material']?></option>
                             <?}?>
                         </datalist>
-                    </div>
-                    <div class="col-lg-6">
+                        <br>
                         <label><?=$language['new-farmer']['107']?></label>
                         <input type="text" name="price_material" id="price_material" class="form-control">
-                        <br>
-                        <label id="label_sub_type_material">Підтип матеріалу</label>
-                        <select id="sub_type_material" class="form-control" name="sub_type_material">
-                            <?php foreach ($date['ppa_material']['ua'] as $key=>$value){?>
-                                <option value="<?=$key?>"><?=$value?></option>
-                            <?} ?>
-                        </select>
                     </div>
                 </div>
                 <br><br>
@@ -117,11 +131,27 @@ $date['type_material']['ua'][4]='Топливо';
     $(document).ready(function () {
         $('#type_materia').change(function () {
            var value=$(this).val();
-           if(value==3){
-               $('#sub_type_material, #label_sub_type_material').show();
-           }else {
-               $('#sub_type_material, #label_sub_type_material').hide();
-           }
+            if(value==3){
+                $('#sub_type_material_ppa, #label_sub_type_material').show();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fert').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(value==1) {
+                $('#sub_type_material_seed, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_fert').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(value==2){
+                $('#sub_type_material_fert, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(value==4){
+                $('#sub_type_material_fuel, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fert').hide();
+            }
         });
         //filter
         $('.filter_type').change(filter_type);
@@ -169,11 +199,36 @@ $date['type_material']['ua'][4]='Топливо';
             $('#name_material').val(material['name_material']);
             $('#price_material').val(material['price_material']);
             $('#type_materia').val(material['id_type_material']);
-            $('#sub_type_material').val(material['key_material']);
+            if(material['id_type_material']==1){
+                $('#sub_type_material_seed').val(material['key_material']);
+            }if(material['id_type_material']==2){
+                $('#sub_type_material_fert').val(material['key_material']);
+            }if(material['id_type_material']==3){
+                $('#sub_type_material_ppa').val(material['key_material']);
+            }if(material['id_type_material']==4){
+                $('#sub_type_material_fuel').val(material['key_material']);
+            }
+
             if(material['id_type_material']==3){
-                $('#sub_type_material, #label_sub_type_material').show();
-            }else {
-                $('#sub_type_material, #label_sub_type_material').hide();
+                $('#sub_type_material_ppa, #label_sub_type_material').show();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fert').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(material['id_type_material']==1) {
+                $('#sub_type_material_seed, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_fert').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(material['id_type_material']==2){
+                $('#sub_type_material_fert, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fuel').hide();
+            }if(material['id_type_material']==4){
+                $('#sub_type_material_fuel, #label_sub_type_material').show();
+                $('#sub_type_material_ppa').hide();
+                $('#sub_type_material_seed').hide();
+                $('#sub_type_material_fert').hide();
             }
             $('#material_modal').modal('show');
         })

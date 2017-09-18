@@ -15,6 +15,7 @@ class MaterialController{
         $date['type_material']=DataBase::getTypeMaterial();
         $date['ppa_material']=DataBase::getTypePPA();
         $date['fuel_material']=DataBase::getTypeFuel();
+        $date['fert_material'] = DataBase::getTypeFert();
         $date['material_lib']=DataBase::getMaterial($id_user);
         $date['crop_list']=DataBase::getCropName($id_user);
         SRC::template('new-farmer','new','material',$date);
@@ -36,7 +37,13 @@ class MaterialController{
         $id_material_price=SRC::validator($_POST['id_material_price']);
         $name_material=SRC::validator($_POST['name_material']);
         $id_type_material=SRC::validator($_POST['type_material']);
-        $key_material=SRC::validator($_POST['sub_type_material']);
+        if($id_type_material == '1'){
+            $key_material=SRC::validator($_POST['sub_type_material_seed']);
+        }elseif($id_type_material=='2'){
+            $key_material=SRC::validator($_POST['sub_type_material_fert']);
+        }else{
+            $key_material=SRC::validator($_POST['sub_type_material_ppa']);
+        }
         $id_lib_material=DataBase::saveLibMaterial($id_user,$name_material,$id_type_material,$key_material);
         $price_material=SRC::validatorPrice($_POST['price_material']);
         Material::saveEditMaterial($id_user,$id_material_price,$id_lib_material,$price_material);

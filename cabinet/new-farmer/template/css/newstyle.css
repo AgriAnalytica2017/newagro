@@ -2030,7 +2030,6 @@ padding-left: 15px;
 .table th, .table td{
     font-size: 17px;
     /*border: 1px solid rgba(31, 255, 0, 0.35);*/
-
 }
 .btn-success{
     background-color: rgba(255, 255, 255, 0) !important;
@@ -2081,7 +2080,10 @@ padding-left: 15px;
 }
 .btn-default:hover{
     color: #5d5d5d !important;
+
 }
 .btn:focus{
     color: #6f6f6f !important;
+    outline: none!important;
+    box-shadow: 0 0 10px 3px #c3c3c3;
 }
