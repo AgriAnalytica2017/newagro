@@ -1,4 +1,4 @@
-<style>
+﻿<style>
     #sub_type_material, #label_sub_type_material,.filter_ppa{
         display: none;
     }
@@ -15,6 +15,8 @@ $unit=array(
     3=>'м³',
     4=>'п.о'
 );
+/* echo "<pre>";
+var_dump($date);*/
 ?>
 <section class="content">
     <div class="box">
