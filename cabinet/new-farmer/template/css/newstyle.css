@@ -558,10 +558,10 @@ form{
     padding-top: 5px;
 }
 
-.dropdown-menun .fa {
+.dropdown-menun .fa{
 
     margin-left: 5px;
-    padding-right: 20px;
+    padding-right: 5px !important;
 }
 
 .right{
@@ -2084,4 +2084,10 @@ padding-left: 15px;
 }
 .btn:focus{
     color: #6f6f6f !important;
+}
+.navibar-custom-menun .navibar-navn > li > .dropdown-menun>li>a>.menu-icon {
+    padding-right: 15px !important;
+}
+.user-footern>div>a{
+    color: #fffefe !important;
 }

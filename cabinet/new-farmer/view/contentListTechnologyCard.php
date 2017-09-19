@@ -15,7 +15,7 @@ var_dump($date['new_crop_culture']);die;*/
     .big-button {
       position: relative;
     background-color: #ffffff;
-    color: #111;
+    color: #333;
     font-family: 'Ubuntu', cursive;
     font-size: 16px;
     font-weight: 400;
@@ -54,7 +54,7 @@ var_dump($date['new_crop_culture']);die;*/
         .big-button{
               position: relative;
     background-color: #ffffff;
-    color: #111;
+    color: #333;
     font-family: 'Ubuntu', cursive;
     font-size: 16px;
     font-weight: 400;
@@ -78,6 +78,15 @@ var_dump($date['new_crop_culture']);die;*/
     clear: both;
     margin-bottom: 20px;
              width: 100%;
+    }
+}
+
+    @media (max-width: 1220px){
+        
+         .bottom{
+             float: left;
+    margin-bottom: 20px;
+             width: inherit;
     }
 }
 

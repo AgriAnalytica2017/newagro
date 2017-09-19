@@ -39,10 +39,16 @@ $unit = array(
 ?>
 <head>
     <style>
-        .searchs{
+           .searchs{
             height: 35px;
             width: 300px;
             border-radius:3px;
+            border-color: rgba(35, 121, 82, 0.32);
+            outline: none;
+            margin-top: -4px;
+        }
+         .searchs:focus{
+             box-shadow: 0px 1px 6px 0px rgba(22, 49, 47, 0.28);
         }
     </style>
 </head>
@@ -59,7 +65,7 @@ $unit = array(
 <div class="box-bodyn col-lg-12" style="max-height: 55px">
     <div class="row">
         <div class="col-lg-4">
-            <input class="searchs" id="search" type="text" placeholder="Поиск" style="float: left">
+            <input class="searchs inphead" id="search" type="text" placeholder="Поиск" style="float: left">
         </div>
         <div class="col-lg-4">
             <a class="btn btn-primaryn top sh" href="#newEquipment" data-toggle="modal"><?=$language['new-farmer']['16']?></a>
