@@ -6,6 +6,8 @@
         </h1>
     </div>
 </div>
+<div class="rown">
+        <div class="table-responsive">
 <table class="table">
     <tbody>
         <?foreach ($date['fin_table_ua'] as $key=>$value){?>
@@ -18,3 +20,5 @@
         <?}?>
     </tbody>
 </table>
+    </div>
+</div>

@@ -28,6 +28,7 @@
             <strong class="ribbon-content">Cash Flow</strong>
         </h1>
     </div>
+    </div>
     <div class="rown">
         <div class="table-responsive">
             <table class="table">
@@ -57,9 +58,6 @@
             </table>
         </div>
     </div>
-</div>
-
-
 
 <?php //foreach ($date['table_cash'] as $table){?>
 <!--    <tr>-->

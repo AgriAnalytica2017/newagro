@@ -5,6 +5,7 @@
             <strong class="ribbon-content"><?=$language['new-farmer']['12']?></strong>
         </h1>
     </div>
+</div>
     <div class="rown">
 
         <div class="table-responsive">

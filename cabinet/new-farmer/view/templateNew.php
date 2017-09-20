@@ -166,10 +166,10 @@ $top_menu=array(
                                 <!-- Menu Footer-->
                                 <li class="user-footern">
                                     <div class="pull-leftn">
-                                        <a href="<? echo SRC::getSRC();?>/farmer/profile" class="btn btn-default btn-flat">Профіль</a>
+                                        <a href="<? echo SRC::getSRC();?>/farmer/profile" class="btn btn-default">Профіль</a>
                                     </div>
                                     <div class="pull-rightn">
-                                        <a href="/exit" class="btnn btn-defaultn btn-flatn">Вихід</a>
+                                        <a href="/exit" class="btn btn-default">Вихід</a>
                                     </div>
                                 </li>
                             </ul>

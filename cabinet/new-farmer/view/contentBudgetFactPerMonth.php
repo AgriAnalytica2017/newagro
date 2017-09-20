@@ -28,6 +28,7 @@
         <strong class="ribbon-content">План/Факт бюджет помісячно</strong>
     </h1>
 </div>
+</div>
 <div class="rown">
     <div class="table-responsive">
         <table class="table">
@@ -66,8 +67,6 @@
         <a href="/new-farmer/save_budget" class="btn btnn btn-success">Сохранить бюджет</a>
     </div>-->
 </div>
-</div>
-
 
 <!--<tbody>-->
 <?php //foreach ($date['table'] as $table){?>
