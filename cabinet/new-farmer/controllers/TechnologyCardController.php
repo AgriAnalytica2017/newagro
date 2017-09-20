@@ -243,10 +243,12 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $name_material=SRC::validator($_POST['name_material']);
         $id_type_material=SRC::validator($_POST['id_type_material']);
-        if($id_type_material=='1'){
-            $key_material = SRC::validator($_POST['key_material_seed']);
+        if($id_type_material =='1'){
+            $key_material = SRC::validator($_POST['key_material_1']);
+        }elseif($id_type_material == '3'){
+            $key_material=SRC::validator($_POST['key_material_3']);
         }else{
-            $key_material=SRC::validator($_POST['key_material_'+$id_type_material]);
+            $key_material = SRC::validator($_POST['key_material_2']);
         }
         $id_material=DataBase::saveLibMaterial($id_user,$name_material,$id_type_material,$key_material);
         $material_price=SRC::validator($_POST['price_material']);
