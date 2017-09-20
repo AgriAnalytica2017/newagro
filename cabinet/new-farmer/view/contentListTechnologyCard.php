@@ -82,12 +82,14 @@ var_dump($date['new_crop_culture']);die;*/
 }
 
     @media (max-width: 1220px){
-        
          .bottom{
-             float: left;
+    float: left;
     margin-bottom: 20px;
-             width: inherit;
+    width: inherit;
     }
+        .col-lg-6{
+            position: inherit;
+        }
 }
 
    
