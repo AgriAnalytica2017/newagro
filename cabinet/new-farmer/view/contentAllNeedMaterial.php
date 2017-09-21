@@ -1,4 +1,4 @@
-﻿<style>
+<style>
     #sub_type_material, #label_sub_type_material,.filter_ppa{
         display: none;
     }

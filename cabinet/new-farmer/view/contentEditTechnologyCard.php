@@ -290,14 +290,57 @@ $units = array(
                 <span class="box-title">Картка вибору с/г техніки</span>
             </div>
             <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                            <tr class="tabletop">
+                                <th><?=$language['new-farmer']['3']?></th>
+                                <th><?=$language['new-farmer']['2']?></th>
+                                <th><?=$language['new-farmer']['155']?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="action_vehicles">
+
+                            </tbody>
+                        </table>
+                        <a class="btn btn-primary" href="#choose_sg" data-toggle="modal">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save_vehicles" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!---->
+
+
+<div id="choose_sg" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content wt">
+            <div class="box-bodyn">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <span class="box-title"><?=$language['new-farmer']['84']?></span>
+            </div>
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
                         <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
-                        <button id="save_vehicles" type="submit" style="float: right" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <table class="table tavle1">
                             <thead>
                             <tr class="tabletop">
@@ -313,25 +356,10 @@ $units = array(
                                     <td><?=$vehicles['vehicles_name']?></td>
                                     <td><?=$vehicles['vehicles_power']?></td>
                                     <td style="width:20%;"><? if($vehicles['vehicles_load_capacity']!=0){echo $vehicles['vehicles_load_capacity'];}else{echo "";}?></td>
-                                    <td><a data-data='<?=json_encode($vehicles); ?>' class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
+                                    <td><a data-data='<?=json_encode($vehicles); ?>' data-dismiss="modal" class="btn btn-success btn-sm add_vehicles"><i class="fa fa-fw fa-arrow-right"></i>
                                         </a></td>
                                 </tr>
                             <? }?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-6">
-                        <table class="table">
-                            <thead>
-                            <tr class="tabletop">
-                                <th><?=$language['new-farmer']['3']?></th>
-                                <th><?=$language['new-farmer']['2']?></th>
-                                <th><?=$language['new-farmer']['155']?></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody id="action_vehicles">
-
                             </tbody>
                         </table>
                     </div>
@@ -454,14 +482,14 @@ $units = array(
                             <div class="tab-pane" id="new_materials">
                                 <form method="post" id="material_form" action="javascript:void(null);">
                                     <label><?=$language['new-farmer']['96']?></label>
-                                    <select class="form-control" name="id_type_material" id="id_type_material">
+                                    <select class="form-control id_type_material" name="id_type_material">
                                         <option value="1"><?=$language['new-farmer']['90']?></option>
                                         <option value="2"><?=$language['new-farmer']['91']?></option>
                                         <option value="3"><?=$language['new-farmer']['92']?></option>
                                     </select>
                                     <br>
-                                    <input type="hidden" name="key_material_seed" value="<?=$date['field']['field_id_crop']?>">
-                                    <div class="sub_type" style="display: none">
+                                    <input type="hidden" name="key_material_1" value="<?=$date['field']['field_id_crop']?>">
+                                    <div class="sub_type_ppa" style="display: none">
                                         <label><?=$language['new-farmer']['97']?></label>
                                         <select class="form-control" name="key_material_3" id="key_material_3">
                                             <option value="1"><?=$language['new-farmer']['102']?></option>
@@ -472,6 +500,13 @@ $units = array(
                                             <option value="6"><?=$language['new-farmer']['103']?></option>
                                             <option value="7"><?=$language['new-farmer']['101']?></option>
                                             <option value="8"><?=$language['new-farmer']['104']?></option>
+                                        </select>
+                                    </div>
+                                    <div class="sub_type_fert" style="display: none">
+                                        <label><?=$language['new-farmer']['97']?></label>
+                                        <select class="form-control" name="key_material_2" id="key_material_2">
+                                            <option value="1">Мінеральні</option>
+                                            <option value="2">Органічні</option>
                                         </select>
                                     </div>
                                     <br>
@@ -521,6 +556,7 @@ $units = array(
 
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -801,8 +837,8 @@ $units = array(
                 "<td>"+vehicles['vehicles_name']+"</td>" +
                 "<td >" +
                 "<div class='btn-group'>" +
-                "<button id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]' type='button' class='btn btn-default ex_equ' style='max-width: 70px' disabled='disabled'>equ</button>" +
-                "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
+                "<div id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_vehicles']+"' data-id-equipment='[]'  class='ex_equ' style='max-width: 70px' disabled='disabled'></div>" +
+                "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>+</button>" +
                 "</div>" +
                 "</td>" +
                 "<td><input type='text'  class='form-control fuel'></td>" +
@@ -846,7 +882,7 @@ $units = array(
                     id_equipment++;
                     $("#list_equipment").append("<tr id='action_equipment_"+id_equipment+"'>" +
                         "<td>"+equipment_bd_name[value['id']]['equipment_name']+"</td>" +
-                        "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-idr='"+id_equipment+"' data-id='"+value['id']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
+                        "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-name='"+equipment_bd_name[value['id']]['equipment_name']+"' data-idr='"+id_equipment+"' data-id='"+value['id']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
                         "</tr>");
                 });
             }
@@ -858,7 +894,7 @@ $units = array(
             var equipment=JSON.parse( json_equipment );
             $("#list_equipment").append("<tr id='action_equipment_"+id_equipment+"'>" +
                 "<td>"+equipment['equipment_name']+"</td>" +
-                "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-idr='"+id_equipment+"' data-id='"+equipment['id_equipment']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
+                "<td><button class='btn btn-danger btn-sm remove_equipment equipment_lists' data-name='"+equipment['equipment_name']+"' data-idr='"+id_equipment+"' data-id='"+equipment['id_equipment']+"'><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
             save_equipment();
         }
@@ -868,17 +904,20 @@ $units = array(
             $('#action_equipment_'+id).remove();
             save_equipment();
         }
+
         function save_equipment(){
             var id=$('#vehicles_id_equipment').val();
             jsonObj = [];
             var coll=0;
+            var text_eq='';
             $(".equipment_lists").each(function() {
                 coll++;
                 item = {};
                 item ['id'] = $(this).attr('data-id');
                 jsonObj.push(item);
+                text_eq+=$(this).attr('data-name')+', ';
             });
-            $('#vehicles_id_eq_'+id).text(coll).attr('data-id-equipment', JSON.stringify(jsonObj));
+            $('#vehicles_id_eq_'+id).text(text_eq).attr('data-id-equipment', JSON.stringify(jsonObj));
         }
         /////////////////////////////////////////////////////////////////////////////////////
 
@@ -961,23 +1000,24 @@ $units = array(
                 if (vehicles['id_equ']!=false){
                     var vehicles_arr = vehicles['id_equ'].split(',');
                     var coll=0;
+                    var text_eq='';
                     $.each(vehicles_arr, function(key2, value2) {
                         coll++;
                         item = {};
                         item ['id'] = value2;
                         jsonObj.push(item);
+                        text_eq+=equipment_bd_name[value2]['equipment_name']+', ';
                     });
                 }
                 $("#action_vehicles").append("<tr class='equipment_id' id='action_vehicles_"+id_vehicles+"'>" +
                     "<td>"+ vehicles_bd_name[vehicles['id_veh']]['vehicles_name'] +"</td>" +
                     "<td>" +
                     "<div class='btn-group'>" +
-                    "<button id='vehicles_id_eq_"+id_vehicles+"' data-id-vehicles='"+vehicles['id_veh']+"' data-id-equipment='"+JSON.stringify(jsonObj)+"' type='button' class='btn btn-default ex_equ' disabled='disabled'>"+coll+"</button>" +
+                    "<div id='vehicles_id_eq_"+id_vehicles+"'  data-id-vehicles='"+vehicles['id_veh']+"' data-id-equipment='"+JSON.stringify(jsonObj)+"'  class='ex_equ' style='max-width: 70px' disabled='disabled'>"+text_eq+"</div>" +
                     "<button data-id='"+id_vehicles+"' type='button' class='btn btn-primary open_equipment'>*</button>" +
                     "</div>" +
                     "</td>" +
                     "<td><input type='text' class='form-control fuel' value='"+vehicles['fuel']+"'></td>" +
-                    "<td>"+html_fuel_select+"</td>" +
                     "<td><button class='btn btn-danger btn-sm remove_vehicles' data-id='"+id_vehicles+"' ><i class='fa fa-fw fa-close'></i></button></td>" +
                     "</tr>");
             });
@@ -989,13 +1029,13 @@ $units = array(
         function scroll_to_top(speed) {
             $('body,html').animate({scrollTop: 0}, speed);
         }
-        $('#planing_unit_material').change(function () {
+/*        $('#planing_unit_material').change(function () {
             var unit = $(this).val();
             if(unit == 1){
                 var units = 'Norm kg/h';
                 $('#units').text(units);
             }
-            if(unit == 2 ){
+            if(unit == 2){
                 var units = 'Norm l/h';
                 $('#units').text(units);
             }
@@ -1003,14 +1043,18 @@ $units = array(
                 var units = 'Norm м³/h';
                 $('#units').text(units);
             }
-        });
-        $('#id_type_material').change(function () {
+        });*/
+        $('.id_type_material').change(function () {
             var type_material = $(this).val();
-            if(type_material == 3){
-                $('.sub_type').css('display','block');
-            }
-            else{
-                $('.sub_type').css('display','none');
+            if(type_material=='2'){
+                $('.sub_type_fert').css('display','block');
+                $('.sub_type_ppa').css('display','none');
+            }if(type_material == '3'){
+                $('.sub_type_ppa').css('display','block');
+                $('.sub_type_fert').css('display','none');
+            }if(type_material=='1'){
+                $('.sub_type_fert').css('display','none');
+                $('.sub_type_ppa').css('display','none');
             }
         });
 
