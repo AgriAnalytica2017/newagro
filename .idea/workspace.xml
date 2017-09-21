@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a3182c4-041b-402f-ace1-aa50b86883bc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabinet/new-farmer/template/css/newstyle.css" afterPath="$PROJECT_DIR$/cabinet/new-farmer/template/css/newstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" afterPath="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,11 +62,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="templateNew.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="templateNew.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="147" column="75" lean-forward="false" selection-start-line="147" selection-start-column="75" selection-end-line="147" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cabinet/new-farmer/view/contentOtherCosts.php" />
         <option value="$PROJECT_DIR$/cabinet/farmer/view/contentGraphs.php" />
         <option value="$PROJECT_DIR$/lib/flag-icon/css/flag-icon.css" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/controllers/BudgetController.php" />
@@ -179,6 +187,7 @@
         <option value="$PROJECT_DIR$/cabinet/new-farmer/template/language/UA.php" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/template/css/newstyle.css" />
         <option value="$PROJECT_DIR$/cabinet/new-farmer/view/templateNew.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -491,12 +500,12 @@
       <workItem from="1505728367245" duration="20000" />
       <workItem from="1505731334680" duration="7438000" />
       <workItem from="1505892973037" duration="769000" />
-      <workItem from="1505975479708" duration="743000" />
+      <workItem from="1505975479708" duration="904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="605506000" />
+    <option name="totallyTimeSpent" value="605667000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -537,13 +546,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/models/Fact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="128" column="116" lean-forward="false" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/FactController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
@@ -752,6 +754,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="147" column="75" lean-forward="false" selection-start-line="147" selection-start-column="75" selection-end-line="147" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
