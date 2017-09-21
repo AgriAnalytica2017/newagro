@@ -1,5 +1,6 @@
 <?php
 return array(
+    'new-farmer/new_template'=>'plan/index',
     'new-farmer/graphs'=>'graphs/getGraphs',
     'new-farmer/load_his'=>'graphs/jsonHis',
 
@@ -104,6 +105,5 @@ return array(
 
     'new-farmer/change_status'=>'fieldManagement/changeStatus',
     'new-farmer'=>'fieldManagement/fieldManagement',
-
 
 );
