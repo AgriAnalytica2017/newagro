@@ -2,6 +2,7 @@
 return array(
 
     'new-farmer/referral'=>'referral/referral',
+    'new-farmer/new_template'=>'plan/index',
 
     'new-farmer/test_react'=>'plan/index',
     'new-farmer/graphs'=>'graphs/getGraphs',

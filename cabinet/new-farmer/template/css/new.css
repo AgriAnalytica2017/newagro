@@ -789,14 +789,19 @@ fieldset[disabled] a.btnn {
     .content-wrappern .containern {
         min-width: 100%;
     }
-
+.nav li {
+    font-size: 20px !important;
+    margin-bottom: -1px;
+}
 }
 
 @media (max-width: 920px) {
     .navibar-navn > li > a {
         font-size: 15px!important;
     }
-
+.nav>li>a {
+    padding: 5px 15px;
+}
     .dropdown-menun>li>a {
     display: block;
     padding: 3px 15px;
@@ -817,6 +822,7 @@ fieldset[disabled] a.btnn {
         text-transform: uppercase;
             border-bottom: 0.3px solid #7b7e1ea3;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -844,7 +850,7 @@ fieldset[disabled] a.btnn {
 
     .dropdown-menun2 > li > a {
         color: #fffefe;
-        font-size: 14px!important;
+        font-size: 16px!important;
         font-weight: 400;
         text-transform: uppercase;
         border-bottom: 0.2px solid #7b7e1ea3;
@@ -864,8 +870,17 @@ fieldset[disabled] a.btnn {
     width: 33.33%;
 }
 }
-
+@media (max-width: 1280px) {
+.nav li {
+        font-size: 18px !important;
+        margin-bottom: -1px;
+    }
+}
 @media (max-width: 1200px) {
+    .col-lg-12{
+        width: 100%;
+        float: left;
+    }
     .col-lg-3 {
         width: 25%;
         float: left;
@@ -1070,6 +1085,7 @@ fieldset[disabled] a.btnn {
         border-left-width: 1.5em;
         border-right-color: transparent;
     }
+    
 }
 @media (max-width: 1420px) {
   .dropdown-menun {
@@ -1283,10 +1299,15 @@ padding-left: 15px;
         padding-bottom: 0px;
         line-height: 20px;
         border-top: 3px solid transparent;
-        font-size: 16px;
+        font-size: 18px!important;
         transition: 0.1s ease-in-out;
     }
-
+    .dropdown-menun>li>a{
+         font-size: 18px!important;
+    }
+    .dropdown-menun2 > li > a{
+         font-size: 18px!important;
+    }
     .navibar-static-top {
         z-index: 1000;
         border-width: 0 0 1px;
@@ -1458,7 +1479,17 @@ padding-left: 15px;
         .navibar-navn {
             float: right;
         }
+            .nav li {
+        font-size: 16px !important;
+        margin-bottom: -1px;
     }
+    }
+@media (min-width: 860px){
+.nav li {
+    font-size: 20px !important;
+    margin-bottom: -1px;
+}
+}
     .dropdown-menun2 {
         position: absolute;
         z-index: 1000;
@@ -2188,3 +2219,7 @@ color: #555;
         margin-bottom: -1%;
     position: absolute;
 }
+.nav li {
+        font-size: 20px;
+        margin-bottom: -1px;
+    }
