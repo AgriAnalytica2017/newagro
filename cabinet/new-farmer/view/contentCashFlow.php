@@ -28,6 +28,23 @@
             <strong class="ribbon-content">Cash Flow</strong>
         </h1>
     </div>
+    <div class="rown">
+        <div class="col-lg-3">
+            <select id="start_date" class="form-control">
+                <option>start</option>
+                <? foreach ($date['budget']['month_active'] as $month=>$true){?>
+                    <option><?=$month?></option>
+                <?}?>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select id="end_date" class="form-control">
+                <option>end</option>
+                <? foreach ($date['budget']['month_active'] as $month=>$true){?>
+                    <option><?=$month?></option>
+                <?}?>
+            </select>
+        </div>
     </div>
     <div class="rown">
         <div class="table-responsive">
@@ -38,7 +55,7 @@
                         <th class="fix_table <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></th>
                         <td class="padding_fix <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></td>
                         <? foreach ($date['budget']['month_active'] as $month=>$true){?>
-                            <td class="ov_table <?if($left[$table['array']]==false) echo 'left_tableq'?>"><?if($table['array'] == 'budget_crop_name')echo '<b>'.$month.'</b>'; else echo number_format($date['budget'][$table['array'].'_month'][$month], 0, '.', ' ');?></td>
+                            <td class="ov_table <?if($left[$table['array']]==false) echo 'left_tableq'?>" data-month="<?=$month?>"><?if($table['array'] == 'budget_crop_name')echo '<b>'.$month.'</b>'; else echo number_format($date['budget'][$table['array'].'_month'][$month], 0, '.', ' ');?></td>
                             <? $left[$table['array']]=true;
                         }?>
                     </tr>
@@ -48,7 +65,7 @@
                                 <th class="fix_table level3"><?=$date['budget']['plane_name_crop'][$id_crop]?></th>
                                 <td class="padding_fix"></td>
                                 <? foreach ($date['budget']['month_active'] as $month=>$true){?>
-                                    <td class="ov_table"><?=number_format($revenues[$month]); ?></td>
+                                    <td class="ov_table" data-month="<?=$month?>"><?=number_format($revenues[$month]); ?></td>
                                 <?}?>
                             </tr>
                         <?}
@@ -58,6 +75,24 @@
             </table>
         </div>
     </div>
+</div>
+    <script>
+        $(document).ready(function () {
+           $('#start_date, #end_date').change(date_filter);
+           function date_filter() {
+               $('.ov_table').show();
+               var start=parseFloat($('#start_date').val());
+               var end=parseFloat($('#end_date').val());
+                $('.ov_table').each(function () {
+                    var date=parseFloat($(this).attr('data-month'));
+                    if(date<start) {$(this).hide()};
+                    if(date>end) {$(this).hide()};
+                });
+           }
+        });
+    </script>
+
+
 
 <?php //foreach ($date['table_cash'] as $table){?>
 <!--    <tr>-->

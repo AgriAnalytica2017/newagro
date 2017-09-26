@@ -7,7 +7,7 @@
  */
 class PlanController{
     public function actionIndex(){
-        SRC::template('new-farmer','newTemplate','plan');
+        SRC::template('new-farmer','new','plan');
         return true;
     }
 }

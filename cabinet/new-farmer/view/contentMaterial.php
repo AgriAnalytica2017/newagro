@@ -4,7 +4,7 @@
 }
 </style>
 <?
-$date['type_material']['ua'][4]='Топливо';
+$date['type_material']['ua'][4]='Пальне';
 ?>
 <section class="content">
     <div class="box">
@@ -23,7 +23,7 @@ $date['type_material']['ua'][4]='Топливо';
                     <tr>
                         <th>Тип матеріалу</th>
                         <th>Назва матеріалу</th>
-                        <th>Ціна, грн за одинию</th>
+                        <th>Ціна, грн за одиницю</th>
                         <th ></th>
                     </tr>
                 </thead>

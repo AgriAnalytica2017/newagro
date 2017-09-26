@@ -12,6 +12,7 @@ $unit = array(
     3=>'т',
     4=>'л',
 );
+
 ?>
 <div class="box">
     <div class="box-bodyn">
@@ -22,8 +23,8 @@ $unit = array(
         </div>
     </div>
     <div class="box-bodyn col-lg-12" style="max-height: 55px">
-        <a class="btn btn-primaryn" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
-        <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
+        <button class="btn btn-primaryn payment_disabled" href="#Add_new" data-toggle="modal">Надходження матеріалів</button>
+        <button class="btn btn-primaryn payment_disabled Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</button>
     </div>
     <div class="rown">
         <div class="col-lg-1"></div>
@@ -69,7 +70,7 @@ $unit = array(
                                 <?=$storage_material['storage_quantity']?>
                             </td>
                             <td>
-                                <?=number_format($storage_material['storage_sum_total'])?>
+                                <?=number_format($storage_material['storage_sum_total'], 2, ',', ' ')?>
                             </td>
                             <td>
                                 <!--<a class="btn btn-success Add_incoming" href="#Add_incoming" data-toggle="modal" data-data='<?/*=json_encode($storage_material);*/?>' data-date="<?/*=$storage_material['storage_date']*/?>">Add incoming goods</a>-->
@@ -93,8 +94,8 @@ $unit = array(
     </div>
     <br>
     <div class="box-bodyn col-lg-12" style="max-height: 55px">
-        <a class="btn btn-primaryn" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>
-        <a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</a>
+        <button class="btn btn-primaryn payment_disabled" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></button>
+        <button href="#sale_products" class="btn btn-primary payment_disabled sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</button>
     </div>
     <div class="rown">
         <div class="col-lg-1"></div>
@@ -105,7 +106,7 @@ $unit = array(
                     <thead>
                     <tr class="tabletop">
                         <th><?=$language['new-farmer']['129']?></th>
-                        <th>Кількість на початок, кг</th>
+                        <th>Залишок на початок, кг</th>
                         <th>Надійшло, кг</th>
                         <th>Вибуло, кг</th>
                         <th>Залишок на кінець, кг</th>
@@ -118,12 +119,29 @@ $unit = array(
                         <tr>
                             <td><?=$date['crop'][$product['product_type']]['name_crop_ua']?></td>
                             <td><?=$product['product_quantity']?></td>
-                            <td></td>
+                            <td><a class="btn come_products" data-id="<?=$open_products?>"><?=$date['products']['income_prod_1'][$product['product_type']]?></a></td>
                             <td><a class="btn out_sale_products" data-id="<?=$open_products?>"><?=$date['products']['actual_sales'][$product['product_type']]?></a></td>
                             <td><?=$product['product_now']?></td>
                             <td><?=$product['product_comments']?>
                             </td>
                         </tr>
+                        <? foreach ($date['products']['actual_sale_1'] as $actual_sale_1)if($actual_sale_1['actual_sale_product']==$product['product_type']){?>
+                            <tr class="sale_products_<?=$open_products?>" style="color: red; display: none;" >
+                                <td style="padding-left: 35px"><? echo "Date: ".$actual_sale_1['actual_sale_date']?></td>
+                                <td><? echo "Quantity: ".$actual_sale_1['actual_sale_quantity']?></td>
+                                <td><? echo "Total sum: ".$actual_sale_1['actual_sale_sum']?></td>
+                                <td><? echo "Price per unit: ".number_format($actual_sale_1['actual_sale_per_unit'], 2, ',', ' ');?></td>
+                                <td></td>
+                            </tr>
+                        <?}?>
+                        <? foreach ($date['products']['income_prod'] as $income_prod)if($income_prod['id_product']==$product['product_type']){?>
+                            <tr class="come_products_<?=$open_products?>" style="color: green; display: none;" >
+                                <td style="padding-left: 35px"><? echo "Date: ".$income_prod['income_date']?></td>
+                                <td><? echo "Quantity: ".$income_prod['income_product_quantity']?></td>
+                                <td></td>
+                            </tr>
+                        <?}?>
+
                     <?}?>
                     </tbody>
                 </table>
@@ -443,7 +461,9 @@ $unit = array(
                                     <select class="form-control inphead sale_material_name" name="sale_material_name">
                                         <option class="list_sale_material"></option>
                                         <? foreach($date['storage']['storage_material_fact'] as $sale_materials){?>
-                                        <option class="list_sale_material sale_material_<?=$sale_materials['storage_type_material']?>" value="<?=$sale_materials['storage_material_id']?>"><?=$date['material_lib'][$storage_material['storage_material']]['name_material']?>
+                                        <option class="list_sale_material sale_material_<?=$sale_materials['storage_type_material']?>"
+                                                value="<?=$sale_materials['storage_material_id']?>">
+                                                <?=$date['material_lib'][$sale_materials['storage_material']]['name_material']?>
                                         </option>
                                         <?}?>
                                     </select>
@@ -559,6 +579,11 @@ $unit = array(
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+        var payment = '<?=$_SESSION['payment_status'];?>';
+        if(payment == 0){
+            $('.payment_disabled').prop('disabled', true);
+        }
+
         $('.unit, .storage_quantity, .storage_sum_total').change(function(){
             var unit = $(this).val();
             if(unit == 3){
@@ -570,13 +595,14 @@ $unit = array(
             $('.storage_sum_unit').val(storage_sum_unit);
         });
 
-/*        $('#incoming_quantity,#incoming_sum_total').change(function(){
+        /*
+        $('#incoming_quantity,#incoming_sum_total').change(function(){
             var incoming_quantity = parseFloat($('#incoming_quantity').val());
             var incoming_sum_total = parseFloat($('#incoming_sum_total').val());
             var incoming_price_unit = (incoming_sum_total/incoming_quantity).toFixed(2);
             $('#incoming_price_unit').val(incoming_price_unit);
         });
-*/
+        */
         $('.sale_quantity, .sale_sum_total').change(function(){
             var sale_quantity = parseFloat($('.sale_quantity').val());
             var sale_sum_total = parseFloat($('.sale_sum_total').val());
@@ -585,32 +611,25 @@ $unit = array(
 
 
         });
-/*        $('.Sale').click(function(){
+        /*
+        $('.Sale').click(function(){
             var id = $(this).attr('data-id');
             var stock = $(this).attr('data-stock');
             $('#sale_id_material').val(id);
             $('#sale_stock').val(stock);
-        });*/
-
+        });
+        */
         $('.sale_prod').click(function(){
             var id = $(this).attr('data-id');
             $('#actual_sale_product').val(id);
         });
 
         $('.actual_sale_quantity, .actual_sale_per_unit').change(function(){
-
             var actual_sale_1 = parseFloat($('.actual_sale_quantity').val());
             var actual_sale_per = parseFloat($('.actual_sale_per_unit').val());
             var actual_sale = (actual_sale_per*actual_sale_1).toFixed(2);
             $('.actual_sale_sum').val(actual_sale);
         });
-
-/*        $('.Add_incoming').click(function () {
-            var json_storage_material = $(this).attr('data-data');
-            var storage_material = JSON.parse(json_storage_material);
-            $('#incoming_type_material').val(storage_material['storage_type_material']);
-            $('#incoming_material').val(storage_material['storage_material_id']);
-        });*/
 
         $('.come_storage_material').click(function () {
             var id = $(this).attr('data-id');
@@ -621,8 +640,20 @@ $unit = array(
         $('.out_storage_material').click(function () {
             var id = $(this).attr('data-id');
             var type = $(this).attr('data-type');
-            /*$('.close_material').css('display','none');*/
-            $('.open_material_'+id+'_'+type).toggle();
+            if(type ==1 || type ==3){
+                $('.open_material_'+id+'_1').toggle();
+                $('.open_material_'+id+'_3').toggle();
+            }
+        });
+
+
+        $('.out_sale_products').click(function () {
+            var id = $(this).attr('data-id');
+            $('.sale_products_'+id).toggle();
+        });
+        $('.come_products').click(function () {
+            var id = $(this).attr('data-id');
+            $('.come_products_'+id).toggle();
         });
 
         $('.type_material').change(function () {

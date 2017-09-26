@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a3182c4-041b-402f-ace1-aa50b86883bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabinet/new-farmer/config/routes.php" afterPath="$PROJECT_DIR$/cabinet/new-farmer/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabinet/new-farmer/config/templates.php" afterPath="$PROJECT_DIR$/cabinet/new-farmer/config/templates.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabinet/new-farmer/controllers/PlanController.php" afterPath="$PROJECT_DIR$/cabinet/new-farmer/controllers/PlanController.php" />
-    </list>
+    <list default="true" id="0a3182c4-041b-402f-ace1-aa50b86883bc" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,11 +56,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlanController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlanController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/controllers/PlanController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
               <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentPlan.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentPlan.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -486,12 +491,12 @@
       <workItem from="1505731334680" duration="7438000" />
       <workItem from="1505892973037" duration="769000" />
       <workItem from="1505975479708" duration="1503000" />
-      <workItem from="1505980320287" duration="487000" />
+      <workItem from="1505980320287" duration="1294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="606753000" />
+    <option name="totallyTimeSpent" value="607560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -700,14 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentPlan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentFactTechCard.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="835">
@@ -771,6 +768,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cabinet/new-farmer/view/contentPlan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>

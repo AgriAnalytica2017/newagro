@@ -122,6 +122,7 @@ class StorageController{
 	public function actionIncomingProducts(){
 
 		$id_user = $_SESSION['id_user'];
+		$id_field = SRC::validatorPrice($_POST['product_field']);
 		$product_date = SRC::validator($_POST['product_date']);
 		$product_type = SRC::validatorPrice($_POST['product_name']);
         /*		$product_storage_location = Storage::saveStorage($id_user,SRC::validatorPrice($_POST['product_storage_location']));*/
@@ -135,8 +136,7 @@ class StorageController{
 		
 		$product_comments = SRC::validator($_POST['product_comments']);
 
-		Storage::saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user);
-
+		Storage::saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user,$id_field);
 		SRC::redirect('/new-farmer/storage');
 	}
 }

@@ -13,7 +13,7 @@ class SalesController {
 		    $date['sum_crop'][$plane_sales['id_crop']]++;
 		    $date['sum_yield'][$plane_sales['id_crop']] += $plane_sales['field_yield']*$plane_sales['field_size']*100;
         }
-
+        $date['name_crop'] = DataBase::getCropName($id_user);
 		SRC::template('new-farmer','new','sales',$date);
 		return true;
 	}

@@ -2,6 +2,9 @@
     #sub_type_material, #label_sub_type_material,.filter_ppa{
         display: none;
     }
+    .total_sum_need{
+        font-weight: bold;
+    }
 </style>
 <?
 $date['type_material']['ua'][4]='Пальне';
@@ -40,18 +43,21 @@ $unit=array(
                 </tr>
                 </thead>
                 <tbody>
-                <?foreach ($date['material'] as $material)if ($date['budget']['need_material'][$material['id_material_price']]>0){?>
+                <?
+                $all_summ = 0;
+                foreach ($date['material'] as $material)if ($date['budget']['need_material'][$material['id_material_price']]>0){?>
                     <tr class="materil_list type_material_<?=$material['id_type_material']; if($material['id_type_material']==3){?> subtype_<?=$material['key_material']; }?>">
                         <td><?=$date['type_material']['ua'][$material['id_type_material']]?>
                             <? if($material['id_type_material']==1) echo '/'.$date['crop_list'][$material['key_material']]['name_crop_ua']?>
+                            <? if($material['id_type_material']==2) echo '/'.$date['fert_material']['ua'][$material['key_material']]?>
                             <? if($material['id_type_material']==3) echo '/'.$date['ppa_material']['ua'][$material['key_material']]?>
                             <? if($material['id_type_material']==4) echo '/'.$date['fuel_type']['ua'][$material['key_material']]?>
                         </td>
                         <td><?=$material['name_material']?></td>
                         <td><?=$unit[$material['material_unit']]?></td>
                         <td><?=$date['budget']['need_material'][$material['id_material_price']]?></td>
-                        <td><?=$material['price_material']?> </td>
-                        <td><?=number_format($date['budget']['need_material'][$material['id_material_price']]*$material['price_material'])?></td>
+                        <td style="width: 10%;"><input type="text" class="form-control change_price" data-id_price="<?=$material['id_material_price']?>" value="<?=$material['price_material']?>"></td>
+                        <td><?=number_format($date['budget']['need_material'][$material['id_material_price']]*$material['price_material'], 2,',',' ')?></td>
                     </tr>
                 <?  $summ['mass'][$material['id_type_material']]+=$date['budget']['need_material'][$material['id_material_price']];
                     $summ['price'][$material['id_type_material']]+=$date['budget']['need_material'][$material['id_material_price']]*$material['price_material'];
@@ -88,13 +94,20 @@ $unit=array(
 <!--                    </tr>-->
                 </thead>
                 <tbody>
-                <?php foreach ($date['type_material']['ua'] as $key=>$value){?>
+                <?php
+                $all_summ =0;
+                foreach ($date['type_material']['ua'] as $key=>$value){
+                    $all_summ += $summ['price'][$key];?>
                     <tr>
                         <td><?=$value?></td>
 
-                        <td><?=number_format($summ['price'][$key])?></td>
+                        <td><?=number_format($summ['price'][$key], 2,',',' ')?></td>
                     </tr>
                 <?}?>
+                <tr class="total_sum_need">
+                    <td>Сума, грн</td>
+                    <td><?=number_format($all_summ,2,',',' ')?></td>
+                </tr>
                 </tbody>
 
             </table>
@@ -210,6 +223,22 @@ $unit=array(
                 $('#sub_type_material, #label_sub_type_material').hide();
             }
             $('#material_modal').modal('show');
-        })
+        });
+
+        $('.change_price').change(changePrice);
+
+        function changePrice() {
+            var id_material_price = $(this).attr('data-id_price');
+            var change_price = $(this).val();
+
+            $.ajax({
+                type : 'post',
+                url : '/new-farmer/change_price_material',
+                data : {
+                    'id_material_price': id_material_price,
+                    'change_price' : change_price
+                }
+            });
+        }
     });
 </script>

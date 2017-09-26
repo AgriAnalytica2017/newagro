@@ -6,7 +6,7 @@ $units = array(
     4=>'п.о'
 );
 /* echo "<pre>";
- var_dump($date['lib']);die;*/
+ var_dump($date['only_tech']);die;*/
 ?>
 <head>
     <style>
@@ -232,10 +232,13 @@ $units = array(
         <div class="modal-content wt">
             <div class="box-bodyn">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <span class="box-title">Картка вибору працівникdів</span>
+                <span class="box-title">Картка вибору працівників</span>
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <div class="col-lg-12" style="margin-bottom: 10px;">
+                        <button id="save_employe" type="submit" class="btn btn-primary" style="float: right"><?=$language['new-farmer']['27']?></button>
+                    </div>
                     <div class="col-lg-6">
                         <table class="table">
                             <thead>
@@ -276,7 +279,6 @@ $units = array(
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_employe" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
             </div>
         </div>
     </div>
@@ -319,12 +321,7 @@ $units = array(
     </div>
 </div>
 
-
-
-
-
 <!---->
-
 
 <div id="choose_sg" class="modal fade">
     <div class="modal-dialog modal-lg">
@@ -337,6 +334,7 @@ $units = array(
                 <div class="row">
                     <div class="col-lg-12">
                         <input class="searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
+                        <button type="button" class="btn btn-primary" style="float: right" data-dismiss="modal"><?=$language['new-farmer']['27']?></button>
                     </div>
                 </div><br>
                 <div class="row">
@@ -371,7 +369,9 @@ $units = array(
         </div>
     </div>
 </div>
+
 <!---------------Choose_Equipment----------------->
+
 <div id="Choose_equipment" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">
@@ -432,7 +432,9 @@ $units = array(
         </div>
     </div>
 </div>
+
 <!-----------------Choose_material--------------->
+
 <div id="Choose_material" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">
@@ -469,7 +471,7 @@ $units = array(
                                     </thead>
                                     <tbody>
                                     <?php foreach ($date['TC']['new_material'] as $new_material){?>
-                                        <tr class="list_materials type_matrial_<?=$new_material['id_type_material']?>" >
+                                        <tr class="list_materials type_matrial_<?=$new_material['id_type_material']?><?if($new_material['id_type_material']==1){echo "_".$new_material['key_material'];}?>">
                                             <td><?=$new_material['name_material']?></td>
                                             <!-- <td><?=$new_material['price_material']?></td> -->
                                             <td><a data-data='<?=json_encode($new_material); ?>' class="btn btn-success btn-sm add_material"><i class="fa fa-fw fa-arrow-right"></i>
@@ -489,6 +491,10 @@ $units = array(
                                     </select>
                                     <br>
                                     <input type="hidden" name="key_material_1" value="<?=$date['field']['field_id_crop']?>">
+                                    <div class="sub_type_seed">
+                                        <label><?=$language['new-farmer']['97']?></label>
+                                        <input class="form-control" value="<?=$date['only_tech']['name_crop_ua']?>" disabled>
+                                    </div>
                                     <div class="sub_type_ppa" style="display: none">
                                         <label><?=$language['new-farmer']['97']?></label>
                                         <select class="form-control" name="key_material_3" id="key_material_3">
@@ -529,10 +535,10 @@ $units = array(
                                                 <option value="4">п.о</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label><?=$language['new-farmer']['107']?></label>
+                                        <!--<div class="col-lg-6">
+                                            <label><?/*=$language['new-farmer']['107']*/?></label>
                                             <input type="text" name="price_material" id="price_material" class="form-control">
-                                        </div>
+                                        </div>-->
                                         <div class="col-lg-6">
                                             <label class="units">Норма на 1 га </label>
                                             <input type="text" name="norm_material" id="norm_material" class="form-control">
@@ -549,7 +555,7 @@ $units = array(
                             <thead class="tabletop">
                             <th><?=$language['new-farmer']['93']?></th>
                             <th><?=$language['new-farmer']['72']?></th>
-                            <th><?=$language['new-farmer']['108']?></th>
+                            <th>Норма на од. роботи</th>
                             <th></th>
                             </thead>
                             <tbody  id="action_material">
@@ -567,7 +573,9 @@ $units = array(
         </div>
     </div>
 </div>
+
 <!---------services----------->
+
 <div id="Choose_services" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">
@@ -576,7 +584,10 @@ $units = array(
                 <span class="box-title">Картка Послуги</span>
             </div>
             <div class="modal-header">
-                <button id="add_services" class="btn btn-success">Додати послугу</button>
+                <div class="col-lg-12">
+                    <button id="add_services" class="btn btn-success">Додати послугу</button>
+                    <button id="save_services" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+                </div>
             </div>
             <div class="modal-body">
                 <table class="table" >
@@ -595,7 +606,6 @@ $units = array(
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                <button id="save_services" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
             </div>
         </div>
     </div>
@@ -666,6 +676,8 @@ $units = array(
         var action_lib = JSON.parse(json_action_lib);
         var json_units = '<?=json_encode($date['units']['ua'])?>';
         var units = JSON.parse(json_units);
+        var json_unit_material = '<?=json_encode($date['unit_material']['ua'])?>';
+        var unit_material = JSON.parse(json_unit_material);
         var html_fuel_select=$('#select_fuel').html();
 
 
@@ -677,13 +689,18 @@ $units = array(
                 $('#end_data').val('');
             }
         });
-
+        var json_sub_type_seed = '<?=$date['only_tech']['id_crop']?>';
+        var subtype_seed = JSON.parse(json_sub_type_seed);
         $('.list_materials').hide();
-        $('.type_matrial_1').show();
+        $('.type_matrial_1_'+subtype_seed).show();
         $("#type_material_list_bd").change(function () {
             $('.list_materials').hide();
             var type=$(this).val();
-            $('.type_matrial_'+type).show();
+            if(type==1){
+                $('.type_matrial_'+type+'_'+subtype_seed).show();
+            }else {
+                $('.type_matrial_'+type).show();
+            }
         });
         ////////////////////////////SERVICES///////////////////////////////////
         var id_services=0;
@@ -768,7 +785,7 @@ $units = array(
             var material=JSON.parse( json_material );
             $("#action_material").append("<tr id='action_material_" + id_material + "'>" +
                 "<td>" + material['name_material'] + "</td>" +
-                "<td>" + units[material['material_unit']] + "</td>" +
+                "<td>" + unit_material[material['material_unit']] + "</td>" +
                 "<td><input data-id='"+material['id_material_price']+"' type='text' class='form-control norm_material' ></td>" +
                 "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                 "</tr>");
@@ -800,12 +817,13 @@ $units = array(
             id_material++;
             var form = $('#material_form').serialize();
             var material_name=$('#name_material').val();
-            var price=$('#price_material').val();
+           /* var price=$('#price_material').val();*/
             var norm=$('#norm_material').val();
             var unit=$('#unit_material').val();
 
+
             $('#name_material').val('');
-            $('#price_material').val('');
+            /*$('#price_material').val('');*/
             $('#id_type_material').val('');
             $('#key_material_3').val('');
             $('#unit_material').val('');
@@ -819,7 +837,7 @@ $units = array(
                 success: function(id_bd_material){
                     $("#action_material").append("<tr id='action_material_" + id_material + "'>" +
                         "<td>" + material_name + "</td>" +
-                        "<td>" + price + "</td>" +
+                        "<td>" + unit_material[unit] + "</td>" +
                         "<td><input data-id='"+id_bd_material+"' type='text' class='form-control norm_material' value='"+norm+"' ></td>" +
                         "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                         "</tr>");
@@ -984,7 +1002,7 @@ $units = array(
                     var material = value;
                     $("#action_material").append("<tr id='action_material_" + id_material + "'>" +
                         "<td>" + material_bd[material['id']]['name_material'] + "</td>" +
-                        "<td>" + material_bd[material['id']]['price_material'] + "</td>" +
+                        "<td>" + unit_material[material_bd[material['id']]['material_unit']] + "</td>" +
                         "<td><input data-id='"+material['id']+"' value='"+material['norm']+"' type='text' class='form-control norm_material' ></td>" +
                         "<td><button class='btn btn-danger btn-sm remove_material' data-id='" + id_material + "' ><i class='fa fa-fw fa-close'></i></button></td>" +
                         "</tr>");
@@ -1049,10 +1067,13 @@ $units = array(
             if(type_material=='2'){
                 $('.sub_type_fert').css('display','block');
                 $('.sub_type_ppa').css('display','none');
+                $('.sub_type_seed').css('display','none');
             }if(type_material == '3'){
                 $('.sub_type_ppa').css('display','block');
                 $('.sub_type_fert').css('display','none');
+                $('.sub_type_seed').css('display','none');
             }if(type_material=='1'){
+                $('.sub_type_seed').css('display','block');
                 $('.sub_type_fert').css('display','none');
                 $('.sub_type_ppa').css('display','none');
             }

@@ -43,48 +43,43 @@
         </div>
         <div class="text-center" id="remains"></div>
         <div  id="chart_div" style="width: 900px; min-height: 450px; margin: 0 auto;"></div>
-<!--        <table class="table" style="width: 900px; margin: 0 auto;">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th></th>-->
-<!--                <th>2014</th>-->
-<!--                <th>2015</th>-->
-<!--                <th>2016</th>-->
-<!--                <th>--><?php //if($_COOKIE['lang']=="ua"){echo "середнє за 3 роки";}elseif ($_COOKIE['lang']=="gb") {
-//                        echo "Average for 3 years";
-//                    }?><!--</th>-->
-<!--                <th>2017</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr>-->
-<!--                <th>--><?php //if($_COOKIE['lang']=="ua"){echo "Україна";}elseif ($_COOKIE['lang']=="gb") {
-//                        echo "Ukraine";
-//                    }?><!--</th>-->
-<!--                <th id="tb_ua_2014"></th>-->
-<!--                <th id="tb_ua_2015"></th>-->
-<!--                <th id="tb_ua_2016"></th>-->
-<!--                <th id="tb_ua_s"></th>-->
-<!--                <th id="tb_ua_2017"></th>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <th id="region_table"></th>-->
-<!--                <th id="tb_rg_2014"></th>-->
-<!--                <th id="tb_rg_2015"></th>-->
-<!--                <th id="tb_rg_2016"></th>-->
-<!--                <th id="tb_rg_s"></th>-->
-<!--                <th id="tb_rg_2017"></th>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <th>tov</th>-->
-<!--                <th id="tb_my_2014"></th>-->
-<!--                <th id="tb_my_2015"></th>-->
-<!--                <th id="tb_my_2016"></th>-->
-<!--                <th id="tb_my_s"></th>-->
-<!--                <th id="tb_my_2017"></th>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
+
+        <table class="table" style="width: 900px; margin: 0 auto;">
+            <thead>
+            <tr>
+                <th></th>
+                <th>2014</th>
+                <th>2015</th>
+                <th>2016</th>
+                <th>2017</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th><?php if($_COOKIE['lang']=="ua"){echo "Україна";}elseif ($_COOKIE['lang']=="gb") {
+                        echo "Ukraine";
+                    }?></th>
+                <th id="tb_ua_2014"></th>
+                <th id="tb_ua_2015"></th>
+                <th id="tb_ua_2016"></th>
+                <th id="tb_ua_2017"></th>
+            </tr>
+            <tr>
+                <th id="region_table"></th>
+                <th id="tb_rg_2014"></th>
+                <th id="tb_rg_2015"></th>
+                <th id="tb_rg_2016"></th>
+                <th id="tb_rg_2017"></th>
+            </tr>
+            <tr>
+                <th>my </th>
+                <th id="tb_my_2014"></th>
+                <th id="tb_my_2015"></th>
+                <th id="tb_my_2016"></th>
+                <th id="tb_my_2017"></th>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <!-- /.box-body -->
 </div>
@@ -98,8 +93,6 @@
         var plan = JSON.parse ( plan_json );
         var form_json='<?=json_encode($date["form"])?>';
         var form = JSON.parse ( form_json );
-        console.log(form);
-        //Graphs();
         $("#crop, #graf, #region").change(Graphs);
         function Graphs() {
             $('#chart_div').html("<img class='load' src='<?=SRC::getSrcR()?>/cabinet/new-farmer/template/img/load.gif'>");
@@ -118,9 +111,9 @@
             var f2=0;
             var f3=0;
             if(form[cropList[0]]!=undefined){
-                if(form[cropList[0]][2014]!=undefined) f1=parseFloat(form[cropList[0]][2014][graf]);
-                if(form[cropList[0]][2015]!=undefined) f2=parseFloat(form[cropList[0]][2015][graf]);
-                if(form[cropList[0]][2016]!=undefined) f3=parseFloat(form[cropList[0]][2016][graf]);
+                if(form[cropList[0]][2014]!=undefined) f1=parseInt(form[cropList[0]][2014][graf]);
+                if(form[cropList[0]][2015]!=undefined) f2=parseInt(form[cropList[0]][2015][graf]);
+                if(form[cropList[0]][2016]!=undefined) f3=parseInt(form[cropList[0]][2016][graf]);
             }
             ////
             $.ajax({
@@ -134,9 +127,9 @@
                 response : 'text',
                 success : function(html) {
                     var region_date=JSON.parse ( html );
-                    r1=parseFloat(region_date[2014][graf]);
-                    r2=parseFloat(region_date[2015][graf]);
-                    r3=parseFloat(region_date[2016][graf]);
+                    r1=parseInt(region_date[2014][graf]);
+                    r2=parseInt(region_date[2015][graf]);
+                    r3=parseInt(region_date[2016][graf]);
                 ////UA
                 $.ajax({
                     type : 'post',
@@ -149,10 +142,10 @@
                     response : 'text',
                     success : function(html) {
                         var UA_date=JSON.parse ( html );
-                        u1=parseFloat(UA_date[2014][graf]);
-                        u2=parseFloat(UA_date[2015][graf]);
-                        u3=parseFloat(UA_date[2016][graf]);
-                        p=parseFloat(p);
+                        u1=parseInt(UA_date[2014][graf]);
+                        u2=parseInt(UA_date[2015][graf]);
+                        u3=parseInt(UA_date[2016][graf]);
+                        p=parseInt(p);
                         var data=google.visualization.arrayToDataTable([
                             ['роки', 	'Україна', region_name,   'my fact', '2017 plan'],
                             ['',  	    0,          0,          0,		    p],
@@ -175,28 +168,30 @@
                         };
                         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
                         chart.draw(data, options);
-                        }
+                        $("#region_table").text(region_name);
+                        $("#tb_ua_2014").text(u1);
+                        $("#tb_ua_2015").text(u2);
+                        $("#tb_ua_2016").text(u3);
+
+                        $("#tb_rg_2014").text(r1);
+                        $("#tb_rg_2015").text(r2);
+                        $("#tb_rg_2016").text(r3);
+
+                        $("#tb_my_2014").text(f1);
+                        $("#tb_my_2015").text(f2);
+                        $("#tb_my_2016").text(f3);
+
+//                        $("#tb_ua_s").text(cu);
+//                        $("#tb_rg_s").text(cr);
+//                        $("#tb_my_s").text(ch);
+
+                        $("#tb_my_2017").text(p);
+
+                    }
                 });
                 }
             });
-//            $("#region_table").text(region_name);
-//            $("#tb_ua_2014").text(u14);
-//            $("#tb_ua_2015").text(u15);
-//            $("#tb_ua_2016").text(u16);
-//
-//            $("#tb_rg_2014").text(r14);
-//            $("#tb_rg_2015").text(r15);
-//            $("#tb_rg_2016").text(r16);
-//
-//            $("#tb_my_2014").text(h14);
-//            $("#tb_my_2015").text(h15);
-//            $("#tb_my_2016").text(h16);
-//
-//            $("#tb_ua_s").text(cu);
-//            $("#tb_rg_s").text(cr);
-//            $("#tb_my_s").text(ch);
-//
-//            $("#tb_my_2017").text(m17);
+
         }
     });
 </script>

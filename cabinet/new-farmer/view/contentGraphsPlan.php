@@ -80,6 +80,17 @@ var_dump($date);die;*/
                 }
             }?>
             ];
+            var graphs_8=[
+                ['',''],
+                <? foreach ($date['graphs_8_budget_services'] as $value) {
+                if($value[1]==null){
+                    echo "['$value[0]', 0],";
+                }
+                else {
+                    echo "['$value[0]', ". $value[1] ."],";
+                }
+            }?>
+            ];
         google.charts.load("current", {packages:["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(budget_equipment);
@@ -88,6 +99,7 @@ var_dump($date);die;*/
         google.charts.setOnLoadCallback(budget_ppa);
         google.charts.setOnLoadCallback(budget_pay);
         google.charts.setOnLoadCallback(plane_revenues);
+        google.charts.setOnLoadCallback(budget_services);
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable(graphs_1);
@@ -168,6 +180,17 @@ var_dump($date);die;*/
                 var chart = new google.visualization.ColumnChart(document.getElementById('g7'));
                 chart.draw(data, options);
             }
+            function budget_services() {
+                var data = google.visualization.arrayToDataTable(graphs_8);
+                var options = {
+                    title: 'Витрати на послуги, грн',
+                    is3D: true,
+                    height:500,
+                    weight:500
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('g8'));
+                chart.draw(data, options);
+            }
     });
     </script>
 <section class="content">
@@ -198,6 +221,9 @@ var_dump($date);die;*/
             <div class="col-lg-6">
                 <div class="graphs" id="g6"></div>
             </div>
+            <!--<div class="col-lg-6">
+                <div class="graphs" id="g8"></div>
+            </div>-->
         </div>
             
         </div>

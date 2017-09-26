@@ -12,28 +12,24 @@ class OtherCosts{
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date = $result->fetchAll();
         foreach ($date as $date_arr){
-            $ex['plan'][$date_arr['costs_type']]=$date_arr;
+            $ex['plan'][$date_arr['costs_type']][]=$date_arr;
         }
-
         $result = $db->query("SELECT * FROM new_other_costs_fact WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $date = $result->fetchAll();
         foreach ($date as $date_arr){
             $ex['fact'][$date_arr['cost_fact_type']][]=$date_arr;
         }
-
         return $ex;
     }
-    public static function savePlanOther($id_user,$costs_plan,$costs_type,$costs_comments){
+    public static function savePlanOther($id_user,$cost_plan_type,$cost_plan,$cost_plan_note,$cost_plan_date){
         $db = Db::getConnection();
-        $db->query("DELETE FROM new_other_costs WHERE id_user='$id_user' AND costs_type='$costs_type'");
-        $db->query("INSERT INTO new_other_costs (id_user, costs_plan,costs_type,costs_comments) VALUES ('$id_user','$costs_plan','$costs_type','$costs_comments')");
+        //$db->query("DELETE FROM new_other_costs WHERE id_user='$id_user' AND costs_type='$cost_plan_type'");
+        $db->query("INSERT INTO new_other_costs (id_user, costs_plan,costs_type,costs_comments, costs_date) VALUES ('$id_user','$cost_plan','$cost_plan_type','$cost_plan_note','$cost_plan_date')");
         return true;
     }
-
     public static function createOtherFact($id_user,$cost_fact_type,$cost_fact,$cost_fact_note,$cost_fact_date){
         $db = Db::getConnection();
-
         $db->query("INSERT INTO new_other_costs_fact (id_user,cost_fact_type,cost_fact,cost_fact_note,cost_fact_date) VALUES ('$id_user','$cost_fact_type','$cost_fact','$cost_fact_note','$cost_fact_date')");
         return true;
     }
