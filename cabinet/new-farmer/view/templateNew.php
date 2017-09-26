@@ -145,7 +145,7 @@ $top_menu=array(
                         </li>
                         <!-- /.messages-menu -->
                         <!-- User Account Menu -->
-                        <li class="smalln user user-menun dropdown-togglen" data-toggle="dropdown" aria-expanded="false">
+                        <li class="smalln user user-menun dropdown-togglen">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-togglen" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->

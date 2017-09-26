@@ -776,7 +776,6 @@
             }
             else{
                 var id_machine=0;
-
                     $.each(equipment, function (key, machines) {
                         id_machine++;
                         if(machines['id_veh']!=false){
@@ -786,7 +785,8 @@
                             "<td>"+machines['fuel']*field_size+"</td>"+
                             "</tr>"
                         );}
-                       if(machines['id_equ'] == true){
+                        console.log(machines['id_equ']);
+                       if(machines['id_equ'] != false){
                             var id_equ = machines['id_equ'].split(',');
                             $.each(id_equ, function (key, id_equipment) {
                                 $("#equipment_"+id_machine).append(equipment_lib[id_equipment]['equipment_name']+"<br>");
