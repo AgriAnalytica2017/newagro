@@ -40,17 +40,38 @@
                             <div id="collapse_1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                 <form action="/new-farmer/save_other_cost" method="post">
                                     <input type="hidden" name="costs_type" value="2">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label>Планові витрати на ремонт</label>
-                                            <input class="form-control inphead plan_costs_fix" type="text" name="costs_plan" value="<?=$date['other_costs']['plan']['2']['costs_plan']?>">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label>Коментар</label>
-                                            <textarea name="costs_comments" id="comments_fix" class="form-control inphead"><?=$date['other_costs']['plan']['2']['costs_comments']?></textarea>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="btn" value="Зберегти плин">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <label>Дата</label>
+                                                    <input class="form-control" type="date" name="cost_plan_date">
+                                                </th>
+                                                <th>
+                                                    <label>Ціна, грн</label>
+                                                    <input class="form-control" type="text" name="cost_plan">
+                                                </th>
+                                                <th>
+                                                    <label>Коментар</label>
+                                                    <textarea class="form-control" type="text" name="cost_plan_note"></textarea>
+                                                </th>
+                                                <th>
+                                                    <br>
+                                                    <input class="btn" type="submit" value="Додати до плану">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?if($date['other_costs']['plan']['2']!=false) foreach ($date['other_costs']['plan']['2'] as $fact_other){?>
+                                            <tr>
+                                                <th><?=$fact_other['costs_date']?></th>
+                                                <th class="p_price_1"><?=$fact_other['costs_plan']?></th>
+                                                <th><?=$fact_other['costs_comments']?></th>
+                                                <th></th>
+                                            </tr>
+                                        <?}?>
+                                        </tbody>
+                                    </table>
                                 </form>
                             </div>
 
@@ -67,12 +88,12 @@
                                     <table class="table">
                                         <tr>
                                             <th>
-                                                <label>Ціна, грн</label>
-                                                <input class="form-control" type="text" name="cost_fact">
-                                            </th>
-                                            <th>
                                                 <label>Дата</label>
                                                 <input class="form-control" type="date" name="cost_fact_date">
+                                            </th>
+                                            <th>
+                                                <label>Ціна, грн</label>
+                                                <input class="form-control" type="text" name="cost_fact">
                                             </th>
                                             <th>
                                                 <label>Коментар</label>
@@ -85,8 +106,8 @@
                                         </tr>
                                         <?if($date['other_costs']['fact']['2']!=false) foreach ($date['other_costs']['fact']['2'] as $fact_other){?>
                                             <tr>
-                                                <th class="f_price_1"><?=$fact_other['cost_fact']?></th>
                                                 <th><?=$fact_other['cost_fact_date']?></th>
+                                                <th class="f_price_1"><?=$fact_other['cost_fact']?></th>
                                                 <th><?=$fact_other['cost_fact_note']?></th>
                                                 <th></th>
                                             </tr>
@@ -120,17 +141,38 @@
                                 <div id="collapse_1_1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                     <form action="/new-farmer/save_other_cost" method="post">
                                         <input type="hidden" name="costs_type" value="3">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Планові інші витрати</label>
-                                                <input class="form-control inphead plan_other_costs" type="text" name="costs_plan" value="<?=$date['other_costs']['plan']['3']['costs_plan']?>">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label>Коментар</label>
-                                                <textarea name="costs_comments" id="comments" class="form-control inphead"><?=$date['other_costs']['plan']['3']['costs_comments']?></textarea>
-                                            </div>
-                                        </div>
-                                        <input type="submit" class="btn" value="Зберегти план">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    <label>Дата</label>
+                                                    <input class="form-control" type="date" name="cost_plan_date">
+                                                </th>
+                                                <th>
+                                                    <label>Ціна, грн</label>
+                                                    <input class="form-control" type="text" name="cost_plan">
+                                                </th>
+                                                <th>
+                                                    <label>Коментар</label>
+                                                    <textarea class="form-control" type="text" name="cost_plan_note"></textarea>
+                                                </th>
+                                                <th>
+                                                    <br>
+                                                    <input class="btn" type="submit" value="Додати до плану">
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?if($date['other_costs']['plan']['3']!=false) foreach ($date['other_costs']['plan']['3'] as $fact_other){?>
+                                                <tr>
+                                                    <th><?=$fact_other['costs_date']?></th>
+                                                    <th class="p_price_2"><?=$fact_other['costs_plan']?></th>
+                                                    <th><?=$fact_other['costs_comments']?></th>
+                                                    <th></th>
+                                                </tr>
+                                            <?}?>
+                                            </tbody>
+                                        </table>
                                     </form>
                                 </div>
                                 <div class="box-header with-border">
@@ -146,12 +188,12 @@
                                         <table class="table">
                                             <tr>
                                                 <th>
-                                                    <label>Ціна, грн</label>
-                                                    <input class="form-control" type="text" name="cost_fact">
-                                                </th>
-                                                <th>
                                                     <label>Дата</label>
                                                     <input class="form-control" type="date" name="cost_fact_date">
+                                                </th>
+                                                <th>
+                                                    <label>Ціна, грн</label>
+                                                    <input class="form-control" type="text" name="cost_fact">
                                                 </th>
                                                 <th>
                                                     <label>Коментар</label>
@@ -164,8 +206,8 @@
                                             </tr>
                                             <?if($date['other_costs']['fact']['3']!=false) foreach ($date['other_costs']['fact']['3'] as $fact_other){?>
                                                 <tr>
-                                                    <th class="f_price_2"><?=$fact_other['cost_fact']?></th>
                                                     <th><?=$fact_other['cost_fact_date']?></th>
+                                                    <th class="f_price_2"><?=$fact_other['cost_fact']?></th>
                                                     <th><?=$fact_other['cost_fact_note']?></th>
                                                     <th></th>
                                                 </tr>
@@ -199,17 +241,38 @@
                                 <div id="collapse_2_1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                     <form action="/new-farmer/save_other_cost" method="post">
                                         <input type="hidden" name="costs_type" value="1">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Операційні витрати, %</label>
-                                                <input class="form-control inphead plan_other_costs" type="text" name="costs_plan" value="<?=$date['other_costs']['plan']['1']['costs_plan']?>">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label>Коментар</label>
-                                                <textarea name="costs_comments" id="comments" class="form-control inphead"><?=$date['other_costs']['plan']['1']['costs_comments']?></textarea>
-                                            </div>
-                                        </div>
-                                        <input type="submit" class="btn" value="Зберегти план">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    <label>Дата</label>
+                                                    <input class="form-control" type="date" name="cost_plan_date">
+                                                </th>
+                                                <th>
+                                                    <label>Ціна, грн</label>
+                                                    <input class="form-control" type="text" name="cost_plan">
+                                                </th>
+                                                <th>
+                                                    <label>Коментар</label>
+                                                    <textarea class="form-control" type="text" name="cost_plan_note"></textarea>
+                                                </th>
+                                                <th>
+                                                    <br>
+                                                    <input class="btn" type="submit" value="Додати до плану">
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?if($date['other_costs']['plan']['1']!=false) foreach ($date['other_costs']['plan']['1'] as $fact_other){?>
+                                                <tr>
+                                                    <th><?=$fact_other['costs_date']?></th>
+                                                    <th class="p_price_3"><?=$fact_other['costs_plan']?></th>
+                                                    <th><?=$fact_other['costs_comments']?></th>
+                                                    <th></th>
+                                                </tr>
+                                            <?}?>
+                                            </tbody>
+                                        </table>
                                     </form>
                                 </div>
                                 <div class="box-header with-border">
@@ -225,12 +288,12 @@
                                         <table class="table">
                                             <tr>
                                                 <th>
-                                                    <label>Ціна</label>
-                                                    <input class="form-control" type="text" name="cost_fact">
-                                                </th>
-                                                <th>
                                                     <label>Дата</label>
                                                     <input class="form-control" type="date" name="cost_fact_date">
+                                                </th>
+                                                <th>
+                                                    <label>Ціна</label>
+                                                    <input class="form-control" type="text" name="cost_fact">
                                                 </th>
                                                 <th>
                                                     <label>Коментар</label>
@@ -243,8 +306,8 @@
                                             </tr>
                                             <?if($date['other_costs']['fact']['1']!=false)foreach ($date['other_costs']['fact']['1'] as $fact_other){?>
                                                 <tr>
-                                                    <th class="f_price_3"><?=$fact_other['cost_fact']?></th>
                                                     <th><?=$fact_other['cost_fact_date']?></th>
+                                                    <th class="f_price_3"><?=$fact_other['cost_fact']?></th>
                                                     <th><?=$fact_other['cost_fact_note']?></th>
                                                     <th></th>
                                                 </tr>
@@ -270,7 +333,7 @@
     $(document).ready(function () {
         fact_price();
         function fact_price() {
-            var f1=0, f2=0, f3=0;
+            var f1=0, f2=0, f3=0, p1=0, p2=0, p3=0;
 
             $('.f_price_1').each(function () {
                 f1+=parseFloat($(this).text());
@@ -281,12 +344,24 @@
             $('.f_price_3').each(function () {
                 f3+=parseFloat($(this).text());
             });
+            $('.p_price_1').each(function () {
+                p1+=parseFloat($(this).text());
+            });
+            $('.p_price_2').each(function () {
+                p2+=parseFloat($(this).text());
+            });
+            $('.p_price_3').each(function () {
+                p3+=parseFloat($(this).text());
+            });
             $('#f_1').text(f1);
             $('#f_2').text(f2);
             $('#f_3').text(f3);
-            $('#d_1').text(parseFloat($('#p_1').text())-f1);
-            $('#d_2').text(parseFloat($('#p_2').text())-f2);
-            $('#d_3').text(parseFloat($('#p_3').text())-f3);
+            $('#p_1').text(p1);
+            $('#p_2').text(p2);
+            $('#p_3').text(p3);
+            $('#d_1').text(p1-f1);
+            $('#d_2').text(p2-f2);
+            $('#d_3').text(p3-f3);
         }
     });
 </script>

@@ -63,7 +63,7 @@ class Storage{
         $storage_id = $date['storage_material_id'];
         if($date == false) {
             $res = $db->query("INSERT INTO new_storage_material(storage_type_material,storage_subtype_material,storage_material,storage_unit,storage_quantity,storage_sum_total,storage_date,storage_comments,storage_id_user, storage_start) 
-                           VALUES( '$storage_type_material','$storage_subtype_material','$storage_material','$storage_unit','$storage_quantity','$storage_sum_total','$storage_date','$storage_comments','$id_user','$storage_quantity') ");
+                           VALUES( '$storage_type_material','$storage_subtype_material','$storage_material','$storage_unit','$storage_quantity','$storage_sum_total','$storage_date','$storage_comments','$id_user','0') ");
             $id = $db->lastInsertId();
         }else{
             $db->query("UPDATE new_storage_material SET storage_quantity = storage_quantity+'$storage_quantity' WHERE storage_material_id = '$storage_id'");
@@ -111,7 +111,7 @@ class Storage{
 		return $date;
 	}
 
-    public static function saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user){
+    public static function saveIncomingProducts($product_date,$product_type,$product_quantity,$product_comments,$id_user,$id_field){
         $db = Db::getConnection();
         $result = $db->query("SELECT product_type FROM new_product_incoming WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -122,11 +122,13 @@ class Storage{
         }
 
         if($type[$product_type]['product_type'] == $product_type){
-                $db->query("UPDATE new_product_incoming SET product_quantity = product_quantity+$product_quantity, product_now =product_now + $product_quantity WHERE product_type = '$product_type'");
-            }
+            $db->query("UPDATE new_product_incoming SET product_quantity = product_quantity+$product_quantity, product_now =product_now + $product_quantity WHERE product_type = '$product_type'");
+        }
         else{
-            $db->query("INSERT INTO new_product_incoming(product_date, product_type, product_storage_location, product_quantity, product_now, product_comments, id_user) VALUES ('$product_date','$product_type','$product_storage_location','$product_quantity','$product_quantity','$product_comments','$id_user')");
-                }
+            $db->query("INSERT INTO new_product_incoming(product_date, product_type, product_quantity, product_now, product_comments, id_user) VALUES ('$product_date','$product_type','$product_quantity','$product_quantity','$product_comments','$id_user')");
+        }
+        $db->query("INSERT INTO new_income_prod_field(id_field, id_product, id_user, income_date, income_product_quantity, income_product_comments) 
+                        VALUES ('$id_field','$product_type','$id_user','$product_date','$product_quantity','$product_comments')");
         return true;
     }
 
@@ -138,8 +140,20 @@ class Storage{
 
         $result = $db->query("SELECT * FROM new_actual_sales WHERE id_user = '$id_user'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
-        $actual_sales = $result->fetchAll();
-        foreach ($actual_sales as $sale){
+        $date['actual_sale_1'] = $result->fetchAll();
+        foreach ($date['actual_sale_1'] as $sale){
+            $date['actual_sales'][$sale['actual_sale_product']] += $sale['actual_sale_quantity'];
+        }
+
+        $result = $db->query("SELECT * FROM new_income_prod_field WHERE id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date['income_prod'] = $result->fetchAll();
+
+        foreach ($date['income_prod'] as $income_prod){
+            $date['income_prod_1'][$income_prod['id_product']] += $income_prod['income_product_quantity'];
+        }
+
+        foreach ($date['income_prod'] as $sale){
             $date['actual_sales'][$sale['actual_sale_product']] += $sale['actual_sale_quantity'];
         }
         return $date;

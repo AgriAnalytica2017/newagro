@@ -58,6 +58,7 @@ class TechnologyCardController{
             $id_user = $_SESSION['id_user'];
             $date['action'] = DataBase::getActionLib($id_user);
             $date['units'] = DataBase::getUnits();
+            $date['unit_material'] = DataBase::getUnitForMaterial();
             foreach ($date['action'] as $action) {
                 $date['lib'][$action['action_id']] = $action;
             }
@@ -243,15 +244,17 @@ class TechnologyCardController{
         $id_user = $_SESSION['id_user'];
         $name_material=SRC::validator($_POST['name_material']);
         $id_type_material=SRC::validator($_POST['id_type_material']);
-        if($id_type_material=='1'){
-            $key_material = SRC::validator($_POST['key_material_seed']);
+        if($id_type_material =='1'){
+            $key_material = SRC::validator($_POST['key_material_1']);
+        }elseif($id_type_material == '3'){
+            $key_material=SRC::validator($_POST['key_material_3']);
         }else{
-            $key_material=SRC::validator($_POST['key_material_'+$id_type_material]);
+            $key_material = SRC::validator($_POST['key_material_2']);
         }
         $id_material=DataBase::saveLibMaterial($id_user,$name_material,$id_type_material,$key_material);
-        $material_price=SRC::validator($_POST['price_material']);
+        /*$material_price=SRC::validator($_POST['price_material']);*/
         $material_unit=SRC::validator($_POST['unit_material']);
-        $id=TechnologyCard::createNewMaterial($id_user, $id_material, $material_price,$material_unit);
+        $id=TechnologyCard::createNewMaterial($id_user, $id_material,$material_unit);
         echo $id;
         return true;
     }

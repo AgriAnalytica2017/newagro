@@ -4,8 +4,10 @@ class Register{
     //--
     public static function registered($name, $last_name, $phone, $email, $password, $date){
         $db = Db::getConnection();
-                    $db->query("INSERT INTO users (name, last_name, phone, email, password, type_user, data_register )
-                    VALUE ('$name', '$last_name', '$phone', '$email', '$password', 'new-farmer', '$date')");
+        $id_ref=$_SESSION['id_ref'];
+        if($id_ref==false) $id_ref=0;
+                    $db->query("INSERT INTO users (name, last_name, phone, email, password, type_user, data_register,id_ref)
+                    VALUE ('$name', '$last_name', '$phone', '$email', '$password', 'new-farmer', '$date','$id_ref')");
                     $db->query("DELETE  FROM validate_info WHERE email = '$email'");
         return true;
      }

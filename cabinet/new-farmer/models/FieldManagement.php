@@ -19,9 +19,17 @@ class FieldManagement{
 
         return $id_culture;
     }
-     public static function createFieldManagement($id_user, $id_crop, $field_number, $field_name, $field_size, $field_rent,$field_usage){
+     public static function createFieldManagement($id_user, $id_crop, $field_number, $field_name, $field_size, $field_rent,$field_usage,$payment){
         $db= Db::getConnection();
-        $db->query("INSERT INTO new_field (field_number, field_name, field_size, field_usage, field_id_crop, field_status, field_rent, id_user) VALUES ('$field_number','$field_name','$field_size', '$field_usage', '$id_crop','0', '$field_rent', '$id_user')");
+        $result = $db->query("SELECT COUNT(id_field) FROM new_field WHERE id_user = '$id_user' and field_status = '0'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $amount_field = $result->fetch();
+        if($amount_field >= 1 and $payment == 0){
+            SRC::addAlert($result,0,"Для створення більшої кількості полів потрібно придбати повну версію програми");
+        }else{
+            $db->query("INSERT INTO new_field (field_number, field_name, field_size, field_usage, field_id_crop, field_status, field_rent, id_user)
+                        VALUES ('$field_number','$field_name','$field_size', '$field_usage', '$id_crop','0', '$field_rent', '$id_user')");
+        }
         return true;
     }
 

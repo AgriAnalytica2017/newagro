@@ -88,9 +88,10 @@ class FactController{
                     'norm'=>SRC::validator($ex_material->{'norm'}),
                     'date'=>SRC::validatorPrice($ex_material->{'date'})
                 );
+                Fact::createSaleStorage($db,$id_user, SRC::validator($ex_material->{'id'}), SRC::validatorPrice($ex_material->{'date'}), SRC::validator($ex_material->{'norm'}), $id_action);
             }
             $save_material = serialize( $save_material );
-            Fact::createSaleStorage($db,$id_user, SRC::validator($ex_material->{'id'}), SRC::validatorPrice($ex_material->{'date'}), SRC::validator($ex_material->{'norm'}), $id_action);
+
         }
         ////employee////
         $employee= json_decode($_POST['save_employee_fact']);
@@ -111,17 +112,24 @@ class FactController{
         if($fuele!=false) {
 
             foreach ($fuele as $ex_fuel) {
+                $equipments= $ex_fuel->{'id_eq'};
+                $id_equipment='';
+                foreach ($equipments as $value){
+                    $id_equipment.=SRC::validator($value->{'id'}).",";
+                }
+                $id_equipment=substr($id_equipment, 0, -1);
                 $save_fuel[]=array(
+                    'id_veh'=>SRC::validator($ex_fuel->{'id_veh'}),
+                    'id_eq'=>$id_equipment,
                     'id_mat'=>SRC::validator($ex_fuel->{'id'}),
                     'norm'=>SRC::validator($ex_fuel->{'norm'}),
                     'date'=>SRC::validatorPrice($ex_fuel->{'date'})
                 );
+                Fact::createSaleStorage($db,$id_user, SRC::validator($ex_fuel->{'id'}), SRC::validatorPrice($ex_fuel->{'date'}), SRC::validator($ex_fuel->{'norm'}), $id_action);
             }
             $save_fuel = serialize( $save_fuel );
         }
         Fact::saveFact($id_user,$id_action,$save_material,$save_employee,$save_fuel,$save_services);
-
-
         SRC::redirect();
         return true;
     }

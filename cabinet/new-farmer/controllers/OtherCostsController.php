@@ -15,10 +15,13 @@ class OtherCostsController{
     }
     public function actionSavePlanOther(){
         $id_user=$_SESSION['id_user'];
-        $costs_plan=SRC::validatorPrice($_POST['costs_plan']);
-        $costs_type=SRC::validator($_POST['costs_type']);
-        $costs_comments=SRC::validator($_POST['costs_comments']);
-        OtherCosts::savePlanOther($id_user,$costs_plan,$costs_type,$costs_comments);
+
+        $cost_plan_type=SRC::validator($_POST['costs_type']);
+        $cost_plan=SRC::validatorPrice($_POST['cost_plan']);
+        $cost_plan_note=SRC::validator($_POST['cost_plan_note']);
+        $cost_plan_date=SRC::validator($_POST['cost_plan_date']);
+
+        OtherCosts::savePlanOther($id_user,$cost_plan_type,$cost_plan,$cost_plan_note,$cost_plan_date);
         SRC::redirect();
         return true;
     }

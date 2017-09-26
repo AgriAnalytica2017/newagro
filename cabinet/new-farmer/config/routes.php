@@ -1,5 +1,9 @@
 <?php
 return array(
+
+    'new-farmer/referral'=>'referral/referral',
+
+    'new-farmer/test_react'=>'plan/index',
     'new-farmer/graphs'=>'graphs/getGraphs',
     'new-farmer/load_his'=>'graphs/jsonHis',
 
@@ -15,6 +19,7 @@ return array(
     'new-farmer/save_edit_material_bd'=>'material/saveEditMaterial',
     'new-farmer/remove_material/([0-9]+)'=>'material/removeMaterial/$1',
     'new-farmer/all_needed_material'=>'material/getAllNeedMaterial',
+    'new-farmer/change_price_material'=>'material/changeMaterialPrice',
 
 
     'new-farmer/save_rent'=>'fieldManagement/saveRentPay',
@@ -77,6 +82,12 @@ return array(
     'new-farmer/budget/materials/([0-9]+)/([0-9]+)'=>'budget/remainsMaterial/$1/$2',
     'new-farmer/budget/salary/([0-9]+)'=>'budget/remainsSalary/$1',
     'new-farmer/budget/fuel/([0-9]+)'=>'budget/remainsFuel/$1',
+    'new-farmer/budget/services/([0-9]+)'=>'budget/remainsServices/$1',
+
+    'new-farmer/budget/fact_materials/([0-9]+)/([0-9]+)'=>'budget/factRemainsMaterials/$1/$2',
+    'new-farmer/budget/fact_salary/([0-9]+)'=>'budget/factEmployeeSalary/$1',
+    'new-farmer/budget/fact_services/([0-9]+)'=>'budget/factRemainsServices/$1',
+    'new-farmer/budget/fact_fuel/([0-9]+)'=>'budget/factRemainsFuel/$1',
 
 
     'new-farmer/budget/([0-9]+)'=>'budget/getBudget/$1',
@@ -87,6 +98,7 @@ return array(
     'new-farmer/remains'=>'budget/remainsMaterial',
     'new-farmer/save_budget'=>'budget/saveBudget',
     'new-farmer/financial'=>'budget/financial',
+    'new-farmer/fact_financial'=>'budget/factFinancial',
 
     'new-farmer/fact_tech_card/([0-9]+)'=>'fact/factTechCard/$1',
     'new-farmer/fact_tech_card'=>'fact/factTechCard/0',
@@ -104,6 +116,4 @@ return array(
 
     'new-farmer/change_status'=>'fieldManagement/changeStatus',
     'new-farmer'=>'fieldManagement/fieldManagement',
-
-
 );

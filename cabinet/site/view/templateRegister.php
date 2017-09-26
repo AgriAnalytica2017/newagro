@@ -257,7 +257,7 @@ text-align: center;
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="/"><img src="cabinet/site/template/img/logo.png"> </a>
+            <a href="/"><img src="/cabinet/site/template/img/logo.png"> </a>
         </div>
         <div class="register-box-body">
             <p class="register-box-msg"> Реєстрація нового користувача</p>

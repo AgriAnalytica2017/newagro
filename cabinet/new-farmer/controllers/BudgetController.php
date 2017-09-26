@@ -4,11 +4,11 @@ include_once ROOT.'/cabinet/new-farmer/models/DataBase.php';
 include_once ROOT.'/cabinet/new-farmer/models/TechnologyCard.php';
 include_once ROOT.'/cabinet/new-farmer/models/FieldManagement.php';
 class BudgetController{
-    public function actionGetBudget($id_budget=false){
-        $id_budget=SRC::validatorPrice($id_budget);
+    public function actionGetBudget($id_crop){
+       /*$id_budget=SRC::validatorPrice($id_budget);*/
         $db = Db::getConnection();
         $id_user=$_SESSION['id_user'];
-        $field=Budget::getMyCulture($db,$id_user);
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
         $date['table']=Budget::getTableBudget();
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
         /*if($id_budget==true)$date['save_budget']=Budget::getSaveBudget($db,$id_user,$id_budget);
@@ -86,7 +86,6 @@ class BudgetController{
         SRC::template('new-farmer','new','cashFlow',$date);
         return true;
     }
-
     public function actionGetGraphsPlan(){
         $db = Db::getConnection();
         $id_user=$_SESSION['id_user'];
@@ -149,10 +148,16 @@ class BudgetController{
                 $value
             );
         }
+
+        foreach ($date['budget']['crop_budget_services'] as $key=>$value){
+            $date['graphs_8_budget_services'][] = array(
+                $date['crop_name'][$key]['name_crop_ua'],
+                $value
+            );
+        }
     	SRC::template('new-farmer', 'new','graphsPlan',$date);
         return true;
     }
-
     public function actionSaveBudget(){
         $db = Db::getConnection();
         $id_user=$_SESSION['id_user'];
@@ -174,7 +179,6 @@ class BudgetController{
         SRC::redirect('/new-farmer/budget');
         return true;
     }
-
     public function actionRemainsMaterial($type,$id_field){
         $id_field=SRC::validatorPrice($id_field);
         $type=SRC::validatorPrice($type);
@@ -204,6 +208,7 @@ class BudgetController{
             '2'=>array('Operation','Name', 'Area, ha', 'Norm,kilogram per hectare', 'Price, UAH per kilogram',  'Costs of mineral fertilizers, UAH'),
             '3'=>array('Operation','Name', 'Area, ha', 'Norm,kilogram, liters per hectare,tons', 'Price, UAH per kilogram, (liters)', 'Costs for plant protection products, UAH')
         );
+
         $date['table_name_ua']=$name_ua[$type];
         $date['table_head_ua']=$table_head_ua[$type];
         $date['table_name_en']=$name_en[$type];
@@ -222,6 +227,17 @@ class BudgetController{
         $date['employee'] = DataBase::getEmployee($id_user);
         //var_dump($date['budget']['remains']);
         SRC::template('new-farmer','new','employeeSalary',$date);
+        return true;
+    }
+    public function actionRemainsServices($id_field){
+        $id_field=SRC::validatorPrice($id_field);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,$id_field);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],6);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','remainsServices',$date);
         return true;
     }
     public function actionRemainsFuel($id_field){
@@ -298,6 +314,132 @@ class BudgetController{
             'net_profit_mass'=>2
         );
         SRC::template('new-farmer','new','financial',$date);
+        return true;
+    }
+    public function actionFactFinancial(){
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],6);
+        $date['fin_table_ua']=array(
+            'crop_name'=>'#',
+            //'area'=>'Посівна площа, га',
+            //'yaled'=>'Урожайність, ц/га',
+            //'mass'=>'Обсяг реалізації, кг',
+            'price'=>'Середня ціна реалізації, грн/кг',//
+            //'revenue'=>'Доходи від реалізації всього, грн',
+            'revenue_area'=>'Доходи від реалізації, грн/га',
+            'revenue_mass'=>'Доходи від реалізації, грн/кг',//
+            //'production_costs'=>'Виробничі витрати всього, грн',
+            'production_area'=>'Виробничі витрати, грн/га',
+            'production_mass'=>'Виробничі витрати, грн/кг',//
+            //'gross_profit'=>'Валовий прибуток (збиток) всього, грн',
+            'gross_profit_area'=>'Валовий прибуток (збиток), грн/га',
+            'gross_profit_mass'=>'Валовий прибуток (збиток), грн/кг',//
+            'profitability'=>'Рентабельність виробництва, %',
+            'marginal_profit'=>'Маржинальний прибуток, грн/га',
+            //'total_cost'=>'Повна собівартість',
+            'total_cost_area'=>'Повна собівартість, грн/га',
+            'total_cost_mass'=>'Повна собівартість, грн/кг',//
+            'net_profit_area'=>'Чистий прибуток (збиток), грн/га',
+            'net_profit_mass'=>'Чистий прибуток (збиток), грн/кг'//
+        );
+        $date['fin_table_en']=array(
+            'crop_name'=>'#',
+            //'area'=>'Sown area, hectare',
+            //'yaled'=>'Yield, centners per hectare',
+            //'mass'=>'Volume of sale, kilogram',
+            'price'=>'Average sale price of 1 kilogram, UAH',
+            //'revenue'=>'Revenue from sales total, UAH',
+            'revenue_area'=>'Revenue from sales, UAH per hectare',
+            'revenue_mass'=>'Revenue from sales, UAH per kilogram',
+            //'production_costs'=>'Productive expenses total, UAH',
+            'production_area'=>'Productive expenses, UAH per hectare',
+            'production_mass'=>'Productive expenses, UAH per kilogram',
+            //'gross_profit'=>'Gross profit (loss) total, UAH',
+            'gross_profit_area'=>'Gross profit (loss), UAH per hectare',
+            'gross_profit_mass'=>'Gross profit (loss), UAH per kilogram',
+            'profitability'=>'Profitability of production, %',
+            'marginal_profit'=>'Marginal profit, UAH per hectare',
+            //'total_cost'=>'Complete cost',
+            'total_cost_area'=>'Complete cost, UAH per hectare',
+            'total_cost_mass'=>'Complete cost, UAH per kilogram',
+            'net_profit_area'=>'Чистий прибуток (збиток), грн/га',
+            'net_profit_mass'=>'Чистий прибуток (збиток), грн/кг'
+        );
+        $date['coll']=array(
+            'price'=>2,
+            'revenue_mass'=>2,
+            'production_mass'=>2,
+            'gross_profit_mass'=>2,
+            'total_cost_mass'=>2,
+            'net_profit_mass'=>2
+        );
+        SRC::template('new-farmer','new','factFinancial',$date);
+        return true;
+    }
+
+    public function actionFactRemainsMaterials($type,$id_field){
+        $id_field=SRC::validatorPrice($id_field);
+        $type=SRC::validatorPrice($type);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,$id_field);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,1);
+        $date['material_name']=DataBase::getNameFactMaterial($id_user);
+        $date['type'] = $type;
+        $table_name_fact_ua=array(
+            '1'=>'Фактичні витрати на насіння',
+            '2'=>'Фактичні витрати на мін. добрива',
+            '3'=>'Фактичні витрати на засоби захисту рослин'
+        );
+        $table_head_fact_ua=array(
+            '1'=>array('Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на насіння, грн'),
+            '2'=>array('Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на добрива, грн'),
+            '3'=>array('Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на ЗЗР, грн'),
+        );
+        $date['table_head_fact_ua']=$table_head_fact_ua[$type];
+        $date['table_name_fact_ua']=$table_name_fact_ua[$type];
+        SRC::template('new-farmer','new','factRemainsMaterial',$date);
+        return true;
+    }
+
+    public function actionFactEmployeeSalary($id_field){
+        $id_field=SRC::validatorPrice($id_field);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,$id_field);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,2);
+        $date['employee'] = DataBase::getEmployee($id_user);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','factEmployeeSalary',$date);
+        return true;
+    }
+
+    public function actionFactRemainsServices($id_field){
+        $id_field=SRC::validatorPrice($id_field);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,$id_field);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,6);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','factRemainsServices',$date);
+        return true;
+    }
+
+    public function actionFactRemainsFuel($id_field){
+        $id_field=SRC::validatorPrice($id_field);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,$id_field);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,3);
+        $date['fuel_type'] = DataBase::getTypeFuel();
+        SRC::template('new-farmer','new','factRemainsFuel',$date);
         return true;
     }
 }

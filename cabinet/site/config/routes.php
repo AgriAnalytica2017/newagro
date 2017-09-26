@@ -7,8 +7,9 @@ return array(
     'login' => 'login/login',
     'singnin' => 'login/singnIn',
     'exit' => 'login/exit',
-
+    'register_ref/([0-9]+)' => 'register/register/$1',
     'register' => 'register/register',
+
     'registered' => 'register/registered',
     'acceptEmail/([a-zA-Z0-9+?={1,}]+)/([\.\-_A-Za-z0-9]+?@[\.\-A-Za-z0-9]+?[\ .A-Za-z0-9]{2,})' =>'register/verifyemail/$1/$2',
 

@@ -12,6 +12,20 @@ class DataBase{
             )
         );
     }
+    public static function getUnitForMaterial(){
+        return array(
+            'ua'=>array(
+                '1'=>'кг',
+                '2'=>'л',
+                '3'=>'м³',
+                '4'=>'п.о',
+            ),
+            'gb'=>array(
+                '1'=>'ha',
+                '2'=>'tonns',
+            )
+        );
+    }
     public static function getTypeEquipment(){
         return array(
             'ua'=>array(
@@ -365,4 +379,24 @@ class DataBase{
         return $date;
     }
 
+    public static function getPaymentStatus($id_user){
+        $db = Db::getConnection();
+        $result = $db->query("SELECT payment_status FROM users WHERE id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetch();
+        return $date;
+    }
+
+    public static function getNameFactMaterial($id_user){
+        $db=Db::getConnection();
+        $result = $db->query("SELECT * FROM new_lib_material nlb, new_storage_material nsm WHERE nsm.storage_material = nlb.id_material and nsm.storage_id_user='$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
+
+        foreach ($date as $material){
+            $name_material[$material['storage_material_id']] = $material;
+        }
+
+        return $name_material;
+    }
 }

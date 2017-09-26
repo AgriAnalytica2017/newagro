@@ -12,11 +12,11 @@ class FieldManagementController{
         $date['crop_culture']=FieldManagement::getCropCulture($id_user);
         $date['rent_pay']=FieldManagement::getRentPay($id_user);
         $date['tech_cart'] = TechnologyCard::getListTechCart($id_user);
+        $date['payment_status'] = DataBase::getPaymentStatus($id_user);
 
 		SRC::template('new-farmer','new','fieldManagement', $date);
 		return true;
 	}
-
 	public function actionCreateFieldManagement(){
         $id_user=$_SESSION['id_user'];
         $field_number=SRC::validator($_POST['field_number']);
@@ -25,8 +25,8 @@ class FieldManagementController{
         $field_rent = SRC::validatorPrice($_POST['field_rent']);
         $field_usage = SRC::validatorPrice($_POST['field_usage']);
         $id_culture = SRC::validator($_POST['crop']);
-
-        FieldManagement::createFieldManagement($id_user, $id_culture, $field_number, $field_name, $field_size, $field_rent,$field_usage);
+        $payment = $_SESSION['payment_status'];
+        FieldManagement::createFieldManagement($id_user, $id_culture, $field_number, $field_name, $field_size, $field_rent,$field_usage,$payment);
 
         SRC::redirect('/new-farmer/field_management');
 	    return true;

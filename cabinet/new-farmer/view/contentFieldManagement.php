@@ -25,7 +25,7 @@
 <div class="box-bodyn">
         <div class="non-semantic-protector">
             <h1 class="ribbon">
-                <strong class="ribbon-content"><?=$language['new-farmer']['42']?></strong>
+                <strong class="ribbon-content"><?=$language['new-farmer']['42'].' '. date('Y')?></strong>
             </h1>
         </div>
 <!--    <img src="/cabinet/new-farmer/template/img/le.svg" class="le" width="50px;"><div class=""></div> <img src="/cabinet/new-farmer/template/img/ri.svg" class="ri" width="50px;">-->

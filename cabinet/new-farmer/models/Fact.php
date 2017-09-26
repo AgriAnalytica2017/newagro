@@ -130,6 +130,7 @@ class Fact{
         $db->query("INSERT INTO new_come_out(come_out_material_id,come_out_date,come_out_quantity,action_id,id_user,come_out_type) VALUES ('$sale_material_id','$sale_date','$sale_quantity','$action_id','$id_user',3)");
         return true;
     }
+
     public static function removeSaleStorage($id_user,$id_action){
         $db = Db::getConnection();
         $db->query("DELETE FROM new_come_out WHERE id_user='$id_user' AND action_id='$id_action'");

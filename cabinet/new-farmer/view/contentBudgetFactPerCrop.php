@@ -32,7 +32,6 @@
                         <?} ?>
                     </tr>
                     <? if($table['array'] =='budget_crop_name'){?>
-
                         <tr>
                             <td></td>
                             <?php foreach ($date['budget']['crop_'.$table['array']] as $key => $value){?>
