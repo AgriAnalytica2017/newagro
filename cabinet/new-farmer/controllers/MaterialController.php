@@ -65,14 +65,22 @@ class MaterialController{
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table']);
 
         $date['crop_list']=DataBase::getCropName($id_user);
-        $date['material']=Material::getMaterial($id_user);
+        $date['material']= Material::getMaterial($id_user);
         $date['type_material']=DataBase::getTypeMaterial();
         $date['ppa_material']=DataBase::getTypePPA();
+        $date['fert_material']=DataBase::getTypeFert();
         $date['material_lib']=DataBase::getMaterial($id_user);
-
 
         SRC::template('new-farmer','new','allNeedMaterial',$date);
         return true;
+    }
 
+    public function actionChangeMaterialPrice(){
+        $id_user = $_SESSION['id_user'];
+        $id_material_price = SRC::validatorPrice($_POST['id_material_price']);
+        $change_price = SRC::validatorPrice($_POST['change_price']);
+        Material::changePrice($id_user,$id_material_price,$change_price);
+
+        return true;
     }
 }

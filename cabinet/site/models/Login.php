@@ -7,7 +7,7 @@ class Login{
     public static function signIn($email, $password){
 
         $db = Db::getConnection();
-        $result =  $db->query("SELECT type_user, id_user, name, last_name FROM users  WHERE  email = '$email' AND password = '$password'");
+        $result =  $db->query("SELECT type_user, id_user, name, last_name, email FROM users  WHERE  email = '$email' AND password = '$password'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $Date = $result->fetchAll();
 

@@ -19,8 +19,8 @@ $id_material_type = array(
     3=>'ЗЗР',
     4=>'ПММ'
 );
-   /* echo "<pre>";
-    var_dump($date['sales']);die;*/
+    /*echo "<pre>";
+    var_dump($date);die;*/
 ?>
 <div class="box">
     <div class="box-bodyn">
@@ -100,23 +100,30 @@ $id_material_type = array(
                     <table class="table">
                         <thead>
                             <tr class="tabletop">
-                                <th><?=$language['new-farmer']['48']?></th>
-                                <th><?=$language['new-farmer']['159']?></th>
-                                <th><?=$language['new-farmer']['160']?></th>
-                                <th><?=$language['new-farmer']['161']?></th>
-                                <th><?=$language['new-farmer']['162']?></th>
+                                <th>Продукція</th>
+                                <th>Надходження від урожаю, кг</th>
+                                <th>Очікувана реалізація, кг</th>
+                                <th>Ціна, грн</th>
+                                <th>Виручка, грн</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <? foreach($date['plane_sale'] as $plane_sale){?>
+                            <?
+                            $total_revenue = 0;
+                            foreach($date['plane_sale'] as $plane_sale){
+                                $total_revenue += $plane_sale['plane_sale_revenue'];?>
                                 <tr>
                                     <td><?=$plane_sale['name_crop_ua']?></td>
-                                    <td><?=$plane_sale['plane_sale_expected_yield']?></td>
-                                    <td><?=$plane_sale['plane_sale_now']?></td>
-                                    <td><?=$plane_sale['plane_sale_avr_price']?></td>
-                                    <td><?=$plane_sale['plane_sale_revenue']?></td>
+                                    <td><?=number_format($plane_sale['plane_sale_expected_yield'],0,',',' ')?></td>
+                                    <td><?=number_format($plane_sale['plane_sale_now'],0,',',' ')?></td>
+                                    <td><?=number_format($plane_sale['plane_sale_avr_price'], 2,',',' ')?></td>
+                                    <td><?=number_format($plane_sale['plane_sale_revenue'], 2,',',' ')?></td>
                                 </tr>
                             <?}?>
+                            <tr style="font-weight: bold;">
+                                <td colspan="4">Всього, грн</td>
+                                <td><?=number_format($total_revenue,2,',',' ')?></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -138,11 +145,11 @@ $id_material_type = array(
             <table class="table">
                         <thead>
                             <tr>
-                                <th><?=$language['new-farmer']['5']?></th>
-                                <th><?=$language['new-farmer']['48']?></th>
-                                <th><?=$language['new-farmer']['159']?></th>
-                                <th>Загальна кількість по культурах, кг</th>
-                                <th><?=$language['new-farmer']['187']?></th>
+                                <!--<th><?/*=$language['new-farmer']['5']*/?></th>-->
+                                <th>Культура/Продукція</th>
+                                <!--<th><?/*=$language['new-farmer']['159']*/?></th>-->
+                                <th>Надходження від урожаю, кг</th>
+                                <th>Очікувана реалізація, кг</th>
                                 <th><?=$language['new-farmer']['161']?></th>
                                 <th></th>
                             </tr>
@@ -151,11 +158,10 @@ $id_material_type = array(
                             <? foreach($date['plane_sales'] as $plane_sales){
                                ?>
                             <tr>
-                                <td><?=$plane_sales['field_name'];?></td>
-                                <td><?=$plane_sales['name_crop_ua'];?></td>
-                                <td><?=$plane_sales['field_yield']*$plane_sales['field_size']*100;?></td>
+                                <!--<td><?/*=number_format($plane_sales['field_yield']*$plane_sales['field_size']*100,0,',',' ');*/?></td>-->
                                 <?if($crop_show[$plane_sales['id_crop']] == false){?>
-                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><?=$date['sum_yield'][$plane_sales['id_crop']]?></td>
+                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><?=$plane_sales['name_crop_ua'];?></td>
+                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><?=number_format($date['sum_yield'][$plane_sales['id_crop']],0,',',' ')?></td>
                                 <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><input type="text" class="form-control" id="plane_sale_now_<?=$plane_sales['id_crop'];?>" name="plane_sale_now"></td>
                                 <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><input type="text" name="avr_price" class="form-control <?php echo 'avr_price_'.$plane_sales['id_crop']?>"></td>
                                 <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary btn-sm add_sale"

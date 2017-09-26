@@ -41,7 +41,7 @@
                             <td class="line_left" <? if($table['array'] =='budget_crop_name') echo "colspan='3' style='text-align:center;'"?> ><?if($table['array']!='budget_crop_name'){ if($table['href']!=false) echo '<a href="'.$table['href'].$key.'">'.number_format($value).'</a>'; else echo number_format($value);} else echo $value;?></td>
                             <? if($table['array']!='budget_crop_name' and $date['id_budget']!=false){?><td><? echo number_format($date['return_budget'][$table['array']][$key]);?></td><?}?>
                             <? if($table['array']!='budget_crop_name'){?>
-                                <td><a><? echo number_format($date['budget']['field_fact_'.$table['array']][$key]);?></a></td>
+                                <td><?if($table['href_fact']!=false) echo "<a href='".$table['href_fact'].$key."' </a>"?><? echo number_format($date['budget']['field_fact_'.$table['array']][$key]);?></td>
                                 <td class="<? if($value-$date['budget']['field_fact_'.$table['array']][$key]<0) echo 'minus'; else echo 'plus'?>"><a><? echo number_format($value-$date['budget']['field_fact_'.$table['array']][$key]);?></a></td>
                             <?}?>
                         <?}?>

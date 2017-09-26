@@ -2,6 +2,5 @@
 
 return array(
     'newFarmer',
-    'new',
-    'newTemplate'
+    'new'
 );

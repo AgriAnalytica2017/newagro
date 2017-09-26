@@ -40,7 +40,7 @@ class VehiclesController{
         }
         $vehicles_amount_of_amortization = $vehicles_depreciation * ($vehicles_current_year - $vehicles_acquisition);
         $fuel_id_price = Vehicles::createNewMaterial($id_user,$vehicles_fuel_id);
-        Vehicles::createVehicles($id_user,$vehicles_kind, $vehicles_name, $vehicles_license, $vehicles_inventory_number, $fuel_id_price, $vehicles_acquisition, $vehicles_power,$vehicles_load_capacity, $vehicles_depreciation, $vehicles_amount_of_amortization,$vehicles_usage_year,$vehicles_purchase_price);
+        Vehicles::createVehicles($id_user,$vehicles_kind, $vehicles_name, $vehicles_license, $vehicles_inventory_number, $vehicles_fuel_type, $fuel_id_price, $vehicles_acquisition, $vehicles_power,$vehicles_load_capacity, $vehicles_depreciation, $vehicles_amount_of_amortization,$vehicles_usage_year,$vehicles_purchase_price);
         SRC::redirect('/new-farmer/vehicles');
         return true;
     }

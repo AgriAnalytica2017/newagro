@@ -16,6 +16,7 @@ class LoginController{
         $email = SRC::validator($_POST['email']);
         $password = SRC::validator(md5($_POST['password']));
         $result = Login::signIn($email, $password);
+
         if($result){
             $_SESSION['cabinet'] = explode(',',','.$result[0]['type_user']);
             $id_user= $_SESSION['id_user'] = $result[0]['id_user'];
@@ -26,7 +27,7 @@ class LoginController{
             if(empty($result_profile[0]['region'])){
                 $_SESSION['farmer_profile'] = false;
             }
-
+            $_SESSION['user_email'] = $result[0]['email'];
             setcookie("name_user", $result[0]['name'], time()+3600*24*7);
             setcookie("last_name_user", $result[0]['last_name'], time()+3600*24*7);
 //            setcookie("position", $result[0]['id_user'], time()+3600);
@@ -41,6 +42,8 @@ class LoginController{
         unset($_SESSION['cabinet']);
         unset($_SESSION['id_user']);
         unset($_SESSION['farmer_profile']);
+        unset($_SESSION['payment_status']);
+        unset($_SESSION['user_email']);
         SRC::redirect('/login');
     }
     //Страница кабинетов

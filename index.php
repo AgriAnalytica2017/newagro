@@ -8,8 +8,8 @@ session_start();
 //$_SESSION['lang'] = 'ua';
 //$_SESSION['id_user'] = 1;
 if ($_SESSION['crop']==false) $_SESSION['crop']='';
-if($_SESSION['lang']=='ua'){
-setcookie("lang", "gb", time()+3600*24*7, '/');}
+if($_COOKIE['lang']==''){
+setcookie("lang", "ua", time()+3600*24*7, '/');}
 // 1. Общие настройки
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);

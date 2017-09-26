@@ -111,10 +111,18 @@ class TechnologyCard{
         return $action_id;
     }
     //ok
-    public static function createNewMaterial($id_user, $id_material, $material_price,$material_unit){
+    public static function createNewMaterial($id_user, $id_material,$material_unit){
         $db = Db::getConnection();
-        $db->query("INSERT INTO new_material_price (id_user, id_lib_material, price_material,material_unit) VALUES ('$id_user','$id_material','$material_price','$material_unit')");
-        $id = $db->lastInsertId();
+        $result = $db->query("SELECT * FROM new_material_price WHERE id_lib_material = '$id_material' and material_unit = '$material_unit' and id_user = '$id_user'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
+        if($date == false){
+            $db->query("INSERT INTO new_material_price (id_user, id_lib_material, price_material,material_unit) VALUES ('$id_user','$id_material','0','$material_unit')");
+            $id = $db->lastInsertId();
+        }else{
+            /*$db->query("UPDATE new_material_price SET price_material = '$material_price' WHERE id_user = '$id_user' and id_lib_material = '$id_material' and material_unit = '$material_unit'");*/
+            $id = $date[0]['id_material_price'];
+        }
         return $id;
     }
     //ok

@@ -7,7 +7,11 @@
  */
 class PlanController{
     public function actionIndex(){
+<<<<<<< HEAD
         SRC::template('new-farmer','newTemplate','newFieldManagement');
+=======
+        SRC::template('new-farmer','new','plan');
+>>>>>>> 162aeb70703e489698c6eafa180fd33a932a0abb
         return true;
     }
 }

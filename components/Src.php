@@ -91,7 +91,7 @@ class SRC
         //Проверка куки
         public static function isCookie(){
             //Куки для языка
-            if (!isset($_COOKIE['lang']) or $_COOKIE['lang'] == null) setcookie("lang", 'gb', time()+3600*24*7, '/');
+            if (!isset($_COOKIE['lang']) or $_COOKIE['lang'] == null) setcookie("lang", 'ua', time()+3600*24*7, '/');
             //Куки для валюты
             if (!isset($_COOKIE['currency']) or $_COOKIE['currency'] == null) setcookie("currency", 'UAH', time()+3600*24*7, '/');
             if (!isset($_COOKIE['currency_val']) or $_COOKIE['currency_val'] == null) setcookie("currency_val", 1, time()+3600*24*7, '/');
@@ -118,5 +118,18 @@ class SRC
             $language=false;
             require_once(ROOT.'/cabinet/'.$cabinet.'/template/language/'.strtoupper($_COOKIE['lang']).'.php');
             return $language;
+        }
+
+        public static function getPayment(){
+             $id_user = $_SESSION['id_user'];
+             $db = Db::getConnection();
+             $result = $db->query("SELECT * FROM users WHERE id_user = '$id_user'");
+             $result->setFetchMode(PDO::FETCH_ASSOC);
+             $payment = $result->fetch();
+            if (!isset($_SESSION['payment_status']) or $_SESSION['payment_status'] == null)
+                {
+                    $_SESSION['payment_status'] = $payment['payment_status'];
+                }
+             return $payment['payment_status'];
         }
 }

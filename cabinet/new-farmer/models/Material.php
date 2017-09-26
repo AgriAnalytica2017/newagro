@@ -29,4 +29,10 @@ class Material{
         $db->query("UPDATE new_material_price SET statys_material='1' WHERE id_user ='$id_user' AND id_material_price='$id_material_price'");
         return true;
     }
+
+    public static function changePrice($id_user, $id_material_price, $change_price){
+        $db = Db::getConnection();
+        $db->query("UPDATE new_material_price SET price_material = '$change_price' WHERE id_user = '$id_user' AND id_material_price = '$id_material_price'");
+        return true;
+    }
 }

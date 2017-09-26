@@ -5,15 +5,18 @@ include_once ROOT.'/cabinet/site/models/Register.php';
 //Контроллер регистрации
 class RegisterController{
 
-    public function actionRegister(){
+    public function actionRegister($id_ref=false){
         if(isset($_SESSION['id_user'])) {
             SRC::redirect('/panel');
         }
-        SRC::template('site', 'register', 'register');
+        $id_ref=SRC::validatorPrice($id_ref);
+        $_SESSION['id_ref']=$id_ref;
+        SRC::template('site', 'register', 'register',$id_ref);
         return true;
     }
     //Получение данных для регистрации
     public function actionRegistered(){
+
         $name = false;
         $last_name = false;
         $phone = false;
