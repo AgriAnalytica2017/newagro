@@ -14,7 +14,7 @@
            <?=$language['new-farmer']['4']?>
         </div>
         
-        <div class="col-sm-3" style="margin-left: -7%;">
+        <div class="col-sm-3">
             <div class="col-sm-3 add-ico"> <a href="#myModal"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>

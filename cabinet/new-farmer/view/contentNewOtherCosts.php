@@ -1,18 +1,17 @@
- <style>
+  <style>
     .with-border{
         border-top: 2px solid #c0c0c0;
         margin-top: 20px;
     }
-    .nav li {
-        font-size: 22px;
-        margin-bottom: -1px;
-    }
+    h3{
+        font-weight: 400;
+             }
     .panel{
     margin-top: -20px;
      }
-                   .nav-tabs{
-                       padding-left: 0px;
-                   }          
+    .nav-tabs{
+        padding-left: 0px;
+     }          
 </style>
 <? //var_dump($date['rent_pay']);die;?>
 <div class="box-bodyn col-lg-12">
@@ -313,5 +312,3 @@
         }
     });
 </script>
-
-   

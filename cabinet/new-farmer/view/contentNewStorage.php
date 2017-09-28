@@ -20,15 +20,12 @@ $unit = array(
         </div>
                     </div>
         
-<div class="box">
      <div class="box-bodyn col-lg-12 text-center">
         <a class="btn btn-primaryn" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
         <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
-    </div>
+
                   
-    <div class="rown">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="table-responsive">
                 <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
                 <table class="table">
@@ -88,18 +85,18 @@ $unit = array(
                 </table>
             </div>
         </div>
-        <div class="col-lg-1"></div>
-    </div>
-    <br>
+        </div>
     <div class="box-bodyn col-lg-12 text-center">
         <a class="btn btn-primaryn" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>
         <a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</a>
-    </div>
-    <div class="rown">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
+        
+  
+        <div class="col-lg-12">
+            
+       
             <div class="table-responsive">
-                <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
+              <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
+              
                 <table class="table">
                     <thead>
                     <tr class="tabletop">
@@ -127,8 +124,9 @@ $unit = array(
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
+         </div>
+         </div>
+      
     <div class="box-body wt">
         <div id="Add_new" class="modal fade">
             <div class="modal-dialog modal-lg">
@@ -555,7 +553,7 @@ $unit = array(
             </div>
         </div>
     </div>
-</div>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('.unit, .storage_quantity, .storage_sum_total').change(function(){

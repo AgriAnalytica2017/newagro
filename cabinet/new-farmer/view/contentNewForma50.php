@@ -19,7 +19,7 @@
             </div>
 
               
-
+<div class=" col-lg-12">
 <div class="rown">
 <form method="post" action="/new-farmer/saveForma50">
     <input type="hidden" name="yaer" value="<?=$date['year']?>">
@@ -51,7 +51,7 @@
             <tr>
                 <td><?=$crop_name?></td>
                 <?for($x=1;$x<=7;$x++){?>
-                    <td><input class="form-control" name="forma-<?=$crop_id?>-<?=$x?>" value="<?=$date['form_date'][$crop_id][$x]?>"></td>
+                    <td><input class="inphead" name="forma-<?=$crop_id?>-<?=$x?>" value="<?=$date['form_date'][$crop_id][$x]?>"></td>
                 <?}?>
             </tr>
         <?}?>
@@ -62,6 +62,6 @@
     </div>
 </form>
 </div>
-               
+</div>          
                 
              

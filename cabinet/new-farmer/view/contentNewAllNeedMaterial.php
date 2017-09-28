@@ -4,7 +4,7 @@
         Потреба в матеріальних ресурсах
         </div>
         
-        <div class="col-sm-8" style="margin-left: -6%;">
+        <div class="col-sm-8">
                     <div class="non-semantic-protector col-sm-2 text-right">Фільтр</div>
                       <div class="col-sm-4">
             <select class="searchs inphead filter_type">
@@ -42,8 +42,7 @@ $unit=array(
     4=>'п.о'
 );
 ?>
-<section class="content">
-    <div class="rown">
+<div class="box-bodyn col-sm-12">
         <div class="col-sm-9">
             <table class="table">
                 <thead>
@@ -79,7 +78,6 @@ $unit=array(
 
         <div class="col-sm-3">
            
-            <hr>
 
             <table class="table">
                 <thead>
@@ -103,8 +101,7 @@ $unit=array(
 
             </table>
         </div>
-    </div>
-</section>
+</div>
 <div id="material_modal" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">

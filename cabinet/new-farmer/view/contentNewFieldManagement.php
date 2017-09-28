@@ -27,45 +27,33 @@
            <?=$language['new-farmer']['42']?>
         </div>
         
-        <div data-toggle="modal" data-target="#modal-default"  class="col-sm-3" style="margin-left: -7%;">
-        <div class="col-sm-3 add-ico"><img src="/cabinet/new-farmer/template/img/add.png" class="user-imagen" alt="User Image" style="    width: 35px; height: 35px;"></div>
-            <div class="non-semantic-protector col-sm-9"><?=$language['new-farmer']['52']?></div>
+        <div data-toggle="modal" data-target="#modal-default"  class="col-sm-3">
+            <div class="col-sm-3 add-ico"> <a href="#modal-default"  data-toggle="modal"> <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" alt="User Image" style="    width: 35px; height: 35px;"></a></div>
+            <a class=" add-ico non-semantic-protector col-sm-9" href="#modal-default"><?=$language['new-farmer']['52']?></a>
             </div>
             </div>
+ 
             
-            <div class="col-lg-12">
-    <div class="rown">
-        <div class="col-lg-3">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    <tr style="font-size: 20px;">
+            <div class="box-bodyn col-lg-12">
+        <div class="col-sm-3" style="font-size: 20px;">
+                   
                         <?if($date['field']!=false){?>
-                            <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?></td>
-                            <td><? echo '<b> Технологія: </b>'.$date['only_tech']['tech_name'].'<br>'?>
+                            <? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?>
+                            <? echo '<b> Технологія: </b>'.$date['only_tech']['tech_name'].'<br>'?>
                                 <? echo '<b>Площа: </b>'.$date['field']['field_size'].'га <br>'?>
                                 <? echo '<b>Урожайність: </b>'.$date['field']['field_yield'].' ц/га <br>'?>
-                            </td>
+                           
                         <?}else{?>
-                            <td><? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?></td>
-                            <td><? echo '<b>Технологія:</b> '.$date['only_tech']['tech_name'].'<br>'?>
+                            <? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?>
+                            <? echo '<b>Технологія:</b> '.$date['only_tech']['tech_name'].'<br>'?>
                                 <? echo '<b>Площа: </b>'.$date['only_tech']['area'].' га '.'<br>'?>
-                                <? echo '<b> Урожайність: </b>'.$date['only_tech']['yield'].' ц/га <br>'?></td>
+                                <? echo '<b> Урожайність: </b>'.$date['only_tech']['yield'].' ц/га <br>'?>
                         <?}?>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
         <div class="col-lg-9">
             <a href="/new-farmer/field_management" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
         </div>
-    </div>
 </div>
-
-
 
 <div class="rown">
     <div class="box">

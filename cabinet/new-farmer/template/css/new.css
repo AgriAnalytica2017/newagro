@@ -388,11 +388,12 @@ b, strong {
     border-right: 1px solid #ddd;
 }
 tr>th{
-    border-right: 0.6px solid #cacea1a6;
+    border-right: 0.4px solid #cacea1a6;
+    font-weight: 500;
 }
 tr>td{
     border-right: 0.6px solid #cacea1a6;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .tablen {
@@ -545,7 +546,7 @@ select.inphead {
     border: 0.5px solid #7b7e1e87;
     box-shadow: 0px 2px 5px 0px rgba(102, 104, 25, 0.2);
     outline: none;
-    color: #222 !important;
+    color: #444 !important;
 }
 
 .inphead::-webkit-input-placeholder  {
@@ -876,7 +877,20 @@ fieldset[disabled] a.btnn {
         margin-bottom: -1px;
     }
 }
+@media (max-width: 1210px) {
+.nav-tabs>li>a{
+    min-height: 80px;
+    text-align: center;
+}
+}
+
 @media (max-width: 1200px) {
+    .col-lg-8 {
+    width: 66.66666667%;
+}
+    .col-lg-offset-2 {
+    margin-left: 16.66666667%;
+}
     .col-lg-12{
         width: 100%;
         float: left;
@@ -896,6 +910,10 @@ fieldset[disabled] a.btnn {
         list-style: none;
     }
 
+    .nav > li {
+            height: auto;
+    width: 33%;
+    }
     .navi > li {
         position: relative;
         display: block;
@@ -1140,6 +1158,11 @@ fieldset[disabled] a.btnn {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    height: 42px;
 }
 
 input, button, select, textarea {
@@ -2146,7 +2169,13 @@ padding-left: 15px;
 .user-footern>div>a{
     color: #7b7e1e !important;
     outline: none!important;
-    box-shadow: 0 0 10px 3px #c3c3c3;
+    box-shadow: 0 0 7px 0px #dadada;
+}
+.user-footern>div>a:hover{
+    box-shadow: 0 0 5px 1px #c8c6c6;
+}
+.user-footern>div>a:focus{
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 }
 .navibar-custom-menun .navibar-navn > li > .dropdown-menun>li>a>.menu-icon {
     padding-right: 20px !important;
@@ -2166,6 +2195,10 @@ position: absolute;
 }
     .dropdown-menun{
     left: -105%;
+        top: 70%;
+    }
+    #top_menu > li:first-child >.dropdown-menun{
+        top: 95%;
     }
     .dropdown-menun2{
     left: -57%;
@@ -2205,6 +2238,7 @@ position: absolute;
     border-bottom-color: transparent;
     cursor: default;
     border-top-color: #b7b7b7;
+    border-left-color: #ddd;
 }
 .nav-tabs>li>a{
 color: #555;

@@ -6,6 +6,10 @@
             border-radius:3px;
             margin-top: -0.2%;
         }
+        .mbody{
+            padding-left: 1px;
+            padding-right: 1px;
+        }
     </style>
 </head>
 <? //var_dump($date['rent_pay']);die;?>
@@ -14,7 +18,7 @@
          Реалізація продукції
         </div>
         
-        <div class="col-sm-9" style="margin-left: -6%;">
+        <div class="col-sm-9">
             <div class="col-sm-2 add-ico"> <a href="#Plan_sale"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
@@ -49,9 +53,8 @@ $id_material_type = array(
    /* echo "<pre>";
     var_dump($date['sales']);die;*/
 ?>
-<div class="box">
-    <div class="box">
-        <div class="box-body">
+<div class="box-bodyn col-lg-12">
+
 <!--            <div class="rown">
                 <div class="table-responsive">
                 <div class="col-lg-10">
@@ -110,11 +113,10 @@ $id_material_type = array(
                 </div>
             </div>-->
 
-             <div class="rown">
                  <div class="table-responsive">
                 <div class="col-lg-12">
-                <div>
-                    <h3 style="float: left;">Планова реалізація товарної продукції</h3>
+                <div class="non-semantic-protector ">
+                    Планова реалізація товарної продукції
                     
                 </div>
                     <table class="table">
@@ -141,10 +143,7 @@ $id_material_type = array(
                     </table>
                 </div>
                 </div>
-             </div>
 
-        </div>
-    </div>
 </div>
 <div id="Plan_sale" class="modal fade">
     <div class="modal-dialog modal-lg">
@@ -154,7 +153,7 @@ $id_material_type = array(
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <span class="box-title"><?=$language['new-farmer']['188']?></span>
         </div>
-        <div class="modal-body">
+           <div class="mbody">
             <table class="table">
                         <thead>
                             <tr>
@@ -175,21 +174,27 @@ $id_material_type = array(
                                 <td><?=$plane_sales['field_yield']*$plane_sales['field_size']*100;?></td>
                                 <?if($crop_show[$plane_sales['id_crop']] == false){?>
                                 <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><?=$date['sum_yield'][$plane_sales['id_crop']]?></td>
-                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><input type="text" class="form-control" id="plane_sale_now_<?=$plane_sales['id_crop'];?>" name="plane_sale_now"></td>
-                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><input type="text" name="avr_price" class="form-control <?php echo 'avr_price_'.$plane_sales['id_crop']?>"></td>
-                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary btn-sm add_sale"
-                                data-crop="<?=$plane_sales['id_crop']?>"
-                                data-expected = "<?=$date['sum_yield'][$plane_sales['id_crop']]?>"
-                                ><?=$language['new-farmer']['189']?>
-                                </a></td>
+                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>">
+                                <input type="text" class="inphead form-control" id="plane_sale_now_<?=$plane_sales['id_crop'];?>" name="plane_sale_now"></td>
+                                <td rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>">
+                                <input type="text" name="avr_price" class="inphead form-control <?php echo 'avr_price_'.$plane_sales['id_crop']?>"></td>
+                                
                                 <?}?>
                                 <input type="hidden" data-id="<?=$plane_sales['id_field'];?>">
                             </tr>
                             <? $crop_show[$plane_sales['id_crop']]=true;}?>
 
                         </tbody>
+                         
                     </table>
         </div>
+                        <div class="text-center" rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary btn-sm add_sale"
+                                data-crop="<?=$plane_sales['id_crop']?>"
+                                data-expected = "<?=$date['sum_yield'][$plane_sales['id_crop']]?>"
+                                ><?=$language['new-farmer']['189']?>
+                                </a>
+                </div>
+                <br>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             <button type="button" class="btn btn-primaryn save_sale">Сохранить</button>
