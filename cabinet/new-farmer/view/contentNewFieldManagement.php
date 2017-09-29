@@ -1,4 +1,4 @@
-   <?
+<?
     $status_card = array(
         0=>'Не затверджено',
         1=>'Затверджено'
@@ -17,214 +17,130 @@
         text-align: center;
         font-size: 20px!important;
     }
+         .searchs{
+            height: 35px;
+            width: 300px;
+            border-radius:3px;
+            margin-top: -0.6% !important;
+        }
+         .width100{
+            width: 100%;
+        }
     </style>
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
 </head>
 
 <? //var_dump($date['rent_pay']);die;?>
-<div class="box-bodyn col-lg-12">
-        <div class="non-semantic-protector col-sm-3">
-           <?=$language['new-farmer']['42']?>
-        </div>
-        
-        <div data-toggle="modal" data-target="#modal-default"  class="col-sm-3">
-            <div class="col-sm-3 add-ico"> <a href="#modal-default"  data-toggle="modal"> <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" alt="User Image" style="    width: 35px; height: 35px;"></a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#modal-default"><?=$language['new-farmer']['52']?></a>
-            </div>
-            </div>
- 
-            
-            <div class="box-bodyn col-lg-12">
-        <div class="col-sm-3" style="font-size: 20px;">
-                   
-                        <?if($date['field']!=false){?>
-                            <? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?>
-                            <? echo '<b> Технологія: </b>'.$date['only_tech']['tech_name'].'<br>'?>
-                                <? echo '<b>Площа: </b>'.$date['field']['field_size'].'га <br>'?>
-                                <? echo '<b>Урожайність: </b>'.$date['field']['field_yield'].' ц/га <br>'?>
-                           
-                        <?}else{?>
-                            <? if ($_COOKIE['lang']=='ua'){ echo $date['field']['only_tech'];}elseif($_COOKIE['lang']=='gb'){echo $date['only_tech']['name_crop_en'];}?>
-                            <? echo '<b>Технологія:</b> '.$date['only_tech']['tech_name'].'<br>'?>
-                                <? echo '<b>Площа: </b>'.$date['only_tech']['area'].' га '.'<br>'?>
-                                <? echo '<b> Урожайність: </b>'.$date['only_tech']['yield'].' ц/га <br>'?>
-                        <?}?>
-        </div>
-        <div class="col-lg-9">
-            <a href="/new-farmer/field_management" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
-        </div>
-</div>
-
-<div class="rown">
-    <div class="box">
-        <div class="box-body wt">
-            <form id="form" method="post" action="/new-farmer/save_edit_technology_card">
-                <input type="hidden" name="crop_id" value="<?php echo $date['id']?>" required>
-                <input type="hidden" id="ex_employe" name="ex_employe">
-                <input type="hidden" id="ex_material" name="ex_material">
-                <input type="hidden" id="ex_vehicles" name="ex_vehicles">
-                <input type="hidden" id="ex_services" name="ex_services">
-                <input type="hidden" id="field_size" name="field_size" value="<?=$date['field']['field_size']?>">
-                <div class="table-responsive">
-                    <table class="table well ">
-                        <thead id="thead_edit" class="">
-                        <tr style="display: none" id="update_title">
-                            <th colspan="8"><h4 class="text-center" ><?=$language['new-farmer']['79']?></h4></th>
-                        </tr>
-                        <tr>
-                            <th><label for="id_action_type"><?=$language['new-farmer']['65']?></label></th>
-                            <th><label for="action_id"><?=$language['new-farmer']['66']?></label></th>
-                            <th><label for="unit"><?=$language['new-farmer']['72']?></label></th>
-                            <th><label for="work"><?=$language['new-farmer']['154']?></label></th>
-                            <th><label for="strat_data"><?=$language['new-farmer']['67']?></label></th>
-                            <th><label for="end_data"><?=$language['new-farmer']['68']?></label></th>
-                            <th><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
-                            <th><a class="btn btnn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <select class="form-control inphead list_id_action_type" name="list_id_action_type" id="id_action_type" selected>
-                                    <?php foreach ($date['action'] as $action_type)if($action_type['type']=='1'){?>
-                                        <option value="<?=$action_type['action_id']?>"><?php if($_COOKIE['lang']=='ua'){echo $action_type['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $action_type['name_en'];}?></option>
-                                    <?php }?>
-                                </select>
-                            </td>
-                            <td>
-                                <input list="list_action_id" name="action_id" id="action_id"  class="form-control inphead" autocomplete="off" required>
-                                <datalist id="list_action_id">
-                                    <?php foreach ($date['action'] as $crop)if($crop['type']==2){?>
-                                        <option class="type_op type_operation_<?=$crop['subtype']?>"><?php if($_COOKIE['lang']=='ua'){echo $crop['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_en'];}?></option>
-                                    <?php }?>
-                                </datalist>
-                            </td>
-                            <td>
-                                <select class="form-control inphead" name="id_action_unit" id="id_action_unit" required>
-                                    <?php foreach ($date['units'][$_COOKIE['lang']] as $action_type_id=>$action_type){?>
-                                        <option value="<?php echo $action_type_id?>"><?php echo $action_type?></option>
-                                    <?php }?>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" id="work" name="work" class="form-control inphead" value="<?if($date['field'] == false){echo $date['only_tech']['area'];}else{echo $date['field']['field_size'];}?>" required>
-                            </td>
-                            <td>
-                                <input type="date" class="form-control inphead" id="strat_data" name="strat_data" required>
-                            </td>
-                            <td>
-                                <input type="date" class="form-control inphead" id="end_data" name="end_data" required>
-                            </td>
-                            <td><a class="btn btnn btn-success btn-block" href="#Choose_material" data-toggle="modal"><?=$language['new-farmer']['74']?><b id="coll_material"></b></a></td>
-                            <td><a class="btn btnn btn-success btn-block" href="#Choose_services" data-toggle="modal"><?=$language['new-farmer']['152']?><b id="coll_services"></b></a></td>
-                        </tr>
-                        <tr id="save_actions">
-                            <td colspan="8">
-                                <button type="submit" class="btn btn-success Save"><?=$language['new-farmer']['77']?></button>
-                            </td>
-                        </tr>
-                        <tr id="update_actions" style="display: none">
-                            <input name="action_action_id" id="action_action_id" type="hidden">
-                            <td colspan="8">
-                                <button type="submit" class="btn btn-info Save"><?=$language['new-farmer']['75']?></button>
-                                <a href="/new-farmer/edit_technology_card/<?php echo $date['id']?>" class="btn btn-warning"><?=$language['new-farmer']['76']?></a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+    <div class="box-bodyn col-lg-12">
+            <div class="non-semantic-protector col-sm-3">
+      <?=$language['new-farmer']['42'].' '. date('Y')?>
         </div>
     </div>
+<!--<div class="box head-style">
     <div class="box-body wt">
-        <div class="table-responsive">
-            <table class="table">
+        <div class="form-group fg">
+            <div class="col-sm-2 control-label middle"><img src="/cabinet/new-farmer/template/img/1.png" class="img" width="90px;">
+                <img src="/cabinet/new-farmer/template/img/3.svg" class="imgi" width="40px;"></div>
+            <label for="inputName" class="col-sm-4 control-label"><?/*=$language['new-farmer']['43']*/?>:</label>
+                <div class="col-sm-2 col-left">
+                    <input type="text" class="form-control classEdits inphead rent_pay"  id="lease" placeholder="Price" data-type="1" value="<?/*=$date['rent_pay']['value']*/?>" style="margin-bottom: 15px;">
+                </div>
+        </div>
+    </div>
+</div>-->
+        <div class="table-responsive width100">
+            <table class="table" style="width: 100%;">
                 <thead>
-                <tr class="tabletop">
-                    <th><?=$language['new-farmer']['65']?></th>
-                    <th><?=$language['new-farmer']['66']?></th>
-                    <th><?=$language['new-farmer']['154']?></th>
-                    <th><?=$language['new-farmer']['67']?></th>
-                    <th><?=$language['new-farmer']['68']?></th>
-                    <th><?=$language['new-farmer']['81']?></th>
-                    <th>Оплата праці грн/га</th>
-                    <th>Матеріал<br>Норма на 1 га</th>
-                    <th><?=$language['new-farmer']['152']?></th>
-                </tr>
+                    <tr class="tabletop">
+                       <th style="width: 20px;"><?=$language['new-farmer']['44']?></th>
+                       <th><?=$language['new-farmer']['45']?></th>
+                       <th><?=$language['new-farmer']['46']?></th>
+                       <th><?=$language['new-farmer']['48']?></th>
+                       <th>Урожайність, ц/га</th>
+                       <th></th>
+                       <th></th>
+                       <th colspan="3" style="text-align: center;">Технологія вирощування</th>
+                       <th>Статус ТК</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($date['TC']['new_action'] as $action){?>
+                <?php foreach ($date['field'] as $field){ ?>
                     <tr>
-                        <td style="width: 10%"><? if($_COOKIE['lang']=='ua')
-                            {echo $date['lib'][$action['action_action_type_id']]['name_ua'];}
-                            elseif($_COOKIE['lang']=='gb'){echo $date['lib'][$action['action_action_type_id']]['name_en'];}?></td>
-                        <td><?=$date['lib'][$action['action_action_id']]['name_ua']?></td>
-                        <td><?=number_format($action['action_work']).' '.$date['units']['ua'][$action['action_unit']]?></td>
-                        <td><?=$action['action_date_start']?></td>
-                        <td><?=$action['action_date_end']?></td>
-                        <td>
-                            <?
-                            if(unserialize($action['action_machines'])!=false)
-                                foreach(unserialize($action['action_machines']) as $action_machines){
-                                    echo $date['TC']['vehicles'][$action_machines['id_veh']]['vehicles_name'];
-                                    $equipments[$action['action_id']]=explode(',',$action_machines['id_equ']);
-                                    $list_equipment="";
-                                    foreach ($equipments[$action['action_id']] as $key){
-                                        $list_equipment .= $date['TC']['equipment'][$key]['equipment_name'].', ';
-                                    }
-                                    echo $list_equipment=' + '.substr($list_equipment, 0, -2).', Пальне:'.$action_machines['fuel'].'л/га <br>';
-                                }?>
-                        </td>
-                        <td>
-                            <?
-                            $new_employee=false;
-                            $sum_pay =0;
-                            if(unserialize($action['action_employee'])!=false)
-                                foreach(unserialize($action['action_employee']) as $action_employee) {
-                                    $new_employee[$action_employee['pay']]++;
-                                }
-                            if($new_employee!=false)foreach ($new_employee as $new_employee_pay=>$new_employee_arr){
-                                $sum_pay +=$new_employee_arr*$new_employee_pay;
-                            }?>
-                            <?=$sum_pay?>
-                        </td>
-                        <td>
-                            <?
-                            if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){?>
-                                <?=$date['TC']['new_material'][$action_materials['id']]['name_material']?>
-                                (<?echo $action_materials['norm'].' '.$units[$date['TC']['new_material'][$action_materials['id']]['material_unit']]?>)
-                                <br>
-                            <?}?>
-                        </td>
-                        <td>
-                            <? if($action['action_services']!=false) foreach(unserialize($action['action_services']) as $action_service){
-                                echo $action_service['name'].' ('.$action_service['amount'].') '.$action_service['price'].'<br>';
-                            }?>
-                        </td>
-                        <td><a data-services='<?=json_encode(unserialize($action['action_services']))?>'
-                               data-action='<?=json_encode($action)?>'
-                               data-employee='<?=json_encode(unserialize($action['action_employee']))?>'
-                               data-material='<?=json_encode(unserialize($action['action_materials']))?>'
-                               data-equipment='<?=json_encode(unserialize($action['action_machines']))?>'
-                               class="btn btn-warning edit_action"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger" href="/new-farmer/remove_operation/<?=$action['action_id']?>">
-                                <span class="glyphicon glyphicon-remove"></span></a>
-                            <a class="btn btn-primary add_prod_<?=$action['action_action_type_id']?>"
-                               style="display: none;" href="#add_prod" data-toggle="modal"><?=$language['new-farmer']['82']?></a>
-                        </td>
+                        <td style="width: 5%;"><?=$field['field_number']?></td>
+                        <td><?=$field['field_name']?></td>
+                        <td style="width: 7%;"  class="edit_field area_plus">
+                            <?=$field['field_size']?>
+                            </td>
+                        <td  style="width: 11%;"><? if($_COOKIE['lang']=='ua'){echo $field['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field['name_crop_en'];}?></td>
+                       <th style="width: 13%;">
+                           <input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
+                       </th>
+                        <th>
+                           <a class="btn btn-warning fa fa-pencil edit_fields" data-data='<?=json_encode($field); ?>'></a>
+                        </th>
+                        <th>
+                            <a href="/new-farmer/remove_field/<?=$field['id_field']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        </th>
+                        <th>
+                            <button data-field_name="<?=$field['field_name']?>" data-name_culture="<?=$field['name_crop_ua']?>" data-field="<?=$field['id_field']?>" data-size="<?=$field['field_size']?>"  data-crop="<?=$field['field_id_crop']?>"  class="btn btn-primary select_tc">Вибрати технологію</button>
+                        </th>
+                        <th style="width: 13%;" id="tech_name_field<?=$field['id_field']?>">
+                            <?=$date['tech_cart']['tech'][$field['field_id_crop']][$field['field_id_culture']]['tech_name']?>
+                        </th>
+                        <th ><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<? if($field['field_id_culture']==null){echo '0';}else{echo $field['field_id_culture'];}?>">Переглянути ТК</a></th>
+                        <th>
+                         <select class="form-control  inphead changes_status" data-id="<?=$field['id_field']?>">
+                                <? foreach ($status_card as $key=>$value){?>
+                                    <option value="<?=$key?>"<?if($field['field_technology_status']==$key){echo "selected";}?> ><?=$value?></option>
+                                <?}?>
+                            </select>
+                        </th>
                     </tr>
-                <?} ?>
+                <?php }?>
+                    <tr>
+                        <th ><?=$language['new-farmer']['50']?></th>
+                        <th><b id="total_area"></b>, <?=$language['new-farmer']['51']?></th>
+                    </tr>
                 </tbody>
             </table>
         </div>
+        <div class="col-lg-12">
+    <div style="text-align: center">
+        <button type="button" class="btn btn-warning btn-lg sh" data-toggle="modal" data-target="#modal-default" >
+            <?=$language['new-farmer']['52']?>
+        </button>
     </div>
 </div>
-                 
-                  
-                  
-                  <div class="modal fade in" id="modal-default" >
+<div id="Select_tc" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <form action="/new-farmer/incoming_products" method="post">
+            <div class="modal-content wt">
+                <div class="box-bodyn">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <span class="box-title">Вибрати технологію вирощування  <b id="name_culture"></b></span>
+                </div>
+                 <div class="width100" style="padding-left: 1px; padding-right: 1px;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Назва технології</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <thead id="tech_list">
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                   <!-- <button type="submit" class="btn btn-primaryn"><?/*=$language['new-farmer']['109']*/?></button>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<input type="hidden" id="field_id">
+<div class="modal fade in" id="modal-default" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">
             <div class="modal-header box-bodyn">
@@ -297,6 +213,36 @@
                             <input class="form-control inphead" type="text" name="field_rent" required>
                         </div>
                     </div>
+<!--                    <div class="tech_cart">-->
+<!--                        <div class="tech_head">-->
+<!--                            <label>Технологічна карта</label>-->
+<!--                        </div>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-6 ">-->
+<!--                                    <label class="tech_label">-->
+<!--                                        <input type="radio" name="optionsRadios" value="new">-->
+<!--                                        Створити нову технологічну карту-->
+<!--                                    </label>-->
+<!--                                <div id="new_tech_cart">-->
+<!--                                    <label >Назва технологічної карти</label>-->
+<!--                                    <input class="form-control inp" type="text" name="name_tech_cart" id="name_tech_cart">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6 ">-->
+<!--                                <label class="tech_label"> Використати готову технологічну карту</label>-->
+<!--                                <div class="form-group">-->
+<!--                                    --><?// foreach($date['crop_culture'] as $cart){?>
+<!--                                        <div class="rad tech_cart_crop_--><?//=$cart['id_crop']?><!--" class="radio">-->
+<!--                                            <label>-->
+<!--                                                <input  type="radio" name="optionsRadios" value="--><?//=$cart['id_culture']?><!--" required>-->
+<!--                                                --><?//if($_COOKIE['lang']=='ua'){echo $cart['name_crop_ua'].'_'.$cart['tech_name'];}elseif($_COOKIE['lang']=='gb'){echo $cart['name_crop_en'].'_'.$cart['tech_name'];}?>
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    --><?//}?>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
             </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
@@ -308,6 +254,256 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-                   
-                   
-                   
+<div id="editField" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content wt">
+            <form method="post" action="/new-farmer/edit_all_field">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" style="text-align: center;"><?=$language['new-farmer']['56']?></h4>
+                </div>
+                <div class="modal-body">
+                 <div class="modal-body">
+                    <div class="row bo">
+                        <div class="col-lg-3">
+                            <label for="name_field"><?=$language['new-farmer']['44']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_number" name="ed_field_number" required>
+                            <input  type="hidden" id="ed_field_id" name="ed_field_id">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['45']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_name" name="ed_field_name" required>
+                        </div>
+                        <div class="col-lg-3">
+                        <label>Тип с/г угідь</label>
+                            <select class="form-control inphead" name="field_usage" id="edit_field_usage">
+                                <?if($_COOKIE['lang']=='ua'){?>
+                                <?php foreach ($date['usage']['ua'] as $usage_id=>$usage_val){?>
+                                <option value="<?=$usage_id?>"><?=$usage_val?></option>
+                                <?}}?>
+                                <?if($_COOKIE['lang']=='gb'){?>
+                                    <?php foreach ($date['usage']['gb'] as $usage_id=>$usage_val){?>
+                                        <option value="<?=$usage_id?>"><?=$usage_val?></option>
+                                <?}}?>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="area_field"><?=$language['new-farmer']['46']?></label>
+                            <input class="form-control inphead" type="text" id="ed_field_area" name="ed_field_area" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label><?=$language['new-farmer']['55']?></label>
+                            <select class="form-control inphead op" id="edit_crop_type">
+                                <? if($_COOKIE['lang']=='gb'){?>
+                                <option value="1">Legumes</option>
+                                <option value="2">Crops</option>
+                                <option value="3">Technical</option>
+                                <option value="4">Fodder</option>
+                                <option value="5">Vegetable and melons</option>
+                                <option value="6">Fruit</option>
+                                <option value="7">Вerries</option>
+                                <?} elseif($_COOKIE['lang']=='ua'){?>
+                                    <option value="1">Зерно-бобові</option>
+                                    <option value="2">Зернові</option>
+                                    <option value="3">Технічні</option>
+                                    <option value="4">Кормові</option>
+                                    <option value="5">Овочеві та баштанні</option>
+                                    <option value="6">Плодові</option>
+                                    <option value="7">Ягідні</option>
+                                <?}?>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label><?=$language['new-farmer']['48']?></label>
+                            <select class="form-control inphead" name='crop' id="ed_crop_list_select" required>
+                                <?foreach($date['crop_us'] as $crop){?>
+                                    <option class="edit_crop_list edit_crop_type_<?=$crop['crop_type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
+                                <?}?>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="rent_field"><?=$language['new-farmer']['43']?></label>
+                            <input class="form-control inphead" type="text" id="field_rent" name="field_rent" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['27']?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var json_tech='<?=json_encode($date['tech_cart'])?>';
+        var tech_name=JSON.parse( json_tech );
+        $('.select_tc').click(function () {
+            $('#tech_list').html('');
+            $('#Select_tc').modal('show');
+            var id_crop=$(this).attr('data-crop');
+            var id_field=$(this).attr('data-field');
+            var field_size = $(this).attr('data-size');
+            var field_name=$(this).attr('data-field_name');
+            var name_culture = $(this).attr('data-name_culture');
+            $('#name_culture').text(name_culture);
+            $('#field_id').val(id_field);
+            $.each(tech_name[id_crop], function(key, value) {
+                $('#tech_list').append("<tr>" +
+                    "<td>"+value['tech_name']+"</td>" +
+                    "<td><button type='button' class='btn btn-primary copy_tc' data-name='"+field_name+"' data-work='"+field_size+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +
+                        /*"<td><button type='button' class='btn btn-primary selects_tc' data-name='"+value['tech_name']+"' data-id_tech='"+value['id_culture']+"'>Select</button></td>" +*/
+                    "</tr>");
+            });
+        });
+
+
+        $('#tech_list').on('click','.copy_tc', function () {
+
+            alert('Застосувати технологію на цьому полі?');
+            var id_field = $('#field_id').val();
+            var id_tech_cart = $(this).attr('data-id_tech');
+            var field_work = $(this).attr('data-work');
+            $(location).attr('href','/new-farmer/copy_tech_field/'+id_tech_cart+'/'+id_field+'/'+field_work);
+        });
+
+        $('#tech_list').on('click','.selects_tc', save_tech_cart);
+        function save_tech_cart(){
+            var id_field = $('#field_id').val();
+            var id_tech_cart = $(this).attr('data-id_tech');
+            var text=$(this).attr('data-name');
+            $.ajax({
+                type : 'post',
+                url : '/new-farmer/change_tech_cart',
+                data : {
+                    'id_field' : id_field,
+                    'id_tech_cart' : id_tech_cart
+                }
+            });
+            $('#Select_tc').modal('hide');
+            $('#tech_name_field'+id_field).text(text);
+            $('#tech_edit_field'+id_field).attr('href','/new-farmer/edit_technology_card/'+id_tech_cart)
+        }
+
+
+        $('.edit_field').change(field_edit);
+        function field_edit() {
+            var id=$(this).attr('data-id_field');
+            var value=$(this).val();
+            var table=$(this).attr('data-table');
+            $.ajax({
+                type : 'post',
+                url : '/new-farmer/edit_field',
+                data : {
+                    'id' : id,
+                    'table' : table,
+                    'value' : value
+                }
+            });
+        }
+        var crop_id_st=$('#crop_list_select').val();
+        $('.rad').hide();
+        $('.tech_cart_crop_'+crop_id_st).show();
+        $('#crop_type').click(crop_list_type);
+        function crop_list_type() {
+            var id_type=$(this).val();
+            $('.crop_list').hide();
+            $('.crop_type_'+id_type).show();
+            $('#crop_list_select').val(' ');
+            $('.rad').hide();
+            $('input[name="optionsRadios"]').attr('checked', false);
+            $("#new_tech_cart").hide();
+        }
+
+        $('#edit_crop_type').click(edit_crop_list_type);
+        function edit_crop_list_type() {
+            var id_type=$(this).val();
+            $('.edit_crop_list').hide();
+            $('.edit_crop_type_'+id_type).show();
+            $('#ed_crop_list_select').val(' ');
+        }
+/*        
+        $("input[name='optionsRadios']").change(radio_select);
+        $("#new_tech_cart").hide();
+        function radio_select() {
+            var value= $("input[name='optionsRadios']:checked").val();
+            if(value == 'new'){
+                $("#name_tech_cart").prop('required',true);
+                $("#new_tech_cart").show();
+            }
+            else{
+                $("#name_tech_cart").prop('required',false);
+                $("#new_tech_cart").hide();
+            }
+        }*/
+/*        $('#crop_list_select').change(tech_cart_crop);
+        function tech_cart_crop() {
+            var crop_id=$(this).val();
+            $('.rad').hide();
+            $('.tech_cart_crop_'+crop_id).show();
+            $("#new_tech_cart").hide();
+            $('input[name="optionsRadios"]').attr('checked', false);
+        }*/
+
+        $('.area_plus').keyup(total_area);
+        $(document).ready(total_area);
+        function total_area() {
+           var total_area=0;
+            $(".area_plus").each(function(){
+                var area=parseFloat($(this).text());
+                if(isNaN(area)) area=0;
+                
+                total_area += area;
+            });
+            $('#total_area').text(total_area);
+        }
+
+         $('.edit_fields').click(edit_field);
+        function edit_field() {
+            var json_field=$(this).attr('data-data');
+            var field=JSON.parse( json_field );
+            $('#editField').modal('show');
+            $('#ed_field_number').val(field['field_number']);
+            $('#ed_field_id').val(field['id_field']);
+            $('#ed_field_name').val(field['field_name']);
+            $('#ed_field_area').val(field['field_size']);
+            $('#field_rent').val(field['field_rent']);
+            $('#edit_field_usage').val(field['field_usage']);
+            $('#edit_crop_type').val(field['crop_type']);
+            $('#ed_crop_list_select').val(field['field_id_crop']);
+        }
+        $('.rent_pay').change(function(){
+            var rent_pay = $(this).val();
+            var costs_type = $(this).attr('data-type');
+                $.ajax({
+                type : 'post',
+                url : '/new-farmer/save_rent',
+                data : {
+                    'value' : rent_pay,
+                    'costs_type' : costs_type
+                }
+            });
+        });
+
+
+        $('.changes_status').change(function () {
+            var id_field = $(this).attr('data-id');
+            var status = $(this).val();
+            $.ajax({
+                type : 'post',
+                url : '/new-farmer/change_status',
+                data : {
+                    'id_field' : id_field,
+                    'status' : status
+                }
+            });
+        });
+    });
+</script>

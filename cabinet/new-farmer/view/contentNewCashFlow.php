@@ -34,24 +34,26 @@
     .level1 {
     padding-left: 30px!important;
     }
+                .searchs{
+            height: 35px;
+            width: 300px;
+            border-radius:3px;
+        }
     </style>
         <div class="box-bodyn col-lg-12">
             <div class="non-semantic-protector col-sm-3">
         Cash Flow
         </div>
-    </div>
-
-    <div class="box-bodyn col-lg-12">
         <div class="col-lg-3">
-            <select id="start_date" class=" inphead form-control">
+            <select id="start_date" class="searchs inphead form-control">
                 <option>start</option>
                 <? foreach ($date['budget']['month_active'] as $month=>$true){?>
                     <option><?=$month?></option>
                 <?}?>
             </select>
         </div>
-        <div class="col-lg-3">
-            <select id="end_date" class=" inphead form-control">
+        <div class="col-lg-3 level1">
+            <select id="end_date" class="searchs inphead form-control">
                 <option>end</option>
                 <? foreach ($date['budget']['month_active'] as $month=>$true){?>
                     <option><?=$month?></option>
@@ -59,6 +61,8 @@
             </select>
         </div>
     </div>
+
+
         <div class="table-responsive width100">
             <table class="table">
                 <tbody>

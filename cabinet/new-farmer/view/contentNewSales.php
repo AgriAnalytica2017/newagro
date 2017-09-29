@@ -10,6 +10,9 @@
             padding-left: 1px;
             padding-right: 1px;
         }
+          .width100{
+            width: 100%;
+        }
     </style>
 </head>
 <? //var_dump($date['rent_pay']);die;?>
@@ -53,7 +56,7 @@ $id_material_type = array(
    /* echo "<pre>";
     var_dump($date['sales']);die;*/
 ?>
-<div class="box-bodyn col-lg-12">
+
 
 <!--            <div class="rown">
                 <div class="table-responsive">
@@ -112,13 +115,13 @@ $id_material_type = array(
                 </div>
                 </div>
             </div>-->
-
-                 <div class="table-responsive">
-                <div class="col-lg-12">
-                <div class="non-semantic-protector ">
-                    Планова реалізація товарної продукції
-                    
+<div class="box-bodyn col-lg-12">
+                <div class="non-semantic-protector col-lg-12">
+                    Планова реалізація товарної продукції      
                 </div>
+                         </div>
+                         
+                          <div class="table-responsive  width100">
                     <table class="table">
                         <thead>
                             <tr class="tabletop">
@@ -141,10 +144,8 @@ $id_material_type = array(
                             <?}?>
                         </tbody>
                     </table>
-                </div>
-                </div>
+          </div>
 
-</div>
 <div id="Plan_sale" class="modal fade">
     <div class="modal-dialog modal-lg">
     <form action="" method="post">
@@ -188,7 +189,7 @@ $id_material_type = array(
                          
                     </table>
         </div>
-                        <div class="text-center" rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary btn-sm add_sale"
+                        <div class="text-center" rowspan="<?=$date['sum_crop'][$plane_sales['id_crop']]?>"><a class="btn btn-primary add_sale"
                                 data-crop="<?=$plane_sales['id_crop']?>"
                                 data-expected = "<?=$date['sum_yield'][$plane_sales['id_crop']]?>"
                                 ><?=$language['new-farmer']['189']?>

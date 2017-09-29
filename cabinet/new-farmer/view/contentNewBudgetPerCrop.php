@@ -10,8 +10,11 @@ var_dump($date);*/
           .level2 {
     padding-left: 0px !important;
 }
+          .level1 {
+    padding-left: 0px !important;
+}
     </style>
-    
+</head>
     <div class="box-bodyn col-lg-12">
             <div class="non-semantic-protector col-sm-3">
         <?=$language['new-farmer']['12']?>

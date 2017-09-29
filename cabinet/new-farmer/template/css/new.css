@@ -251,7 +251,7 @@ td, th {
 }
 
 tbody tr:nth-child(odd) {
-     background: #f5f9fa;
+     background: #f6f7f9!important;
  }
 
 .tabletop{
@@ -259,7 +259,7 @@ tbody tr:nth-child(odd) {
 }
 
 tbody>tr:hover {
-    background-color: #ebf1f2;
+    background-color: #ebf1f2!important;
     color: #222;
 }
 
@@ -2024,6 +2024,7 @@ padding-left: 15px;
     font-size: 24;
     font-weight: 400;
     width: auto;
+    font-family: "Open Sans";
 }
 /* end ribbon*/
 .level1{
@@ -2110,6 +2111,7 @@ padding-left: 15px;
 }
 .table th, .table td{
     font-size: 17px;
+    font-family: "Open Sans";
     /*border: 1px solid rgba(31, 255, 0, 0.35);*/
 }
 .btn-success{
@@ -2257,3 +2259,4 @@ color: #555;
         font-size: 20px;
         margin-bottom: -1px;
     }
+table {text-align: center;}

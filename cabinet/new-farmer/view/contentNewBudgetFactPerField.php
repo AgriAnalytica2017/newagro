@@ -12,7 +12,10 @@
             width: 100%;
         }
           .level2 {
-    padding-left: 0px!important;
+    padding-left: 0px !important;
+}
+          .level1 {
+    padding-left: 0px !important;
 }
     </style>
 <div class="box">

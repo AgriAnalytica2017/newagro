@@ -67,8 +67,7 @@
                             </tbody>
                         </table>
                     </div>
-</div>
-        <div class="box-bodyn col-lg-12">
+
 
 <? if($date['id']<>0){?>
 <div id="scroll_for_op">
