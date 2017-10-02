@@ -7,6 +7,9 @@
             border-radius:3px;
             margin-top: -0.2%;
         }
+          .width100{
+            width: 100%;
+        }
     </style>
 </head>
 <? //var_dump($date['rent_pay']);die;?>
@@ -19,8 +22,7 @@
             </div>
 
               
-<div class=" col-lg-12">
-<div class="rown">
+<div class="table-responsive width100">
 <form method="post" action="/new-farmer/saveForma50">
     <input type="hidden" name="yaer" value="<?=$date['year']?>">
 <table class="table">
@@ -61,7 +63,4 @@
     <input type="submit" class="btn btn-primaryn" value="save">
     </div>
 </form>
-</div>
-</div>          
-                
-             
+</div>      

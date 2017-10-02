@@ -23,7 +23,7 @@
             <div class="non-semantic-protector col-sm-3">
         План/Факт бюджет по полях
         </div>
-         <a href="/new-farmer/budget_per_crop" class="btn btn-success" style="float: left; margin-left: 30px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
+         <a href="/new-farmer/budget_per_crop" class="btn btn-success" style="float: right; margin-left: 30px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
     </div>
    <!-- <div class="box-bodyn col-lg-12" style="max-height: 55px">
         <div class="col-sm-5"></div>

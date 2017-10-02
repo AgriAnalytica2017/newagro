@@ -29,8 +29,7 @@
 
 
 
-<div class="box-bodyn col-lg-12">
-                    <div class="table-responsive">
+                    <div class="table-responsive  width100">
                         <table class="table">
                             <thead>
                             <tr class="tabletop">
@@ -258,7 +257,6 @@
             </div>
         </div>
         </div>
-    </div>
 <?}?>
 <!--Material Fact-->
 <div id="mat_fact" class="modal fade">

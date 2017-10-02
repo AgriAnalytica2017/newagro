@@ -44,8 +44,7 @@
     </div>
 </div>
 -->
-<div class="rown">
-    <div class="table-responsive">
+    <div class="table-responsive  width100">
         <table class="table">
             <thead>
             <tr class="tabletop">
@@ -70,14 +69,17 @@
                     <td><? echo $vehicles['vehicles_power']?></td>
                     <td><?=$date['fuel_name_price'][$vehicles['vehicles_fuel']]['name_material']?></td>
                     <td><?if ($vehicles['vehicles_load_capacity']!=0){echo $vehicles['vehicles_load_capacity'];}else{echo "";}?></td>
-                    <td><a class="btn btn-warning fa fa-pencil edit_open" data-data='<?=json_encode($vehicles); ?>'></a></td>
-                    <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>" class="btn btn-danger fa fa-remove"></a></td>
+                    <td><a class=" edit_open" data-data='<?=json_encode($vehicles); ?>'>
+                    <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                    </a></td>
+                    <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>">
+                    <img src="/cabinet/new-farmer/template/img/del.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                    </a></td>
                 </tr>
             <? }?>
             </tbody>
         </table>
     </div>
-</div>
 <div id="newVehicles" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">

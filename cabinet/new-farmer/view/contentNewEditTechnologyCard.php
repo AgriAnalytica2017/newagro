@@ -38,12 +38,9 @@ $units = array(
                         <?}?>
 
         </div>
-        <div class="col-lg-9">
             <a href="/new-farmer/field_management" class="btn btn-success" style="float: right"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
-        </div>
 </div>
-<div class="rown">
-        <div class="box-body wt">
+        <div class="table-responsive width100">
             <form id="form" method="post" action="/new-farmer/save_edit_technology_card">
                 <input type="hidden" name="crop_id" value="<?php echo $date['id']?>" required>
                 <input type="hidden" id="ex_employe" name="ex_employe">
@@ -51,7 +48,7 @@ $units = array(
                 <input type="hidden" id="ex_vehicles" name="ex_vehicles">
                 <input type="hidden" id="ex_services" name="ex_services">
                 <input type="hidden" id="field_size" name="field_size" value="<?=$date['field']['field_size']?>">
-                <div class="table-responsive">
+                <div class="table-responsive ">
                     <table class="table well ">
                         <thead id="thead_edit" class="">
                         <tr style="display: none" id="update_title">
@@ -111,7 +108,7 @@ $units = array(
                         </tr>
                         <tr id="update_actions" style="display: none">
                             <input name="action_action_id" id="action_action_id" type="hidden">
-                            <td colspan="8">
+                            <td colspan="8" class="tabletop">
                                 <button type="submit" class="btn btn-primary Save"><?=$language['new-farmer']['75']?></button>
                                 <a href="/new-farmer/edit_technology_card/<?php echo $date['id']?>" class="btn btn-warning"><?=$language['new-farmer']['76']?></a>
                             </td>
@@ -135,8 +132,6 @@ $units = array(
                     <th>Оплата праці грн/га</th>
                     <th>Матеріал<br>Норма на 1 га</th>
                     <th><?=$language['new-farmer']['152']?></th>
-                    <th></th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -207,7 +202,6 @@ $units = array(
             </table>
         </div>
     </div>
-</div>
 <!------------employee-------------------->
 <div id="Choose_employe" class="modal fade">
     <div class="modal-dialog modal-lg">
@@ -218,9 +212,7 @@ $units = array(
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12" style="margin-bottom: 10px;">
-                        <button id="save_employe" type="submit" class="btn btn-primary" style="float: right"><?=$language['new-farmer']['27']?></button>
-                    </div>
+                  
                     <div class="col-lg-6">
                         <table class="table">
                             <thead>
@@ -259,6 +251,7 @@ $units = array(
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+              <button id="save_employe" type="submit" class="btn btn-primary" style="float: right"><?=$language['new-farmer']['27']?></button>
             </div>
         </div>
     </div>
@@ -267,15 +260,13 @@ $units = array(
 <div id="Choose_vehicles" class="modal fade">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content wt">
-            <div class="box-bodyn">
+            <div class="box-bodyn  col-lg-12">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <span class="box-title">Картка вибору с/г техніки</span>
             </div>
-            <div class="modal-body">
 
-                <div class="row">
 
-                    <div class="col-lg-12">
+                    <div class="table-responsive width100">
                         <table class="table">
                             <thead>
                             <tr class="tabletop">
@@ -287,14 +278,15 @@ $units = array(
                             <tbody id="action_vehicles">
 
                             </tbody>
-                        </table>
+                        </table> <div class="modal-body">
                         <a class="btn btn-primary" href="#choose_sg" data-toggle="modal">+</a>
+                        </div>
                     </div>
-                </div>
-            </div>
+         
             <div class="modal-footer">
-                <button id="save_vehicles" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
+               
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                 <button id="save_vehicles" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
             </div>
         </div>
     </div>
@@ -308,16 +300,12 @@ $units = array(
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <span class="box-title"><?=$language['new-farmer']['84']?></span>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12">
+                <div class="rown">
                         <input class="inphead searchs" id="search_vehicles" type="text" placeholder="Поиск" style="float: left">
                         <button type="button" class="btn btn-primary" style="float: right" data-dismiss="modal"><?=$language['new-farmer']['27']?></button>
 
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
+                </div>
+                    <div class="table-responsive width100">
                         <table class="table tavle1">
                             <thead>
                             <tr class="tabletop">
@@ -339,8 +327,7 @@ $units = array(
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
             </div>
@@ -419,10 +406,10 @@ $units = array(
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <span class="box-title"><?=$language['new-farmer']['87']?></span>
             </div>
-            <div class="modal-body">
+            <div class="col-lg-12">
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#bd_materials" data-toggle="tab"><?=$language['new-farmer']['88']?></a></li>
                             <li><a href="#new_materials" data-toggle="tab"><?=$language['new-farmer']['89']?></a></li>
@@ -520,13 +507,14 @@ $units = array(
                                             <input type="text" name="norm_material" id="norm_material" class="form-control inphead">
                                         </div>
                                     </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-success btn-block" id="add_material_bd"><?=$language['new-farmer']['109']?></button>
+                                    <div class="text-center modal-body">
+                                    <button type="submit" class="btn btn-success" id="add_material_bd"><?=$language['new-farmer']['109']?></button>
+                                                                                                      </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <table class="table">
                             <thead class="tabletop">
                             <th><?=$language['new-farmer']['93']?></th>
@@ -564,7 +552,7 @@ $units = array(
                     <button id="save_services" type="submit" class="btn btn-primary"><?=$language['new-farmer']['27']?></button>
                 </div>
             </div>
-            <div class="modal-body">
+            <div class="table-responsive width100">
                 <table class="table" >
                     <thead>
                     <tr>

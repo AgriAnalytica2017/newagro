@@ -25,9 +25,11 @@ $unit = array(
         <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
 
                   
-        <div class="col-lg-12">
-            <div class="table-responsive">
+       
+            <div class="table-responsive width100">
+                <div class="col-lg-12">
                 <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
+        </div>
                 <table class="table">
                     <thead>
                     <tr class="tabletop">
@@ -84,7 +86,6 @@ $unit = array(
                     </tbody>
                 </table>
             </div>
-        </div>
         </div>
     <div class="box-bodyn col-lg-12 text-center">
         <a class="btn btn-primaryn" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>

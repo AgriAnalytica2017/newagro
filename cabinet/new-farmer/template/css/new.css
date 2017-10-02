@@ -383,7 +383,7 @@ b, strong {
 }
 
 .table>thead>tr>th{
-    font-weight: 500!important;
+    font-weight: 600!important;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
@@ -796,6 +796,19 @@ fieldset[disabled] a.btnn {
 }
 }
 
+@media (max-width: 980px) {
+         .col-sm-9{
+        width: auto;
+    }
+    .non-semantic-protector{
+        font-size: 20px!important;
+    }
+    .add-ico img{
+    width: 25px!important;
+    height: 25px!important;
+    }
+}
+
 @media (max-width: 920px) {
     .navibar-navn > li > a {
         font-size: 15px!important;
@@ -885,6 +898,14 @@ fieldset[disabled] a.btnn {
 }
 
 @media (max-width: 1200px) {
+    .add-ico {
+    margin-top: 2px;
+    margin-right: -12px!important;
+    color: #7b7e1e !important;
+}
+    .col-sm-9{
+        float: initial!important;
+    }
     .col-lg-8 {
     width: 66.66666667%;
 }
@@ -2107,7 +2128,10 @@ padding-left: 15px;
      color: red;
 }
 .plus a{
-    color: #00b60e;
+    color: #5cb85c;
+}
+td a:hover{
+    color: #4ea6db!important;
 }
 .table th, .table td{
     font-size: 17px;
@@ -2237,9 +2261,9 @@ position: absolute;
     color: #7d801e!important;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-bottom-color: transparent;
+    border-bottom: none;
     cursor: default;
-    border-top-color: #b7b7b7;
+    border-top: 2px solid #e2e2e2;
     border-left-color: #ddd;
 }
 .nav-tabs>li>a{
@@ -2260,3 +2284,13 @@ color: #555;
         margin-bottom: -1px;
     }
 table {text-align: center;}
+td img:hover:active, td img:focus{
+   box-shadow:inset 1px 3px 6px rgba(0, 0, 0, 0.4);
+}
+td img:hover {
+    cursor: pointer;
+   box-shadow:inset 1px 3px 6px rgba(0, 0, 0, 0.15);
+}
+.width100{
+    width: 100%;
+}

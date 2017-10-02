@@ -23,8 +23,7 @@
             </div>
             </div>
 
-<div class="rown">
-    <div class="table-responsive">
+    <div class="table-responsive  width100">
         <table class="table">
             <thead >
             <tr class="tabletop">
@@ -42,10 +41,10 @@
                     <td><?=$employee['employee_position'];?></td>
                     <td><?=$employee['employee_phone_number'];?></td>
                     <td><? if($employee['employee_salary']!=0){echo $employee['employee_salary'];}else{echo '';}?></td>
-                    <td><a href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>'>
+                    <td><div class="text-center"><a href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>'>
                     <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
                            
-                        </a></td>
+                        </a></div> </td>
                     <td><a href="/new-farmer/remove_employee/<?echo $employee['id_employee']?>">
                     <img src="/cabinet/new-farmer/template/img/del.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
                     </a></td>
@@ -53,7 +52,6 @@
             </tbody>
         </table>
     </div>
-</div>
 
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-lg">

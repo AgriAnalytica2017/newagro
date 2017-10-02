@@ -65,9 +65,7 @@ $unit = array(
             </div>
             
 
-
-<div class="rown">
-    <div class="table-responsive">
+    <div class="table-responsive  width100">
         <table class="table">
             <thead>
             <tr class="tabletop">
@@ -96,7 +94,6 @@ $unit = array(
             </tbody>
         </table>
     </div>
-</div>
 <div id="newEquipment" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content wt">

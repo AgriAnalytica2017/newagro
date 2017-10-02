@@ -4,7 +4,7 @@
         Потреба в матеріальних ресурсах
         </div>
         
-        <div class="col-sm-8">
+        <div class="col-sm-7">
                     <div class="non-semantic-protector col-sm-2 text-right">Фільтр</div>
                       <div class="col-sm-4">
             <select class="searchs inphead filter_type">
@@ -42,8 +42,8 @@ $unit=array(
     4=>'п.о'
 );
 ?>
-<div class="box-bodyn col-sm-12">
-        <div class="col-sm-9">
+<div class="table-responsive  width100">
+        <div class="col-sm-9 table-responsive">
             <table class="table">
                 <thead>
                 <tr>
