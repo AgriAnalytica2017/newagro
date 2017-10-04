@@ -255,7 +255,7 @@ td, th {
 }
 
 tbody tr:nth-child(odd) {
-     background: #f6f7f9!important;
+     background: #fafafa!important
  }
 
 .tabletop:hover{
@@ -266,7 +266,7 @@ tbody tr:nth-child(odd) {
 }
 
 tbody>tr:hover {
-    background-color: #ebf1f2!important;
+    background-color: #f6f7f9!important;
     color: #222;
 }
 
@@ -440,26 +440,17 @@ tr>td{
     /*color: #fff!important;*/
 }
 
-.btn-warning:hover, .btn-warning:focus, .btn-danger:hover, .btn-danger:focus{
-    color: #fff!important;
+.btn-danger:active, .btn-danger:focus, .btn-danger:hover:active{
+    color: #af4a47!important;
     outline: none;
 }
 .btn-danger, .btn-warning{
      font-size: 16px;
  }
-.btnn-warning:hover, .btnn-warning:focus, .btnn-warning:active{
-    background-color: #eaa645;
-    color: #fff!important;
+.btn-warning:focus, .btn-warning:hover:active, .btn-warning:active{
+    color: #b98330!important;
 }
-
-.btnn-warning{
-    border-color: #eaa645;
-    color: #eaa645;
-    padding: 8px 12px;
-}
-
 .sh:active:focus, .sh:focus {
-    box-shadow: 0 1px 3px rgba(51, 51, 51, 0.29);
     outline: none;
 }
 
@@ -883,7 +874,7 @@ fieldset[disabled] a.btnn {
 }
     .non-semantic-protector{
     margin: auto;
-        font-size: 20px!important;
+        font-size: 18px!important;
     }
     .table-responsive>.table>thead>tr>th, .table-responsive>.table>tbody>tr>th, .table-responsive>.table>tfoot>tr>th, .table-responsive>.table>thead>tr>td, .table-responsive>.table>tbody>tr>td, .table-responsive>.table>tfoot>tr>td {
     white-space: normal;
@@ -1544,7 +1535,7 @@ padding-left: 15px;
         margin-bottom: -1px;
     }
         a {
-    color: #4e979d;
+    color: #4a85bf;
     }
         a:hover, a:active, a:focus {
     color: #00afff !important;
@@ -2153,7 +2144,7 @@ padding-left: 15px;
     color: #5cb85c;
 }
 td a:hover{
-    color: #4ea6db!important;
+    color: #386788!important
 }
 .table th, .table td{
     font-size: 17px;
@@ -2163,62 +2154,74 @@ td a:hover{
 .btn-success{
     background-color: rgba(255, 255, 255, 0) !important;
     color: #58a758!important;
-    border: 3px solid #61bd61!important;
-    border-radius: 20px!important;
+    border: 2px solid #61bd61!important;
+    border-radius: 9px!important;
     font-weight: 600;
 }
 .btn-success:hover{
-    color: #53c04d !important;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
+    color: #4eb148 !important;
+    border-color: #255625;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.05);
 }
+        .btn-success:focus, .btn-success:active{
+                color: #299056 !important;
+        }
+        .btn-primary:focus, .btn-primary:active{
+                color: #35638b !important;
+        }
 .btn-primary, .btn-primaryn{
     background-color: rgba(255, 255, 255, 0) !important;
     color: #417db1 !important;
-    border: 3px solid #5994c8!important;
-    border-radius: 20px!important;
+    border: 2px solid #5994c8!important;
+    border-radius: 9px!important;
     font-weight: 600;
 }
 .btn-primary:hover, .btn-primaryn:hover{
     color: #6598a8 !important;
     border-color: #5286b3 !important;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.05);
 }
 .btn-warning{
     background-color: rgba(255, 255, 255, 0) !important;
-    color: #d08c31 !important;
-    border: 3px solid #eea236!important;
-    border-radius: 20px!important;
+    color: #c8872f !important;
+    border: 2px solid #e29227!important;
+    border-radius: 9px!important;
     font-weight: 600;
 }
 .btn-warning:hover{
     color: rgba(207, 163, 53, 0.91)!important;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.06);
 }
 .btn-danger{
     background-color: rgba(255, 255, 255, 0) !important;
     color: #cd4f4b !important;
-    border: 3px solid #d9534f!important;
-    border-radius: 20px!important;
+    border: 2px solid #d9534f!important;
+    border-radius: 9px!important;
     font-weight: 400;
 }
 .btn-danger:hover{
-    color: #ef5855 !important;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
+    color: #d64b48 !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.06);
 }
 .btn-default{
     background-color: rgba(255, 255, 255, 0) !important;
-    color: #7f7f7f !important;
-    border: 3px solid #b3b3b3 !important;
-    border-radius: 20px!important;
+    color: #333 !important;
+    border: 2px solid #ccc !important;
+    border-radius: 9px!important;
     font-weight: 400;
 }
 .btn-default:hover{
-    color: #5d5d5d !important;
+    color: #444 !important;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 
 }
+/*
 .btn:focus{
     color: #6f6f6f !important;
+  }
+*/
+.btn:active{
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
   }
 .user-footern>div>a{
     color: #7b7e1e !important;
@@ -2325,3 +2328,58 @@ td img:hover {
 .navibar-custom-menun .navibar-navn a {
     font-weight: 400;
 }
+        .btn-switch.active, .btn-switch:active  {
+    outline: 0;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+        .btn-switch {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+        }
+        .btn-switch.active, .btn-switch:active, .btn-switch:hover, .open>.btn-switch{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+        [type=radio] {
+    display: none;
+}
+      .btn-switch:hover  {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+        .btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+    margin-left: -1px;
+}
+        .col-sm-8 .non-semantic-protector{
+            font-weight: 400!important;
+        }
+        td a:hover, th a:hover{
+          border-bottom: 0.3px solid #386788ba;
+        }
+        .searchs:hover{
+            background-color: #fafafa;
+        }
+        .btn:hover{
+        background-color: #fafafae6!important
+        }

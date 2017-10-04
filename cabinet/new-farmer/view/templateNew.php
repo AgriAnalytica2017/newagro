@@ -267,7 +267,7 @@ $top_menu=array(
     <footer class="main-footern">
         <div class="container-footer">
 
-            <strong>Copyright © 2014-2016 <a href="https://agrianalytica.com">AgrianAlytica</a></strong> All rights
+            Copyright © 2014-2016 <strong><a href="https://agrianalytica.com  "> AgrianAlytica</a></strong> All rights
             reserved.
         </div>
         <!-- /.container -->

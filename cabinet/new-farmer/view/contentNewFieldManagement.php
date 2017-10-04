@@ -75,7 +75,7 @@
                             <?=$field['field_size']?>
                             </td>
                         <td  style="width: 11%;"><? if($_COOKIE['lang']=='ua'){echo $field['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field['name_crop_en'];}?></td>
-                       <th style="width: 13%;">
+                       <th style="width: 6%;">
                            <input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
                        </th>
                         <th>
@@ -87,7 +87,7 @@
                         <th>
                             <button data-field_name="<?=$field['field_name']?>" data-name_culture="<?=$field['name_crop_ua']?>" data-field="<?=$field['id_field']?>" data-size="<?=$field['field_size']?>"  data-crop="<?=$field['field_id_crop']?>"  class="btn btn-primary select_tc">Вибрати технологію</button>
                         </th>
-                        <th style="width: 13%;" id="tech_name_field<?=$field['id_field']?>">
+                        <th style="width: 6%;" id="tech_name_field<?=$field['id_field']?>">
                             <?=$date['tech_cart']['tech'][$field['field_id_crop']][$field['field_id_culture']]['tech_name']?>
                         </th>
                         <th ><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<? if($field['field_id_culture']==null){echo '0';}else{echo $field['field_id_culture'];}?>">Переглянути ТК</a></th>
@@ -99,7 +99,18 @@
                             </select>
                         </th>
                     </tr>
-                <?php }?>
+                    
+<!--
+                        <div class="btn-group">
+                        <label class="btn btn-switch  active ">
+                            <input type="radio" name="basis" id="basis1" autocomplete="off" value="cash" checked="">  <? foreach ($status_card as $key=>$value){?><?if($field['field_technology_status']==$key)?><?=$value?>
+                        </label>
+                        <label class="btn btn-switch">
+                            <input type="radio" name="basis" id="basis2" autocomplete="off" value="accrual">   <?}?><?php }?>
+                        </label>
+                        </div>
+-->
+                
                     <tr>
                         <th ><?=$language['new-farmer']['50']?></th>
                         <th><b id="total_area"></b>, <?=$language['new-farmer']['51']?></th>

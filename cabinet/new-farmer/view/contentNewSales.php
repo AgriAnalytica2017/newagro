@@ -154,7 +154,7 @@ $id_material_type = array(
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <span class="box-title"><?=$language['new-farmer']['188']?></span>
         </div>
-           <div class="mbody">
+           <div class="table-responsive width100 mbody">
             <table class="table">
                         <thead>
                             <tr>
