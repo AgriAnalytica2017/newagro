@@ -49,7 +49,7 @@ $units = array(
                 <input type="hidden" id="ex_services" name="ex_services">
                 <input type="hidden" id="field_size" name="field_size" value="<?=$date['field']['field_size']?>">
                 <div class="table-responsive ">
-                    <table class="table well ">
+                    <table class="table">
                         <thead id="thead_edit" class="">
                         <tr style="display: none" id="update_title">
                             <th colspan="8"><h4 class="text-center" ><?=$language['new-farmer']['79']?></h4></th>
@@ -61,8 +61,8 @@ $units = array(
                             <th><label for="work"><?=$language['new-farmer']['154']?></label></th>
                             <th><label for="strat_data"><?=$language['new-farmer']['67']?></label></th>
                             <th><label for="end_data"><?=$language['new-farmer']['68']?></label></th>
-                            <th><a class="btn btnn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
-                            <th><a class="btn btnn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
+                            <th><a class="btn btn-success btn-block" href="#Choose_vehicles" data-toggle="modal"><?=$language['new-farmer']['78']?><b id="coll_vehicles"></b></a></th>
+                            <th><a class="btn btn-success btn-block" href="#Choose_employe" data-toggle="modal"><?=$language['new-farmer']['73']?><b id="coll_employe"></b></a></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -98,10 +98,10 @@ $units = array(
                             <td>
                                 <input type="date" class="form-control inphead" id="end_data" name="end_data" required>
                             </td>
-                            <td><a class="btn btnn btn-success btn-block" href="#Choose_material" data-toggle="modal"><?=$language['new-farmer']['74']?><b id="coll_material"></b></a></td>
-                            <td><a class="btn btnn btn-success btn-block" href="#Choose_services" data-toggle="modal"><?=$language['new-farmer']['152']?><b id="coll_services"></b></a></td>
+                            <td><a class="btn btn-success btn-block" href="#Choose_material" data-toggle="modal"><?=$language['new-farmer']['74']?><b id="coll_material"></b></a></td>
+                            <td><a class="btn btn-success btn-block" href="#Choose_services" data-toggle="modal"><?=$language['new-farmer']['152']?><b id="coll_services"></b></a></td>
                         </tr>
-                        <tr id="save_actions">
+                        <tr id="save_actions" class="tabletop">
                             <td colspan="8">
                                 <button type="submit" class="btn btn-success Save"><?=$language['new-farmer']['77']?></button>
                             </td>

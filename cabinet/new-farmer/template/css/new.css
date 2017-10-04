@@ -9,7 +9,7 @@
 
 
 bodyn{
-    font-family: "Clear Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     color: #7b7e1e;
     margin: 0;
@@ -19,12 +19,12 @@ bodyn{
 
 body{
     background-color: #7b7e1e;
-    font-family: "Clear Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .bodyn{
     background-color: rgba(123, 126, 30, 0.12);
-    font-family: "Clear Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .navi {
@@ -132,8 +132,8 @@ a:hover, a:active, a:focus {
 
 .headern{
     color: #7b7e1e;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     padding: 5px 25px!important;
 }
 
@@ -172,6 +172,9 @@ a:hover, a:active, a:focus {
     border: 1px solid transparent;
 }
 
+.btn {
+    padding: 7px 12px;
+}
 .btnn {
     display: inline-block;
     margin-bottom: 0;
@@ -235,11 +238,12 @@ a:hover, a:active, a:focus {
 td, th {
     vertical-align: middle!important;
     text-align: center;
+    line-height: 1.52857143 !important;
 }
 
 .boxn {
     position: relative;
-    border-radius: 3px;
+    border-radius: 6px;
     background: rgba(252, 255, 247, 0.94);
     box-shadow: 0 2px 3px rgba(51, 51, 51, 0.49);
         margin-top: 30px;
@@ -254,6 +258,9 @@ tbody tr:nth-child(odd) {
      background: #f6f7f9!important;
  }
 
+.tabletop:hover{
+    background-color: rgba(252, 255, 247, 0.94)!important;
+}
 .tabletop{
     background-color: rgba(252, 255, 247, 0.94);
 }
@@ -264,8 +271,9 @@ tbody>tr:hover {
 }
 
 .table{
-    box-shadow: 0px 0px 6px rgba(51, 51, 51, 0.34);
+    box-shadow: 0px 0px 6px rgba(51, 51, 51, 0.4);
     background-color: #fcfff7;
+    border-top: 1px solid #e4e7d2;
 }
 
 .user-imagen {
@@ -737,12 +745,12 @@ fieldset[disabled] a.btnn {
       display: block;
     padding: 3px 15px;
     clear: both;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     color: #7b7e1e !important;
     white-space: nowrap;
     transition: 0.1s ease-in-out;
-    text-transform: uppercase;
+    text-transform: none;
     border-bottom: 0.3px solid #7b7e1ea3;
 }
 
@@ -820,20 +828,20 @@ fieldset[disabled] a.btnn {
     display: block;
     padding: 3px 15px;
     clear: both;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     color: #7b7e1e !important;
     white-space: nowrap;
     transition: 0.1s ease-in-out;
-    text-transform: uppercase;
+    text-transform: none;
     border-bottom: 0.3px solid #7b7e1ea3;
     }
 
     .dropdown-menun2 > li > a {
         color: #7b7e1e !important;
         font-size: 15px!important;
-        font-weight: 400;
-        text-transform: uppercase;
+        font-weight: 600;
+        text-transform: none;
             border-bottom: 0.3px solid #7b7e1ea3;
     }
 
@@ -853,20 +861,20 @@ fieldset[disabled] a.btnn {
     display: block;
     padding: 3px 15px;
     clear: both;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     color: #7b7e1e !important;
     white-space: nowrap;
     transition: 0.1s ease-in-out;
-    text-transform: uppercase;
+    text-transform: none;
     border-bottom: 0.3px solid #7b7e1ea3;
     }
 
     .dropdown-menun2 > li > a {
         color: #fffefe;
         font-size: 16px!important;
-        font-weight: 400;
-        text-transform: uppercase;
+        font-weight: 600;
+        text-transform: none;
         border-bottom: 0.2px solid #7b7e1ea3;
     }
     .col-lg-3 {
@@ -947,7 +955,7 @@ fieldset[disabled] a.btnn {
     }
 
     .navibar-collapse .navibar-navn > li > a {
-        text-transform: uppercase;
+        text-transform: none;
     }
 
     .navibar-navn > li > a {
@@ -956,7 +964,7 @@ fieldset[disabled] a.btnn {
         line-height: 20px;
         border-top: 3px solid transparent;
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 600;
         transition: all .2s ease-in-out;
     }
 
@@ -965,7 +973,8 @@ fieldset[disabled] a.btnn {
         border-top: 3px solid transparent;
         font-size: 16px;
         transition: 0.1s ease-in-out;
-            color: #fcfff7!important;
+        color: #fcfff7!important;
+        font-weight: 400;
     }
 
     .navibar-static-top {
@@ -1033,12 +1042,12 @@ fieldset[disabled] a.btnn {
         display: block;
     padding: 3px 15px;
     clear: both;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     color: #7b7e1e !important;
     white-space: nowrap;
     transition: 0.1s ease-in-out;
-    text-transform: uppercase;
+    text-transform: none;
     border-bottom: 0.3px solid #7b7e1ea3;
 }
 
@@ -1070,7 +1079,7 @@ fieldset[disabled] a.btnn {
         padding-bottom: 0px;
         line-height: 20px;
         border-top: 3px solid transparent;
-        font-weight: 400;
+        font-weight: 600;
         transition: all .2s ease-in-out;
         color: #7b7e1e!important;
     }
@@ -1236,6 +1245,12 @@ padding-left: 15px;
     border-top-right-radius: 0;
 }
 
+.main-footern a:hover{
+    color: #2c5165 !important;
+}
+.main-footern a{
+    color: #333;
+}
 .main-footern {
     background: linear-gradient(180deg, #81841f 0%, #7b7e1e 100%);
     padding: 10px;
@@ -1400,7 +1415,7 @@ padding-left: 15px;
         }
 
         .navibar-collapse .navibar-navn > li > a {
-            text-transform: uppercase;
+            text-transform: none;
         }
         .navibar-navn > li > a {
             padding-top: 15px;
@@ -1408,7 +1423,7 @@ padding-left: 15px;
             line-height: 20px;
             border-top: 3px solid transparent;
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 600;
             transition: all .2s ease-in-out;
             color: #7b7e1e!important;
         }
@@ -1418,6 +1433,7 @@ padding-left: 15px;
             border-top: 3px solid transparent;
             transition: 0.1s ease-in-out;
             color: #fcfff7!important;
+            font-weight: 400;
         }
 
         .navibar-static-top {
@@ -1498,12 +1514,12 @@ padding-left: 15px;
                 display: block;
     padding: 3px 15px;
     clear: both;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
     color: #7b7e1e !important;
     white-space: nowrap;
     transition: 0.1s ease-in-out;
-    text-transform: uppercase;
+    text-transform: none;
     border-bottom: 0.3px solid #7b7e1ea3;        
         }
 
@@ -1516,8 +1532,8 @@ padding-left: 15px;
         .dropdown-menun2 > li > a {
             color: #7b7e1e !important;
             font-size: 16px;
-            font-weight: 400;
-            text-transform: uppercase;
+            font-weight: 600;
+            text-transform: none;
         border-bottom: 0.2px solid #7b7e1ea3;
         }
         .navibar-navn {
@@ -1527,7 +1543,12 @@ padding-left: 15px;
         font-size: 16px !important;
         margin-bottom: -1px;
     }
+        a {
+    color: #4e979d;
     }
+        a:hover, a:active, a:focus {
+    color: #00afff !important;
+}
 @media (min-width: 860px){
 .nav li {
     font-size: 20px !important;
@@ -2043,9 +2064,10 @@ padding-left: 15px;
 .non-semantic-protector {
     z-index: 1;
     font-size: 24;
-    font-weight: 400;
+    font-weight: 600;
     width: auto;
     font-family: "Open Sans";
+    color: #444;
 }
 /* end ribbon*/
 .level1{
@@ -2122,7 +2144,7 @@ padding-left: 15px;
     color: red;
 }
 .plus{
-    color: blue;
+    color: #2089a7;;
 }
 .minus a{
      color: red;
@@ -2140,33 +2162,37 @@ td a:hover{
 }
 .btn-success{
     background-color: rgba(255, 255, 255, 0) !important;
-    color: #5cb85c!important;
-    border: 3px solid #5cb85c!important;
+    color: #58a758!important;
+    border: 3px solid #61bd61!important;
     border-radius: 20px!important;
-    font-weight: 400;
+    font-weight: 600;
 }
 .btn-success:hover{
-    color: #2db826 !important;
+    color: #53c04d !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 }
 .btn-primary, .btn-primaryn{
     background-color: rgba(255, 255, 255, 0) !important;
-    color: #4485c7 !important;
-    border: 3px solid #428bca!important;
+    color: #417db1 !important;
+    border: 3px solid #5994c8!important;
     border-radius: 20px!important;
-    font-weight: 400;
+    font-weight: 600;
 }
 .btn-primary:hover, .btn-primaryn:hover{
-    color: #527682 !important;
+    color: #6598a8 !important;
+    border-color: #5286b3 !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 }
 .btn-warning{
     background-color: rgba(255, 255, 255, 0) !important;
     color: #d08c31 !important;
     border: 3px solid #eea236!important;
     border-radius: 20px!important;
-    font-weight: 400;
+    font-weight: 600;
 }
 .btn-warning:hover{
-    color: rgba(255, 187, 20, 0.81)!important;
+    color: rgba(207, 163, 53, 0.91)!important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 }
 .btn-danger{
     background-color: rgba(255, 255, 255, 0) !important;
@@ -2177,6 +2203,7 @@ td a:hover{
 }
 .btn-danger:hover{
     color: #ef5855 !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 }
 .btn-default{
     background-color: rgba(255, 255, 255, 0) !important;
@@ -2187,6 +2214,7 @@ td a:hover{
 }
 .btn-default:hover{
     color: #5d5d5d !important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.04);
 
 }
 .btn:focus{
@@ -2293,4 +2321,7 @@ td img:hover {
 }
 .width100{
     width: 100%;
+}
+.navibar-custom-menun .navibar-navn a {
+    font-weight: 400;
 }

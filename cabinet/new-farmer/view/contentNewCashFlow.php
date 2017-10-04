@@ -6,7 +6,7 @@
             width: 300px;
             position: absolute;
             z-index: 3;
-            background: #ebf1f2;
+            background: #f6f7f9;
             float: left;
                 text-align: left;
         }

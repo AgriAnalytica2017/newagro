@@ -162,7 +162,7 @@ $top_menu=array(
                                 <img src="/cabinet/new-farmer/template/img/user.png" class="user-imagen" alt="User Image">
                                 <!-- hidden-xsn hides the username on smalln devices so only the image appears. -->
                                 <span class="hidden-xsn"><?php echo  $_COOKIE['name_user'] .' ' .$_COOKIE['last_name_user'];?></span>
-                            ПРОФІЛЬ<span class="caretn"></span></a>
+                            Профіль<span class="caretn"></span></a>
                             <ul class="dropdown-menu dropdown-menun">
                                 <?php $cabinet_item = SRC::viewCab();
                                 foreach ($_SESSION['cabinet'] as $item)if($item!=false){?>
@@ -237,7 +237,7 @@ $top_menu=array(
             height: 35px;
             width: 300px;
             border-radius:3px;
-            margin-top: -0.2% !important;
+            margin-top: -0.4% !important;
         }
     </style>
 </head>
@@ -267,7 +267,7 @@ $top_menu=array(
     <footer class="main-footern">
         <div class="container-footer">
 
-            <strong>Copyright © 2014-2016 <a href="https://#"></a></strong> All rights
+            <strong>Copyright © 2014-2016 <a href="https://agrianalytica.com">AgrianAlytica</a></strong> All rights
             reserved.
         </div>
         <!-- /.container -->

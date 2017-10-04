@@ -18,8 +18,11 @@ var_dump($date['new_crop_culture']);die;*/
         }
     .add-ico {
     margin-right: -17%;
+    margin-top: -1px;
 }
-
+    .table{
+    border-top: none;
+    }
 </style>
 <div class="box-bodyn col-lg-12">
         <div class="non-semantic-protector col-sm-3">
@@ -51,19 +54,21 @@ var_dump($date['new_crop_culture']);die;*/
                             <?} ?>
                         </select>
                          </div>
-                         <div class="col-sm-6">
+                         <div class="col-sm-6" style="margin-top: 8px;">
             <div class="col-lg-12">
             <div class="col-sm-3 add-ico"> <a href="#newTech"  data-toggle="modal"> 
-            <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
+            <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 30px;height: 30px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#newTech"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector col-sm-9" href="#newTech"  data-toggle="modal" style="font-size: 20px;
+font-weight: 400;">
             Створити нову технологію</a>
             </div>
-             <div class="col-lg-12">
+             <div class="col-lg-12" style="margin-top: 8px;">
             <div class="col-sm-3 add-ico"> <a href="#templateTech"  data-toggle="modal"> 
-            <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
+            <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 30px;height: 30px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#templateTech"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector col-sm-9" href="#templateTech"  data-toggle="modal" style="font-size: 20px;
+font-weight: 400;">
             Створити нову технологію за шаблоном</a>
             </div>
     </div>

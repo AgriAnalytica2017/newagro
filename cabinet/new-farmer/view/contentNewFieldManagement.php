@@ -26,6 +26,9 @@
          .width100{
             width: 100%;
         }
+        table {
+    box-shadow: 0px 0px 4px rgba(51, 51, 51, 0.40);
+        }
     </style>
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
 </head>
