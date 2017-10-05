@@ -5,7 +5,11 @@
             height: 35px;
             width: 300px;
             border-radius:3px;
+<<<<<<< HEAD
             margin-top: -0.2% !important;
+=======
+            margin-top: -0.6% !important;
+>>>>>>> dev
         }
     </style>
 </head>
@@ -15,8 +19,12 @@
         <?=$language['new-farmer']['164']?>
         </div>
         
+<<<<<<< HEAD
         <div class="col-sm-7" style="margin-left: -6%;">
                     
+=======
+        <div class="col-sm-7">
+>>>>>>> dev
                       <div class="col-sm-4">
                       <select onchange="window.location.href=this.options[this.selectedIndex].value" style="width:300px; margin: 0 auto" class="searchs inphead" id="select_crop" required>
         <?php if($date['id']==0){?><option selected value="0"><?=$language['new-farmer']['163']?></option><?php }?>
@@ -30,6 +38,7 @@
 
 
 
+<<<<<<< HEAD
 <div class="box-bodyn col-lg-12">
     
 </div>
@@ -67,6 +76,9 @@
             <div class="rown">
                 <div class="box-body wt">
                     <div class="table-responsive">
+=======
+                    <div class="table-responsive  width100">
+>>>>>>> dev
                         <table class="table">
                             <thead>
                             <tr class="tabletop">
@@ -77,7 +89,10 @@
                                 <th><?=$language['new-farmer']['66']?></th>
                                 <th><?=$language['new-farmer']['67']?></th>
                                 <th><?=$language['new-farmer']['68']?></th>
+<<<<<<< HEAD
                                 <th></th>
+=======
+>>>>>>> dev
                             </tr>
                             </thead>
                             <tbody>
@@ -104,9 +119,43 @@
                             </tbody>
                         </table>
                     </div>
+<<<<<<< HEAD
                 </div>
             </div>
         </div>
+=======
+
+
+<? if($date['id']<>0){?>
+<div id="scroll_for_op">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?=$language['new-farmer']['61']?></th>
+            <th>№ поля</th>
+            <th><?=$language['new-farmer']['45']?></th>
+            <th><?=$language['new-farmer']['63']?></th>
+            <th><?=$language['new-farmer']['46']?></th>
+            <th>Урожайність ц/га</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?foreach ($date['field'] as $field_tab)if($date['id']==$field_tab['id_field']){?>
+            <tr>
+                <td><? if ($_COOKIE['lang']=='ua'){ echo $field_tab['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $field_tab['name_crop_en'];}?></td>
+                <td><?=$field['field_number']?></td>
+                <td><?=$field_tab['field_name']?></td>
+                <td><?=$field_tab['tech_name']?></td>
+                <td id="field_size"><?=$field_tab['field_size']?></td>
+                <td><?=$field['field_yield']?></td>
+            </tr>
+        <?}?>
+        </tbody>
+    </table>
+</div>
+    <div class="rown">
+
+>>>>>>> dev
         <div class="col-lg-6">
             <div class="fact_tech_card" style="display: none">
                 <div class="row">
@@ -267,7 +316,10 @@
             </div>
         </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+>>>>>>> dev
 <?}?>
 <!--Material Fact-->
 <div id="mat_fact" class="modal fade">

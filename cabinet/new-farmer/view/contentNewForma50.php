@@ -7,6 +7,12 @@
             border-radius:3px;
             margin-top: -0.2%;
         }
+<<<<<<< HEAD
+=======
+          .width100{
+            width: 100%;
+        }
+>>>>>>> dev
     </style>
 </head>
 <? //var_dump($date['rent_pay']);die;?>
@@ -19,8 +25,12 @@
             </div>
 
               
+<<<<<<< HEAD
 
 <div class="rown">
+=======
+<div class="table-responsive width100">
+>>>>>>> dev
 <form method="post" action="/new-farmer/saveForma50">
     <input type="hidden" name="yaer" value="<?=$date['year']?>">
 <table class="table">
@@ -51,7 +61,11 @@
             <tr>
                 <td><?=$crop_name?></td>
                 <?for($x=1;$x<=7;$x++){?>
+<<<<<<< HEAD
                     <td><input class="form-control" name="forma-<?=$crop_id?>-<?=$x?>" value="<?=$date['form_date'][$crop_id][$x]?>"></td>
+=======
+                    <td><input class="inphead" name="forma-<?=$crop_id?>-<?=$x?>" value="<?=$date['form_date'][$crop_id][$x]?>"></td>
+>>>>>>> dev
                 <?}?>
             </tr>
         <?}?>
@@ -61,7 +75,11 @@
     <input type="submit" class="btn btn-primaryn" value="save">
     </div>
 </form>
+<<<<<<< HEAD
 </div>
                
                 
              
+=======
+</div>      
+>>>>>>> dev

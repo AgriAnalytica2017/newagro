@@ -37,4 +37,47 @@ class Forma50{
 
         return true;
     }
+    //загрузка заголовков
+    public static function getForm1Title($table){
+        $db = Db::getConnection();
+        if($table==1) $sql="type=1 or type=2";
+        if($table==2) $sql="type=3 or type=4 or type=5 or type=6";
+        $result = $db->query("SELECT b, UA, EN, type  FROM new_form_title WHERE $sql");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
+
+        return $date;
+    }
+    public static function getForm1Date($id_user, $table){
+        $db = Db::getConnection();
+        $result = $db->query("SELECT *  FROM new_form_date WHERE id_user=$id_user AND table_id=$table");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
+
+        foreach ($date as $ex){
+            $ex_date[$ex["b"]]["s14"]=$ex["s2014"];
+            $ex_date[$ex["b"]]["e14"]=$ex["e2014"];
+            $ex_date[$ex["b"]]["e15"]=$ex["e2015"];
+            $ex_date[$ex["b"]]["e16"]=$ex["e2016"];
+        }
+
+        return $ex_date;
+    }
+    //сохранение формы 1, 2
+    public static function saveForm1($id_user, $sql_save, $table){
+        $db = Db::getConnection();
+
+        $db->query("DELETE FROM new_form_date WHERE id_user=$id_user AND table_id=$table");
+        if($sql_save!=false)$db->query("INSERT INTO new_form_date (id_user, table_id, b, s2014, e2014, e2015, e2016) VALUE $sql_save");
+
+        return true;
+    }
+
+
+
+
+
+
+
+
 }

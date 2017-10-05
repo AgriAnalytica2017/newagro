@@ -21,6 +21,13 @@
         border-left: 1px solid #59ae7f;
         min-width: 135px;
     }
+    tr{
+        display: none;
+        cursor: pointer;
+    }
+    .showrow,.budget_crop_name,.cf_operating_activities,.cf_investment,.cf_financial,.gross_profit{
+        display: table-row;
+    }
 </style>
 <div class="box-bodyn">
     <div class="non-semantic-protector">
@@ -33,7 +40,7 @@
             <table class="table">
                 <tbody>
                 <?php foreach ($date['table_cash'] as $table){ ?>
-                    <tr>
+                    <tr class="<?=$table['array']?>">
                         <th class="fix_table <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></th>
                         <td class="padding_fix <?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){if($table['name_ua']=='Назва культури'){echo "Місяць";}else{echo $table['name_ua'];}}elseif($_COOKIE['lang']=='gb'){if($table['name_en']=='Crop name'){echo "Month";}else{echo $table['name_en'];}}  ?></td>
                         <? foreach ($date['budget']['month_active'] as $month=>$true){?>
@@ -42,13 +49,12 @@
                                 <td class="ov_table"><?echo number_format($date['budget']['month_fact_'.$table['array']][$month]);?></td>
                                 <td class="ov_table <? if($date['budget'][$table['array'].'_month'][$month]-$date['budget']['month_fact_'.$table['array']][$month]<0) echo 'minus'; else echo 'plus'?>"><?echo number_format($date['budget'][$table['array'].'_month'][$month]-$date['budget']['month_fact_'.$table['array']][$month]);?></td>
                             <?}?>
-
                             <? $left[$table['array']]=true;
                         }?>
                     </tr>
                     <? if($table['revenue'] == 'on'){ ?>
                         <? foreach ($date['budget']['plane_revenues_month_crop'] as $id_crop=>$revenues){?>
-                            <tr>
+                            <tr class="operational_plus_3">
                                 <th class="fix_table level3"><?=$date['budget']['plane_name_crop'][$id_crop]?></th>
                                 <td class="padding_fix"></td>
                                 <? foreach ($date['budget']['month_active'] as $month=>$true){?>
@@ -76,6 +82,55 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#start_date, #end_date').change(date_filter);
+        function date_filter() {
+            $('.ov_table').show();
+            var start=parseFloat($('#start_date').val());
+            var end=parseFloat($('#end_date').val());
+            $('.ov_table').each(function () {
+                var date=parseFloat($(this).attr('data-month'));
+                if(date<start) {$(this).hide()}
+                if(date>end) {$(this).hide()}
+            });
+        }
+        $('.cf_operating_activities').click(function () {
+            $('.cf_operational_plus,.cf_operational_minus,.cf_operational_difference').toggle();
+            $('.operational_plus_1,.operational_plus_2,.operational_plus_3,.budget_seeds,.budget_fertilizers,.budget_ppa,.budget_equipment,.budget_pay,.budget_services,.budget_repairs,.rent_pay,.other_costs,.percentages_other_costs').hide();
+        });
+        $('.cf_operational_plus').click(function () {
+            $('.operational_plus_1,.operational_plus_2').toggle();
+            $('.operational_plus_3').hide();
+        });
+        $('.operational_plus_1').click(function () {
+            $('.operational_plus_3').toggle();
+        });
+        $('.cf_operational_minus').click(function () {
+            $('.budget_seeds,.budget_fertilizers,.budget_ppa,.budget_equipment,.budget_pay,.budget_services,.budget_repairs,.rent_pay,.other_costs,.percentages_other_costs').toggle();
+        });
+        $('.cf_investment').click(function () {
+            $('.cf_investment_plus,.cf_investment_minus,.cf_investment_difference').toggle();
+            $('.investment_plus_1,.investment_plus_2,.investment_plus_3,.investment_minus_1,.investment_minus_2,.investment_minus_3').hide();
+        });
+        $('.cf_financial').click(function () {
+            $('.cf_financial_plus,.cf_financial_minus,.cf_financial_difference').toggle();
+            $('.financial_plus_1,.financial_plus_2,.financial_plus_3,.financial_minus_1,.financial_minus_2,.financial_minus_3').hide();
+        });
+        $('.cf_investment_plus').click(function () {
+            $('.investment_plus_1,.investment_plus_2,.investment_plus_3').toggle();
+        });
+        $('.cf_investment_minus').click(function () {
+            $('.investment_minus_1,.investment_minus_2,.investment_minus_3').toggle();
+        });
+        $('.cf_financial_plus').click(function () {
+            $('.financial_plus_1,.financial_plus_2,.financial_plus_3').toggle();
+        });
+        $('.cf_financial_minus').click(function () {
+            $('.financial_minus_1,.financial_minus_2,.financial_minus_3').toggle();
+        });
+    });
+</script>
 <?php //foreach ($date['table_cash'] as $table){?>
 <!--    <tr>-->
 <!--        <th class="--><?//=$table['class']?><!--">--><?//if($table['name_en']=='Item'){echo "Month";}else{echo $table['name_ua'];}?><!--</th>-->

@@ -83,6 +83,10 @@ class BudgetController{
         $date['table']=Budget::getTableBudget();
         $date['table_cash']=Budget::getTableCashFlow();
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,true);
+
+        //$date['budget']+=Budget::getCashFlow($date['budget']);
+
+
         SRC::template('new-farmer','new','cashFlow',$date);
         return true;
     }
@@ -141,14 +145,12 @@ class BudgetController{
                 $value
                 );       
         }
-
         foreach ($date['budget']['crop_budget_pay'] as $key => $value){
             $date['graphs_6_budget_pay'][] = array(
                 $date['crop_name'][$key]['name_crop_ua'],
                 $value
             );
         }
-
         foreach ($date['budget']['crop_budget_services'] as $key=>$value){
             $date['graphs_8_budget_services'][] = array(
                 $date['crop_name'][$key]['name_crop_ua'],
@@ -179,6 +181,8 @@ class BudgetController{
         SRC::redirect('/new-farmer/budget');
         return true;
     }
+
+
     public function actionRemainsMaterial($type,$id_field){
         $id_field=SRC::validatorPrice($id_field);
         $type=SRC::validatorPrice($type);
@@ -316,6 +320,8 @@ class BudgetController{
         SRC::template('new-farmer','new','financial',$date);
         return true;
     }
+
+
     public function actionFactFinancial(){
         $db = Db::getConnection();
         $id_user=$_SESSION['id_user'];
@@ -379,7 +385,6 @@ class BudgetController{
         SRC::template('new-farmer','new','factFinancial',$date);
         return true;
     }
-
     public function actionFactRemainsMaterials($type,$id_field){
         $id_field=SRC::validatorPrice($id_field);
         $type=SRC::validatorPrice($type);
@@ -405,7 +410,6 @@ class BudgetController{
         SRC::template('new-farmer','new','factRemainsMaterial',$date);
         return true;
     }
-
     public function actionFactEmployeeSalary($id_field){
         $id_field=SRC::validatorPrice($id_field);
         $db = Db::getConnection();
@@ -418,7 +422,6 @@ class BudgetController{
         SRC::template('new-farmer','new','factEmployeeSalary',$date);
         return true;
     }
-
     public function actionFactRemainsServices($id_field){
         $id_field=SRC::validatorPrice($id_field);
         $db = Db::getConnection();
@@ -430,7 +433,6 @@ class BudgetController{
         SRC::template('new-farmer','new','factRemainsServices',$date);
         return true;
     }
-
     public function actionFactRemainsFuel($id_field){
         $id_field=SRC::validatorPrice($id_field);
         $db = Db::getConnection();
@@ -440,6 +442,134 @@ class BudgetController{
         $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,3);
         $date['fuel_type'] = DataBase::getTypeFuel();
         SRC::template('new-farmer','new','factRemainsFuel',$date);
+        return true;
+    }
+    public function actionFactRevenues($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,7);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','factRevenues',$date);
+        return true;
+    }
+
+    public function actionCropRemainsServices($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,6);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','cropRemainsServices',$date);
+        return true;
+    }
+    public function actionCropEmployeeSalary($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,2);
+        $date['employee'] = DataBase::getEmployee($id_user);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','cropEmployeeSalary',$date);
+        return true;
+    }
+    public function actionCropRemainsMaterials($type,$id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $type=SRC::validatorPrice($type);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,1);
+        $date['material_name']=DataBase::getNameFactMaterial($id_user);
+        $date['type'] = $type;
+        $table_name_fact_ua=array(
+            '1'=>'Витрати на насіння',
+            '2'=>'Витрати на мін. добрива',
+            '3'=>'Витрати на засоби захисту рослин'
+        );
+        $table_head_fact_ua=array(
+            '1'=>array('Поле', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Ціна за од. грн', 'Витрати на насіння, грн'),
+            '2'=>array('Поле', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Ціна за од. грн', 'Витрати на добрива, грн'),
+            '3'=>array('Поле', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Ціна за од. грн', 'Витрати на ЗЗР, грн'),
+        );
+        $date['table_head_crop_ua']=$table_head_fact_ua[$type];
+        $date['table_name_crop_ua']=$table_name_fact_ua[$type];
+        SRC::template('new-farmer','new','cropRemainsMaterials',$date);
+        return true;
+    }
+    public function actionCropFuelRemains($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,3);
+        $date['fuel_type'] = DataBase::getTypeFuel();
+        SRC::template('new-farmer','new','cropFuelRemains',$date);
+        return true;
+    }
+
+
+    public function actionCropFactRemainsMaterials($type,$id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $type=SRC::validatorPrice($type);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,false,1);
+        $date['material_name']=DataBase::getNameFactMaterial($id_user);
+        $date['type'] = $type;
+        $table_name_fact_ua=array(
+            '1'=>'Фактичні витрати на насіння по культурах',
+            '2'=>'Фактичні витрати на мін. добрива по культурах',
+            '3'=>'Фактичні витрати на засоби захисту рослин по культурах'
+        );
+        $table_head_fact_ua=array(
+            '1'=>array('Поле','Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на насіння, грн'),
+            '2'=>array('Поле','Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на добрива, грн'),
+            '3'=>array('Поле', 'Дата', 'Найменування робіт', 'Назва матеріалу', 'Площа, га', 'Кількість кг,л,п.о,м³', 'Витрати на ЗЗР, грн'),
+        );
+        $date['table_head_crop_ua']=$table_head_fact_ua[$type];
+        $date['table_name_crop_ua']=$table_name_fact_ua[$type];
+        SRC::template('new-farmer','new','cropFactRemainsMaterials',$date);
+        return true;
+    }
+    public function actionCropFactRemainsServices($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,false,6);
+        //var_dump($date['budget']['remains']);
+        SRC::template('new-farmer','new','cropFactRemainsServices',$date);
+        return true;
+    }
+    public function actionCropFactRemainsSalary($id_crop){
+        $id_crop=SRC::validatorPrice($id_crop);
+        $db = Db::getConnection();
+        $id_user=$_SESSION['id_user'];
+        $field=Budget::getMyCulture($db,$id_user,false,false,$id_crop);
+        $date['table']=Budget::getTableBudget();
+        $date['budget']=Budget::getNewBudget($db,$id_user,$field,$date['table'],false,false,false,false,2);
+        $date['employee'] = DataBase::getEmployee($id_user);
+        //var_dump($date['budget']['remains']);
+
+
+        SRC::template('new-farmer','new','cropFactEmployeeSalary',$date);
+        return true;
+    }
+
+    public function actionPage404(){
+        SRC::template('new-farmer','new','page404');
         return true;
     }
 }

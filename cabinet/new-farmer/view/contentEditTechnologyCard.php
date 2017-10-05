@@ -8,6 +8,23 @@ $units = array(
 /* echo "<pre>";
  var_dump($date['only_tech']);die;*/
 ?>
+<script>
+    $(document).ready(function (){
+        $("#btnExport").click(function(e) {
+            e.preventDefault();
+            //getting data from our table
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_div = document.getElementById('for_export');
+            var table_html = table_div.outerHTML.replace(/ /g, '%20');
+            var meta ="<meta http-equiv='content-type' content='text/plain; charset=UTF-8'>";
+            var a = document.createElement('a');
+            a.href = data_type + ', ' + meta +  table_html;
+            a.download = 'AgriAnalytica(TechCard).xls';
+            a.click();
+        });
+    });
+</script>
+
 <head>
     <style>
         .searchs{
@@ -140,10 +157,11 @@ $units = array(
         </div>
     </div>
     <div class="box-body wt">
-        <div class="table-responsive">
+        <div class="table-responsive" id="for_export">
             <table class="table">
                 <thead>
                 <tr class="tabletop">
+                    <th>Порядок виконання</th>
                     <th><?=$language['new-farmer']['65']?></th>
                     <th><?=$language['new-farmer']['66']?></th>
                     <th><?=$language['new-farmer']['154']?></th>
@@ -158,8 +176,10 @@ $units = array(
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($date['TC']['new_action'] as $action){?>
+                <?php foreach ($date['TC']['new_action'] as $action){
+                    $number_operation++;?>
                     <tr>
+                        <td style="width: 3%;"><input class="form-control inphead" value="<?=$number_operation?>"></td>
                         <td style="width: 10%"><? if($_COOKIE['lang']=='ua')
                             {echo $date['lib'][$action['action_action_type_id']]['name_ua'];}
                             elseif($_COOKIE['lang']=='gb'){echo $date['lib'][$action['action_action_type_id']]['name_en'];}?></td>
@@ -223,6 +243,8 @@ $units = array(
                 <?} ?>
                 </tbody>
             </table>
+            <button  class="btn btn-primary" id="btnExport" type="submit" style="margin-bottom: 10px;">Експорт в Exel
+            </button>
         </div>
     </div>
 </div>

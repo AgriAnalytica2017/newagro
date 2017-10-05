@@ -1,37 +1,29 @@
 <?php
-
-
 class Sales{
-
 	public static function getAnalytica($id_user){
 		$db= Db::getConnection();
 		$result = $db->query("SELECT * FROM new_field WHERE id_user = '$id_user'");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$date['analytica'] = $result->fetchAll();
 
-		$db= Db::getConnection();
 		$result = $db->query("SELECT * FROM new_lib_crop");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$date['crop'] = $result->fetchAll();
 
 		return $date;
 	}
-
-
 	public static function updateStock($id_user, $sale_material_id, $sale_quantity,$sale_sum_total){
 		$db = Db::getConnection();
 		$db->query("UPDATE new_storage_material SET storage_quantity = storage_quantity - '$sale_quantity', storage_sum_total = storage_sum_total - '$sale_sum_total' WHERE storage_id_user = '$id_user' and storage_material_id = '$sale_material_id'");
 		return true;
 	}
-
 	public static function createSale($id_user, $sale_material_id, $sale_date, $sale_quantity, $sale_sum_total,  $sale_type, $sale_comments){
 		$db = Db::getConnection();
 		$db->query("INSERT INTO new_come_out (id_user, come_out_date, come_out_material_id, come_out_quantity, come_out_sum_total,  come_out_type, come_out_comments) 
             VALUES('$id_user','$sale_date', '$sale_material_id', '$sale_quantity', '$sale_sum_total',  '$sale_type', '$sale_comments')");
 		return true;
 	}
-
-	public static function getSale($id_user){
+    public static function getSale($id_user){
 		$db = Db::getConnection();
 		$result = $db->query("SELECT lm.name_material, sm.storage_type_material, co.come_out_date, co.come_out_quantity, co.come_out_sum_total, co.come_out_comments FROM new_come_out co, new_lib_material lm, new_storage_material sm WHERE sm.storage_material_id = co.come_out_material_id and sm.storage_material =  lm.id_material and co.id_user = '$id_user' and co.come_out_type = '1'");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -40,7 +32,6 @@ class Sales{
 		$result = $db->query("SELECT DISTINCT al.id_action, al.name_ua FROM sm_action_lib al, new_storage_material sm, new_come_out ns WHERE al.id_action = sm.storage_type_material and sm.storage_material_id = ns.come_out_material_id and ns.id_user = '$id_user'");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$date['material'] = $result->fetchAll();
-
 
 		$result = $db->query("SELECT ch.name_crop_ua, ch.name_crop_en, ps.plane_sale_expected_yield, ps.plane_sale_avr_price, ps.plane_sale_revenue, ps.plane_sale_now FROM new_lib_crop ch, new_plane_sale ps WHERE ch.id_crop = ps.plane_sale_culture and  ps.id_user = '$id_user'");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -52,7 +43,6 @@ class Sales{
 
 		return $date;
 	}
-
 	public static function planeSales($id_user, $plane_sale_culture, $plane_sale_expected_yield, $plane_sale_avr_price, $plane_sale_revenue, $plane_sale_now){
 		$db = Db::getConnection();
 		$result = $db->query("SELECT plane_sale_id FROM new_plane_sale WHERE plane_sale_culture = '$plane_sale_culture' and id_user = '$id_user'");
@@ -69,8 +59,6 @@ class Sales{
 		//$db->query("UPDATE new_field SET field_sale_status = '1' WHERE id_field = '$plane_sale_field' and id_user = '$id_user'");
 		return true;
 	}
-
-
 	public static function createActualSale($id_user,$actual_sale_product, $actual_sale_date, $actual_sale_quantity, $actual_sale_sum, $actual_sale_per_unit,$actual_sale_comments){
 		$db = Db::getConnection();
 
@@ -93,7 +81,6 @@ class Sales{
         foreach ($results as $value){
             $date['price'][$value['id_crop']] = $value;
         }
-
         return $date;
     }
 

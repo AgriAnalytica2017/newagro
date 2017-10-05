@@ -20,6 +20,7 @@ $unit = array(
         </div>
                     </div>
         
+<<<<<<< HEAD
 <div class="box">
      <div class="box-bodyn col-lg-12 text-center">
         <a class="btn btn-primaryn" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
@@ -31,6 +32,18 @@ $unit = array(
         <div class="col-lg-10">
             <div class="table-responsive">
                 <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
+=======
+     <div class="box-bodyn col-lg-12 text-center">
+        <a class="btn btn-primaryn" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
+        <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
+
+                  
+       
+            <div class="table-responsive width100">
+                <div class="col-lg-12">
+                <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
+        </div>
+>>>>>>> dev
                 <table class="table">
                     <thead>
                     <tr class="tabletop">
@@ -88,6 +101,7 @@ $unit = array(
                 </table>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="col-lg-1"></div>
     </div>
     <br>
@@ -100,6 +114,19 @@ $unit = array(
         <div class="col-lg-10">
             <div class="table-responsive">
                 <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
+=======
+    <div class="box-bodyn col-lg-12 text-center">
+        <a class="btn btn-primaryn" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>
+        <a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</a>
+        
+  
+        <div class="col-lg-12">
+            
+       
+            <div class="table-responsive">
+              <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
+              
+>>>>>>> dev
                 <table class="table">
                     <thead>
                     <tr class="tabletop">
@@ -127,8 +154,14 @@ $unit = array(
                     </tbody>
                 </table>
             </div>
+<<<<<<< HEAD
         </div>
     </div>
+=======
+         </div>
+         </div>
+      
+>>>>>>> dev
     <div class="box-body wt">
         <div id="Add_new" class="modal fade">
             <div class="modal-dialog modal-lg">
@@ -555,7 +588,11 @@ $unit = array(
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+
+>>>>>>> dev
 <script type="text/javascript">
     $(document).ready(function() {
         $('.unit, .storage_quantity, .storage_sum_total').change(function(){

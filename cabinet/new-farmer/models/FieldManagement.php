@@ -24,7 +24,8 @@ class FieldManagement{
         $result = $db->query("SELECT COUNT(id_field) FROM new_field WHERE id_user = '$id_user' and field_status = '0'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $amount_field = $result->fetch();
-        if($amount_field >= 1 and $payment == 0){
+
+        if($amount_field["COUNT(id_field)"] >= 1 and $payment == 0){
             SRC::addAlert($result,0,"Для створення більшої кількості полів потрібно придбати повну версію програми");
         }else{
             $db->query("INSERT INTO new_field (field_number, field_name, field_size, field_usage, field_id_crop, field_status, field_rent, id_user)
@@ -122,5 +123,14 @@ class FieldManagement{
         $db = Db::getConnection();
         $db->query("UPDATE new_field SET field_technology_status='$status' WHERE id_field = '$id_field' and id_user = '$id_user'");
         return true;
+    }
+
+
+    public static function getFieldForDemo($id_user){
+        $db = Db::getConnection();
+        $result = $db->query("SELECT * FROM new_field WHERE (id_user = '1' or id_user='$id_user') and field_status = '0'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date = $result->fetchAll();
+        return $date;
     }
 }

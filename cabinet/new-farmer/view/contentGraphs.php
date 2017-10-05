@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-<div class="rown">
+<div class="rown" style="filter:blur(25px);">
     <!-- /.box-header -->
 
     <div class="box-body">

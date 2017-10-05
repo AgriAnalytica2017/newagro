@@ -14,7 +14,11 @@
            <?=$language['new-farmer']['4']?>
         </div>
         
+<<<<<<< HEAD
         <div class="col-sm-3" style="margin-left: -7%;">
+=======
+        <div class="col-sm-3">
+>>>>>>> dev
             <div class="col-sm-3 add-ico"> <a href="#myModal"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
@@ -23,8 +27,12 @@
             </div>
             </div>
 
+<<<<<<< HEAD
 <div class="rown">
     <div class="table-responsive">
+=======
+    <div class="table-responsive  width100">
+>>>>>>> dev
         <table class="table">
             <thead >
             <tr class="tabletop">
@@ -42,10 +50,17 @@
                     <td><?=$employee['employee_position'];?></td>
                     <td><?=$employee['employee_phone_number'];?></td>
                     <td><? if($employee['employee_salary']!=0){echo $employee['employee_salary'];}else{echo '';}?></td>
+<<<<<<< HEAD
                     <td><a href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>'>
                     <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
                            
                         </a></td>
+=======
+                    <td><div class="text-center"><a href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>'>
+                    <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                           
+                        </a></div> </td>
+>>>>>>> dev
                     <td><a href="/new-farmer/remove_employee/<?echo $employee['id_employee']?>">
                     <img src="/cabinet/new-farmer/template/img/del.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
                     </a></td>
@@ -53,7 +68,10 @@
             </tbody>
         </table>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+>>>>>>> dev
 
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-lg">

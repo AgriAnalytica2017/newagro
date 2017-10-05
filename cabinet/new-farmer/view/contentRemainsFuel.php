@@ -13,7 +13,6 @@ var_dump($date['budget']['remains']);die;*/
         border: 1px solid #59ae7f !important;
     }
 </style>
-
 <div class="box-body">
     <div class="responsive">
         <div>
@@ -25,15 +24,15 @@ var_dump($date['budget']['remains']);die;*/
         <table class="table table-striped well">
             <thead>
             <tr>
-                <th <? if($data=2) echo 'rowspan="2"';?>>Найменування робіт</th>
+                <th>Найменування робіт</th>
                 <th>Назва с/г техніки</th>
                 <th>Назва с/г обладнання</th>
                 <th>Тип пального</th>
                 <th>Обсяг робіт га,т</th>
-                <th>Розхід пального на од.роб., л</th>
-                <th>Загальний обсяг пального, л</th>
+                <th>Витрати пального на од.роб., л</th>
+                <th>Витрати пального на весь обсяг робіт, л</th>
                 <th>Ціна пального, грн/л</th>
-                <th>Сумма, грн</th>
+                <th>Сума, грн</th>
             </tr>
             </thead>
             <tbody>
@@ -43,28 +42,30 @@ var_dump($date['budget']['remains']);die;*/
                 $total_sum = 0;
                 foreach ($date['budget']['remains'] as $fuel){
                     if($fuel['equipment']==true)foreach ($fuel['equipment'] as $equipment){
-                        if($equipment['eq'][1]['equipment_name']!=null)foreach ($equipment['eq'] as $eq){
-                            $total_sum +=$equipment['summ_price'];?>
+                        $total_sum +=$equipment['summ_price'];
+                        if($equipment['eq'][0]['equipment_name']!=null)foreach ($equipment['eq'] as $eq){
+                           ?>
                         <tr>
                             <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['action']?></td><?} ?>
-                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['vehicles_name']?></td><?}?>
+                            <?if($equipment['id']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['vehicles_name']?></td><?}?>
                             <td><?=$eq['equipment_name']?></td>
-                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $date['fuel_type']['ua'][$equipment['vehicles_type_fuel']] ?></td><?}?>
+                            <?if($equipment['id']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $date['fuel_type']['ua'][$equipment['vehicles_type_fuel']] ?></td><?}?>
                             <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['work_amount']?></td><?} ?>
-                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['rate'].' л'?></td><?} ?>
-                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['total_fuel'].' л'?></td><?}?>
+                            <?if($equipment['id']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['rate'].' л'?></td><?} ?>
+                            <?if($equipment['id']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['total_fuel'].' л'?></td><?}?>
                             <td><?=$equipment['fuel_price']?></td>
-                            <?if($equipment['id_v']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['summ_price']?></td><?} ?>
+                            <?if($equipment['id']!=$id_v){?><td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['summ_price']?></td><?} ?>
                         </tr>
                         <?
-                        $id=$fuel['id'];$id_v = $equipment['id_v'];
+                        $id = $fuel['id'];
+                        $id_v = $equipment['id'];
                         }else{?>
                         <tr>
                             <?if($fuel['id']!=$id){?><td rowspan="<?=$fuel['row']?>"><? echo $fuel['action']?></td><?} ?>
                             <td><? echo $equipment['vehicles_name']?></td>
                             <td></td>
-                            <td><?echo $date['fuel_type']['ua'][$equipment['vehicles_type_fuel']] ?></td>
-                            <td><? echo $fuel['work_amount']?></td>
+                            <td ><?echo $date['fuel_type']['ua'][$equipment['vehicles_type_fuel']] ?></td>
+                           <td><? echo $fuel['work_amount']?></td>
                             <td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['rate'].' л'?></td>
                             <td rowspan="<?=count($equipment['eq'])?>"><? echo $equipment['total_fuel'].' л'?></td>
                             <td><?=$equipment['fuel_price']?></td>
@@ -75,7 +76,6 @@ var_dump($date['budget']['remains']);die;*/
                         <tr>
                             <td><?if($fuel['id']!=$id) echo $fuel['action']?></td>
                             <td colspan="8"></td>
-
                         </tr>
                     <?$id=$fuel['id'];}
                 }

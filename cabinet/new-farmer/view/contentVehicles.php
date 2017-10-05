@@ -105,7 +105,7 @@
                                 <option value="<?=$id_type?>"><?=$name_type?></option>
                             <? }?>
                         </select>
-                        <label>Назва топлива</label>
+                        <label>Назва палива</label>
                         <input list="list_fuel" name="vehicles_fuel_name" id="vehicles_fuel_name"  class="form-control inphead" autocomplete="off" required>
                         <datalist id="list_fuel">
                             <?php foreach ($date['fuel_name'] as $fuel_name){?>
@@ -122,7 +122,7 @@
                         <input type="text" name="purchase_price" class="form-control inphead">
                         <label><?=$language['new-farmer']['22']?></label>
                         <input type="text" name="usage_year" class="form-control inphead">
-                        <input type="hidden" name="current_year" value="<?php echo date('Y')?>">
+                        <input type="hidden" name="current_year" value="<?php echo date('Y')?>">-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -172,7 +172,7 @@
                             <option value="<?=$id_type?>"><?=$name_type?></option>
                         <? }?>
                     </select>
-                    <label>Назва топлива</label>
+                    <label>Назва палива</label>
                     <input list="list_fuel" id="vehicles_fuel_name" name="vehicles_fuel_name" id="vehicles_fuel_name"  class="form-control inphead" autocomplete="off" required>
                     <datalist id="list_fuel">
                         <?php foreach ($date['fuel_name'] as $fuel_name){?>
@@ -201,6 +201,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     $(document).ready(function () {
         $('.edit_open').click(edit_open);
@@ -223,7 +225,7 @@
                 $('#load_capacity').val(vehicles['vehicles_load_capacity']);
             }
         }
-        $('.vehicle_kind').change(function (){
+        $('.vehicle_kind').click(function (){
             var kind = $(this).val();
             if(kind == 3){
                 $('.vehicle_info').css('display','block');

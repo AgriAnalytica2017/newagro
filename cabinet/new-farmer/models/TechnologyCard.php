@@ -145,6 +145,26 @@ class TechnologyCard{
         }
         return $date;
     }
+
+    public static function getListTechCartForDemo($id_user){
+        $db = Db::getConnection();
+        $result = $db->query("SELECT * FROM new_crop_culture WHERE (id_user = '1' or id_user='$id_user') and tech_status = '0'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $result->fetchAll();
+
+        foreach ($res as  $value) {
+            $date['tech'][$value['id_crop']][$value['id_culture']]=$value;
+        }
+
+        $result = $db->query("SELECT * FROM new_crop_culture WHERE (id_user = '1' or id_user='$id_user') and tech_status = '0' and copy_status='0'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $result->fetchAll();
+
+        foreach ($res as  $value) {
+            $date[$value['id_crop']][$value['id_culture']]=$value;
+        }
+        return $date;
+    }
     //ok
     public static function createNewTech($id_user,$id_crop,$tech_name,$yield,$area){
         $db = Db::getConnection();
@@ -184,14 +204,15 @@ class TechnologyCard{
     }
     //ok
     public static function copyTech($id_tech,$id_user,$amount_work){
+        $id_user_for_demo = '1';
         $db=Db::getConnection();
-        $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT id_user,id_crop,concat(tech_name),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user");
+        $db->query("INSERT INTO new_crop_culture (id_user,id_crop,tech_name,tech_status) SELECT $id_user,id_crop,concat(tech_name),tech_status FROM new_crop_culture WHERE id_culture=$id_tech AND id_user=$id_user_for_demo");
         $id_copy_tech = $db->lastInsertId();
 
         $db->query("UPDATE new_crop_culture SET copy_status = '1' WHERE id_culture = '$id_copy_tech'");
 
         $db->query("INSERT INTO new_action (id_user,action_id_culture,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,action_work,action_materials,action_machines,action_services,action_employee) 
-        SELECT id_user,$id_copy_tech,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,$amount_work,action_materials,action_machines,action_services,action_employee FROM new_action WHERE action_id_culture=$id_tech AND id_user=$id_user");
+        SELECT $id_user,$id_copy_tech,action_action_id,action_action_type_id,action_date_start,action_date_end,action_unit,$amount_work,action_materials,action_machines,action_services,action_employee FROM new_action WHERE action_id_culture=$id_tech AND id_user=$id_user_for_demo");
 
         return $id_copy_tech;
     }

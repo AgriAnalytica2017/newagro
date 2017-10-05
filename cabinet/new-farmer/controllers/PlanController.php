@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Created by PhpStorm.
  * User: Иван
@@ -7,7 +7,6 @@
  */
 class PlanController{
     public function actionIndex(){
-        SRC::template('new-farmer','newTemplate','newFieldManagement');
         SRC::template('new-farmer','new','plan');
         return true;
     }

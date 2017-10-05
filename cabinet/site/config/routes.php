@@ -7,7 +7,7 @@ return array(
     'login' => 'login/login',
     'singnin' => 'login/singnIn',
     'exit' => 'login/exit',
-    'register_ref/([0-9]+)' => 'register/register/$1',
+    'register/([0-9]+)' => 'register/register/$1',
     'register' => 'register/register',
 
     'registered' => 'register/registered',

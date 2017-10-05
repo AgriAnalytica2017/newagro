@@ -34,4 +34,27 @@ class OtherCosts{
         return true;
     }
 
+    public static function editPlan($id_user,$id_costs,$costs_date,$costs_plan,$costs_comments){
+        $db = Db::getConnection();
+        $db->query("UPDATE new_other_costs SET costs_date = '$costs_date', costs_plan='$costs_plan', costs_comments = '$costs_comments' 
+                                            WHERE id_user = '$id_user' and id_costs='$id_costs'");
+        return true;
+    }
+    public static function editFact($id_user,$id_costs,$costs_date,$costs_fact,$costs_comments){
+        $db = Db::getConnection();
+        $result = $db->query("UPDATE new_other_costs_fact SET cost_fact_date = '$costs_date', cost_fact = '$costs_fact', cost_fact_note = '$costs_comments'
+                                                WHERE id_user = '$id_user' and id_cost_fact = $id_costs");
+        return $result;
+    }
+
+    public static function removeOtherCosts($id_user, $id_costs){
+        $db = Db::getConnection();
+        $db->query("DELETE FROM new_other_costs WHERE id_user='$id_user' and id_costs = '$id_costs'");
+        return true;
+    }
+    public static function removeOtherCostsFact($id_user, $id_costs){
+        $db = Db::getConnection();
+        $db->query("DELETE FROM new_other_costs_fact WHERE id_user='$id_user' and id_cost_fact = '$id_costs'");
+        return true;
+    }
 }

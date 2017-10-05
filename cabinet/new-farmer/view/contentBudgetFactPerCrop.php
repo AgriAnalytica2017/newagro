@@ -24,9 +24,9 @@
                     <tr>
                         <td class="<?=$table['class']?>"><?if($_COOKIE['lang']=='ua'){echo $table['name_ua'];}elseif($_COOKIE['lang']=='gb'){echo $table['name_en'];}?></td>
                         <?php foreach ($date['budget']['crop_'.$table['array']] as $key => $value){?>
-                            <td class="line_left" <? if($table['array'] =='budget_crop_name') echo "colspan=3 style='text-align:center;'"?> ><a href="/new-farmer/budget"><?if($table['array']!='budget_crop_name') echo number_format($value); else echo $value;?></a></td>
+                            <td class="line_left" <? if($table['array'] =='budget_crop_name') echo "colspan=3 style='text-align:center;'"?> ><? if($table['href_crop'] !=false){echo "<a href='".$table['href_crop'].$key."' </a>";}?><?if($table['array']!='budget_crop_name') echo number_format($value); else echo $value;?></td>
                             <? if($table['array']!='budget_crop_name'){?>
-                                <td><a><? echo number_format($date['budget']['crop_fact_'.$table['array']][$key]);?></a></td>
+                                <td><? if($table['href_crop_fact'] !=false){echo "<a href='".$table['href_crop_fact'].$key."' </a>";}?><? echo number_format($date['budget']['crop_fact_'.$table['array']][$key]);?></td>
                                 <td class="<? if($value-$date['budget']['crop_fact_'.$table['array']][$key]<0) echo 'minus'; else echo 'plus'?>"><a><? echo number_format($value-$date['budget']['crop_fact_'.$table['array']][$key]);?></a></td>
                             <?}?>
                         <?} ?>

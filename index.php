@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //var_dump($_SESSION['cabinet']);
 //Временное обозначение сессий
 //
@@ -10,6 +11,8 @@ session_start();
 if ($_SESSION['crop']==false) $_SESSION['crop']='';
 if($_COOKIE['lang']==''){
 setcookie("lang", "ua", time()+3600*24*7, '/');}
+
+
 // 1. Общие настройки
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);

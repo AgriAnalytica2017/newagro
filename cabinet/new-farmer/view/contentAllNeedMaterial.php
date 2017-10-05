@@ -19,6 +19,22 @@ $unit=array(
     4=>'п.о'
 );
 ?>
+<script>
+    $(document).ready(function (){
+        $("#btnExport").click(function(e) {
+            e.preventDefault();
+            //getting data from our table
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_div = document.getElementById('for_export');
+            var table_html = table_div.outerHTML.replace(/ /g, '%20');
+            var meta ="<meta http-equiv='content-type' content='text/plain; charset=UTF-8'>";
+            var a = document.createElement('a');
+            a.href = data_type + ', ' + meta +  table_html;
+            a.download = 'AgriAnalytica(AllNeededMaterial).xls';
+            a.click();
+        });
+    });
+</script>
 <section class="content">
     <div class="box">
         <div class="box-bodyn">
@@ -30,7 +46,7 @@ $unit=array(
         </div>
     </div>
     <div class="rown">
-        <div class="col-sm-9">
+        <div class="col-sm-9" id="for_export">
             <table class="table">
                 <thead>
                 <tr>
@@ -38,7 +54,7 @@ $unit=array(
                     <th>Назва</th>
                     <th>Од.виміру</th>
                     <th>Кількість</th>
-                    <th>Ціна, грн</th>
+                    <th>Ціна, грн/од</th>
                     <th>Сума, грн.</th>
                 </tr>
                 </thead>
@@ -46,7 +62,7 @@ $unit=array(
                 <?
                 $all_summ = 0;
                 foreach ($date['material'] as $material)if ($date['budget']['need_material'][$material['id_material_price']]>0){?>
-                    <tr class="materil_list type_material_<?=$material['id_type_material']; if($material['id_type_material']==3){?> subtype_<?=$material['key_material']; }?>">
+                    <tr class="materil_list type_material_<?=$material['id_type_material']?> subtype_<?=$material['key_material']?>">
                         <td><?=$date['type_material']['ua'][$material['id_type_material']]?>
                             <? if($material['id_type_material']==1) echo '/'.$date['crop_list'][$material['key_material']]['name_crop_ua']?>
                             <? if($material['id_type_material']==2) echo '/'.$date['fert_material']['ua'][$material['key_material']]?>
@@ -81,6 +97,24 @@ $unit=array(
                     <option value="<?=$key?>"><?=$value?></option>
                 <?} ?>
             </select>
+            <select class="form-control filter_seed" style="display: none;">
+                <option value="0">Всі види</option>
+                <?php foreach ($date['crop_list'] as $key=>$value){?>
+                    <option value="<?=$key?>"><?=$value['name_crop_ua']?></option>
+                <?} ?>
+            </select>
+
+            <select class="form-control filter_fert" style="display: none;">
+                <option value="0">Всі види</option>
+                <?php foreach ($date['fert_material']['ua'] as $key=>$value){?>
+                    <option value="<?=$key?>"><?=$value?></option>
+                <?} ?>
+            </select>
+            <select class="form-control filter_fuel" style="display: none;">
+                <option value="0">Всі види</option>
+                <option value="1">Дизельне пальне</option>
+                <option value="2">Бензин</option>
+            </select>
             <hr>
 
             <table class="table">
@@ -112,6 +146,8 @@ $unit=array(
 
             </table>
         </div>
+        <button  class="btn btn-primary" id="btnExport" type="submit" style="margin-bottom: 10px;">Експорт в Exel
+        </button>
     </div>
 </section>
 <div id="material_modal" class="modal fade">
@@ -178,12 +214,35 @@ $unit=array(
             if(type==0){
                 $('.materil_list').show(time);
                 $('.filter_ppa').hide(time);
+                $('.filter_seed').hide(time);
+                $('.filter_fert').hide(time);
+                $('.filter_fuel').hide(time);
             }else {
+                if(type==1){
+                    $('.filter_seed').show(time);
+                    $('.filter_ppa').hide();
+                    $('.filter_fert').hide();
+                    $('.filter_fuel').hide();
+                }
+                if(type==2){
+                    $('.filter_fert').show(time);
+                    $('.filter_ppa').hide();
+                    $('.filter_seed').hide();
+                    $('.filter_fuel').hide();
+                }
                 if(type==3){
                     $('.filter_ppa').show(time);
-                }else {
-                    $('.filter_ppa').hide(time);
+                    $('.filter_seed').hide();
+                    $('.filter_fert').hide();
+                    $('.filter_fuel').hide();
                 }
+                if (type==4){
+                    $('.filter_fuel').show(time);
+                    $('.filter_seed').hide();
+                    $('.filter_fert').hide();
+                    $('.filter_ppa').hide();
+                }
+
                 $('.materil_list').hide(time);
                 $('.type_material_'+type).show(time);
             }
@@ -195,8 +254,68 @@ $unit=array(
             $('.materil_list').hide(time);
             if(subtype==0){
                 $('.type_material_3').show(time);
+                $('.type_material_1').hide();
+                $('.type_material_2').hide();
+                $('.type_material_4').hide();
             }else {
                 $('.subtype_' + subtype).show(time);
+                $('.type_material_1').hide();
+                $('.type_material_2').hide();
+                $('.type_material_4').hide();
+            }
+        }
+
+        $('.filter_fert').change(filter_fert);
+        function filter_fert() {
+            var time=200;
+            var subtype=$(this).val();
+            $('.materil_list').hide(time);
+            if(subtype==0){
+                $('.type_material_2').show(time);
+                $('.type_material_1').hide();
+                $('.type_material_3').hide();
+                $('.type_material_4').hide();
+            }else {
+                $('.subtype_' + subtype).show(time);
+                $('.type_material_1').hide();
+                $('.type_material_3').hide();
+                $('.type_material_4').hide();
+            }
+        }
+
+        $('.filter_fuel').change(filter_fuel);
+        function filter_fuel() {
+            var time=200;
+            var subtype=$(this).val();
+            $('.materil_list').hide(time);
+            if(subtype==0){
+                $('.type_material_4').show(time);
+                $('.type_material_1').hide();
+                $('.type_material_3').hide();
+                $('.type_material_2').hide();
+            }else {
+                $('.subtype_' + subtype).show(time);
+                $('.type_material_1').hide();
+                $('.type_material_3').hide();
+                $('.type_material_2').hide();
+            }
+        }
+
+        $('.filter_seed').change(filter_seed);
+        function filter_seed() {
+            var time=200;
+            var subtype=$(this).val();
+            $('.materil_list').hide(time);
+            if(subtype==0){
+                $('.type_material_1').show(time);
+                $('.type_material_4').hide();
+                $('.type_material_3').hide();
+                $('.type_material_2').hide();
+            }else {
+                $('.subtype_' + subtype).show(time);
+                $('.type_material_4').hide();
+                $('.type_material_3').hide();
+                $('.type_material_2').hide();
             }
         }
         $('#add_new_material').click(function () {

@@ -84,8 +84,8 @@ class DataBase{
     public static function getTypeFuel(){
         return array(
             'ua'=>array(
-                '1'=>'Дизель',
-                '2'=>'Бензин',
+                '2'=>'Дизель',
+                '1'=>'Бензин',
             ),
             'gb'=>array(
                 '1'=>'Diesel',
@@ -196,7 +196,11 @@ class DataBase{
         $db=Db::getConnection();
         $result = $db->query("SELECT * FROM new_action_lib");
         $result->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $result->fetchAll();
+        $res = $result->fetchAll();
+
+        foreach ($res as $value){
+            $data[$value['action_id']] = $value;
+        }
         return $data;
     }
 

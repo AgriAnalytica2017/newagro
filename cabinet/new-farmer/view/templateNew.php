@@ -12,7 +12,7 @@ if($payment == 1){
                 2015=>'/new-farmer/forma50/2015',
                 2016=>'/new-farmer/forma50/2016',
             ),
-            'Ф. 1'=>'#',
+            'Ф. 1'=>'/new-farmer/forma/1',
             'Ф. 2'=>'#',
         ),
         'План'=>array(
@@ -60,19 +60,17 @@ if($payment == 1){
             'СГ техніка'=>'/new-farmer/vehicles',
             'СГ обладнання'=>'/new-farmer/equipment',
             'Ф. 50'=>array(
-                2014=>'/new-farmer/forma50/2014',
-                2015=>'/new-farmer/forma50/2015',
-                2016=>'/new-farmer/forma50/2016',
+                2014=>'#',
+                2015=>'#',
+                2016=>'#',
             ),
             'Ф. 1'=>'#',
             'Ф. 2'=>'#',
         ),
         'План'=>array(
             'Посівні площі'=>'/new-farmer/field_management',
-            'Тех карти'=>'/new-farmer/field_management',
             'Потреба в матеріалах'=>'/new-farmer/all_needed_material',
             'Реалізація'=>'/new-farmer/sales',
-            'БД Ціни'=>'/new-farmer/materials',
         ),
         'План/факт'=>array(
             'виробничі витрати'=>'/new-farmer/fact_tech_card',
@@ -84,16 +82,16 @@ if($payment == 1){
                 'План'=>'/new-farmer/budget',
             ),
             $language['new-farmer']['12']=>array(
-                'План'=>'/new-farmer/budget_per_crop',
+                'План'=>'#',
             ),
             $language['new-farmer']['13']=>array(
-                'План'=>'/new-farmer/budget_per_month',
+                'План'=>'#',
             ),
             'Cash Flow'=>array(
-                'План'=>'/new-farmer/budget_cash_flow',
+                'План'=>'#',
             ),
             'графіки, діаграми'=>'/new-farmer/graphs_plan',
-            'економічні показники'=>'/new-farmer/financial',
+            'економічні показники'=>'#',
             'бенчмаркінг'=>'/new-farmer/graphs',
         ),
     );
@@ -103,7 +101,7 @@ if($payment == 1){
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Панель управління дистрибютор</title>
+    <title>Agri Anlytica</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<?php SRC::getSrc(); ?>/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -118,6 +116,7 @@ if($payment == 1){
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/lib/script.js"></script>
     <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/script.js"></script>
+    <script type="text/javascript" src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/js/payment.js"></script>
 </head>
 <!-- ADD THE CLASS layout-top-navn TO REMOVE THE SIDEBAR. -->
 <body class="layout-top-navn skin-green-light bodyn" style="height: auto; min-height: 100%;">
@@ -134,7 +133,7 @@ if($payment == 1){
             }
             var sidebar= getCookie("sidebar");
             if(sidebar==false){
-                localStorage.setItem('sidebar', 'on')
+                localStorage.setItem('sidebar', 'on');
                 setCookie("sidebar", "ofe")
             }
             $('#sidebar-toggle').click(sidebar_toggle);
@@ -277,10 +276,8 @@ if($payment == 1){
         </div>
         <!-- /.container -->
     </div>
-
     <div id="PaymentForm" class="modal fade">
         <div class="modal-dialog modal-lg">
-            <form action="#" method="post">
                 <div class="modal-content wt">
                     <div class="box-bodyn">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -309,7 +306,7 @@ if($payment == 1){
                                                 ефективно управляти виробництвом, впевнено та легко
                                                 моделювати ефективність використання матеріальних, технічних та фінансових ресурсів
                                                 вносити зміни та коригування в плани, коли умови змінюються, відслідковувати план/факт, контролювати використання ресурсів,
-                                                робити порівняльний аналіз ефективності свого підприємства з подібними по Україн
+                                                робити порівняльний аналіз ефективності свого підприємства з подібними по Україні
                                                 <br/><br/>
                                             </p>
                                         </td>
@@ -321,12 +318,11 @@ if($payment == 1){
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-lg-12">
-                                <form id="contact_form" role="form" method="post" action="./payment/php/order.php">
+                            <div class="col-lg-12" id="success_pay">
+                                <form id="contact_form" role="form" method="post" action="/new-farmer/create_payment">
                                     <input type="hidden" name="send" value="1">
-                                    <input type="hidden" name="total_sum" id="total_sum" value="40">
+                                    <input type="hidden" name="total_sum" id="total_sum" value="1000">
                                     <input type="hidden" name="total_qty" id="total_qty" value="1">
-
                                     <label class="payment_label">Получатель</label>
                                     <input type="text" name="name"  class="required form-control inphead" value="<?php echo  $_COOKIE['name_user'] .' ' .$_COOKIE['last_name_user'];?>">
                                     <label class="payment_label">Ваш e-mail</label>
@@ -339,26 +335,28 @@ if($payment == 1){
                                     <div>
                                         <label>
                                             <input type="radio" name="order_payment" id="order_payment_card" value="1"  checked="">
-                                            <img src="./payment/images/master-card.png">
+                                            <img src="<?php SRC::getSrc();?>/cabinet/new-farmer/template/img/master-card.png">
                                             <span>Оплата картою</span>
                                         </label>
                                     </div>
                                     <div class="payment_total">Загальна вартість: <b><span class="total_sum">1000</span> ₴</b></div>
+                                    <button class="btn btn-success checkout" id="get_payment" type="submit"><i class="fa fa-shopping-cart"></i>Оформити замовлення</button>
                                 </form>
-                                <a class="btn btn-success checkout" href=""><i class="fa fa-shopping-cart"></i>Оформити замовлення</a>
+                            </div>
+                            <div class="col-lg-12" id="contact_form_info">
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
     <!-- /.content-wrappern -->
     <footer class="main-footern">
         <div class="containern" style="text-align: center; color: #fffefe; margin-top: 7px;">
-
             <strong>Copyright © 2014-2016 <a href="https://#">A</a>.</strong> All rights
             reserved.
+            <a href="/new-farmer/referral" style="color: #ffcb1a">Referral program</a>
         </div>
         <!-- /.container -->
     </footer>
@@ -383,4 +381,9 @@ if($payment == 1){
 
 
 </body>
+<script>
+    $(document).ready(function () {
+        document.title='Agri: ' + $('.ribbon').text();
+    });
+</script>
 </html>

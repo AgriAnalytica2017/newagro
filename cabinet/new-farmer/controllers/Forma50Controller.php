@@ -43,12 +43,50 @@ class Forma50Controller{
         $sql_2 = substr($sql_2, 0, -2);
         Forma50::saveForm50($id_user,$year,$sql_2);
         SRC::redirect();
-
-
-
-
         return true;
+    }
+    //Загрузка страницы формы 1
+    public function actionGetForm($table){
+        if($table!=1 and $table!=2){
+            SRC::redirect();
+            exit();
+        }
+        $id_user = SRC::validator($_SESSION['id_user']);
+        $date["title"] = Forma50::getForm1Title($table);
+        $date["date"] = Forma50::getForm1Date($id_user, $table);
+        $date["table"]= $table;
+        SRC::template('new-farmer', 'new', 'form'.$table, $date);
+        return true;
+    }
+    //сохранение формы 1
+    public function actionSaveForm($table){
+        if($table!=1 and $table!=2){
+            SRC::redirect();
+            exit();
+        }
+        $id_user = $_SESSION['id_user'];
+        $title = Forma50::getForm1Title($table);
+        $sql_save="";
+        foreach ($title as $item){
+            if($item["b"]!=false) {
+                $date[$item["b"]]["s2014"] = SRC::validatorPrice($_POST["s2014-" . $item["b"]]);
+                $date[$item["b"]]["e2014"] = SRC::validatorPrice($_POST["e2014-" . $item["b"]]);
+                $date[$item["b"]]["e2015"] = SRC::validatorPrice($_POST["e2015-" . $item["b"]]);
+                $date[$item["b"]]["e2016"] = SRC::validatorPrice($_POST["e2016-" . $item["b"]]);
+                if ($date[$item["b"]]["s2014"] == false) $date[$item["b"]]["s2014"] = 0;
+                if ($date[$item["b"]]["e2014"] == false) $date[$item["b"]]["e2014"] = 0;
+                if ($date[$item["b"]]["e2015"] == false) $date[$item["b"]]["e2015"] = 0;
+                if ($date[$item["b"]]["e2016"] == false) $date[$item["b"]]["e2016"] = 0;
+                if($date[$item["b"]]["s2014"] != 0 or $date[$item["b"]]["e2014"] != 0 or $date[$item["b"]]["e2015"] != 0 or $date[$item["b"]]["e2016"] != 0){
+                    $sql_save = $sql_save . "($id_user, $table, " . $item["b"] . ", " . $date[$item["b"]]["s2014"] . ", " . $date[$item["b"]]["e2014"] . ", " . $date[$item["b"]]["e2015"] . ", " . $date[$item["b"]]["e2016"] . "), ";
+                }
+            }
+        }
 
-
+        $sql_save=substr($sql_save, 0, -2);
+        $result=Forma50::saveForm1($id_user, $sql_save, $table);
+        SRC::addAlert($result, 1, 'Збережено!');
+        SRC::redirect();
+        return true;
     }
 }

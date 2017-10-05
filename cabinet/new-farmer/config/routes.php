@@ -1,7 +1,10 @@
 <?php
 return array(
-
     'new-farmer/referral'=>'referral/referral',
+    'new-farmer/success_payment'=>'payment/addPayment',
+    'new-farmer/create_payment'=>'payment/createPayment',
+
+
 
     'new-farmer/test_react'=>'plan/index',
     'new-farmer/graphs'=>'graphs/getGraphs',
@@ -9,10 +12,18 @@ return array(
 
     'new-farmer/forma50/([0-9]+)'=>'forma50/getForma/$1',
     'new-farmer/saveForma50'=>'forma50/saveForma50',
+    'new-farmer/forma/([0-9]+)'=>'forma50/getForm/$1',
+    'new-farmer/save-form/([0-9]+)'=>'forma50/saveForm/$1',
+
+
 
     'new-farmer/other_cost'=>'otherCosts/getOtherCost',
     'new-farmer/save_other_cost'=>'otherCosts/savePlanOther',
     'new-farmer/create_other_fact'=>'otherCosts/createOtherFact',
+    'new-farmer/edit_other_costs_plan'=>'otherCosts/editOtherPlan',
+    'new-farmer/edit_other_costs_fact'=>'otherCosts/editOtherFact',
+    'new-farmer/remove_other_costs/([0-9]+)'=>'otherCosts/removeOtherCosts/$1',
+    'new-farmer/remove_other_costs_fact/([0-9]+)'=>'otherCosts/removeOtherCostsFact/$1',
 
     'new-farmer/materials'=>'material/getMaterials',
     'new-farmer/save_material_bd'=>'material/createMaterial',
@@ -20,7 +31,6 @@ return array(
     'new-farmer/remove_material/([0-9]+)'=>'material/removeMaterial/$1',
     'new-farmer/all_needed_material'=>'material/getAllNeedMaterial',
     'new-farmer/change_price_material'=>'material/changeMaterialPrice',
-
 
     'new-farmer/save_rent'=>'fieldManagement/saveRentPay',
     'new-farmer/save_costs'=>'fieldManagement/saveCosts',
@@ -36,7 +46,6 @@ return array(
     'new-farmer/create_storage'=>'storage/createStorage',
     'new-farmer/incoming_storage'=>'storage/incomingStorage',
     'new-farmer/incoming_products'=>'storage/incomingProducts',
-
 
     'new-farmer/create_material'=>'technologyCard/createMaterial',
     'new-farmer/costs_technology_card/([0-9]+)'=>'technologyCard/costsTechnologyCard/$1',
@@ -55,12 +64,11 @@ return array(
     'new-farmer/copy_technology_template'=>'technologyCard/copyTechTemplate',
     'new-farmer/copy_tech_field/([0-9]+)/([0-9]+)/([0-9]+)'=>'technologyCard/copyTechField/$1/$2/$3',
 
-
-
     'new-farmer/equipment'=>'equipment/equipment',
     'new-farmer/create_equipment'=>'equipment/createEquipment',
     'new-farmer/edit_equipment'=>'equipment/editEquipment',
     'new-farmer/remove_equipment/([0-9]+)'=>'equipment/removeEquipment/$1',
+
 
     'new-farmer/vehicles'=>'vehicles/vehicles',
     'new-farmer/create_vehicles'=>'vehicles/createVehicles',
@@ -78,7 +86,6 @@ return array(
     'new-farmer/remove_field/([0-9]+)'=>'fieldManagement/removeField/$1',
     'new-farmer/edit_all_field'=>'fieldManagement/editAllField',
 
-
     'new-farmer/budget/materials/([0-9]+)/([0-9]+)'=>'budget/remainsMaterial/$1/$2',
     'new-farmer/budget/salary/([0-9]+)'=>'budget/remainsSalary/$1',
     'new-farmer/budget/fuel/([0-9]+)'=>'budget/remainsFuel/$1',
@@ -88,7 +95,16 @@ return array(
     'new-farmer/budget/fact_salary/([0-9]+)'=>'budget/factEmployeeSalary/$1',
     'new-farmer/budget/fact_services/([0-9]+)'=>'budget/factRemainsServices/$1',
     'new-farmer/budget/fact_fuel/([0-9]+)'=>'budget/factRemainsFuel/$1',
+    'new-farmer/budget/fact_revenues/([0-9]+)'=>'budget/factRevenues/$1',
 
+    'new-farmer/budget/crop_materials/([0-9]+)/([0-9]+)'=>'budget/cropRemainsMaterials/$1/$2',
+    'new-farmer/budget/crop_services/([0-9]+)'=>'budget/cropRemainsServices/$1',
+    'new-farmer/budget/crop_salary/([0-9]+)'=>'budget/cropEmployeeSalary/$1',
+    'new-farmer/budget/crop_fuel/([0-9]+)'=>'budget/cropFuelRemains/$1',
+
+    'new-farmer/budget/crop_fact_materials/([0-9]+)/([0-9]+)'=>'budget/cropFactRemainsMaterials/$1/$2',
+    'new-farmer/budget/crop_fact_services/([0-9]+)'=>'budget/cropFactRemainsServices/$1',
+    'new-farmer/budget/crop_fact_salary/([0-9]+)'=>'budget/cropFactRemainsSalary/$1',
 
     'new-farmer/budget/([0-9]+)'=>'budget/getBudget/$1',
     'new-farmer/budget_per_crop'=>'budget/getBudgetPerCrop',
@@ -110,10 +126,18 @@ return array(
     'new-farmer/fact_budget_month'=>'budget/getBudgetFactPerMonth',
     'new-farmer/fact_cash_flow'=>'budget/budgetCashFlowFact',
 
-
     'new-farmer/graphs_plan'=>'budget/getGraphsPlan',
     'new-farmer/edit_technology_card_list'=>'technologyCard/editTechCardList',
 
     'new-farmer/change_status'=>'fieldManagement/changeStatus',
+    'new-farmer/change_date_fact'=>'fact/changeDate',
+    'new-farmer/setting_cash_flow_material'=>'settingCashFlow/settingMaterial',
+    'new-farmer/save_material_date'=>'settingCashFlow/saveSettingMaterial',
+    'new-farmer/setting_cash_flow_sales'=>'settingCashFlow/settingSales',
+    'new-farmer/save_sales1'=>'settingCashFlow/saveSales1',
+    'new-farmer/save_sales2'=>'settingCashFlow/saveSales2',
+
+    'new-farmer/404'=>'budget/page404',
     'new-farmer'=>'fieldManagement/fieldManagement',
+
 );

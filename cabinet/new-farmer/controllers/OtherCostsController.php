@@ -35,4 +35,36 @@ class OtherCostsController{
         SRC::redirect();
         return true;
     }
+    public function actionEditOtherPlan(){
+        $id_user = $_SESSION['id_user'];
+        $id_costs = SRC::validatorPrice($_POST['id']);
+        $costs_date = SRC::validator($_POST['date']);
+        $costs_plan = SRC::validatorPrice($_POST['costs_plan']);
+        $costs_comments = SRC::validator($_POST['costs_comments']);
+        OtherCosts::editPlan($id_user,$id_costs,$costs_date,$costs_plan,$costs_comments);
+        return true;
+    }
+
+    public function actionEditOtherFact(){
+        $id_user = $_SESSION['id_user'];
+        $id_cost_fact = SRC::validatorPrice($_POST['id_fact']);
+        $cost_date = SRC::validator($_POST['date_fact']);
+        $cost_fact = SRC::validatorPrice($_POST['cost_fact']);
+        $cost_comments = SRC::validator($_POST['cost_comments']);
+        OtherCosts::editFact($id_user,$id_cost_fact,$cost_date,$cost_fact,$cost_comments);
+        return true;
+    }
+
+    public function actionRemoveOtherCosts($id_costs){
+        $id_user = $_SESSION['id_user'];
+        $id_costs = SRC::validatorPrice($id_costs);
+        OtherCosts::removeOtherCosts($id_user,$id_costs);
+        SRC::redirect('/new-farmer/other_cost');
+    }
+    public function actionRemoveOtherCostsFact($id_costs){
+        $id_user = $_SESSION['id_user'];
+        $id_costs = SRC::validatorPrice($id_costs);
+        OtherCosts::removeOtherCostsFact($id_user,$id_costs);
+        SRC::redirect('/new-farmer/other_cost');
+    }
 }

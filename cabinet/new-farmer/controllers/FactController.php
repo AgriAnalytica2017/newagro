@@ -133,4 +133,14 @@ class FactController{
         SRC::redirect();
         return true;
     }
+
+    public function actionChangeDate(){
+        $id_user = $_SESSION['id_user'];
+        $action_id = SRC::validatorPrice($_POST['action_id']);
+        $date_start = SRC::validator($_POST['date_start']);
+        $date_end = SRC::validator($_POST['date_end']);
+
+        Fact::changeDate($id_user,$action_id,$date_start,$date_end);
+        return true;
+    }
 }

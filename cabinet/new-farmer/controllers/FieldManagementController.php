@@ -12,8 +12,10 @@ class FieldManagementController{
         $date['crop_culture']=FieldManagement::getCropCulture($id_user);
         $date['rent_pay']=FieldManagement::getRentPay($id_user);
         $date['tech_cart'] = TechnologyCard::getListTechCart($id_user);
-        $date['payment_status'] = DataBase::getPaymentStatus($id_user);
 
+        $date['tech_cart_for_demo'] = TechnologyCard::getListTechCartForDemo($id_user);
+        $date['payment_status'] = DataBase::getPaymentStatus($id_user);
+        $date['crop_for_demo'] = FieldManagement::getFieldForDemo($id_user);
 		SRC::template('new-farmer','new','fieldManagement', $date);
 		return true;
 	}

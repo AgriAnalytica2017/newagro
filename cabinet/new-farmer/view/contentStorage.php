@@ -13,6 +13,8 @@ $unit = array(
     4=>'л',
 );
 
+/*echo "<pre>";
+var_dump($date['storage']['storage_field']);die;*/
 ?>
 <div class="box">
     <div class="box-bodyn">
@@ -29,19 +31,44 @@ $unit = array(
     <div class="rown">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
+            <br><br>
+                <form method="post" action="/new-farmer/storage">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label>Початкова дата</label>
+                            <input type="date" class="form-control inphead payment_disabled" name="date_start_cal" id="date_start_cal" value="<?=$date['date_start_calc']?>">
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Кінцева дата</label>
+                            <input type="date" class="form-control inphead payment_disabled" name="date_end_cal" id="date_end_cal" value="<?=$date['date_end_calc']?>">
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-success payment_disabled" style="margin-top: 29px;">Фільтрувати</button>
+                        </div>
+                    </div>
+                </form>
             <div class="table-responsive">
                 <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
                 <table class="table">
                     <thead>
-                    <tr class="tabletop">
-                        <th>Назва матеріалу</th>
+                    <tr class="tabletop" >
+                        <th rowspan="2" >Назва матеріалу</th>
                         <!-- <th><?=$language['new-farmer']['126']?></th> -->
-                        <th>Залишок на початок, кг</th>
-                        <th>Надійшло, кг</th>
-                        <th>Вибуло,кг</th>
-                        <th>Залишок на кінець, кг</th>
-                        <th>Середня ціна, грн</th>
-                        <th></th>
+                        <th colspan="2" style="text-align: center">Залишок на початок</th>
+                        <th colspan="2" style="text-align: center">Надійшло</th>
+                        <th colspan="2" style="text-align: center">Вибуло</th>
+                        <th colspan="2" style="text-align: center">Залишок на кінець</th>
+                      <!--  <th>Середня ціна, грн</th>-->
+                    </tr>
+                    <tr class="tabletop">
+                        <td >Кількість</td>
+                        <td>Сума, грн</td>
+                        <td>Кількість</td>
+                        <td>Сума, грн</td>
+                        <td>Кількість</td>
+                        <td>Сума, грн</td>
+                        <td>Кількість</td>
+                        <td>Сума, грн</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,30 +88,27 @@ $unit = array(
                                 ?>
                             </td>
                             <!-- <td><?=$storage_1['storage_name']?></td> -->
-                            <td><?=$storage_material['storage_start'].' '.$unit[$storage_material['storage_unit']];?></td>
-                            <td><a class="btn come_storage_material" data-id="<?=$open_material?>" data-type="2"><?=$date['incoming_material']['come_material'][$storage_material['storage_material_id']]?></a></td>
-                            <td><a class="btn out_storage_material" data-id="<?=$open_material?>"
-                                   data-type="1">
-                                    <?=$date['incoming_material']['out_material'][$storage_material['storage_material_id']]+$date['incoming_material']['come_fact'][$storage_material['storage_material_id']]?></a></td>
+                            <td><?if($date['incoming_material']['start_quantity'][$storage_material['storage_material_id']]!=null)
+                                    {echo $date['incoming_material']['start_quantity'][$storage_material['storage_material_id']]
+                                        .' '.$unit[$storage_material['storage_unit']];}
+                                        else {echo '0 '.$unit[$storage_material['storage_unit']]; }?>
+                            </td>
+                            <td>0</td>
+                            <td><a class="btn come_storage_material payment_disabled" href="#сome_material" data-toggle="modal" data-id="<?=$storage_material['storage_material_id']?>" data-type="2"><?=$date['incoming_material']['come_material'][$storage_material['storage_material_id']].' '.$unit[$storage_material['storage_unit']]?></a></td>
+                            <td><?=$date['incoming_material']['come_material_sum'][$storage_material['storage_material_id']]?></td>
+                            <td><a class="btn out_storage_material payment_disabled" href="#out_material" data-toggle="modal" data-id="<?=$storage_material['storage_material_id']?>">
+                                    <?=$date['incoming_material']['out_material'][$storage_material['storage_material_id']]+$date['incoming_material']['come_fact'][$storage_material['storage_material_id']].' '.$unit[$storage_material['storage_unit']]?></a></td>
+                            <td><?=number_format($date['incoming_material']['come_fact_sum'][$storage_material['storage_material_id']]+$date['incoming_material']['out_material_sum'][$storage_material['storage_material_id']],2,',',' ')?></td>
                             <td>
-                                <?=$storage_material['storage_quantity']?>
+                                <?=$storage_material['storage_quantity'].' '.$unit[$storage_material['storage_unit']]?>
                             </td>
                             <td>
-                                <?=number_format($storage_material['storage_sum_total'], 2, ',', ' ')?>
+                                <?=number_format($storage_material['storage_quantity']*$storage_material['storage_sum_total'],2,',',' ')?>
                             </td>
-                            <td>
-                                <!--<a class="btn btn-success Add_incoming" href="#Add_incoming" data-toggle="modal" data-data='<?/*=json_encode($storage_material);*/?>' data-date="<?/*=$storage_material['storage_date']*/?>">Add incoming goods</a>-->
-                            </td>
+                            <!--<td>
+                                <?/*=number_format($storage_material['storage_sum_total'], 2, ',', ' ')*/?>
+                            </td>-->
                         </tr>
-                        <? foreach($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_material_id']==$storage_material['storage_material_id']){?>
-                            <tr class="open_material_<?=$open_material?>_<?=$incoming_material['come_out_type']?>" <? if($incoming_material['come_out_type']==1){ echo 'style="display: none; color:red;"';}elseif($incoming_material['come_out_type']=='2'){echo 'style="display: none; color:green;"';}elseif($incoming_material['come_out_type']=='3'){echo 'style="display: none; color:blue;"';}?> >
-                                <td style="padding-left: 35px"><? echo "Date: ".$incoming_material['come_out_date']?></td>
-                                <td><? echo "Quantity: ".$incoming_material['come_out_quantity']?></td>
-                                <td><? echo "Total sum: ".$incoming_material['come_out_sum_total']?></td>
-                                <td><? echo "Price per unit: ".number_format($incoming_material['come_out_sum_total']/$incoming_material['come_out_quantity'], 2, ',', ' ');?></td>
-                                <td></td>
-                            </tr>
-                        <?}?>
                     <?}?>
                     </tbody>
                 </table>
@@ -114,34 +138,16 @@ $unit = array(
                     </tr>
                     </thead>
                     <tbody>
-                    <? foreach($date['products']['products'] as $product){
-                        $open_products++?>
+                    <? foreach($date['products']['products'] as $product){?>
                         <tr>
                             <td><?=$date['crop'][$product['product_type']]['name_crop_ua']?></td>
                             <td><?=$product['product_quantity']?></td>
-                            <td><a class="btn come_products" data-id="<?=$open_products?>"><?=$date['products']['income_prod_1'][$product['product_type']]?></a></td>
-                            <td><a class="btn out_sale_products" data-id="<?=$open_products?>"><?=$date['products']['actual_sales'][$product['product_type']]?></a></td>
+                            <td><a class="btn come_products" href="#come_products" data-toggle="modal" data-id="<?=$product['product_type']?>"><?=$date['products']['income_prod_1'][$product['product_type']]?></a></td>
+                            <td><a class="btn out_sale_products" href="#out_products" data-toggle="modal"  data-id="<?=$product['product_type']?>"><?=$date['products']['actual_sales'][$product['product_type']]?></a></td>
                             <td><?=$product['product_now']?></td>
                             <td><?=$product['product_comments']?>
                             </td>
                         </tr>
-                        <? foreach ($date['products']['actual_sale_1'] as $actual_sale_1)if($actual_sale_1['actual_sale_product']==$product['product_type']){?>
-                            <tr class="sale_products_<?=$open_products?>" style="color: red; display: none;" >
-                                <td style="padding-left: 35px"><? echo "Date: ".$actual_sale_1['actual_sale_date']?></td>
-                                <td><? echo "Quantity: ".$actual_sale_1['actual_sale_quantity']?></td>
-                                <td><? echo "Total sum: ".$actual_sale_1['actual_sale_sum']?></td>
-                                <td><? echo "Price per unit: ".number_format($actual_sale_1['actual_sale_per_unit'], 2, ',', ' ');?></td>
-                                <td></td>
-                            </tr>
-                        <?}?>
-                        <? foreach ($date['products']['income_prod'] as $income_prod)if($income_prod['id_product']==$product['product_type']){?>
-                            <tr class="come_products_<?=$open_products?>" style="color: green; display: none;" >
-                                <td style="padding-left: 35px"><? echo "Date: ".$income_prod['income_date']?></td>
-                                <td><? echo "Quantity: ".$income_prod['income_product_quantity']?></td>
-                                <td></td>
-                            </tr>
-                        <?}?>
-
                     <?}?>
                     </tbody>
                 </table>
@@ -575,14 +581,185 @@ $unit = array(
                 </form>
             </div>
         </div>
+
+        <div id="сome_material" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                    <div class="modal-content wt">
+                        <div class="box-bodyn">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <span class="box-title">Розшифровка по надходженню <b class="name_come_material"></b></span>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Дата</th>
+                                        <th>Кількість, кг</th>
+                                        <th>Ціна за одиницю, грн</th>
+                                        <th>Сума, грн</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <? foreach($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_type']==2){?>
+                                    <tr class="material_list open_material_<?=$incoming_material['come_out_material_id']?>">
+                                        <td style="padding-left: 35px"><?=$incoming_material['come_out_date']?></td>
+                                        <td><?=$incoming_material['come_out_quantity']?></td>
+                                        <td><?=number_format($incoming_material['come_out_sum_total']/$incoming_material['come_out_quantity'],2,',',' ')?></td>
+                                        <td><?=$incoming_material['come_out_sum_total']?></td>
+                                    </tr>
+                                <?}?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="out_material" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content wt">
+                    <div class="box-bodyn">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span class="box-title">Розшифровка по вибуттю <b class="name_out_material"></b></span>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Поле</th>
+                                    <th>Найменування робіт</th>
+                                    <th>Дата</th>
+                                    <th>Кількість, кг</th>
+                                    <th>Ціна за од., грн</th>
+                                    <th>Сума, грн</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <? foreach($date['incoming_material'] as $incoming_material)if($incoming_material['come_out_type']==1 or $incoming_material['come_out_type']==3){?>
+                                    <tr class="material_out_list out_<?=$incoming_material['come_out_type']?> open_material_<?=$incoming_material['come_out_material_id']?>">
+
+                                        <td>
+                                            <?='# '.$date['storage']['storage_field'][$date['storage']['storage_action'][$incoming_material['action_id']]['action_id_culture']]['field_number'].'_'.
+                                            $date['crop'][$date['storage']['storage_field'][$date['storage']['storage_action'][$incoming_material['action_id']]['action_id_culture']]['field_id_crop']]['name_crop_ua']?>
+                                        </td>
+                                        <td style="width: 25%"><?=$date['action'][$date['storage']['storage_action'][$incoming_material['action_id']]['action_action_id']]['name_ua']?></td>
+                                        <td style="width: 13%;"><?=$incoming_material['come_out_date']?></td>
+                                        <td><?=$incoming_material['come_out_quantity']?></td>
+                                        <td style="width: 10%;"><? if($incoming_material['come_out_type']==3){echo number_format($date['incoming_material']['mat_price'][$incoming_material['come_out_material_id']]['storage_sum_total'],2,',',' ');}else{echo number_format($incoming_material['come_out_sum_total']/$incoming_material['come_out_quantity'],2,',',' ');}?></td>
+                                        <td><? if($incoming_material['come_out_type']==3){echo number_format($incoming_material['come_out_quantity']*$date['incoming_material']['mat_price'][$incoming_material['come_out_material_id']]['storage_sum_total'],2,',',' ');}else{echo $incoming_material['come_out_sum_total'];}?></td>
+                                    </tr>
+                                <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="come_products" class="modal fade">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content wt">
+                    <div class="box-bodyn">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span class="box-title">Розшифровка по вибуттю матеріалу</span>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Кількість, кг</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <? foreach ($date['products']['income_prod'] as $income_prod){?>
+                                <tr class="come_list come_products_<?=$income_prod['id_product']?>" >
+                                    <td style="padding-left: 35px"><? echo "Date: ".$income_prod['income_date']?></td>
+                                    <td><? echo "Quantity: ".$income_prod['income_product_quantity']?></td>
+                                    <td></td>
+                                </tr>
+                            <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="out_products" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content wt">
+                    <div class="box-bodyn">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span class="box-title">Розшифровка по вибуттю матеріалу</span>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Кількість, кг</th>
+                                <th>Ціна за одиницю, грн</th>
+                                <th>Сума, грн</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <? foreach ($date['products']['actual_sale_1'] as $actual_sale_1){?>
+                                <tr class="out_list sale_products_<?=$actual_sale_1['actual_sale_product']?>" style="color: red;" >
+                                    <td style="padding-left: 35px"><? echo $actual_sale_1['actual_sale_date']?></td>
+                                    <td><? echo $actual_sale_1['actual_sale_quantity']?></td>
+                                    <td><? echo number_format($actual_sale_1['actual_sale_per_unit'], 2, ',', ' ');?></td>
+                                    <td><? echo $actual_sale_1['actual_sale_sum']?></td>
+                                    <td></td>
+                                </tr>
+                            <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+
+        var json_material_fact = '<?=json_encode($date['storage']['storage_material_fact'])?>';
+        var json_type_material = '<?=json_encode($id_material_type)?>';
+        var json_sub_ppa = '<?=json_encode($date['ppa']['ua'])?>';
+        var json_sub_seed = '<?=json_encode($date['crop'])?>';
+        var json_sub_fert = '<?=json_encode($date['fert']['ua'])?>';
+        var json_sub_fuel = '<?=json_encode($date['fuel']['ua'])?>';
+        var json_material_name = '<?=json_encode($date['material_lib'])?>';
+        var type_material = JSON.parse(json_type_material);
+        var material_fact = JSON.parse(json_material_fact);
+        var sub_seed = JSON.parse(json_sub_seed);
+        var sub_ppa = JSON.parse(json_sub_ppa);
+        var sub_fert = JSON.parse(json_sub_fert);
+        var sub_fuel = JSON.parse(json_sub_fuel);
+        var material_name = JSON.parse(json_material_name);
+
         var payment = '<?=$_SESSION['payment_status'];?>';
         if(payment == 0){
             $('.payment_disabled').prop('disabled', true);
         }
+
+        $('#date_start_cal').change(function () {
+            var date_start_cal = $('#date_start_cal').val();
+            var date_end_cal = $('#date_end_cal').val();
+
+        });
 
         $('.unit, .storage_quantity, .storage_sum_total').change(function(){
             var unit = $(this).val();
@@ -633,27 +810,54 @@ $unit = array(
 
         $('.come_storage_material').click(function () {
             var id = $(this).attr('data-id');
-            var type = $(this).attr('data-type');
+            var material_type_name = type_material[material_fact[id]['storage_type_material']];
+            if(material_fact[id]['storage_type_material'] ==1){
+                var subt_type = sub_seed[material_fact[id]['storage_subtype_material']]['name_crop_ua'];
+            }if(material_fact[id]['storage_type_material'] ==2){
+                var subt_type = sub_fert[material_fact[id]['storage_subtype_material']];
+            }if(material_fact[id]['storage_type_material'] ==3){
+                var subt_type = sub_ppa[material_fact[id]['storage_subtype_material']];
+            }if(material_fact[id]['storage_type_material'] ==4){
+                var subt_type = sub_fuel[material_fact[id]['storage_subtype_material']];
+            }
+            var material_name_out = material_name[material_fact[id]['storage_material']]['name_material'];
+            $('.name_come_material').text(material_type_name+'/'+subt_type+'/'+material_name_out);
+
+
+            $('.material_list').hide();
             /*$('.close_material').css('display','none');*/
-            $('.open_material_'+id+'_'+type).toggle();
+            $('.material_list').css('color','green');
+            $('.open_material_'+id).show();
         });
         $('.out_storage_material').click(function () {
             var id = $(this).attr('data-id');
-            var type = $(this).attr('data-type');
-            if(type ==1 || type ==3){
-                $('.open_material_'+id+'_1').toggle();
-                $('.open_material_'+id+'_3').toggle();
+            var material_type_name = type_material[material_fact[id]['storage_type_material']];
+            if(material_fact[id]['storage_type_material'] ==1){
+                var subt_type = sub_seed[material_fact[id]['storage_subtype_material']]['name_crop_ua'];
+            }if(material_fact[id]['storage_type_material'] ==2){
+                var subt_type = sub_fert[material_fact[id]['storage_subtype_material']];
+            }if(material_fact[id]['storage_type_material'] ==3){
+                var subt_type = sub_ppa[material_fact[id]['storage_subtype_material']];
+            }if(material_fact[id]['storage_type_material'] ==4){
+                var subt_type = sub_fuel[material_fact[id]['storage_subtype_material']];
             }
+            var material_name_out = material_name[material_fact[id]['storage_material']]['name_material'];
+            $('.name_out_material').text(material_type_name+'/'+subt_type+'/'+material_name_out);
+            $('.out_3').css('color','blue');
+            $('.out_1').css('color','red');
+            $('.material_out_list').hide();
+            $('.open_material_'+id).show();
         });
-
 
         $('.out_sale_products').click(function () {
             var id = $(this).attr('data-id');
-            $('.sale_products_'+id).toggle();
+            $('.out_list').hide();
+            $('.sale_products_'+id).show();
         });
         $('.come_products').click(function () {
             var id = $(this).attr('data-id');
-            $('.come_products_'+id).toggle();
+            $('.come_list').hide();
+            $('.come_products_'+id).show();
         });
 
         $('.type_material').change(function () {

@@ -1,3 +1,15 @@
+<?
+/*echo "<pre>";
+var_dump($_SESSION['payment_status']);die;*/
+?>
+<style>
+    .text_for_demo{
+        margin-top: 35px;
+        margin-left: 50px;
+        font-size: 20px;
+
+    }
+</style>
 <div class="box">
     <div class="box-bodyn">
         <div class="non-semantic-protector">
@@ -11,7 +23,7 @@
     <select onchange="window.location.href=this.options[this.selectedIndex].value" style="width:300px; margin: 0 auto" class="form-control  inphead" id="select_crop" required>
         <?php if($date['id']==0){?><option selected value="0"><?=$language['new-farmer']['163']?></option><?php }?>
         <?php foreach ($date['field'] as $field){?>
-            <option <?php if($field['id_field']==$date['id']) echo "selected"?> value="<?php SRC::getSrc();?>/new-farmer/fact_tech_card/<?php echo $field['id_field']?>" ><?='#  '.$field['field_number']."_".$field['field_name'];?></option>
+            <option <?php if($field['id_field']==$date['id']) echo "selected"?> value="<?php SRC::getSrc();?>/new-farmer/fact_tech_card/<?php echo $field['id_field']?>" ><?='#  '.$field['field_number']."_".$field['name_crop_ua'];?></option>
         <?php }?>
     </select>
 </div>
@@ -42,7 +54,7 @@
         </tbody>
     </table>
 </div>
-    <div class="rown">
+    <div class="rown" <?if($_SESSION['payment_status']==0){echo "style='filter:blur(10px);'";}?>>
         <br><br>
         <div class="col-lg-6">
             <div class="rown">
@@ -68,7 +80,7 @@
                                     <td style="width: 29%"><? if($_COOKIE['lang']=='gb'){echo $date['action']['action_type'][$action['action_action_id']]['name_en'];}elseif($_COOKIE['lang']=='ua'){echo $date['action']['action_type'][$action['action_action_id']]['name_ua'];}?>
                                     <td><?=$action['action_date_start']?></td>
                                     <td><?=$action['action_date_end']?></td>
-                                    <td style="width: 10%"><a data-action_id="<?=$action['action_id']?>"
+                                    <td style="width: 10%"><button <?if($_SESSION['payment_status']==0){echo 'disabled';}?> data-action_id="<?=$action['action_id']?>"
                                                 data-start_date="<?=$action['action_date_start']?>"
                                                 data-end_date="<?=$action['action_date_end']?>"
                                                 data-action_type_id="<?=$action['action_action_type_id']?>"
@@ -78,7 +90,7 @@
                                                 data-machines='<?=json_encode(unserialize($action['action_machines']));?>'
                                                 data-services='<?=json_encode(unserialize($action['action_services']));?>'
                                                 data-fact='<?=json_encode($date['action']['fact'][$action['action_id']])?>'
-                                                class="btn btn-primary btn-sm edit_action" href="#scroll_for_op"><?=$language['new-farmer']['169']?></a>
+                                                class="btn btn-primary btn-sm edit_action" href="#scroll_for_op"><?=$language['new-farmer']['169']?></button>
                                     </td>
                                 </tr>
                             <?}?>
@@ -605,13 +617,8 @@
         </div>
     </div>
 </div>
-
-
-
-
 <script>
     $(document).ready(function () {
-
         var payment = '<?=$_SESSION['payment_status'];?>';
         if(payment == 0){
             var msg = 'Дана функція недоступна в DEMO режимі';
@@ -632,6 +639,15 @@
         var storage = JSON.parse(json_storage);
         var id_g_employee=0;
         ///////////////////////////MATERIAL/////////////////////////////////////
+
+        $('.list_materials').hide();
+        $('.type_material_1').show();
+        $('#type_material_list_bd').change(function () {
+            var type = $(this).val();
+            $('.list_materials').hide();
+            $('.type_material_'+type).show();
+        });
+
         var id_material=0;
         $('.fact_add_material').click(add_material);
         function add_material() {
@@ -961,6 +977,7 @@
         var def_plan='План';
 
         $('.edit_action').click(function () {
+
             $('.fact_tech_card').css('display','block');
             $("#material,#employee, #services,#equipment,#serv,#emplo,#mat,#equp," +
                 "#in_fact_material,#in_fact_employee,#in_fact_equipment,#in_fact_services, #info_operation_fact").html('');
@@ -992,12 +1009,21 @@
             $('#save_fact_id_action').val(action_id);
 
 
-            $('#info_operation_fact').append(
-                "<th>"+ action_type_name[action_type_id]['name_ua'] +"</th>"+
-                "<th>"+ action_type_name[action_action_id]['name_ua'] +"</th>"+
-                "<th>"+ start_date +"</th>"+
-                "<th>"+ end_date +"</th>"
-            );
+            if(fact['fact_date_start']!=null && fact['fact_date_end']!=null){
+                $('#info_operation_fact').append(
+                    "<th>"+ action_type_name[action_type_id]['name_ua'] +"</th>"+
+                    "<th>"+ action_type_name[action_action_id]['name_ua'] +"</th>"+
+                    "<th><input  class='form-control actual_date_start' type='date' value='"+ fact['fact_date_start'] +"'></th>"+
+                    "<th><input  class='form-control actual_date_end' type='date' value='"+ fact['fact_date_end'] +"'></th>"
+                );
+            }else {
+                $('#info_operation_fact').append(
+                    "<th>"+ action_type_name[action_type_id]['name_ua'] +"</th>"+
+                    "<th>"+ action_type_name[action_action_id]['name_ua'] +"</th>"+
+                    "<th><input  class='form-control actual_date_start' type='date' value='"+ start_date +"'></th>"+
+                    "<th><input  class='form-control actual_date_end' type='date' value='"+ end_date +"'></th>"
+                );
+            }
             ///////Загрузка Плана
             if(material == false){
                 $("#material").append(
@@ -1212,6 +1238,26 @@
                         "</tr>");
                 });
             }
+
+
+            $('.actual_date_start, .actual_date_end').change(function () {
+                var date_start= $('.actual_date_start').val();
+                var date_end = $('.actual_date_end').val();
+                var action_id = $('#save_fact_id_action').val();
+                alert(action_id);
+                alert(date_end);
+                alert(date_start);
+                /*$.ajax({
+                    type : 'post',
+                    url : '/new-farmer/change_date_fact',
+                    data : {
+                        'action_id': action_id,
+                        'date_start' : date_start,
+                        'date_end' : date_end
+                    }
+                });*/
+            });
+
             save_employee();
             save_services();
             save_material();

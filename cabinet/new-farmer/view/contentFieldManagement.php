@@ -3,6 +3,8 @@
         0=>'Не затверджено',
         1=>'Затверджено'
     );
+    /*echo "<pre>";
+    var_dump($date['tech_cart_for_demo']);die;*/
 ?>
 
 <head>
@@ -55,7 +57,7 @@
                        <th>Урожайність, ц/га</th>
                        <th></th>
                        <th></th>
-                       <th colspan="3" style="text-align: center;">Технологія вирощування</th>
+                       <th <?if($_SESSION['payment_status']=='0'){echo 'colspan="1"';}else{echo 'colspan="3"';}?> style="text-align: center;">Технологія вирощування</th>
                        <th>Статус ТК</th>
                     </tr>
                 </thead>
@@ -72,18 +74,18 @@
                            <input class="form-control edit_field inphead" value="<?=$field['field_yield']?>" name="field_yield" data-table="3" data-id_field="<?=$field['id_field']?>">
                        </th>
                         <th>
-                           <a class="btn btn-warning fa fa-pencil edit_fields" data-data='<?=json_encode($field); ?>'></a>
+                           <button class="btn btn-warning fa fa-pencil payment_disabled edit_fields" data-data='<?=json_encode($field); ?>'></button>
                         </th>
-                        <th>
+                        <th <?if($_SESSION['payment_status']=='0'){echo "style='display:none;'";}?>>
                             <a href="/new-farmer/remove_field/<?=$field['id_field']?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </th>
                         <th>
                             <button data-field_name="<?=$field['field_name']?>" data-name_culture="<?=$field['name_crop_ua']?>" data-field="<?=$field['id_field']?>" data-size="<?=$field['field_size']?>"  data-crop="<?=$field['field_id_crop']?>"  class="btn btn-primary select_tc">Вибрати технологію</button>
                         </th>
-                        <th style="width: 13%;" id="tech_name_field<?=$field['id_field']?>">
+                        <th style="width: 13%; text-align: center;" id="tech_name_field<?=$field['id_field']?>">
                             <?=$date['tech_cart']['tech'][$field['field_id_crop']][$field['field_id_culture']]['tech_name']?>
                         </th>
-                        <th ><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<? if($field['field_id_culture']==null){echo '0';}else{echo $field['field_id_culture'];}?>">Переглянути ТК</a></th>
+                        <th <?if($_SESSION['payment_status']=='0'){echo "style='display:none;'";}?>><a id="tech_edit_field<?=$field['id_field']?>" class="btn btn-success" href="/new-farmer/edit_technology_card/<? if($field['field_id_culture']==null){echo '0';}else{echo $field['field_id_culture'];}?>">Переглянути ТК</a></th>
                         <th>
                          <select class="form-control changes_status" data-id="<?=$field['id_field']?>">
                                 <? foreach ($status_card as $key=>$value){?>
@@ -199,9 +201,11 @@
                         <div class="col-lg-4">
                             <label><?=$language['new-farmer']['48']?></label>
                             <select class="form-control inphead" name='crop' id="crop_list_select" required>
-                                <?foreach($date['crop_us'] as $crop){?>
+                                <?
+                                foreach ($date['crop_for_demo'] as $crop_for_demo){
+                                foreach($date['crop_us'] as $crop)if($crop_for_demo['field_id_crop']==$crop['id_crop']){?>
                                     <option class="crop_list crop_type_<?=$crop['crop_type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
-                                <?}?>
+                                <?}}?>
                             </select>
                         </div>
                         <div class="col-lg-4">
@@ -338,8 +342,13 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
-        var json_tech='<?=json_encode($date['tech_cart'])?>';
+        var payment = '<?=$_SESSION['payment_status'];?>';
+        if(payment == 0){
+            var json_tech = '<?=json_encode($date['tech_cart_for_demo'])?>';
+            $('.payment_disabled').prop('disabled',true);
+        } else {
+            var json_tech='<?=json_encode($date['tech_cart'])?>';
+        }
         var tech_name=JSON.parse( json_tech );
         $('.select_tc').click(function () {
             $('#tech_list').html('');

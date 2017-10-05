@@ -3,16 +3,27 @@
 
 class Storage{
 
-	public static function getStorage($id_user){
-		$db=Db::getConnection();
+	public static function getStorage($id_user,$date_start,$date_end){
+
+        $db=Db::getConnection();
+
+        $where='';
+        if($date_start==true) $where.=" AND storage_date >= '$date_start'";
+        if($date_end==true) $where.="AND storage_date <= '$date_end'";
+
         $res = $db->query("SELECT * FROM new_storage WHERE id_user=$id_user");
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $date['storage'] = $res->fetchAll();
 
 
-        $res = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '0' ORDER BY storage_type_material, storage_subtype_material  DESC");
+        $res = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '0' $where ORDER BY storage_type_material, storage_subtype_material  DESC");
         $res->setFetchMode(PDO::FETCH_ASSOC);
-        $date['storage_material_fact'] = $res->fetchAll();
+        $storage_material_fact = $res->fetchAll();
+
+        foreach ($storage_material_fact as $value){
+            $date['storage_material_fact'][$value['storage_material_id']] = $value;
+        }
+
 
         /*$res = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '1'");
         $res->setFetchMode(PDO::FETCH_ASSOC);
@@ -22,6 +33,22 @@ class Storage{
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $date['storage_type_material'] = $res->fetchAll();
 
+
+        $res = $db->query("SELECT * FROM new_action WHERE id_user = '$id_user'");
+        $res->setFetchMode(PDO::FETCH_ASSOC);
+        $action = $res->fetchAll();
+
+        foreach ($action as $value){
+            $date['storage_action'][$value['action_id']] = $value;
+        }
+
+        $res = $db->query("SELECT * FROM new_field WHERE id_user = '$id_user'");
+        $res->setFetchMode(PDO::FETCH_ASSOC);
+        $field = $res->fetchAll();
+
+        foreach ($field as $value){
+            $date['storage_field'][$value['field_id_culture']] = $value;
+        }
         return $date;
 	}
 
@@ -90,20 +117,54 @@ class Storage{
 	}
 
 
-	public static function getIncomingMaterial($id_user){
+	public static function getIncomingMaterial($id_user,$date_start,$date_end){
 		$db = Db::getConnection();
-		$result = $db->query("SELECT * FROM new_come_out WHERE id_user = '$id_user' ORDER BY come_out_date ASC");
+		/*if($date_start =false and $date_end =false){
+
+        }*/
+		$where='';
+		$sql='';
+		if($date_start==true) {
+		    $where.=" AND come_out_date >= '$date_start'";
+            $sql = " AND come_out_date <= '$date_start'";
+		}
+        if($date_end==true) $where.="AND come_out_date <= '$date_end'";
+		/*var_dump($date_start);
+		var_dump($date_end);die;*/
+		$result = $db->query("SELECT * FROM new_come_out WHERE id_user = '$id_user' $where ORDER BY come_out_date ASC");
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		$date = $result->fetchAll();
+
+		$result = $db->query("SELECT storage_material_id, storage_sum_total FROM new_storage_material WHERE storage_id_user = '$id_user'");
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$price = $result->fetchAll();
+
+		if($date_start==true){
+            $result = $db->query("SELECT come_out_quantity, come_out_material_id, come_out_type  FROM new_come_out WHERE id_user = '$id_user' $sql");
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $start_quantity = $result->fetchAll();
+
+            foreach ($start_quantity as $value)if($value['come_out_type']=='2'){
+                $date['start_quantity'][$value['come_out_material_id']] += $value['come_out_quantity'];
+            }
+        }
+
+		foreach ($price as $mat_price){
+		    $date['mat_price'][$mat_price['storage_material_id']] = $mat_price;
+        }
+
         foreach ($date as $value)if($value['come_out_type']=='3'){
             $date['come_fact'][$value['come_out_material_id']] += $value['come_out_quantity'];
+            $date['come_fact_sum'][$value['come_out_material_id']] += $value['come_out_quantity']*$date['mat_price'][$value['come_out_material_id']]['storage_sum_total'];
         }
 
 		foreach ($date as $value)if($value['come_out_type']=='2'){
 		    $date['come_material'][$value['come_out_material_id']] += $value['come_out_quantity'];
+		    $date['come_material_sum'][$value['come_out_material_id']] += $value['come_out_sum_total'];
         }
         foreach ($date as $item)if($item['come_out_type'] == '1'){
 		    $date['out_material'][$item['come_out_material_id']] += $item['come_out_quantity'];
+		    $date['out_material_sum'][$item['come_out_material_id']]+=$item['come_out_sum_total'];
         }
         /*echo "<pre>";
         var_dump($date);*/
@@ -159,11 +220,11 @@ class Storage{
         return $date;
     }
 
-    public static function updatePriceAndMass(){
+    public static function updatePriceAndMass($date_start=false,$date_end=false){
         $db=Db::getConnection();
         $id_user=$_SESSION['id_user'];
-        $date['incoming_material']=self::getIncomingMaterial($id_user);
-        $date['storage'] = self::getStorage($id_user);
+        $date['incoming_material']=self::getIncomingMaterial($id_user,$date_start,$date_end);
+        $date['storage'] = self::getStorage($id_user,$date_start,$date_end);
 
         foreach ($date['storage']['storage_material_fact'] as $storage_material){
             $total_price[$storage_material['storage_material_id']]=0;

@@ -19,9 +19,9 @@ var_dump($date);die;*/
 <div class="box-body">
     <div class="responsive">
         <h3 style="float: left;">
-            Витрати на послуги, грн
+            Фактичні витрати на послуги, грн
         </h3>
-        <a href="/new-farmer/budget/<?=$date['budget']['field_id_for_remains']?>" class="btn btn-success" style="float: right; margin-top: 7px; margin-right: 15px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
+        <a href="/new-farmer/fact_budget_field" class="btn btn-success" style="float: right; margin-top: 7px; margin-right: 15px;"><i class="fa fa-fw fa-arrow-left"></i>Назад</a>
         <table class="table table-striped well">
             <thead>
             <tr>

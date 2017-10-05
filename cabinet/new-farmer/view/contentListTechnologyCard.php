@@ -67,7 +67,7 @@ var_dump($date['new_crop_culture']);die;*/
                     <div class="well">
                         <label for="id_crop"><?=$language['new-farmer']['61']?></label>
                         <select class="form-control inphead" id="id_crop">
-                            <option value="0"><?=$language['new-farmer']['61']?></option>
+                            <option value="0">Всі культури</option>
                             <?php foreach ($date['crop'] as $crop){ ?>
                                 <option value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
                             <?} ?>
@@ -146,6 +146,7 @@ var_dump($date['new_crop_culture']);die;*/
                         <label><?=$language['new-farmer']['55']?></label>
                         <select class="form-control inphead op" id="crop_type">
                             <? if($_COOKIE['lang']=='gb'){?>
+                                <option value="0">Choose type</option>
                                 <option value="2">Crops</option>
                                 <option value="1">Legumes</option>
                                 <option value="3">Technical</option>
@@ -154,6 +155,7 @@ var_dump($date['new_crop_culture']);die;*/
                                 <option value="6">Fruit</option>
                                 <option value="7">Вerries</option>
                             <?} elseif($_COOKIE['lang']=='ua'){?>
+                                <option value="0">Виберіть тип</option>
                                 <option value="2">Зернові</option>
                                 <option value="1">Зерно-бобові</option>
                                 <option value="3">Технічні</option>
@@ -167,6 +169,7 @@ var_dump($date['new_crop_culture']);die;*/
                     <div class="col-lg-4">
                         <label><?=$language['new-farmer']['48']?></label>
                         <select class="form-control inphead" name='crop' id="crop_list_select" required>
+                            <option class="zero" value="0">Виберіть культуру</option>
                             <?foreach($date['crop_us'] as $crop){?>
                                 <option class="crop_list crop_type_<?=$crop['crop_type']?>" value="<?=$crop['id_crop']?>"><?if($_COOKIE['lang']=='ua'){echo $crop['name_crop_ua'];}elseif($_COOKIE['lang']=='gb'){echo $crop['name_crop_en'];}?></option>
                             <?}?>
@@ -301,7 +304,6 @@ var_dump($date['new_crop_culture']);die;*/
            $('.id_crop_'+id).show(300);
            if(id==0)$('.tech_cart').show(300);
        });
-
         var crop_id_st=$('#crop_list_select').val();
         $('.rad').hide();
         $('.tech_cart_crop_'+crop_id_st).show();
@@ -309,6 +311,7 @@ var_dump($date['new_crop_culture']);die;*/
         function crop_list_type() {
             var id_type=$(this).val();
             $('.crop_list').hide();
+            $('.zero').hide();
             $('.crop_type_'+id_type).show();
             $('#crop_list_select').val(' ');
             $('.rad').hide();

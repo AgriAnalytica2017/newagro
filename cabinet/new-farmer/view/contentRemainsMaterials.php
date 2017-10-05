@@ -44,8 +44,8 @@ echo "</pre>";*/
                 </tr>
             <?}?>
             <tr style="font-weight: bold;">
-               <td colspan="5">Всього, грн</td>
-               <td><?=number_format($total_sum,2,',',' ')?></td>
+                <td colspan="5">Всього, грн</td>
+                <td><?=number_format($total_sum,2,',',' ')?></td>
             </tr>
             </tbody>
         </table>

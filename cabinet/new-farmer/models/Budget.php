@@ -20,10 +20,18 @@ class Budget{
                 'name_ua'=>'Доходи',
                 'name_en'=>'Revenues',
                 'class'=>'',
+                'href_crop'=>'',
+                'href_crop_fact'=>'/new-farmer/budget/fact_revenues/',
                 ),
             array(
+                'array'=>'budget_total_cost',
+                'name_ua'=>'Витрати всього, грн',
+                'name_en'=>'Complete cost',
+                'class'=>'',
+            ),
+            array(
                 'array'=>'budget_cost',
-                'name_ua'=>'Витрати виробничі всього',
+                'name_ua'=>'Виробничі витрати',
                 'name_en'=>'Total costs',
                 'class'=>'level1',
             ),
@@ -33,7 +41,9 @@ class Budget{
                 'name_en'=>'Seeds',
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/1/',
-                'href_fact'=>'/new-farmer/budget/fact_materials/1/'
+                'href_fact'=>'/new-farmer/budget/fact_materials/1/',
+                'href_crop'=>'/new-farmer/budget/crop_materials/1/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_materials/1/',
             ),
             array(
                 'array'=>'budget_fertilizers',
@@ -41,23 +51,29 @@ class Budget{
                 'name_en'=>'Fertilizers',
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/2/',
-                'href_fact'=>'/new-farmer/budget/fact_materials/2/'
+                'href_fact'=>'/new-farmer/budget/fact_materials/2/',
+                'href_crop'=>'/new-farmer/budget/crop_materials/2/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_materials/2/'
             ),
             array(
                 'array'=>'budget_ppa',
-                'name_ua'=>'ЗЗР',
+                'name_ua'=>'Засоби захисту рослин',
                 'name_en'=>'PPA',
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/3/',
-                'href_fact'=>'/new-farmer/budget/fact_materials/3/'
+                'href_fact'=>'/new-farmer/budget/fact_materials/3/',
+                'href_crop'=>'/new-farmer/budget/crop_materials/3/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_materials/3/'
             ),
             array(
                 'array'=>'budget_equipment',
-                'name_ua'=>'ПММ',
+                'name_ua'=>'Паливо-мастильні матеріали',
                 'name_en'=>'Fuel costs',
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/fuel/',
-                'href_fact'=>'/new-farmer/budget/fact_fuel/'
+                'href_fact'=>'/new-farmer/budget/fact_fuel/',
+                'href_crop'=>'/new-farmer/budget/crop_fuel/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_fuel/'
             ),
             array(
                 'array'=>'budget_pay',
@@ -66,6 +82,8 @@ class Budget{
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/salary/',
                 'href_fact'=>'/new-farmer/budget/fact_salary/',
+                'href_crop'=>'/new-farmer/budget/crop_salary/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_salary/'
             ),
             array(
                 'array'=>'budget_services',
@@ -74,6 +92,8 @@ class Budget{
                 'class'=>'level2',
                 'href'=>'/new-farmer/budget/services/',
                 'href_fact'=>'/new-farmer/budget/fact_services/',
+                'href_crop'=>'/new-farmer/budget/crop_services/',
+                'href_crop_fact'=>'/new-farmer/budget/crop_fact_services/'
             ),
             array(
                 'array'=>'rent_pay',
@@ -83,7 +103,7 @@ class Budget{
             ),
             array(
                 'array'=>'budget_repairs',
-                'name_ua'=>'Ремонт машин та обладнання',
+                'name_ua'=>'Ремонт техніки та обладнання',
                 'name_en'=>'Repair of machines and equipment',
                 'class'=>'level2',
             ),
@@ -105,13 +125,7 @@ class Budget{
                 'name_en'=>'Operating expenses',
                 'class'=>'level1',
             ),
-            array(
-                'array'=>'budget_total_cost',
-                'name_ua'=>'Повна собівартість',
-                'name_en'=>'Complete cost',
-                'class'=>'',
-            ),
-            array(
+/*            array(
                 'array'=>'gross_profit',
                 'name_ua'=>'Валовий прибуток',
                 'name_en'=>'Gross profit',
@@ -122,7 +136,7 @@ class Budget{
                 'name_ua'=>'Рентабільність %',
                 'name_en'=>'Profitability %',
                 'class'=>'',
-            ),
+            ),*/
         );
     }
     public static function getTableCashFlow(){
@@ -141,148 +155,241 @@ class Budget{
             ),
             array(
                 'name_ua'=>'Операційна діяльність - надходження',
+                'name_en'=>'Revenue from sales of finished products',
+                'array'=>'cf_operational_plus',
+                'class'=>'level1',
+            ),
+            array(
+                'name_ua'=>'Виручка від реалізації готової продукції',
                 'name_en'=>'Operating activities - supply',
-                'array'=>'plane_revenues',
+                'array'=>'operational_plus_1',
                 'class'=>'level2',
                 'revenue'=>'on'
             ),
             array(
+                'name_ua'=>'Інші операційні надходження',
+                'name_en'=>'Other operating income',
+                'array'=>'operational_plus_2',
+                'class'=>'level2',
+            ),
+            array(
                 'name_ua'=>'Операційна діяльність - витрати',
                 'name_en'=>'Operating activities - expenses',
-                'array'=>'budget_cost',
-                'class'=>'level2'
+                'array'=>'cf_operational_minus',
+                'class'=>'level1'
             ),
             array(
                 'array'=>'budget_seeds',
                 'name_ua'=>'Насіння',
                 'name_en'=>'Seeds',
-                'class'=>'level3',
+                'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/1/'
             ),
             array(
                 'array'=>'budget_fertilizers',
                 'name_ua'=>'Добрива',
                 'name_en'=>'Fertilizers',
-                'class'=>'level3',
+                'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/2/'
             ),
             array(
                 'array'=>'budget_ppa',
                 'name_ua'=>'ЗЗР',
                 'name_en'=>'PPA',
-                'class'=>'level3',
+                'class'=>'level2',
                 'href'=>'/new-farmer/budget/materials/3/'
             ),
             array(
                 'array'=>'budget_equipment',
-                'name_ua'=>'Витрати на пальне',
+                'name_ua'=>'Паливо-мастильні матеріали',
                 'name_en'=>'Fuel costs',
-                'class'=>'level3',
+                'class'=>'level2',
                 'href'=>'/new-farmer/budget/fuel/'
             ),
             array(
                 'array'=>'budget_pay',
-                'name_ua'=>'Зарплата',
+                'name_ua'=>'Оплата праці',
                 'name_en'=>'Salary',
-                'class'=>'level3',
+                'class'=>'level2',
                 'href'=>'/new-farmer/budget/salary/',
             ),
             array(
-                'array'=>'other_costs',
-                'name_ua'=>'Інші витрати',
-                'name_en'=>'Other costs',
-                'class'=>'level3',
+                'array'=>'budget_services',
+                'name_ua'=>'Оплата послуг',
+                'name_en'=>'services',
+                'class'=>'level2',
             ),
             array(
                 'array'=>'budget_repairs',
                 'name_ua'=>'Витрати на ремонт',
                 'name_en'=>'Repairs costs',
-                'class'=>'level3',
+                'class'=>'level2',
             ),
             array(
                 'array'=>'rent_pay',
                 'name_ua'=>'Орендна плата',
                 'name_en'=>'Rent pay',
-                'class'=>'level3',
+                'class'=>'level2',
             ),
             array(
-                'array'=>'budget_services',
-                'name_ua'=>'services',
-                'name_en'=>'services',
+                'array'=>'other_costs',
+                'name_ua'=>'Інші виробничі витрати',
+                'name_en'=>'Other costs',
+                'class'=>'level2',
+            ),
+            array(
+                'array'=>'percentages_other_costs',
+                'name_ua'=>'в тому числі відсотки по новій позиці',
+                'name_en'=>'Other costs',
                 'class'=>'level3',
             ),
             array(
                 'name_ua'=>'Чистий рух коштів від операційної діяльності',
                 'name_en'=>'Net cash flow from operating activities',
-                'array'=>'gross_profit',
-                'class'=>''
+                'array'=>'cf_operational_difference',
+                'class'=>'level1'
             ),
             array(
-                'name_ua'=>'2. Рух коштів у результаті інвестиційної діяльності',
-                'name_en'=>'2. Cash flow as a result of investment activity',
-                'php'=>'',
-                'class'=>''
+                "array"=>"cf_investment",
+                "name_ua"=>"2. Рух коштів у результаті інвестиційної діяльності",
+                "name_en"=>"2. Cash flows from investing activities",
+                "class"=>"",
             ),
             array(
-                'name_ua'=>'Інвестиційна діяльність - надходження',
-                'name_en'=>'Cash flow as a result of investment activity',
-                'php'=>'',
-                'class'=>'level2'
+                "array"=>"cf_investment_plus",
+                "name_ua"=>"Надходження від реалізації:",
+                "name_en"=>"Receipts from realization of:",
+                "class"=>"level1",
             ),
             array(
-                'name_ua'=>'Інвестиційна діяльність - витрати',
-                'name_en'=>'Investment activity - expenses',
-                'php'=>'',
-                'class'=>'level2'
+                "array"=>"investment_plus_1",
+                "name_ua"=>"фінансових інвестицій",
+                "name_en"=>"financial investments",
+                "class"=>"level2",
             ),
             array(
-                'name_ua'=>'Чистий рух коштів від інвестиційної діяльності',
-                'name_en'=>'Net cash flow from investing activities',
-                'php'=>'',
-                'class'=>''
+                "array"=>"investment_plus_2",
+                "name_ua"=>"необоротних активів",
+                "name_en"=>"noncurrent assets",
+                "class"=>"level2",
             ),
             array(
-                'name_ua'=>'3. Рух коштів у результаті фінансової діяльності',
-                'name_en'=>'3. Cash flow as a result of financial activity',
-                'php'=>'',
-                'class'=>''
+                "array"=>"investment_plus_3",
+                "name_ua"=>"інші надходження",
+                "name_en"=>"other receipts",
+                "class"=>"level2",
             ),
             array(
-                'name_ua'=>'Фінансова діяльність - надходження',
-                'name_en'=>'Financial activities - supply',
-                'php'=>'',
-                'class'=>'level2'
+                "array"=>"cf_investment_minus",
+                "name_ua"=>"Витрати на придбання:",
+                "name_en"=>"Costs of purchase of:",
+                "class"=>"level1",
             ),
             array(
-                'name_ua'=>'Фінансова діяльність - витрати',
-                'name_en'=>'Financial activity - expenses',
-                'php'=>'',
-                'class'=>'level2'
+                "array"=>"investment_minus_1",
+                "name_ua"=>"фінансових інвестицій",
+                "name_en"=>"financial investments",
+                "class"=>"level2",
             ),
             array(
-                'name_ua'=>'Чистий рух коштів від фінансової діяльності',
-                'name_en'=>'Net cash flow from financial activities',
-                'php'=>'',
-                'class'=>''
+                "array"=>"investment_minus_2",
+                "name_ua"=>"необоротних активів",
+                "name_en"=>"noncurrent assets",
+                "class"=>"level2",
+
             ),
             array(
-                'name_ua'=>'Всього надходження',
-                'name_en'=>'Total supply',
-                'array'=>'plane_revenues',
-                'class'=>''
+                "array"=>"investment_minus_3",
+                "name_ua"=>"інші платежі",
+                "name_en"=>"other payments",
+                "class"=>"level2",
             ),
             array(
-                'name_ua'=>'Всього витрати',
-                'name_en'=>'Total costs',
-                'array'=>'budget_cost',
-                'class'=>''
+                "array"=>"cf_investment_difference",
+                "name_ua"=>"Чистий рух коштів від інвестиційної діяльності",
+                "name_en"=>"Net cash flow from investing activities",
+                "class"=>"level1",
+            ),
+            /////////////
+            array(
+                "array"=>"cf_financial",
+                "name_ua"=>"3. Рух коштів у результаті фінансової діяльності",
+                "name_en"=>"3. Cash flows from financing activities",
+                "class"=>"",
+            ),
+            array(
+                "array"=>"cf_financial_plus",
+                "name_ua"=>"Надходження від: ",
+                "name_en"=>"Receipts from:",
+                "class"=>"level1",
+            ),
+            array(
+                "array"=>"financial_plus_1",
+                "name_ua"=>"власного капіталу",
+                "name_en"=>"own equity",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"financial_plus_2",
+                "name_ua"=>"отримання нової позики",
+                "name_en"=>"obtaining new loans",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"financial_plus_3",
+                "name_ua"=>"інші надходження",
+                "name_en"=>"other receipts",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"cf_financial_minus",
+                "name_ua"=>"Витрати на:",
+                "name_en"=>"Costs of:",
+                "class"=>"level1",
+            ),
+            array(
+                "array"=>"financial_minus_1",
+                "name_ua"=>"погашення поточних позик",
+                "name_en"=>"loan repayment",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"financial_minus_2",
+                "name_ua"=>"погашення нової позики",
+                "name_en"=>"repayment of new loans",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"financial_minus_3",
+                "name_ua"=>"погашення зобов'язань по інших надходженнях",
+                "name_en"=>"repayment of other receipts",
+                "class"=>"level2",
+            ),
+            array(
+                "array"=>"cf_financial_difference",
+                "name_ua"=>"Чистий рух коштів від фінансової діяльності",
+                "name_en"=>"Net cash flow from financing activities",
+                "class"=>"level1",
             ),
             array(
                 'name_ua'=>'Чистий рух грошових коштів за звітний період',
                 'name_en'=>'Net cash flows for reporting period',
                 'array'=>'gross_profit',
                 'class'=>''
+            ),
+            array(
+                'name_ua'=>'Залишок коштів на початок періоду',
+                'name_en'=>'Залишок коштів на початок періоду',
+                'array'=>'showrow',
+                'class'=>''
+            ),
+            array(
+                'name_ua'=>'Залишок коштів на кінець періоду',
+                'name_en'=>'Залишок коштів на кінець періоду',
+                'array'=>'showrow',
+                'class'=>''
             )
+
         );
     }
     public static function getMyCulture($db,$id_user,$id_culture=false,$id_field=false,$id_crop=false){
@@ -301,11 +408,20 @@ class Budget{
 
         return $date;
     }
-    public static function getNewBudget($db,$id_user,$field,$table,$remains=false,$strorage=false, $fact_remains=false){
+    public static function getNewBudget($db,$id_user,$field,$table,$remains=false,$strorage=false, $fact_remains=false,$crop_remains=false,$crop_fact_remains=false){
         $ex_date=array();
         $sql1='AND (';
         $sql2='AND (';
         $sql3='AND (';
+
+        if($_SESSION['payment_status']==0){
+            $sql_demo = '(pm.id_user=1 or pm.id_user='.$id_user.')';
+            $sql_demo_veh = '(id_user=1 or id_user='.$id_user.')';
+        }else{
+            $sql_demo='pm.id_user='.$id_user;
+            $sql_demo_veh = 'id_user='.$id_user;
+        }
+
         foreach ($field as $arr_field)if($arr_field['field_id_culture']==TRUE){
             $sql1.="action_id_culture ='".$arr_field['field_id_culture']."' or ";
         }
@@ -325,7 +441,7 @@ class Budget{
 
 
         //Материалы
-        $result = $db->query("SELECT * FROM new_lib_material lm, new_material_price pm WHERE pm.id_user='$id_user' AND pm.id_lib_material=lm.id_material");
+        $result = $db->query("SELECT * FROM new_lib_material lm, new_material_price pm WHERE $sql_demo  AND pm.id_lib_material=lm.id_material");
         $result ->setFetchMode(PDO::FETCH_ASSOC);
         $materials = $result->fetchAll();
         $date['new_material']=array();
@@ -343,7 +459,7 @@ class Budget{
         }
 
         //Машины
-        $result = $db->query("SELECT * FROM new_vehicles WHERE id_user=$id_user AND vehicles_status = '0'");
+        $result = $db->query("SELECT * FROM new_vehicles WHERE $sql_demo_veh AND vehicles_status = '0'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $vehicles= $result->fetchAll();
         $date['vehicles']=array();
@@ -432,9 +548,10 @@ class Budget{
             }
         }
 
-        $result = $db->query("SELECT * FROM new_actual_sales WHERE id_user = '$id_user'");
+        $result = $db->query("SELECT * FROM new_actual_sales WHERE id_user = '$id_user' ORDER BY actual_sale_date ASC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $actual_sale = $result->fetchAll();
+
         $fact_total_mas_crop=array();
         foreach ($actual_sale as $sale){
             $id_fact++;
@@ -442,7 +559,7 @@ class Budget{
             $ex_fact_data[$id_fact]=intval($fact_data[$id_fact][0].$fact_data[$id_fact][1]);
             $ex_date['month_active'][$ex_fact_data[$id_fact]]=true;
             $sale['actual_sale_sum'];
-            $date['actual_sale'][$sale['actual_sale_product']] = $sale['actual_sale_sum'];
+            $date['actual_sale'][$sale['actual_sale_product']] += $sale['actual_sale_sum'];
             //$date['actual_sale_date'][$sale['actual_sale_product']] = $ex_fact_data[$id_fact];
             $fact_total_mas_crop[$sale['actual_sale_product']] = $sale['actual_sale_quantity'];
 
@@ -450,20 +567,9 @@ class Budget{
             $ex_date['month_crop_fact_revenue'][$ex_fact_data[$id_fact]][$sale['actual_sale_product']]+= $sale['actual_sale_sum'];
         }
 
-        //Storage setting
-        $material_mass_storage=array();
-        if($strorage==TRUE){
-            $result = $db->query("SELECT * FROM new_storage_material WHERE storage_id_user=$id_user and storage_material_status = '0'");
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            $date['storage_material_fact'] = $result->fetchAll();
-            foreach ($date['storage_material_fact'] as $storage_material_fact_arr){
-                $material_mass_storage[$storage_material_fact_arr['storage_material']]+=$storage_material_fact_arr['storage_start'];
-            }
-        }
 
         /*echo "<pre>";
-        var_dump($date['fact_data']);die;*/
-
+        var_dump($actual_sale);die;*/
 
         foreach ($date['plane_sale'] as $plane_sale){
             $ex_plane_sale[$plane_sale['plane_sale_culture']]=$plane_sale;
@@ -482,6 +588,7 @@ class Budget{
         $others=0;
         $repairs=0;
         $operating= 0;
+        $idddd=0;
         foreach ($date['other_costs'] as $other_cost){
             if($other_cost['costs_type']=='3'){
                 $others += $other_cost['costs_plan'];
@@ -508,10 +615,31 @@ class Budget{
             $rev_m_f[$arr_field['id_field']] = $arr_field['field_size'] * $arr_field['field_yield'] * 100;
             $proc_rew_mass[$arr_field['id_field']] = $rev_m_f[$arr_field['id_field']] / $rev_m_c_summ[$arr_field['field_id_crop']];
             $ex_date['plane_revenues'][$arr_field['id_field']] = $proc_rew_mass[$arr_field['id_field']] * $ex_plane_sale[$arr_field['field_id_crop']]['plane_sale_now'] * $ex_plane_sale[$arr_field['field_id_crop']]['plane_sale_avr_price'];
+            $ex_date['products'][$arr_field['field_id_crop']]=array(
+                'name'=>$crop_name[$arr_field['field_id_crop']],
+                'mass'=>$ex_plane_sale[$arr_field['field_id_crop']]['plane_sale_now']
+            );
+
+
             $ex_date['crop_plane_revenues'][$arr_field['field_id_crop']] += $ex_date['plane_revenues'][$arr_field['id_field']];
 
             $ex_date['crop_fact_plane_revenues'][$arr_field['field_id_crop']] = $date['actual_sale'][$arr_field['field_id_crop']];
             $ex_date['field_fact_plane_revenues'][$arr_field['id_field']] = $date['actual_sale'][$arr_field['field_id_crop']]*$proc_rew_mass[$arr_field['id_field']];
+            $row = 0;
+            if($crop_remains==7){
+                $ex_date['fact_remains'][$arr_field['field_id_crop']]= array(
+                    'name_crop'=>$crop_name[$arr_field['field_id_crop']],
+                );
+                foreach ($actual_sale as $value)if($value['actual_sale_product']==$arr_field['field_id_crop']){
+                    $ex_date['fact_remains'][$arr_field['field_id_crop']]['revenues'][] = array(
+                        'actual_sale_date'=>$value['actual_sale_date'],
+                        'actual_sale_quantity'=>$value['actual_sale_quantity'],
+                        'actual_sale_per_unit'=>$value['actual_sale_per_unit'],
+                        'actual_sale_sum' => $value['actual_sale_sum'],
+                        'actual_sale_comments'=>$value['actual_sale_comments'],
+                    );
+                }
+            }
 
             $ex_date['budget_crop_name'][$arr_field['id_field']] = '# '.$arr_field['field_number'] . ' ' . $crop_name[$arr_field['field_id_crop']];
 
@@ -558,6 +686,16 @@ class Budget{
                             'price'=>$fact_price_material,
                         );
                     }
+                    if($crop_fact_remains==1){
+                        $ex_date['crop_fact_remains'][$date['fact_materials'][$fact_materials['id']]['storage_type_material']][$arr_field['id_field']][] = array(
+                            'action' =>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'area'=>$arr_field['field_size'],
+                            'date'=>$fact_materials['date'],
+                            'material'=>$fact_materials['id'],
+                            'quantity'=>$fact_materials['norm'],
+                            'price'=>$fact_price_material,
+                        );
+                    }
                     $fact_price_material=0;
                 }
                 //Fuel fact +
@@ -586,9 +724,11 @@ class Budget{
                                 $ex_date['fact_remains'][$action['action_id']]['equipment'][$row2]=array(
                                     'id_v'=>$fact_machines['id_veh'],
                                     'vehicles_name'=>$date['vehicles'][$fact_machines['id_veh']]['vehicles_name'],
-                                    'vehicles_type_fuel'=>$date['fact_materials'][$fact_machines['id_mat']]['storage_type_material'],
-                                    'vehicles_fuel'=>$date['vehicles'][$fact_machines['id_mat']]['vehicles_fuel'],
+                                    'vehicles_type_fuel'=>$date['fact_materials'][$fact_machines['id_mat']]['storage_subtype_material'],
+                                    'vehicles_fuel'=>$date['fact_materials'][$fact_machines['id_mat']]['storage_material'],
                                     'total_fuel'=>$fact_machines['norm'],
+                                    'fuel_price'=>$date['fact_materials'][$fact_machines['id_mat']]['storage_sum_total'],
+                                    'price'=>$date['fact_materials'][$fact_machines['id_mat']]['storage_sum_total']*$fact_machines['norm'],
                                     'date'=>$fact_machines['date']
                                 );
                                 $equipments[$row2] = explode(',', $fact_machines['id_eq']);
@@ -626,6 +766,17 @@ class Budget{
                             'date'=>$fact_employee['date'],
                         );
                     }
+
+                    if($crop_fact_remains==2){
+                        $ex_date['crop_fact_remains'][$arr_field['id_field']][] = array(
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'name'=>$fact_employee['id'],
+                            'surname'=>$fact_employee['id'],
+                            'position'=>$fact_employee['id'],
+                            'salary'=>$fact_employee['pay'],
+                            'date'=>$fact_employee['date'],
+                        );
+                    }
                 }
                 //Services fact +
                 if(unserialize($date['fact_data'][$action['action_id']]['fact_services'])!=false)foreach (unserialize($date['fact_data'][$action['action_id']]['fact_services']) as $fact_services){
@@ -646,25 +797,26 @@ class Budget{
                             'price'=>$fact_services['price']
                         );
                     }
-                } ;
+
+                    if($crop_fact_remains == 6){
+                        $ex_date['crop_fact_remains'][$arr_field['id_field']][] = array(
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'date'=>$fact_services['date'],
+                            'name'=>$fact_services['name'],
+                            'price'=>$fact_services['price']
+                        );
+                    }
+                }
                 // $ex_date['crop_fact_budget_cost'][$arr_field['field_id_crop']] = $ex_date['fact_budget_services'][$arr_field['field_id_crop']] +$ex_date['fact_budget_pay'][$arr_field['field_id_crop']] +$ex_date['fact_budget_equipment'][$arr_field['field_id_crop']]+$ex_date['fact_budget_ppa'][$arr_field['field_id_crop']]+$ex_date['fact_budget_fertilizers'][$arr_field['field_id_crop']]+$ex_date['fact_budget_seeds'][$arr_field['field_id_crop']];
                 /////////////////PLAN//////////////////
                 //мaтериалы
                 if(unserialize($action['action_materials'])!=false) foreach(unserialize($action['action_materials']) as $action_materials){
                     $m_id++;
                     //////////////////////////////////////////////////////
-                    $mass_material[$m_id]=($action_materials['norm'] * $arr_field['field_size'])-$material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']];
-
-
+                    $mass_material[$m_id]=($action_materials['norm'] * $arr_field['field_size']);
                     $ex_date['need_material'][$action_materials['id']] += $mass_material[$m_id];
 
-                    $material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']]-=($action_materials['norm'] * $arr_field['field_size']);
-                    if($mass_material[$m_id]<=0){
-                        $mass_material[$m_id]=0;
-                    }
-                    if($material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']]<=0){
-                        $material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']]=0;
-                    }
+
                     /////////////////////////////////////////////////////
                     $price_material[$action['action_id']] = $mass_material[$m_id] * $date['new_material'][$action_materials['id']]['price_material'];
                     $ex_date['budget_material'][$arr_field['id_field']][$date['new_material'][$action_materials['id']]['id_type_material']] += $price_material[$action['action_id']];
@@ -682,6 +834,7 @@ class Budget{
                             $ex_date['budget_ppa_month'][$act_data[1]]+=$price_material[$action['action_id']];
                             break;
                     }
+                    if($ex_date['need_material'][$action_materials['id']]==TRUE)$material_ok[$date['new_material'][$action_materials['id']]['id_lib_material']]=$date['new_material'][$action_materials['id']]['name_material'];
                     if($remains==1){
                         $ex_date['remains'][$date['new_material'][$action_materials['id']]['id_type_material']][]=array(
                             'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
@@ -694,6 +847,18 @@ class Budget{
                         );
                         $ex_date['field_id_for_remains'] = $arr_field['field_id_crop'];
                     }
+
+                    if($crop_remains==1){
+                        $ex_date['crop_remains'][$date['new_material'][$action_materials['id']]['id_type_material']][$arr_field['id_field']][]=array(
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'name'=>$date['new_material'][$action_materials['id']]['name_material'],
+                            'norm'=>$action_materials['norm'],
+                            'area'=>$arr_field['field_size'],
+                            'summ_mass'=>$action_materials['norm']*$arr_field['field_size'],
+                            'price'=>$date['new_material'][$action_materials['id']]['price_material'],
+                            'summ_price'=>$price_material[$action['action_id']],
+                        );
+                    }
                 }
                 //Топливо
                 if(unserialize($action['action_machines'])!=false){
@@ -704,20 +869,22 @@ class Budget{
                     );
                         $ex_date['field_id_for_remains'] = $arr_field['field_id_crop'];
                     }
+
+                    if ($crop_remains==3){
+                        $ex_date['crop_remains'][$arr_field['id_field']][$action['action_id']] = array(
+                            'id'=>$action['action_id'],
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'work_amount'=>$action['action_work'],
+                        );
+                    }
+
                     $row=0;
                     $row2=0;
                     foreach(unserialize($action['action_machines']) as $action_machines){
                         $m_id++;
-                        $mass_material[$m_id]=($action_machines['fuel'] * $action['action_work'])-$material_mass_storage[$date['new_material'][$action_materials['id']]['id_lib_material']];
+                        $mass_material[$m_id]=($action_machines['fuel'] * $action['action_work']);
                         $ex_date['need_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]+=$mass_material[$m_id];
-
-                        $material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]-=($action_machines['fuel'] * $action['action_work']);
-                        if($mass_material[$m_id]<=0){
-                            $mass_material[$m_id]=0;
-                        }
-                        if($material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]<=0){
-                            $material_mass_storage[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]=0;
-                        }
+                        if($date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]==TRUE)$material_ok[$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['id_lib_material']]=$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['name_material'];
 
                         if($date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['price_material']!=0){
                             $price_fuel=$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['price_material'];
@@ -732,10 +899,11 @@ class Budget{
                         if($remains==3){
                             $row2++;
                             $ex_date['remains'][$action['action_id']]['equipment'][$row2]=array(
+                                'id'=>$action['action_id'],
                                 'id_v'=>$action_machines['id_veh'],
                                 'vehicles_name'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_name'],
                                 'vehicles_manufacturer'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_manufacturer'],
-                                'vehicles_type_fuel'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_type_fuel'],
+                                'vehicles_type_fuel'=>$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['key_material'],
                                 'vehicles_fuel'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel'],
                                 'rate'=>$action_machines['fuel'],
                                 'total_fuel'=>$action_machines['fuel']*$action['action_work'],
@@ -745,7 +913,7 @@ class Budget{
                             $equipments[$row2] = explode(',', $action_machines['id_equ']);
                             foreach ($equipments[$row2] as $equipments_arr){
                                 $row++;
-                                $ex_date['remains'][$action['action_id']]['equipment'][$row2]['eq'][$row]=array(
+                                $ex_date['remains'][$action['action_id']]['equipment'][$row2]['eq'][]=array(
                                     'equipment_name'=>$new_equipment['equipment'][$equipments_arr]['equipment_name'],
                                     'equipment_type'=>$new_equipment['equipment'][$equipments_arr]['equipment_type'],
                                     'equipment_kind'=>$new_equipment['equipment'][$equipments_arr]['equipment_kind'],
@@ -756,7 +924,35 @@ class Budget{
 
                             if($row==false and $row2==false) $ex_date['remains'][$action['action_id']]['row']=0;
                         }
+
+                        if($crop_remains==3){
+                            $row2++;
+                            $ex_date['crop_remains'][$arr_field['id_field']][$action['action_id']]['equipment'][$row2]=array(
+                                'id'=>$action['action_id'],
+                                'id_v'=>$action_machines['id_veh'],
+                                'vehicles_name'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_name'],
+                                'vehicles_type_fuel'=>$date['new_material'][$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel']]['key_material'],
+                                'vehicles_fuel'=>$date['vehicles'][$action_machines['id_veh']]['vehicles_fuel'],
+                                'rate'=>$action_machines['fuel'],
+                                'total_fuel'=>$action_machines['fuel']*$action['action_work'],
+                                'fuel_price'=>$price_fuel,
+                                'summ_price'=>$price_equipment,
+                            );
+                            $equipments[$row2] = explode(',', $action_machines['id_equ']);
+                            foreach ($equipments[$row2] as $equipments_arr){
+                                $row++;
+                                $ex_date['crop_remains'][$arr_field['id_field']][$action['action_id']]['equipment'][$row2]['eq'][]=array(
+                                    'equipment_name'=>$new_equipment['equipment'][$equipments_arr]['equipment_name'],
+                                );
+                            }
+                            if($row>=$row2) $ex_date['crop_remains'][$arr_field['id_field']][$action['action_id']]['row']=$row;
+                            if($row2>=$row) $ex_date['remains'][$arr_field['id_field']][$action['action_id']]['row']=$row2;
+
+                            if($row==false and $row2==false) $ex_date['crop_remains'][$arr_field['id_field']][$action['action_id']]['row']=0;
+                        }
                     }
+
+
                 }
                 //Зарплата
                 if(unserialize($action['action_employee'])!=false) foreach(unserialize($action['action_employee']) as $action_employee){
@@ -774,6 +970,17 @@ class Budget{
                             'summ_pay'=>$pay_employee
                         );
                         $ex_date['field_id_for_remains'] = $arr_field['field_id_crop'];
+                    }
+
+                    if($crop_remains==2){
+                        $ex_date['crop_remains'][$arr_field['id_field']][] = array(
+                            'action'=>$lib['operation'][$action['action_action_id']]['name_ua'],
+                            'name'=>$action_employee['id'],
+                            'surname'=>$action_employee['id'],
+                            'position'=>$action_employee['id'],
+                            'pay'=>$action_employee['pay'],
+                            'summ_pay'=>$pay_employee
+                        );
                     }
                 }
                 //Услуги
@@ -793,9 +1000,19 @@ class Budget{
                             );
                         $ex_date['field_id_for_remains'] = $arr_field['field_id_crop'];
                     }
+
+                    if($crop_remains==6){
+                        $ex_date['crop_remains'][$arr_field['id_field']][] = array(
+                            'action' => $lib['operation'][$action['action_action_id']]['name_ua'],
+                            'services_name' => $action_service['name'],
+                            'amount' => $action_service['amount'],
+                            'price' => $action_service['price'],
+                            'total_price' => $action_service['amount'] * $action_service['price'],
+                        );
+                    }
                 }
                 if($action['action_action_type_id']==32) $rev_data[$arr_field['id_field']]=$act_data[1];
-                
+
             }
 
             $ex_date['budget_seeds'][$arr_field['id_field']] = $ex_date['budget_material'][$arr_field['id_field']][1];
@@ -832,7 +1049,7 @@ class Budget{
             
             $ex_date['field_fact_budget_cost_total']+=$ex_date['field_fact_budget_cost'][$arr_field['id_field']];
         }
-        $ex_date['plane_revenues_month_crop'][$arr_field['field_id_crop']][$rev_data[$arr_field['id_field']]] += $ex_date['plane_revenues'][$arr_field['id_field']];
+        $ex_date['plane_revenues_month_crop'][$arr_field['field_id_crop']][$rev_data[$arr_field['id_field']]] = $ex_date['plane_revenues'][$arr_field['id_field']];
         $ex_date['plane_name_crop'][$arr_field['field_id_crop']]=$crop_name[$arr_field['field_id_crop']];
 
         foreach ($field as $arr_field) {
@@ -999,6 +1216,82 @@ class Budget{
                 }
             }
         }
+        //Cash Flow
+
+
+        $result = $db->query("SELECT * FROM new_cash_flow_material as cf,new_lib_material as lm  WHERE cf.id_user='$id_user' and cf.id_lib_material=lm.id_material");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date['cash_flow_material'] = $result->fetchAll();
+        //$material_ok=$ex_date['need_material'];
+        $cf_type[1]='budget_seeds_month';
+        $cf_type[2]='budget_fertilizers_month';
+        $cf_type[3]='budget_ppa_month';
+        $cf_type[4]='budget_equipment_month';
+        $ex_date['budget_seeds_month']=false;
+        $ex_date['budget_fertilizers_month']=false;
+        $ex_date['budget_ppa_month']=false;
+        $ex_date['budget_equipment_month']=false;
+        $month=false;
+        foreach ($date['cash_flow_material'] as $arr_cash_flow_material){
+            $arr_cash_flow_material['cash_flow_material']=unserialize($arr_cash_flow_material['cash_flow_material']);
+            foreach ($arr_cash_flow_material['cash_flow_material'] as $cf_material){
+                if($material_ok[$arr_cash_flow_material['id_lib_material']]==TRUE){
+                    $month_d = explode('-', $cf_material['d']);
+                    $month=intval($month_d[0].$month_d[1]);
+                    $ex_date[$cf_type[$arr_cash_flow_material['id_type_material']]][$month]+=$cf_material['m']*$cf_material['p'];
+                    $ex_date['month_active'][$month]=TRUE;
+                }
+            }
+            foreach ($arr_cash_flow_material['cash_flow_material'] as $cf_material){
+                $material_ok[$arr_cash_flow_material['id_lib_material']]=FALSE;
+            }
+        }
+        foreach ($material_ok as $id_arr_material_ok=>$true_material_ok)if($true_material_ok==true){
+            $ex_date['material_ok'][]=$true_material_ok;
+        }
+        $result = $db->query("SELECT * FROM  new_cash_flow_sales2 WHERE id_user=$id_user");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $date['new_cash_flow_sales2'] = $result->fetchAll();
+        $ex_date['plane_revenues_month_crop']=false;
+        $ex_date['plane_revenues_month']=false;
+        foreach ($date['new_cash_flow_sales2'] as $sales2_arr){
+            if($ex_date['products'][$sales2_arr['id_crop']]!=false){
+                $arr_sales2['sales2']=unserialize($sales2_arr['sales2']);
+                foreach ($arr_sales2['sales2'] as $sales2){
+                    $month_d = explode('-', $sales2['d']);
+                    $month=intval($month_d[0].$month_d[1]);
+                    $ex_date['plane_revenues_month_crop'][$sales2_arr['id_crop']][$month]+=$sales2['m']*$sales2['p'];
+                    $ex_date['plane_revenues_month'][$month]+=$sales2['m']*$sales2['p'];
+                    $ex_date['products'][$sales2_arr['id_crop']]['true']=TRUE;
+                }
+            }
+        }
+        $ex_date['products_ok']=0;
+        foreach ($ex_date['products'] as $products){
+
+
+            if($products['true']==false) $ex_date['products_ok']++;
+        }
+        if($ex_date['plane_revenues_month_crop']==false)$ex_date['plane_revenues_month_crop']=array();
+        if($ex_date['plane_revenues_month']==false) $ex_date['plane_revenues_month']=array();
+        foreach ($ex_date['month_active'] as $month=>$true){
+            //
+            $ex_date['operational_plus_1_month'][$month]=$ex_date['plane_revenues_month'][$month];
+            //1
+            $ex_date['cf_operational_plus_month'][$month]=$ex_date['operational_plus_1_month'][$month]+$ex_date['operational_plus_2_month'][$month];
+            $ex_date['cf_operational_minus_month'][$month]=$ex_date['budget_seeds_month'][$month]+$ex_date['budget_fertilizers_month'][$month]+$ex_date['budget_ppa_month'][$month]+$ex_date['budget_equipment_month'][$month]+$ex_date['budget_pay_month'][$month]+$ex_date['budget_services_month'][$month]+$ex_date['budget_repairs_month'][$month]
+                +$ex_date['rent_pay_month'][$month]+$ex_date['other_costs_month'][$month];
+            $ex_date['cf_operational_difference_month'][$month]=$ex_date['cf_operational_plus_month'][$month]- $ex_date['cf_operational_minus_month'][$month];
+            //2
+            //3
+        }
+
+
+        if($ex_date==false){
+            SRC::template('new-farmer','new','page404');die;
+        }
+
+        //array_push($ex_date['budget_crop_name'],'Всього');
         return $ex_date;
     }
 //    public static function getBudget($db,$id_user,$field,$table,$remains=false){

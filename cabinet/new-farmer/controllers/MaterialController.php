@@ -69,6 +69,7 @@ class MaterialController{
         $date['type_material']=DataBase::getTypeMaterial();
         $date['ppa_material']=DataBase::getTypePPA();
         $date['fert_material']=DataBase::getTypeFert();
+        $date['fuel_material']=DataBase::getTypeFuel();
         $date['material_lib']=DataBase::getMaterial($id_user);
 
         SRC::template('new-farmer','new','allNeedMaterial',$date);

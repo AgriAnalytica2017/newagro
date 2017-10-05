@@ -28,6 +28,8 @@ class Fact{
         $fact = $result->fetchAll();
         foreach ($fact as $arr_fact){
             $date['fact'][$arr_fact['fact_id_action']]=array(
+                'fact_date_start'=>$arr_fact['fact_date_start'],
+                'fact_date_end'=>$arr_fact['fact_date_end'],
                 'fact_materials'=>unserialize($arr_fact['fact_materials']),
                 'fact_employee'=>unserialize($arr_fact['fact_employee']),
                 'fact_machines'=>unserialize($arr_fact['fact_machines']),
@@ -135,5 +137,11 @@ class Fact{
         $db = Db::getConnection();
         $db->query("DELETE FROM new_come_out WHERE id_user='$id_user' AND action_id='$id_action'");
         return  true;
+    }
+
+    public static function changeDate($id_user,$action_id,$date_start,$date_end){
+        $db = Db::getConnection();
+        $db->query("UPDATE new_fact SET fact_date_start = '$date_start', fact_date_end = '$date_end' WHERE fact_id_action ='$action_id' and id_user = '$id_user'");
+        return true;
     }
 }

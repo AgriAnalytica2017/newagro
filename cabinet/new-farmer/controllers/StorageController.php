@@ -10,19 +10,31 @@ class StorageController{
 
 	public function actionStorage(){
 		$id_user = $_SESSION['id_user'];
-		Storage::updatePriceAndMass();
+
+		if (!isset($_POST['submit'])){
+            $date_start = $_POST['date_start_cal'];
+            $date_end = $_POST['date_end_cal'];
+        }
+//        if($date_start==null || $date_end==null){
+//            $date_start = '2017-01-01';
+//            $date_end = date('y-m-j');
+//        }
+        //$date_end = ;
+		Storage::updatePriceAndMass($date_start,$date_end);
 		/*$date['material_type'] = DataBase::getActionLib($id_user);*/
 		//$date['material_types'] = DataBase::getActionLibs($id_user);
 		$date['material_lib'] = DataBase::getMaterial($id_user);
-		$date['storage'] = Storage::getStorage($id_user);
-		$date['incoming_material'] = Storage::getIncomingMaterial($id_user);
+		$date['storage'] = Storage::getStorage($id_user,$date_start,$date_end);
+		$date['incoming_material'] = Storage::getIncomingMaterial($id_user,$date_start,$date_end);
 		$date['field_management'] = TechnologyCard::getFieldManagement($id_user);
 		$date['fuel'] = DataBase::getTypeFuel();
 		$date['fert'] = DataBase::getTypeFert();
 		$date['ppa'] = DataBase::getTypePPA();
 		$date['products'] = Storage::getProducts($id_user);
 		$date['crop'] = DataBase::getCropName($id_user);
-
+		$date['action'] = DataBase::getActionLib($id_user);
+        $date['date_start_calc']=$date_start;
+        $date['date_end_calc']=$date_end;
 		/*foreach ($date['storage']['storage_material_fact'] as $storage_material){
             $total_price[$storage_material['storage_material_id']]=0;
             $total_price_sale[$storage_material['storage_material_id']]=0;
@@ -34,7 +46,6 @@ class StorageController{
                 if($incoming_material['come_out_type']==2){
                     $total_price[$storage_material['storage_material_id']]+=$incoming_material['come_out_sum_total'];
                 }
-
             }
             $date['ex']['storage_price'][$storage_material['storage_material_id']]=
                 ($total_price_sale[$storage_material['storage_material_id']]+$total_price[$storage_material['storage_material_id']])/($date['incoming_material']['out_material'][$storage_material['storage_material_id']]+$date['incoming_material']['come_material'][$storage_material['storage_material_id']]);
@@ -42,10 +53,8 @@ class StorageController{
             $date['ex']['storage_quantity'][$storage_material['storage_material_id']]=$date['incoming_material']['come_material'][$storage_material['storage_material_id']]-
                 $date['incoming_material']['out_material'][$storage_material['storage_material_id']];
         }*/
-
-
-
 		SRC::template('new-farmer','new','storage',$date);
+        Storage::updatePriceAndMass();
 		return true;
 	}
 

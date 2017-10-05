@@ -193,7 +193,7 @@ var_dump($date);die;*/
             }
     });
     </script>
-<section class="content">
+<section class="content" <?if($_SESSION['payment_status']==0){echo 'style="filter:blur(10px);"';}?>>
     <div class="box">
         <div class="box-header">
 
