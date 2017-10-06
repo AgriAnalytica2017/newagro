@@ -9,9 +9,6 @@
     .panel{
     margin-top: -20px;
      }
-    .nav-tabs{
-        padding-left: 0px;
-     }          
 </style>
 <? //var_dump($date['rent_pay']);die;?>
 <div class="box-bodyn col-lg-12">
@@ -36,7 +33,7 @@
 
               
 <div class="rown">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-9 col-lg-offset-1">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" class="tabs" data-toggle="tab">Ремонт техніки та обладнання</a></li>
             <li><a href="#tab_2" class="tabs" data-toggle="tab">Інші витрати</a></li>

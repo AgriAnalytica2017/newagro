@@ -14,21 +14,25 @@ $unit = array(
 );
 ?>
 <? //var_dump($date['rent_pay']);die;?>
+   <style>
+       h3{
+    margin: 15px;
+       }
+</style>
 <div class="box-bodyn col-lg-12">
         <div class="non-semantic-protector col-sm-4">
         <?=$language['new-farmer']['8']?>
         </div>
                     </div>
-        
-     <div class="box-bodyn col-lg-12 text-center">
-        <a class="btn btn-primaryn" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
-        <a class="btn btn-primaryn Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
-
-                  
        
             <div class="table-responsive width100">
-                <div class="col-lg-12">
-                <h3 style="float: left;"><?=$language['new-farmer']['124']?></h3>
+                  
+                <div class="box-bodyn col-lg-12">
+                <div class="col-sm-4" style="font-size: 22px;"><?=$language['new-farmer']['124']?></div>
+                 <div class="col-sm-8">
+                <a class="btn btn-primary" href="#Add_new" data-toggle="modal">Надходження матеріалів</a>
+        <a class="btn btn-primary Sale" href="#Sale" data-toggle="modal">Вибуття матеріалів</a>
+        </div>
         </div>
                 <table class="table">
                     <thead>
@@ -86,18 +90,18 @@ $unit = array(
                     </tbody>
                 </table>
             </div>
-        </div>
-    <div class="box-bodyn col-lg-12 text-center">
-        <a class="btn btn-primaryn" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>
-        <a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</a>
         
-  
-        <div class="col-lg-12">
+
+           
+            <div class="table-responsive  width100">
+                <div class="box-bodyn col-lg-12">
+                <div class="col-sm-4" style="font-size: 22px;"><?=$language['new-farmer']['128']?></div>
+                 <div class="col-sm-8">
+                <a class="btn btn-primary" href="#Add_pdoducts" data-toggle="modal"><?=$language['new-farmer']['110']?></a>
+        <a href="#sale_products" class="btn btn-primary sale_prod" data-toggle="modal" data-id="<?=$product['product_type']?>">Реалізація продукції</a>
+        </div>
+        </div>
             
-       
-            <div class="table-responsive">
-              <h3 style="float: left;"><?=$language['new-farmer']['128']?></h3>
-              
                 <table class="table">
                     <thead>
                     <tr class="tabletop">
@@ -125,8 +129,6 @@ $unit = array(
                     </tbody>
                 </table>
             </div>
-         </div>
-         </div>
       
     <div class="box-body wt">
         <div id="Add_new" class="modal fade">
@@ -252,7 +254,7 @@ $unit = array(
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+                            <button type="submit" class="btn btn-primary"><?=$language['new-farmer']['109']?></button>
                         </div>
                     </div>
                 </form>
@@ -311,7 +313,7 @@ $unit = array(
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+                            <button type="submit" class="btn btn-primary"><?=$language['new-farmer']['109']?></button>
                         </div>
                     </div>
                 </form>
@@ -372,7 +374,7 @@ $unit = array(
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><?/*=$language['new-farmer']['26']*/?></button>
-            <button type="submit" class="btn btn-primaryn"><?/*=$language['new-farmer']['109']*/?></button>
+            <button type="submit" class="btn btn-primary"><?/*=$language['new-farmer']['109']*/?></button>
         </div>
     </div>
     </form>
@@ -496,7 +498,7 @@ $unit = array(
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+                            <button type="submit" class="btn btn-primary"><?=$language['new-farmer']['109']?></button>
                         </div>
                     </div>
                 </form>
@@ -547,7 +549,7 @@ $unit = array(
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><?=$language['new-farmer']['26']?></button>
-                            <button type="submit" class="btn btn-primaryn"><?=$language['new-farmer']['109']?></button>
+                            <button type="submit" class="btn btn-primary"><?=$language['new-farmer']['109']?></button>
                         </div>
                     </div>
                 </form>

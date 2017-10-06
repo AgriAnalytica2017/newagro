@@ -21,11 +21,11 @@
          Реалізація продукції
         </div>
         
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <div class="col-sm-2 add-ico"> <a href="#Plan_sale"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-12" href="#Plan_sale"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector col-sm-8" href="#Plan_sale"  data-toggle="modal">
             <?=$language['new-farmer']['188']?></a>
             </div>
             </div>
@@ -116,7 +116,7 @@ $id_material_type = array(
                 </div>
             </div>-->
 <div class="box-bodyn col-lg-12">
-                <div class="non-semantic-protector col-lg-12">
+                <div class="col-lg-12" style="font-size: 22px;">
                     Планова реалізація товарної продукції      
                 </div>
                          </div>

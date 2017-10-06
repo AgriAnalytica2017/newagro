@@ -10,26 +10,25 @@
     <style>
         .searchs{
             height: 42px;
-            width: 300px;
+            width: 100%;
             border-radius:3px;
-            margin-top: 0.4% !important;
         }
     </style>
 </head>
 <div class="box-bodyn col-lg-12">
-        <div class="non-semantic-protector col-sm-3">
+        <div class="non-semantic-protector col-sm-4">
            С/г технікa
         </div>
         
-        <div class="col-sm-3">
-            <div class="col-sm-3 add-ico"> <a href="#myModal"  data-toggle="modal"> 
+        <div class="col-sm-6">
+            <div class="add-ico"> <a href="#myModal"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#newVehicles"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector" href="#newVehicles"  data-toggle="modal">
             <?=$language['new-farmer']['29']?></a>
             </div>
-            <div class="col-lg-4">
-            <input class="searchs inphead" id="search" type="text" placeholder="Поиск" style="float: left">
+            <div class="col-sm-2 right">
+            <input class="searchs inphead right" id="search" type="text" placeholder="Поиск">
         </div>
             </div>
             
@@ -69,12 +68,12 @@
                     <td><? echo $vehicles['vehicles_power']?></td>
                     <td><?=$date['fuel_name_price'][$vehicles['vehicles_fuel']]['name_material']?></td>
                     <td><?if ($vehicles['vehicles_load_capacity']!=0){echo $vehicles['vehicles_load_capacity'];}else{echo "";}?></td>
-                    <td><a class=" edit_open" data-data='<?=json_encode($vehicles); ?>'>
-                    <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
-                    </a></td>
-                    <td><a href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>">
-                    <img src="/cabinet/new-farmer/template/img/del.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
-                    </a></td>
+                    <td>
+                    <img src="/cabinet/new-farmer/template/img/edit.svg" data-data='<?=json_encode($vehicles); ?>' class="user-imagen edit_open add-ico" style="width: 35px; height: 35px;">
+                   </td>
+                    <td>
+                    <img src="/cabinet/new-farmer/template/img/del.svg" href="/new-farmer/remove_vehicles/<?=$vehicles['id_vehicles']?>" class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                    </td>
                 </tr>
             <? }?>
             </tbody>

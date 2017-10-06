@@ -39,12 +39,6 @@ $unit = array(
 ?>
 <head>
     <style>
-        .searchs{
-            height: 42px;
-            width: 300px;
-            border-radius:3px;
-            margin-top: 0.4% !important;
-        }
     </style>
 </head>
 <div class="box-bodyn col-lg-12">
@@ -52,15 +46,15 @@ $unit = array(
          <?=$language['new-farmer']['191']?>
         </div>
         
-        <div class="col-sm-3">
-            <div class="col-sm-3 add-ico"> <a href="#newEquipment"  data-toggle="modal"> 
+        <div class="col-sm-6">
+            <div class="add-ico"> <a href="#newEquipment"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#newEquipment"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector" href="#newEquipment"  data-toggle="modal">
             <?=$language['new-farmer']['16']?></a>
             </div>
-            <div class="col-lg-4">
-            <input class="searchs inphead" id="search" type="text" placeholder="Поиск" style="float: left">
+            <div class="col-lg-2 right">
+            <input class="searchs inphead right" id="search" type="text" placeholder="Поиск" style="float: left">
         </div>
             </div>
             

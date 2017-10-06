@@ -10,15 +10,15 @@
 </head>
 <? //var_dump($date['rent_pay']);die;?>
 <div class="box-bodyn col-lg-12">
-        <div class="non-semantic-protector col-sm-3">
+        <div class="non-semantic-protector col-sm-4">
            <?=$language['new-farmer']['4']?>
         </div>
         
-        <div class="col-sm-3">
-            <div class="col-sm-3 add-ico"> <a href="#myModal"  data-toggle="modal"> 
+        <div class="col-sm-6">
+            <div class="add-ico"> <a href="#myModal"  data-toggle="modal"> 
             <img src="/cabinet/new-farmer/template/img/add.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;"> 
             </a></div>
-            <a class=" add-ico non-semantic-protector col-sm-9" href="#myModal"  data-toggle="modal">
+            <a class=" add-ico non-semantic-protector" href="#myModal"  data-toggle="modal">
             <?=$language['new-farmer']['36']?></a>
             </div>
             </div>
@@ -41,13 +41,12 @@
                     <td><?=$employee['employee_position'];?></td>
                     <td><?=$employee['employee_phone_number'];?></td>
                     <td><? if($employee['employee_salary']!=0){echo $employee['employee_salary'];}else{echo '';}?></td>
-                    <td><div class="text-center"><a href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>'>
-                    <img src="/cabinet/new-farmer/template/img/edit.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
-                           
-                        </a></div> </td>
-                    <td><a href="/new-farmer/remove_employee/<?echo $employee['id_employee']?>">
-                    <img src="/cabinet/new-farmer/template/img/del.svg" class="user-imagen add-ico" style="width: 35px; height: 35px;">
-                    </a></td>
+                    <td>
+                    <img src="/cabinet/new-farmer/template/img/edit.svg"href="#editModal"data-toggle="modal"] data-data='<?=json_encode($employee); ?>' class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                     </td>
+                    <td>
+                    <img src="/cabinet/new-farmer/template/img/del.svg" href="/new-farmer/remove_employee/<?echo $employee['id_employee']?>" class="user-imagen add-ico" style="width: 35px; height: 35px;">
+                    </td>
                 </tr>
             </tbody>
         </table>
